@@ -1,17 +1,148 @@
-# Arabic translations for Yumm.
-# Copyright (C) 2026 Yumm
+# Arabic translations for the Yumm project.
+# Copyright (C) 2024 Yumm
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yumm 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-25 00:00+0300\n"
-"PO-Revision-Date: 2026-06-25 00:00+0300\n"
-"Last-Translator: \n"
-"Language-Team: Arabic\n"
+"POT-Creation-Date: 2024-01-01 00:00+0300\n"
+"PO-Revision-Date: 2024-01-01 00:00+0300\n"
+"Last-Translator: Yumm Team\n"
 "Language: ar\n"
+"Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+# ---------------------------------------------------------------------------
+# accounts/managers.py
+# ---------------------------------------------------------------------------
+
+msgid "The email address must be set."
+msgstr "يجب تعيين عنوان البريد الإلكتروني."
+
+msgid "Superuser must have is_staff=True."
+msgstr "يجب أن يكون للمشرف العام is_staff=True."
+
+msgid "Superuser must have is_superuser=True."
+msgstr "يجب أن يكون للمشرف العام is_superuser=True."
+
+# ---------------------------------------------------------------------------
+# accounts/models.py
+# ---------------------------------------------------------------------------
+
+msgid "Admin"
+msgstr "مدير"
+
+msgid "Owner"
+msgstr "مالك"
+
+msgid "User"
+msgstr "مستخدم"
+
+msgid "email address"
+msgstr "عنوان البريد الإلكتروني"
+
+msgid "first name"
+msgstr "الاسم الأول"
+
+msgid "last name"
+msgstr "اسم العائلة"
+
+msgid "role"
+msgstr "الدور"
+
+msgid "user"
+msgstr "مستخدم"
+
+msgid "users"
+msgstr "مستخدمون"
+
+# ---------------------------------------------------------------------------
+# accounts/forms.py
+# ---------------------------------------------------------------------------
+
+msgid "full name"
+msgstr "الاسم الكامل"
+
+msgid "Ahmad Al-Khalidi"
+msgstr "أحمد الخالدي"
+
+msgid "account type"
+msgstr "نوع الحساب"
+
+msgid "Regular User"
+msgstr "مستخدم عادي"
+
+msgid "Restaurant Owner"
+msgstr "صاحب مطعم"
+
+msgid "Any"
+msgstr "أي"
+
+msgid "Admin role cannot be assigned during registration."
+msgstr "لا يمكن تعيين دور المدير أثناء التسجيل."
+
+msgid "This account does not match the selected role."
+msgstr "هذا الحساب لا يتطابق مع الدور المحدد."
+
+# ---------------------------------------------------------------------------
+# accounts/permissions.py + accounts/decorators.py
+# ---------------------------------------------------------------------------
+
+msgid "Admin access required."
+msgstr "مطلوب صلاحيات المدير."
+
+msgid "Owner access required."
+msgstr "مطلوب صلاحيات المالك."
+
+msgid "Admin or Owner access required."
+msgstr "مطلوب صلاحيات المدير أو المالك."
+
+msgid "You do not have permission to perform this action."
+msgstr "ليس لديك إذن لتنفيذ هذا الإجراء."
+
+# ---------------------------------------------------------------------------
+# accounts/views.py
+# ---------------------------------------------------------------------------
+
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+msgid "Registration successful. Please log in."
+msgstr "تم التسجيل بنجاح. يرجى تسجيل الدخول."
+
+msgid "Registration failed. Please correct the errors below."
+msgstr "فشل التسجيل. يرجى تصحيح الأخطاء أدناه."
+
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+msgid "Login successful."
+msgstr "تم تسجيل الدخول بنجاح."
+
+msgid "Invalid credentials."
+msgstr "بيانات الاعتماد غير صحيحة."
+
+msgid "Logged out successfully."
+msgstr "تم تسجيل الخروج بنجاح."
+
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+msgid "Profile updated successfully."
+msgstr "تم تحديث الملف الشخصي بنجاح."
+
+msgid "Profile update failed. Please correct the errors below."
+msgstr "فشل تحديث الملف الشخصي. يرجى تصحيح الأخطاء أدناه."
+
+msgid "Demo login is only available in DEBUG mode."
+msgstr "تسجيل الدخول التجريبي متاح فقط في وضع التصحيح."
+
+msgid "Invalid demo role."
+msgstr "دور تجريبي غير صالح."
+
+msgid "Logged in as demo %(role)s account."
+msgstr "تم تسجيل الدخول كحساب %(role)s التجريبي."

@@ -158,6 +158,22 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+# ---------------------------------------------------------------------------
+# Authentication redirects
+# ---------------------------------------------------------------------------
+
+# Where LoginRequiredMixin and @login_required send unauthenticated users.
+LOGIN_URL = "/accounts/login/"
+
+# Where Django's LoginView redirects after a successful login when no
+# ?next= parameter is present.
+LOGIN_REDIRECT_URL = "/accounts/profile/"
+
+# Where Django's LogoutView redirects after logging out.
+LOGOUT_REDIRECT_URL = "/accounts/login/"
+
 
 # ---------------------------------------------------------------------------
 # Django REST Framework
