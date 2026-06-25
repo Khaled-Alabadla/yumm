@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 
@@ -31,18 +32,25 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # i18n helper — provides the built-in set_language redirect view
+    "django.conf.urls.i18n",
+    # Third-party
     "rest_framework",
     "corsheaders",
+    # Local apps
     "accounts.apps.AccountsConfig",
     "restaurants.apps.RestaurantsConfig",
     "reviews.apps.ReviewsConfig",
     "ai_bot.apps.AiBotConfig",
 ]
 
+# LocaleMiddleware must come after SessionMiddleware and before CommonMiddleware
+# so it can read the session/cookie language preference on every request.
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -60,6 +68,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
+                "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -79,6 +88,7 @@ DATABASES = {
         "HOST": os.getenv("MYSQL_HOST", "127.0.0.1"),
         "PORT": os.getenv("MYSQL_PORT", "3306"),
         "OPTIONS": {
+            # utf8mb4 is required for Arabic text and emoji storage
             "charset": "utf8mb4",
         },
     }
@@ -88,8 +98,8 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": (
-            "django.contrib.auth.password_validation."
-            "UserAttributeSimilarityValidator"
+            "django.contrib.auth.password_validation"
+            ".UserAttributeSimilarityValidator"
         ),
     },
     {
@@ -110,19 +120,48 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-LANGUAGE_CODE = "en-us"
+# ---------------------------------------------------------------------------
+# Internationalization (i18n)
+# ---------------------------------------------------------------------------
 
-TIME_ZONE = "Asia/Jerusalem"
+# Active language set per-request by LocaleMiddleware via:
+#   1. URL prefix  (if using i18n_patterns in urls.py)
+#   2. Session key LANGUAGE_SESSION_KEY
+#   3. Cookie      LANGUAGE_COOKIE_NAME
+#   4. Accept-Language HTTP header  ← primary mechanism for REST API clients
+#   5. LANGUAGE_CODE fallback below
+LANGUAGE_CODE = "en"
+
+LANGUAGES = [
+    ("en", _("English")),
+    ("ar", _("Arabic")),
+]
 
 USE_I18N = True
 
+# Tell Django where to find the project-level .po / .mo translation files.
+# Per-app translations live inside each app's own locale/ folder (auto-found).
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
+TIME_ZONE = "Asia/Jerusalem"
+
 USE_TZ = True
 
+
+# ---------------------------------------------------------------------------
+# Static files
+# ---------------------------------------------------------------------------
 
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+# ---------------------------------------------------------------------------
+# Django REST Framework
+# ---------------------------------------------------------------------------
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [

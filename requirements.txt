@@ -1,6 +1,11 @@
+# Core
 django
 mysqlclient
+
+# API
 djangorestframework
 django-cors-headers
-gunicorn
+
+# Environment & deployment
 python-dotenv
+gunicorn
