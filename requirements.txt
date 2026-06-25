@@ -2,6 +2,9 @@
 django
 mysqlclient
 
+# Image processing (required for ImageField in Restaurant and MenuItem)
+Pillow
+
 # API
 djangorestframework
 django-cors-headers
