@@ -32,6 +32,7 @@ from django.views.generic import CreateView, UpdateView
 
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from .models import CustomUser
+from django.shortcuts import render
 
 # Shared by RegisterView and LoginView — keeps the toggle choices in one place.
 _ROLE_CHOICES = [
@@ -39,6 +40,9 @@ _ROLE_CHOICES = [
     (CustomUser.Role.OWNER, _("Restaurant Owner")),
 ]
 
+
+def index(request):
+    return render(request, 'index.html')
 
 class RegisterView(CreateView):
     """

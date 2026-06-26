@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from django.urls import include, path
+from accounts import views
 
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
 
     # Accounts — authentication and user profile
     path("accounts/", include("accounts.urls", namespace="accounts")),
+    path('', views.index, name='index'),
 ]
