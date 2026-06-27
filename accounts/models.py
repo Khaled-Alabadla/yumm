@@ -32,6 +32,7 @@ class CustomUser(AbstractUser):
         default=Role.USER,
         db_index=True,
     )
+    phone = models.CharField(_("phone"), max_length=20, blank=True)
 
     USERNAME_FIELD  = "email"
     REQUIRED_FIELDS = []  # email is already USERNAME_FIELD
