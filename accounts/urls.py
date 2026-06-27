@@ -11,14 +11,15 @@ Mounted at /accounts/ from the root URLconf.
 
 from django.urls import path
 
-from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView
+from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView,PendingView
 
 app_name = "accounts"
 
 urlpatterns = [
-    path("register/",   RegisterView.as_view(),  name="register"),
-    path("login/",      LoginView.as_view(),      name="login"),
-    path("logout/",     LogoutView.as_view(),     name="logout"),
-    path("profile/",    ProfileView.as_view(),    name="profile"),
-    path("demo-login/", DemoLoginView.as_view(),  name="demo-login"),
+    path("register/", RegisterView.as_view(), name="register"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("logout/", LogoutView.as_view(), name="logout"),
+    path("profile/", ProfileView.as_view(), name="profile"),
+    path("demo-login/", DemoLoginView.as_view(), name="demo-login"),
+    path("pending/", PendingView.as_view(), name="pending"),
 ]
