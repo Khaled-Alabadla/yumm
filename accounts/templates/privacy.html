@@ -1,0 +1,112 @@
+{% extends "index/index.html" %}
+{% block title %}Privacy Policy{% endblock %}
+{%load static %}
+{% block content %}
+
+{# ── Header ── #}
+<div class="bg-dark-800 border-b border-dark-600 px-6 py-12">
+  <div class="max-w-4xl mx-auto">
+    <p class="text-xs font-bold tracking-widest text-orange uppercase mb-2">Legal</p>
+    <h1 class="text-4xl font-extrabold mb-2">Privacy Policy</h1>
+    <p class="text-gray-400 text-sm">Last updated: {{ last_updated | default('June 26, 2026') }}</p>
+  </div>
+</div>
+
+{# ── Content ── #}
+<div class="max-w-4xl mx-auto px-6 py-12 grid md:grid-cols-[200px_1fr] gap-10 items-start">
+
+  {# Sidebar TOC #}
+  <aside class="sticky top-24 hidden md:block">
+    <p class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-3">Contents</p>
+    <nav class="flex flex-col gap-1">
+      {% set sections = [
+        ('collection', '1. Data We Collect'),
+        ('use',        '2. How We Use It'),
+        ('sharing',    '3. Sharing'),
+        ('cookies',    '4. Cookies'),
+        ('rights',     '5. Your Rights'),
+        ('security',   '6. Security'),
+        ('contact',    '7. Contact'),
+      ] %}
+      {% for anchor, label in sections %}
+      <a href="#{{ anchor }}"
+         class="text-sm text-gray-400 hover:text-orange border-l-2 border-dark-600
+                hover:border-orange pl-3 py-1 transition-all duration-200">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  {# Main Content #}
+  <main class="min-w-0">
+
+    <div class="bg-dark-700 border border-dark-600 border-l-4 border-l-orange
+                rounded-lg px-5 py-4 text-gray-300 text-sm leading-relaxed mb-8">
+      We respect your privacy. Yumm collects only what's needed to help you discover great restaurants — nothing more.
+    </div>
+
+    {% set policy_sections = [
+      ('collection', '1. Data We Collect',
+        '<p class="text-gray-400 text-sm leading-relaxed mb-2">When you use Yumm, we may collect:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Account info: name, email address, and password (hashed)</li>
+           <li>Location data (only when you search for nearby restaurants)</li>
+           <li>Usage data: pages visited, search queries, and reservation history</li>
+           <li>Device info: browser type, operating system, IP address</li>
+         </ul>'
+      ),
+      ('use', '2. How We Use It',
+        '<p class="text-gray-400 text-sm leading-relaxed mb-2">Your data helps us:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Power AI-based restaurant recommendations</li>
+           <li>Process and confirm reservations</li>
+           <li>Send booking confirmations and updates</li>
+           <li>Improve platform features and fix bugs</li>
+         </ul>
+         <p class="text-gray-400 text-sm mt-3">We do not sell your personal data to third parties.</p>'
+      ),
+      ('sharing', '3. Sharing Your Information',
+        '<p class="text-gray-400 text-sm leading-relaxed mb-2">We share your data only with:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Restaurants — to fulfill your reservation requests</li>
+           <li>Service providers — payment processors and hosting, under strict agreements</li>
+           <li>Legal authorities — when required by law</li>
+         </ul>'
+      ),
+      ('cookies', '4. Cookies',
+        '<p class="text-gray-400 text-sm leading-relaxed">Yumm uses cookies to keep you logged in, remember preferences, and analyze traffic. You can disable cookies in your browser, though some features may not work.</p>'
+      ),
+      ('rights', '5. Your Rights',
+        '<p class="text-gray-400 text-sm mb-2">You have the right to:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Access the personal data we hold about you</li>
+           <li>Correct inaccurate information</li>
+           <li>Delete your account and associated data</li>
+           <li>Opt out of marketing emails at any time</li>
+         </ul>
+         <p class="text-gray-400 text-sm mt-3">To exercise these rights, email <a href="mailto:privacy@yumm.ps" class="text-orange hover:underline">privacy@yumm.ps</a>.</p>'
+      ),
+      ('security', '6. Security',
+        '<p class="text-gray-400 text-sm leading-relaxed">We use TLS encryption for all data in transit. Passwords are hashed and never stored in plain text. We audit our security practices regularly.</p>'
+      ),
+      ('contact', '7. Contact Us',
+        '<p class="text-gray-400 text-sm leading-relaxed">Questions? Reach out at <a href="mailto:privacy@yumm.ps" class="text-orange hover:underline">privacy@yumm.ps</a> or visit our <a href="/contact/" class="text-orange hover:underline">Contact page</a>.</p>'
+      ),
+    ] %}
+
+    {% for anchor, heading, body_html in policy_sections %}
+    <section id="{{ anchor }}" class="mb-10 scroll-mt-24">
+      <h2 class="text-lg font-bold mb-4 text-white">{{ heading }}</h2>
+      {{ body_html | safe }}
+    </section>
+    {% endfor %}
+
+  </main>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

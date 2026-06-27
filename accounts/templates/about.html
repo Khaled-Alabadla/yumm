@@ -1,0 +1,61 @@
+{% extends "index/index.html" %}
+{% block title %}About Us{% endblock %}
+{%load static %}
+{% block content %}
+
+{# ── Hero ── #}
+<section class="bg-gradient-to-br from-red-950 via-orange-800 to-orange-500 py-20 px-6 text-center">
+  <p class="text-xs font-bold tracking-widest text-orange-200 uppercase mb-3">Our Story</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+    Built for Palestine's<br/>Food Lovers
+  </h1>
+  <p class="text-orange-200 text-lg max-w-xl mx-auto leading-relaxed">
+    We believe every Palestinian deserves to discover exceptional dining —
+    from Ramallah's rooftops to Gaza's seaside. Yumm was born from that belief.
+  </p>
+</section>
+
+{# ── Stats ── #}
+<section class="py-14 px-6">
+  <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+    {% set stats = [
+      ('1000+', 'Food Lovers'),
+      ('200+',  'Restaurants'),
+      ('15+',   'Cities'),
+      ('4.8★',  'Avg Rating'),
+    ] %}
+    {% for value, label in stats %}
+    <div class="bg-dark-700 border border-dark-600 rounded-xl p-6 text-center">
+      <p class="text-3xl font-extrabold text-orange">{{ value }}</p>
+      <p class="text-gray-400 text-sm mt-1">{{ label }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{# ── Values ── #}
+<section class="py-4 pb-16 px-6">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8">Our Values</h2>
+    <div class="flex flex-col gap-6">
+      {% set values = [
+        ('🍽️', 'Local First',         'We champion Palestinian restaurants, chefs, and food culture above all else.'),
+        ('🤝', 'Community Driven',    'Real reviews from real diners. No paid placements, no fake stars.'),
+        ('✨', 'Always Improving',    'AI-powered recommendations that get smarter with every search.'),
+      ] %}
+      {% for icon, title, desc in values %}
+      <div class="flex gap-4 items-start">
+        <div class="w-11 h-11 min-w-11 rounded-xl bg-orange flex items-center justify-center text-xl">
+          {{ icon }}
+        </div>
+        <div>
+          <p class="font-semibold mb-1">{{ title }}</p>
+          <p class="text-gray-400 text-sm leading-relaxed">{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

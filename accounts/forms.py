@@ -14,7 +14,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
 from .models import CustomUser
-
+from django import forms
 
 class UserRegistrationForm(UserCreationForm):
     """
@@ -156,3 +156,31 @@ class UserProfileForm(forms.ModelForm):
         if commit:
             user.save(update_fields=["first_name", "last_name"])
         return user
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(
+        max_length=100,
+        error_messages={'required': 'Please enter your name.'}
+    )
+    email = forms.EmailField(
+        error_messages={
+            'required': 'Please enter your email.',
+            'invalid': 'Enter a valid email address.'
+        }
+    )
+    subject = forms.ChoiceField(choices=[
+        ('Restaurant Partnership', 'Restaurant Partnership'),
+        ('Technical Support',      'Technical Support'),
+        ('Media & Press',          'Media & Press'),
+        ('General Inquiry',        'General Inquiry'),
+    ])
+    message = forms.CharField(
+        widget=forms.Textarea,
+        min_length=10,
+        max_length=1000,
+        error_messages={
+            'required': 'Please enter a message.',
+            'min_length': 'Message must be at least 10 characters.'
+        }
+    )

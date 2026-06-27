@@ -15,5 +15,5 @@ urlpatterns = [
 
     # Accounts — authentication and user profile
     path("accounts/", include("accounts.urls", namespace="accounts")),
-    path('', views.index, name='index'),
+    path('', views.index, name='index'),    path('about/',   views.about,   name='about'),
 ]

@@ -33,7 +33,8 @@ from django.views.generic import CreateView, UpdateView
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from .models import CustomUser
 from django.shortcuts import render
-
+from django.contrib import messages
+from .forms import ContactForm
 # Shared by RegisterView and LoginView — keeps the toggle choices in one place.
 _ROLE_CHOICES = [
     (CustomUser.Role.USER,  _("Regular User")),
@@ -249,3 +250,28 @@ class DemoLoginView(View):
             user.set_password(credentials["password"])
             user.save(update_fields=["password"])
         return user
+def about(request):
+    return render(request, 'about.html')
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # TODO: send_mail(...) أو احفظ في DB
+            messages.success(request, "Message sent! We'll get back to you within 24 hours.")
+            return redirect('contact')
+        else:
+            messages.error(request, 'Please fix the errors below.')
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {'form': form})
+
+
+def privacy(request):
+    return render(request, 'privacy.html', {'last_updated': 'June 26, 2026'})
+
+
+def terms(request):
+    return render(request, 'terms.html', {'last_updated': 'June 26, 2026'})

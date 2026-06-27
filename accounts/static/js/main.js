@@ -748,3 +748,394 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.18 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+
+/* ─────────────────────────────
+   Yumm — Modals JS
+───────────────────────────── */
+
+/* ── Open / Close ── */
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('modal-open');
+  document.body.style.overflow = '';
+}
+
+// Close on backdrop click
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-backdrop')) {
+    e.target.classList.remove('modal-open');
+    document.body.style.overflow = '';
+  }
+});
+
+// Close on ESC key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-backdrop.modal-open').forEach(m => {
+      m.classList.remove('modal-open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+/* ── Wishlist ── */
+const wishlist = [
+  { name: 'Al-Kanaan',             cuisine: 'Traditional Palestinian', city: 'Ramallah',  rating: '4.8' },
+  { name: 'Jerusalem Garden Cafe', cuisine: 'Cafe & Breakfast',        city: 'Jerusalem', rating: '4.9' },
+];
+
+function renderWishlist() {
+  const container = document.getElementById('wishlist-items');
+  if (!container) return;
+
+  if (!wishlist.length) {
+    container.innerHTML = `
+      <p class="text-gray-400 text-center py-8 text-sm">
+        No saved restaurants yet. Hit the ♥ on any card!
+      </p>`;
+    return;
+  }
+
+  container.innerHTML = wishlist.map((r, i) => `
+    <div class="flex items-center justify-between bg-gray-50 rounded-2xl px-4 py-3">
+      <div>
+        <p class="font-semibold text-sm text-gray-900">${r.name}</p>
+        <p class="text-xs text-gray-400 mt-0.5">${r.cuisine} · ${r.city}</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-amber-400 font-bold text-sm">★ ${r.rating}</span>
+        <button
+          onclick="removeWishlist(${i})"
+          class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">
+          Remove
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function removeWishlist(index) {
+  wishlist.splice(index, 1);
+  renderWishlist();
+}
+
+/* ── AI Chat ── */
+const aiMessages = [];
+
+async function sendAIMessage() {
+  const input  = document.getElementById('ai-input');
+  const msg    = input.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  aiMessages.push({ role: 'user', content: msg });
+  renderChat();
+
+  // Show typing indicator
+  const chat = document.getElementById('ai-chat');
+  const typing = document.createElement('div');
+  typing.id = 'typing-indicator';
+  typing.className = 'flex justify-start mb-3';
+  typing.innerHTML = `
+    <div class="px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-500 text-sm">
+      <span class="typing-dots">●●●</span>
+    </div>`;
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        system: `You are Yumm AI, a friendly food assistant for Palestine.
+Help users discover restaurants, suggest dishes, and answer food questions about Palestinian cuisine.
+Keep replies short, friendly, and practical.
+Respond in the same language the user writes in (Arabic or English).
+When recommending restaurants, mention ones from our platform: Al-Kanaan (Ramallah), Gaza Grill House (Gaza), Jerusalem Garden Cafe (Jerusalem).`,
+        messages: aiMessages
+      })
+    });
+
+    const data  = await res.json();
+    const reply = data.content?.[0]?.text || 'عذراً، حدث خطأ. / Sorry, something went wrong.';
+    aiMessages.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    aiMessages.push({ role: 'assistant', content: 'عذراً، تحقق من اتصالك بالإنترنت. / Please check your connection.' });
+  }
+
+  // Remove typing indicator then render
+  document.getElementById('typing-indicator')?.remove();
+  renderChat();
+}
+
+function renderChat() {
+  const chat = document.getElementById('ai-chat');
+  if (!chat) return;
+
+  chat.innerHTML = `
+    <!-- Welcome bubble -->
+    <div class="flex justify-start mb-3">
+      <div class="max-w-[82%] px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-800 text-sm leading-relaxed">
+        👋 مرحباً! أنا مساعد Yumm الذكي.<br>
+        اسألني عن أي مطعم أو أكلة في فلسطين!<br>
+        <span class="text-gray-400 text-xs">Hello! Ask me anything about Palestinian food 🍽️</span>
+      </div>
+    </div>
+    ${aiMessages.map(m => `
+      <div class="flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} mb-3">
+        <div class="max-w-[82%] px-4 py-2.5 text-sm leading-relaxed
+          ${m.role === 'user'
+            ? 'bg-[#B5451B] text-white rounded-2xl rounded-br-sm'
+            : 'bg-gray-100 text-gray-800 rounded-2xl rounded-bl-sm'}">
+          ${m.content.replace(/\n/g, '<br>')}
+        </div>
+      </div>
+    `).join('')}
+  `;
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// Send on Enter key
+document.getElementById('ai-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendAIMessage();
+  }
+});
+
+/* ── Leaflet Map ── */
+let yummMap = null;
+let searchMarker = null;
+
+const restaurants = [
+  { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',             desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
+  { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',        desc: 'Grills & BBQ · Gaza ★ 4.6'              },
+  { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕',   desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
+];
+
+function initMap() {
+  if (yummMap) {
+    yummMap.invalidateSize();
+    return;
+  }
+
+  // Load Leaflet script dynamically
+  if (!window.L) {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = () => buildMap();
+    document.head.appendChild(script);
+  } else {
+    buildMap();
+  }
+}
+
+function buildMap() {
+  yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
+
+  // OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
+    maxZoom: 18,
+  }).addTo(yummMap);
+
+  // Custom red icon
+  const redIcon = L.divIcon({
+    html: `<div style="
+      background:#B5451B;
+      width:32px;height:32px;
+      border-radius:50% 50% 50% 0;
+      transform:rotate(-45deg);
+      border:3px solid white;
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    "></div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -36],
+    className: '',
+  });
+
+  // Add restaurant markers
+  restaurants.forEach(r => {
+    L.marker([r.lat, r.lng], { icon: redIcon })
+      .addTo(yummMap)
+      .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, {
+        maxWidth: 200
+      });
+  });
+}
+
+function flyToRestaurant(lat, lng, name, desc) {
+  if (!yummMap) return;
+  yummMap.flyTo([lat, lng], 14, { duration: 1.2 });
+  setTimeout(() => {
+    L.popup({ maxWidth: 200 })
+      .setLatLng([lat, lng])
+      .setContent(`<b>${name}</b><br><span style="color:#666;font-size:12px">${desc}</span>`)
+      .openOn(yummMap);
+  }, 1300);
+}
+
+async function searchMapLocation() {
+  const query = document.getElementById('map-search-input')?.value.trim();
+  if (!query || !yummMap) return;
+
+  try {
+    const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
+    const data = await res.json();
+
+    if (!data.length) {
+      alert('Location not found. Try a different search.');
+      return;
+    }
+
+    const { lat, lon, display_name } = data[0];
+
+    if (searchMarker) yummMap.removeLayer(searchMarker);
+
+    searchMarker = L.marker([lat, lon])
+      .addTo(yummMap)
+      .bindPopup(`<b>🔍 ${query}</b><br><span style="color:#666;font-size:11px">${display_name.substring(0, 60)}...</span>`)
+      .openPopup();
+
+    yummMap.flyTo([lat, lon], 13, { duration: 1.2 });
+  } catch (e) {
+    alert('Search failed. Please try again.');
+  }
+}
+
+// Initialize map when modal opens — patch openModal
+const _origOpenModal = openModal;
+window.openModal = function(id) {
+  _origOpenModal(id);
+  if (id === 'map') {
+    setTimeout(initMap, 150); // wait for modal animation
+  }
+};
+
+// Search on Enter key
+document.getElementById('map-search-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') searchMapLocation();
+});
+
+
+// ── contact.js — Contact Page Scripts ──
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.querySelector('form[action="/contact/"]');
+  if (!form) return;
+
+  // ── Client-side validation ──
+  form.addEventListener('submit', (e) => {
+    const name    = form.querySelector('[name="name"]');
+    const email   = form.querySelector('[name="email"]');
+    const message = form.querySelector('[name="message"]');
+
+    clearErrors();
+
+    let valid = true;
+
+    if (!name.value.trim()) {
+      showError(name, 'Name is required.');
+      valid = false;
+    }
+
+    if (!email.value.trim() || !email.value.includes('@')) {
+      showError(email, 'Please enter a valid email address.');
+      valid = false;
+    }
+
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      showError(message, 'Message must be at least 10 characters.');
+      valid = false;
+    }
+
+    if (!valid) e.preventDefault();
+  });
+
+  function showError(field, msg) {
+    field.classList.add('border-red-500');
+    const err = document.createElement('p');
+    err.className = 'text-red-400 text-xs mt-1 field-error';
+    err.textContent = msg;
+    field.parentElement.appendChild(err);
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach(e => e.remove());
+    form.querySelectorAll('input, textarea').forEach(f => f.classList.remove('border-red-500'));
+  }
+
+  // ── Character counter for message ──
+  const textarea = form.querySelector('[name="message"]');
+  if (textarea) {
+    const counter = document.createElement('p');
+    counter.className = 'text-xs text-gray-500 mt-1 text-right';
+    counter.textContent = '0 / 1000';
+    textarea.parentElement.appendChild(counter);
+
+    textarea.addEventListener('input', () => {
+      const len = textarea.value.length;
+      counter.textContent = `${len} / 1000`;
+      counter.classList.toggle('text-orange', len > 900);
+    });
+  }
+
+});
+
+
+// ── legal.js — Privacy & Terms Pages ──
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Smooth scroll for TOC links (enhances native scroll-behavior)
+  document.querySelectorAll('aside nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', link.getAttribute('href'));
+      }
+    });
+  });
+
+  // "Back to top" button — appears after scrolling past 400px
+  const topBtn = document.createElement('button');
+  topBtn.textContent = '↑';
+  topBtn.title = 'Back to top';
+  topBtn.className = [
+    'fixed', 'bottom-24', 'right-6',
+    'w-10', 'h-10', 'rounded-full',
+    'bg-dark-700', 'border', 'border-dark-600',
+    'text-gray-400', 'hover:bg-orange', 'hover:text-white',
+    'transition-all', 'duration-200',
+    'opacity-0', 'pointer-events-none',
+    'text-sm', 'font-bold', 'z-40'
+  ].join(' ');
+  document.body.appendChild(topBtn);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      topBtn.classList.remove('opacity-0', 'pointer-events-none');
+    } else {
+      topBtn.classList.add('opacity-0', 'pointer-events-none');
+    }
+  });
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+});
+
+
+
