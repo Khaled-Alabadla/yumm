@@ -132,13 +132,13 @@
           </button>
 
           <a
-            href="#"
+            href="{% url 'accounts:login' %}"
             class="hidden sm:inline-flex px-4 py-2 text-sm font-medium rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
             data-i18n="nav-login"
             >Login</a
           >
           <a
-            href="#"
+            href="{% url 'accounts:register' %}"
             class="inline-flex px-4 py-2 text-sm font-semibold bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-xl transition-colors shadow-[0_4px_12px_rgba(181,69,27,.35)]"
             data-i18n="nav-register"
             >Register</a
