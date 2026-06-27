@@ -1,0 +1,194 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Yumm{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body
+    class="font-['Inter'] min-h-screen"
+    style="background: var(--background); color: var(--text-primary)"
+  >
+    <header
+      class="sticky top-0 z-40 bg-white/90 dark:bg-[#1E1E1E]/90 backdrop-blur-md border-b border-[#E8E8E8] dark:border-[#2A2A2A]"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-3"
+        aria-label="Main navigation"
+      >
+        <a
+          href="#"
+          class="flex items-center gap-2 shrink-0"
+          aria-label="Yumm Home"
+        >
+          <div
+            class="w-9 h-9 bg-[#B5451B] rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(181,69,27,.4)]"
+          >
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="2.3"
+              stroke-linecap="round"
+            >
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2" />
+              <path d="M7 2v20" />
+              <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3z" />
+            </svg>
+          </div>
+          <span
+            class="text-[1.2rem] font-display font-bold tracking-tight text-gray-900 dark:text-white"
+            >Yumm</span
+          >
+        </a>
+
+        <ul class="hidden md:flex items-center gap-1 list-none m-0 p-0">
+          <li>
+            <a
+              href="#"
+              class="px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 dark:bg-[#2A2A2A] text-gray-900 dark:text-white"
+              data-i18n="nav-home"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#restaurants"
+              class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+              data-i18n="nav-restaurants"
+              >Restaurants</a
+            >
+          </li>
+          <li>
+            <a
+              href="#ai"
+              class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+              data-i18n="nav-ai"
+              >AI Assistant</a
+            >
+          </li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <div
+            class="flex flex-col items-end leading-none select-none"
+            aria-live="polite"
+            aria-label="Current time"
+          >
+            <span
+              id="clock-time"
+              class="font-semibold text-[13px] text-gray-700 dark:text-gray-200 tabular-nums"
+            ></span>
+            <span
+              id="clock-date"
+              class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 tabular-nums"
+            ></span>
+          </div>
+
+          <button
+            id="lang-btn"
+            onclick="toggleLang()"
+            class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-[11px] font-bold text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+            aria-label="Switch language"
+            title="Switch to English"
+          >
+            EN
+          </button>
+
+          <button
+            id="theme-btn"
+            onclick="toggleTheme()"
+            class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+            aria-label="Toggle dark mode"
+            aria-pressed="false"
+          >
+            <i data-lucide="moon" id="icon-moon" class="w-4 h-4"></i>
+            <i data-lucide="sun" id="icon-sun" class="w-4 h-4 hidden"></i>
+          </button>
+
+          <button
+            onclick="openA11y()"
+            class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+            aria-label="Open accessibility settings"
+            aria-haspopup="dialog"
+          >
+            <i data-lucide="accessibility" class="w-4 h-4"></i>
+          </button>
+
+          <a
+            href="{% url 'accounts:login' %}"
+            class="hidden sm:inline-flex px-4 py-2 text-sm font-medium rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+            data-i18n="nav-login"
+            >Login</a
+          >
+          <a
+            href="{% url 'accounts:register' %}"
+            class="inline-flex px-4 py-2 text-sm font-semibold bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-xl transition-colors shadow-[0_4px_12px_rgba(181,69,27,.35)]"
+            data-i18n="nav-register"
+            >Register</a
+          >
+
+          <button
+            id="mob-btn"
+            onclick="
+              document.getElementById('mob-nav').classList.toggle('hidden')
+            "
+            class="md:hidden w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
+            aria-label="Open menu"
+          >
+            <i data-lucide="menu" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </nav>
+
+      <div
+        id="mob-nav"
+        class="hidden md:hidden border-t border-[#E8E8E8] dark:border-[#2A2A2A] bg-white dark:bg-[#1E1E1E] px-5 pb-4 pt-2 space-y-1"
+      >
+        <a
+          href="#"
+          class="block px-3 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 dark:bg-[#2A2A2A]"
+          data-i18n="nav-home"
+          >Home</a
+        >
+        <a
+          href="#restaurants"
+          class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          data-i18n="nav-restaurants"
+          >Restaurants</a
+        >
+        <a
+          href="#ai"
+          class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          data-i18n="nav-ai"
+          >AI Assistant</a
+        >
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

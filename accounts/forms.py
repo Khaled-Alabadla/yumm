@@ -54,7 +54,7 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         # password1 / password2 come from UserCreationForm — not listed here.
-        fields = ["full_name", "email", "role"]
+        fields = ["full_name", "email", "role", "phone"]
 
     def clean_role(self) -> str:
         role = self.cleaned_data.get("role")
@@ -70,6 +70,7 @@ class UserRegistrationForm(UserCreationForm):
         user.first_name = parts[0]
         user.last_name = parts[1] if len(parts) > 1 else ""
         user.role = self.cleaned_data.get("role", CustomUser.Role.USER)
+        user.phone = self.cleaned_data.get("phone", "")
         if commit:
             user.save()
         return user

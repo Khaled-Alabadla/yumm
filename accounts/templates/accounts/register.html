@@ -1,0 +1,421 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %} 
+Register — Yumm
+{%endblock %}
+{% block content %}
+
+<main
+  class="flex items-center justify-center min-h-[calc(100vh-56px)] px-4 py-10"
+>
+  <div class="w-full max-w-lg">
+    <div class="text-center mb-7">
+      <h1
+        class="text-3xl font-extrabold tracking-tight"
+        style="color: var(--text-primary)"
+      >
+        Join Yumm
+      </h1>
+      <p class="text-sm mt-1" style="color: var(--text-secondary)">
+        Create your account today — it's free
+      </p>
+    </div>
+
+    <div
+      class="rounded-2xl p-7"
+      style="background: var(--card); border: 1px solid var(--border)"
+    >
+
+    {% for message in messages %}
+      <div
+        class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
+        style="
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          color: var(--danger);
+        "
+      >
+        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+      </div>
+      {% endfor %}
+
+
+      <div
+        class="flex rounded-xl p-1 mb-6 gap-1"
+        style="background: var(--input-bg); border: 1px solid var(--border)"
+      >
+        <button
+          onclick="setRole('user')"
+          id="tab-user"
+          class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
+          style="
+            background: var(--card);
+            color: var(--text-primary);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+          "
+        >
+          Regular User
+        </button>
+        <button
+          onclick="setRole('owner')"
+          id="tab-owner"
+          class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
+          style="background: transparent; color: var(--text-secondary)"
+        >
+          Restaurant Owner
+        </button>
+      </div>
+
+      <form
+        id="userForm"
+        action="{% url 'accounts:register' %}"
+        method="POST"
+        class="flex flex-col gap-4"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="role" value="user" />
+
+        {% if form.non_field_errors %}
+        <div
+          class="rounded-xl px-4 py-3 text-sm flex items-center gap-2"
+          style="
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+          "
+        >
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            name="full_name"
+            placeholder="Name"
+            autocomplete="name"
+            value="{{ form.full_name.value|default:'' }}"
+            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+            style="
+              background: var(--input-bg);
+              border: 1px solid var(--border);
+              color: var(--text-primary);
+            "
+            onfocus="this.style.borderColor = 'var(--primary)'"
+            onblur="this.style.borderColor = 'var(--border)'"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            placeholder="name@example.com"
+            autocomplete="email"
+            value="{{ form.email.value|default:'' }}"
+            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+            style="
+              background: var(--input-bg);
+              border: 1px solid var(--border);
+              color: var(--text-primary);
+            "
+            onfocus="this.style.borderColor = 'var(--primary)'"
+            onblur="this.style.borderColor = 'var(--border)'"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              name="password1"
+              id="userPass"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+            <button
+              type="button"
+              onclick="togglePass('userPass', 'eyeUser')"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+            >
+              <i
+                id="eyeUser"
+                class="fa-solid fa-eye text-sm"
+                style="color: var(--text-secondary)"
+              ></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Confirm Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              name="password2"
+              id="userPass2"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+            <button
+              type="button"
+              onclick="togglePass('userPass2', 'eyeUser2')"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+            >
+              <i
+                id="eyeUser2"
+                class="fa-solid fa-eye text-sm"
+                style="color: var(--text-secondary)"
+              ></i>
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full text-white font-semibold py-3 rounded-xl transition-all hover:-translate-y-px text-sm mt-1"
+          style="background: var(--primary)"
+          onmouseover="this.style.background = 'var(--primary-hover)'"
+          onmouseout="this.style.background = 'var(--primary)'"
+        >
+          Create Account
+        </button>
+      </form>
+
+      <form
+        id="ownerForm"
+        action="{% url 'accounts:register' %}"
+        method="POST"
+        class="hidden flex-col gap-4"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="role" value="owner" />
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Restaurant Name</label
+          >
+          <input
+            type="text"
+            name="full_name"
+            placeholder="Restaurant name"
+            autocomplete="name"
+            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+            style="
+              background: var(--input-bg);
+              border: 1px solid var(--border);
+              color: var(--text-primary);
+            "
+            onfocus="this.style.borderColor = 'var(--primary)'"
+            onblur="this.style.borderColor = 'var(--border)'"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            placeholder="restaurant@example.ps"
+            autocomplete="email"
+            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+            style="
+              background: var(--input-bg);
+              border: 1px solid var(--border);
+              color: var(--text-primary);
+            "
+            onfocus="this.style.borderColor = 'var(--primary)'"
+            onblur="this.style.borderColor = 'var(--border)'"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Phone Number</label
+          >
+          <div class="relative">
+            <span
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium select-none"
+              style="color: var(--text-secondary)"
+              >+970</span
+            >
+            <input
+              type="tel"
+              name="phone"
+              placeholder="59 000 0000"
+              autocomplete="tel"
+              class="w-full rounded-xl pl-14 pr-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              name="password1"
+              id="ownerPass"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+            <button
+              type="button"
+              onclick="togglePass('ownerPass', 'eyeOwner')"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+            >
+              <i
+                id="eyeOwner"
+                class="fa-solid fa-eye text-sm"
+                style="color: var(--text-secondary)"
+              ></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Confirm Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              name="password2"
+              id="ownerPass2"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+            <button
+              type="button"
+              onclick="togglePass('ownerPass2', 'eyeOwner2')"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+            >
+              <i
+                id="eyeOwner2"
+                class="fa-solid fa-eye text-sm"
+                style="color: var(--text-secondary)"
+              ></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="flex items-start gap-3 rounded-xl px-4 py-3"
+          style="
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+          "
+        >
+          <i
+            class="fa-solid fa-clock-rotate-left text-sm mt-0.5"
+            style="color: var(--primary)"
+          ></i>
+          <p
+            class="text-xs leading-relaxed"
+            style="color: var(--text-secondary)"
+          >
+            Your request will be reviewed by our admin team. You'll be notified
+            once your restaurant is approved.
+          </p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full text-white font-semibold py-3 rounded-xl transition-all hover:-translate-y-px text-sm mt-1"
+          style="background: var(--primary)"
+          onmouseover="this.style.background = 'var(--primary-hover)'"
+          onmouseout="this.style.background = 'var(--primary)'"
+        >
+          Submit Request
+        </button>
+      </form>
+
+      <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
+        Already have an account?
+        <a
+          href="{% url 'accounts:login' %}"
+          class="font-semibold hover:underline"
+          style="color: var(--primary)"
+          >Login</a
+        >
+      </p>
+    </div>
+  </div>
+</main>
+
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/auth.js' %}"></script>
+{% endblock %}
