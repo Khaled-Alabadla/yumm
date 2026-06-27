@@ -28,14 +28,14 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 
 from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 from .models import CustomUser
 
 # Shared by RegisterView and LoginView — keeps the toggle choices in one place.
 _ROLE_CHOICES = [
-    (CustomUser.Role.USER,  _("Regular User")),
+    (CustomUser.Role.USER, _("Regular User")),
     (CustomUser.Role.OWNER, _("Restaurant Owner")),
 ]
 
@@ -53,7 +53,11 @@ class RegisterView(CreateView):
     model = CustomUser
     form_class = UserRegistrationForm
     template_name = "accounts/register.html"
-    success_url = reverse_lazy("accounts:login")
+
+    def get_success_url(self):
+        if self.object.role == CustomUser.Role.OWNER:
+            return reverse_lazy("accounts:pending")
+        return reverse_lazy("accounts:home")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -77,7 +81,7 @@ class RegisterView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["page_title"]   = _("Create Account")
+        context["page_title"] = _("Create Account")
         context["role_choices"] = _ROLE_CHOICES
         return context
 
@@ -107,7 +111,7 @@ class LoginView(BaseLoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["page_title"]   = _("Sign In")
+        context["page_title"] = _("Sign In")
         context["role_choices"] = _ROLE_CHOICES
         context["demo_enabled"] = settings.DEBUG
         return context
@@ -234,10 +238,10 @@ class DemoLoginView(View):
             email=credentials["email"],
             defaults={
                 "first_name": credentials["first_name"],
-                "last_name":  credentials["last_name"],
-                "role":       role,
-                "is_active":  True,
-                "is_staff":   role == CustomUser.Role.ADMIN,
+                "last_name": credentials["last_name"],
+                "role": role,
+                "is_active": True,
+                "is_staff": role == CustomUser.Role.ADMIN,
                 "is_superuser": role == CustomUser.Role.ADMIN,
             },
         )
@@ -245,3 +249,6 @@ class DemoLoginView(View):
             user.set_password(credentials["password"])
             user.save(update_fields=["password"])
         return user
+
+class PendingView(TemplateView):
+    template_name = "accounts/pending.html"

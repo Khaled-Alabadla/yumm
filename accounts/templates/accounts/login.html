@@ -1,278 +1,166 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body
-    class="font-['Inter'] min-h-screen"
-    style="background: var(--background); color: var(--text-primary)"
-  >
-    <nav
-      style="background: var(--card); border-bottom: 1px solid var(--border)"
-      class="h-14 flex items-center justify-between px-8"
-    >
-      <a href="/" class="flex items-center gap-2">
-        <div
-          class="w-8 h-8 rounded-lg flex items-center justify-center"
-          style="background: var(--primary)"
-        >
-          <i class="fa-solid fa-utensils text-white text-sm"></i>
-        </div>
-        <span class="text-lg font-bold" style="color: var(--text-primary)"
-          >Yumm</span
-        >
-      </a>
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}
+Login — Yumm
+{%endblock %} 
+{% block content %}
 
-      <div class="hidden md:flex items-center gap-8">
-        <a
-          href="/"
-          class="text-sm font-medium transition-colors"
-          style="color: var(--text-secondary)"
-          onmouseover="this.style.color = 'var(--primary)'"
-          onmouseout="this.style.color = 'var(--text-secondary)'"
-          >Home</a
+<main
+  class="flex items-center justify-center min-h-[calc(100vh-56px)] px-4 py-10"
+>
+  <div class="w-full max-w-md">
+    <div class="text-center mb-7">
+      <div
+        class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
+        style="background: var(--primary)"
+      >
+        <i class="fa-solid fa-utensils text-white text-xl"></i>
+      </div>
+      <h1
+        class="text-3xl font-extrabold tracking-tight"
+        style="color: var(--text-primary)"
+      >
+        Welcome Back
+      </h1>
+      <p class="text-sm mt-1" style="color: var(--text-secondary)">
+        Sign in to your Yumm account
+      </p>
+    </div>
+
+    <div
+      class="rounded-2xl p-7"
+      style="background: var(--card); border: 1px solid var(--border)"
+    >
+      {% for message in messages %}
+      <div
+        class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
+        style="
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          color: var(--danger);
+        "
+      >
+        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+      </div>
+      {% endfor %}
+
+      <div
+        class="flex rounded-xl p-1 mb-5 gap-1"
+        style="background: var(--input-bg); border: 1px solid var(--border)"
+      >
+        <button
+          onclick="setRole('user')"
+          id="tab-user"
+          class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
+          style="
+            background: var(--card);
+            color: var(--text-primary);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+          "
         >
-        <a
-          href="/restaurants"
-          class="text-sm font-medium transition-colors"
-          style="color: var(--text-secondary)"
-          onmouseover="this.style.color = 'var(--primary)'"
-          onmouseout="this.style.color = 'var(--text-secondary)'"
-          >Restaurants</a
+          Regular User
+        </button>
+        <button
+          onclick="setRole('owner')"
+          id="tab-owner"
+          class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
+          style="background: transparent; color: var(--text-secondary)"
         >
-        <a
-          href="/ai"
-          class="text-sm font-medium transition-colors"
-          style="color: var(--text-secondary)"
-          onmouseover="this.style.color = 'var(--primary)'"
-          onmouseout="this.style.color = 'var(--text-secondary)'"
-          >AI Assistant</a
-        >
+          Restaurant Owner
+        </button>
       </div>
 
-      <div class="flex items-center gap-2">
-        <div class="hidden md:flex flex-col items-end mr-2">
-          <span
-            id="navTime"
-            class="text-xs font-semibold"
-            style="color: var(--text-primary)"
-          ></span>
-          <span
-            id="navDate"
-            class="text-[10px]"
+      <form
+        method="POST"
+        action="{% url 'accounts:login' %}"
+        class="flex flex-col gap-4"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="role" id="roleInput" value="user" />
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
             style="color: var(--text-secondary)"
-          ></span>
+            >Email</label
+          >
+          <input
+            type="email"
+            name="username"
+            placeholder="name@example.com"
+            autocomplete="email"
+            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+            style="
+              background: var(--input-bg);
+              border: 1px solid var(--border);
+              color: var(--text-primary);
+            "
+            onfocus="this.style.borderColor = 'var(--primary)'"
+            onblur="this.style.borderColor = 'var(--border)'"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label
+            class="text-xs font-medium"
+            style="color: var(--text-secondary)"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              type="password"
+              name="password"
+              id="passInput"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid var(--border);
+                color: var(--text-primary);
+              "
+              onfocus="this.style.borderColor = 'var(--primary)'"
+              onblur="this.style.borderColor = 'var(--border)'"
+            />
+            <button
+              type="button"
+              onclick="togglePass()"
+              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+            >
+              <i
+                id="eyeIcon"
+                class="fa-solid fa-eye text-sm"
+                style="color: var(--text-secondary)"
+              ></i>
+            </button>
+          </div>
         </div>
 
         <button
-          class="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
-          title="Change language"
-        >
-          <i
-            class="fa-solid fa-globe text-sm"
-            style="color: var(--text-secondary)"
-          ></i>
-        </button>
-        <button
-          id="themeToggle"
-          onclick="toggleTheme()"
-          class="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
-          title="Toggle theme"
-        >
-          <i
-            id="themeIcon"
-            class="fa-solid fa-moon text-sm"
-            style="color: var(--text-secondary)"
-          ></i>
-        </button>
-        <a
-          href="/login"
-          class="text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-          style="color: var(--text-primary)"
-          >Login</a
-        >
-        <a
-          href="/register"
-          class="text-sm font-semibold px-5 py-2 rounded-lg text-white transition-all hover:-translate-y-px"
+          type="submit"
+          class="w-full text-white font-semibold py-3 rounded-xl transition-all hover:-translate-y-px text-sm mt-1"
           style="background: var(--primary)"
+          onmouseover="this.style.background = 'var(--primary-hover)'"
+          onmouseout="this.style.background = 'var(--primary)'"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
+        Don't have an account?
+        <a
+          href="{% url 'accounts:register' %}"
+          class="font-semibold hover:underline"
+          style="color: var(--primary)"
           >Register</a
         >
-      </div>
-    </nav>
+      </p>
+    </div>
+  </div>
+</main>
 
-    <main
-      class="flex items-center justify-center min-h-[calc(100vh-56px)] px-4 py-10"
-    >
-      <div class="w-full max-w-md">
-        <div class="text-center mb-7">
-          <div
-            class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
-            style="background: var(--primary)"
-          >
-            <i class="fa-solid fa-utensils text-white text-xl"></i>
-          </div>
-          <h1
-            class="text-3xl font-extrabold tracking-tight"
-            style="color: var(--text-primary)"
-          >
-            Welcome Back
-          </h1>
-          <p class="text-sm mt-1" style="color: var(--text-secondary)">
-            Sign in to your Yumm account
-          </p>
-        </div>
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/login.js' %}"></script>
 
-        <div
-          class="rounded-2xl p-7"
-          style="background: var(--card); border: 1px solid var(--border)"
-        >
-          {% for message in messages %}
-          <div
-            class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
-            style="
-              background: rgba(239, 68, 68, 0.08);
-              border: 1px solid rgba(239, 68, 68, 0.2);
-              color: var(--danger);
-            "
-          >
-            <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
-          </div>
-          {% endfor %}
-
-          <div
-            class="flex rounded-xl p-1 mb-5 gap-1"
-            style="background: var(--input-bg); border: 1px solid var(--border)"
-          >
-            <button
-              onclick="setRole('user')"
-              id="tab-user"
-              class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
-              style="
-                background: var(--card);
-                color: var(--text-primary);
-                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-              "
-            >
-              Regular User
-            </button>
-            <button
-              onclick="setRole('owner')"
-              id="tab-owner"
-              class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
-              style="background: transparent; color: var(--text-secondary)"
-            >
-              Restaurant Owner
-            </button>
-          </div>
-
-          <form
-            method="POST"
-            action="/accounts/login/"
-            class="flex flex-col gap-4"
-          >
-            {% csrf_token %}
-            <input type="hidden" name="role" id="roleInput" value="user" />
-
-            <div class="flex flex-col gap-1.5">
-              <label
-                class="text-xs font-medium"
-                style="color: var(--text-secondary)"
-                >Username</label
-              >
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                autocomplete="username"
-                class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
-                style="
-                  background: var(--input-bg);
-                  border: 1px solid var(--border);
-                  color: var(--text-primary);
-                "
-                onfocus="this.style.borderColor = 'var(--primary)'"
-                onblur="this.style.borderColor = 'var(--border)'"
-              />
-            </div>
-
-            <div class="flex flex-col gap-1.5">
-              <label
-                class="text-xs font-medium"
-                style="color: var(--text-secondary)"
-                >Password</label
-              >
-              <div class="relative">
-                <input
-                  type="password"
-                  name="password"
-                  id="passInput"
-                  placeholder="••••••••"
-                  autocomplete="current-password"
-                  required
-                  class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
-                  style="
-                    background: var(--input-bg);
-                    border: 1px solid var(--border);
-                    color: var(--text-primary);
-                  "
-                  onfocus="this.style.borderColor = 'var(--primary)'"
-                  onblur="this.style.borderColor = 'var(--border)'"
-                />
-                <button
-                  type="button"
-                  onclick="togglePass()"
-                  class="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
-                >
-                  <i
-                    id="eyeIcon"
-                    class="fa-solid fa-eye text-sm"
-                    style="color: var(--text-secondary)"
-                  ></i>
-                </button>
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              class="w-full text-white font-semibold py-3 rounded-xl transition-all hover:-translate-y-px mt-1 text-sm"
-              style="background: var(--primary)"
-              onmouseover="this.style.background = 'var(--primary-hover)'"
-              onmouseout="this.style.background = 'var(--primary)'"
-            >
-              Sign In
-            </button>
-          </form>
-
-          <p
-            class="text-center text-sm mt-5"
-            style="color: var(--text-secondary)"
-          >
-            Don't have an account?
-            <a
-              href="/register"
-              class="font-semibold hover:underline"
-              style="color: var(--primary)"
-              >Register</a
-            >
-          </p>
-        </div>
-      </div>
-    </main>
-
-    <script src="{% static 'js/theme.js' %}"></script>
-    <script src="{% static 'js/login.js' %}"></script>
-  </body>
-</html>
+ {% endblock %}

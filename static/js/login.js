@@ -16,16 +16,3 @@ function setRole(role) {
   }
 }
 
-function togglePass() {
-  const input = document.getElementById('passInput');
-  const icon  = document.getElementById('eyeIcon');
-  if (input && icon) {
-    if (input.type === 'password') {
-      input.type = 'text';
-      icon.className = 'fa-solid fa-eye-slash text-sm';
-    } else {
-      input.type = 'password';
-      icon.className = 'fa-solid fa-eye text-sm';
-    }
-  }
-}

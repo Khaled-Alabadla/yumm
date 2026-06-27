@@ -1,0 +1,291 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Yumm{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body
+    class="font-['Inter'] min-h-screen"
+    style="background: var(--background); color: var(--text-primary)"
+  >
+    <nav
+      style="background: var(--card); border-bottom: 1px solid var(--border)"
+      class="h-14 flex items-center justify-between px-6 md:px-8 sticky top-0 z-50"
+    >
+      <a href="/" class="flex items-center gap-2">
+        <div
+          class="w-8 h-8 rounded-lg flex items-center justify-center"
+          style="background: var(--primary)"
+        >
+          <i class="fa-solid fa-utensils text-white text-sm"></i>
+        </div>
+        <span class="text-lg font-bold" style="color: var(--text-primary)"
+          >Yumm</span
+        >
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="/"
+          class="text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.color = 'var(--primary)'"
+          onmouseout="this.style.color = 'var(--text-secondary)'"
+          >Home</a
+        >
+        <a
+          href="/restaurants"
+          class="text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.color = 'var(--primary)'"
+          onmouseout="this.style.color = 'var(--text-secondary)'"
+          >Restaurants</a
+        >
+        <a
+          href="/ai"
+          class="text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.color = 'var(--primary)'"
+          onmouseout="this.style.color = 'var(--text-secondary)'"
+          >AI Assistant</a
+        >
+      </div>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden md:flex flex-col items-end mr-2">
+          <span
+            id="navTime"
+            class="text-xs font-semibold"
+            style="color: var(--text-primary)"
+          ></span>
+          <span
+            id="navDate"
+            class="text-[10px]"
+            style="color: var(--text-secondary)"
+          ></span>
+        </div>
+
+        <button
+          class="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+          title="Change language"
+        >
+          <i
+            class="fa-solid fa-globe text-sm"
+            style="color: var(--text-secondary)"
+          ></i>
+        </button>
+
+        <button
+          id="themeToggle"
+          onclick="toggleTheme()"
+          class="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+          title="Toggle theme"
+        >
+          <i
+            id="themeIcon"
+            class="fa-solid fa-moon text-sm"
+            style="color: var(--text-secondary)"
+          ></i>
+        </button>
+
+        {% if user.is_authenticated %}
+        <div class="relative hidden md:block">
+          <button
+            onclick="toggleUserMenu()"
+            class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-white text-sm"
+            style="background: var(--primary)"
+          >
+            {{ user.full_name|first|upper }}
+          </button>
+          <div
+            id="userMenu"
+            class="hidden absolute right-0 top-11 w-44 rounded-xl shadow-lg py-1 z-50"
+            style="background: var(--card); border: 1px solid var(--border)"
+          >
+            <a
+              href="{% url 'accounts:profile' %}"
+              class="flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors"
+              style="color: var(--text-primary)"
+              onmouseover="this.style.background = 'var(--input-bg)'"
+              onmouseout="this.style.background = 'transparent'"
+            >
+              <i
+                class="fa-solid fa-user text-xs w-4"
+                style="color: var(--text-secondary)"
+              ></i>
+              Profile
+            </a>
+            <div style="border-top: 1px solid var(--border)" class="my-1"></div>
+            <form method="POST" action="{% url 'accounts:logout' %}">
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors"
+                style="color: var(--danger)"
+                onmouseover="this.style.background = 'var(--input-bg)'"
+                onmouseout="this.style.background = 'transparent'"
+              >
+                <i class="fa-solid fa-right-from-bracket text-xs w-4"></i>
+                Logout
+              </button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <a
+          href="{% url 'accounts:login' %}"
+          class="hidden md:block text-sm font-medium px-4 py-2 rounded-lg"
+          style="color: var(--text-primary)"
+          >Login</a
+        >
+        <a
+          href="{% url 'accounts:register' %}"
+          class="hidden md:block text-sm font-semibold px-5 py-2 rounded-lg text-white"
+          style="background: var(--primary)"
+          >Register</a
+        >
+        {% endif %}
+
+        <button
+          onclick="toggleSidebar()"
+          class="md:hidden w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+          style="border: 1px solid var(--border); background: var(--input-bg)"
+        >
+          <i
+            class="fa-solid fa-bars text-sm"
+            style="color: var(--text-secondary)"
+          ></i>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      id="sidebarOverlay"
+      onclick="toggleSidebar()"
+      class="hidden fixed inset-0 z-40"
+      style="background: rgba(0, 0, 0, 0.4)"
+    ></div>
+
+    <div
+      id="mobileSidebar"
+      class="fixed top-0 right-0 h-full w-72 z-50 flex flex-col transform translate-x-full transition-transform duration-300"
+      style="background: var(--card); border-left: 1px solid var(--border)"
+    >
+      <div
+        class="h-14 flex items-center justify-between px-5"
+        style="border-bottom: 1px solid var(--border)"
+      >
+        <span class="font-bold text-base" style="color: var(--text-primary)"
+          >Yumm</span
+        >
+        <button
+          onclick="toggleSidebar()"
+          class="w-8 h-8 rounded-full flex items-center justify-center"
+          style="background: var(--input-bg)"
+        >
+          <i
+            class="fa-solid fa-xmark text-sm"
+            style="color: var(--text-secondary)"
+          ></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-1 p-4 flex-1">
+        <a
+          href="/"
+          onclick="toggleSidebar()"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.background = 'var(--input-bg)'"
+          onmouseout="this.style.background = 'transparent'"
+        >
+          <i class="fa-solid fa-house w-4" style="color: var(--primary)"></i>
+          Home
+        </a>
+        <a
+          href="/restaurants"
+          onclick="toggleSidebar()"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.background = 'var(--input-bg)'"
+          onmouseout="this.style.background = 'transparent'"
+        >
+          <i class="fa-solid fa-utensils w-4" style="color: var(--primary)"></i>
+          Restaurants
+        </a>
+        <a
+          href="/ai"
+          onclick="toggleSidebar()"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.background = 'var(--input-bg)'"
+          onmouseout="this.style.background = 'transparent'"
+        >
+          <i class="fa-solid fa-robot w-4" style="color: var(--primary)"></i> AI
+          Assistant
+        </a>
+
+        {% if user.is_authenticated %}
+        <a
+          href="{% url 'accounts:profile' %}"
+          onclick="toggleSidebar()"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+          style="color: var(--text-secondary)"
+          onmouseover="this.style.background = 'var(--input-bg)'"
+          onmouseout="this.style.background = 'transparent'"
+        >
+          <i class="fa-solid fa-user w-4" style="color: var(--primary)"></i>
+          Profile
+        </a>
+        {% endif %}
+      </nav>
+
+      <div class="p-4" style="border-top: 1px solid var(--border)">
+        {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'accounts:logout' %}">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium"
+            style="color: var(--danger); background: rgba(239, 68, 68, 0.06)"
+          >
+            <i class="fa-solid fa-right-from-bracket w-4"></i> Logout
+          </button>
+        </form>
+        {% else %}
+        <a
+          href="{% url 'accounts:login' %}"
+          class="block text-center py-2.5 rounded-xl text-sm font-medium mb-2"
+          style="color: var(--text-primary); border: 1px solid var(--border)"
+          >Login</a
+        >
+        <a
+          href="{% url 'accounts:register' %}"
+          class="block text-center py-2.5 rounded-xl text-sm font-semibold text-white"
+          style="background: var(--primary)"
+          >Register</a
+        >
+        {% endif %}
+      </div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'js/base.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>
