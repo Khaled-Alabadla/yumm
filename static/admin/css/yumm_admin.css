@@ -1,0 +1,2962 @@
+/* ==========================================================================
+   Yumm Admin — modern light dashboard theme
+   Bootstrap 5 / Jazzmin 3.x · Brand red #BE3127
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap");
+
+/* ── Force light Bootstrap variables (even if dark mode is cached) ── */
+html,
+html[data-bs-theme="dark"],
+html[data-bs-theme="light"] {
+  color-scheme: light !important;
+  --bs-body-bg: #f5f5f3;
+  --bs-body-color: #1a1a1a;
+  --bs-emphasis-color: #1a1a1a;
+  --bs-secondary-bg: #ffffff;
+  --bs-tertiary-bg: #f5f5f3;
+  --bs-border-color: #e5e7eb;
+  --bs-link-color: #be3127;
+  --bs-link-hover-color: #9a281f;
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #1a1a1a;
+  --bs-table-striped-bg: #fafafa;
+  --bs-table-hover-bg: #fdf2f1;
+  --bs-card-bg: #ffffff;
+  --bs-card-color: #1a1a1a;
+}
+
+:root {
+  --yumm-red: #be3127;
+  --yumm-red-hover: #9a281f;
+  --yumm-red-soft: #fdf2f1;
+  --yumm-bg: #f5f5f3;
+  --yumm-card: #ffffff;
+  --yumm-text: #1a1a1a;
+  --yumm-muted: #6b7280;
+  --yumm-border: #e5e7eb;
+  --yumm-sidebar: #1c1917;
+  --yumm-radius: 12px;
+  --yumm-shadow: 0 1px 3px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.06);
+  --yumm-font: "Plus Jakarta Sans", system-ui, sans-serif;
+  --yumm-font-ar: "Cairo", "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+/* ── Base ── */
+body,
+.app-wrapper {
+  font-family: var(--yumm-font) !important;
+  background: var(--yumm-bg) !important;
+  color: var(--yumm-text) !important;
+}
+
+html[dir="rtl"] body,
+html[dir="rtl"] .app-wrapper,
+body.yumm-rtl {
+  font-family: var(--yumm-font-ar) !important;
+}
+
+.app-main,
+.content-wrapper {
+  background: var(--yumm-bg) !important;
+}
+
+.app-content {
+  padding: 1.5rem !important;
+}
+
+/* Hide Jazzmin theme / dark-mode controls */
+#jazzy-theme-chooser,
+#jazzmin-mode-select,
+#jazzmin-theme-select {
+  display: none !important;
+}
+
+/* ── Navbar ── */
+.app-header.navbar {
+  background: var(--yumm-card) !important;
+  border-bottom: 1px solid var(--yumm-border) !important;
+  box-shadow: none !important;
+}
+
+.app-header .nav-link {
+  color: var(--yumm-muted) !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.app-header .nav-link:hover {
+  color: var(--yumm-red) !important;
+}
+
+.navbar-search-block,
+.app-header form.d-flex {
+  max-width: 200px;
+}
+
+.form-control-navbar {
+  background: #f3f4f6 !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px !important;
+  font-size: 0.8125rem !important;
+  color: var(--yumm-text) !important;
+}
+
+/* ── Sidebar ── */
+.app-sidebar,
+.sidebar-dark-primary {
+  background: var(--yumm-sidebar) !important;
+}
+
+.sidebar-brand,
+.brand-link {
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.brand-text {
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+
+.yumm-brand-logo,
+#jazzy-logo .brand-image.yumm-brand-logo,
+.sidebar-brand .brand-image {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border-radius: 8px !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+  object-fit: contain;
+}
+
+.sidebar-brand .brand-link {
+  display: flex !important;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem !important;
+}
+
+.sidebar-menu .nav-link {
+  color: rgba(255,255,255,.7) !important;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  margin: 2px 0 !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+.sidebar-menu .nav-link.active,
+.sidebar-menu .nav-link:hover {
+  background: var(--yumm-red) !important;
+  color: #fff !important;
+}
+
+#jazzy-sidebar .sidebar-wrapper > nav {
+  padding: 0 0.625rem;
+}
+
+#jazzy-sidebar .sidebar-menu.flex-column {
+  padding: 0;
+  width: 100%;
+}
+
+#jazzy-sidebar .sidebar-menu .nav-item {
+  width: 100%;
+}
+
+#jazzy-sidebar .nav-header {
+  padding: 0.5rem 0.75rem 0.25rem;
+  margin: 0;
+}
+
+#jazzy-sidebar .user-panel {
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#jazzy-sidebar .user-panel .image {
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+#jazzy-sidebar .user-panel .image .fa-user-circle {
+  font-size: 2rem;
+}
+
+#jazzy-sidebar .user-panel .info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+#jazzy-sidebar .user-panel .info a,
+#jazzy-sidebar .user-panel .info span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.nav-header {
+  color: rgba(255,255,255,.35) !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Hide default Jazzmin dashboard (we use custom index.html) ── */
+body.dashboard .content-header {
+  display: none !important;
+}
+
+/* ==================================================================
+   CUSTOM DASHBOARD
+   ================================================================== */
+
+.yumm-dashboard {
+  max-width: 1200px;
+}
+
+.yumm-dash-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.yumm-dash-title {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--yumm-text);
+  margin: 0 0 0.25rem;
+}
+
+.yumm-dash-subtitle {
+  font-size: 0.9375rem;
+  color: var(--yumm-muted);
+  margin: 0;
+}
+
+.yumm-dash-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--yumm-red-soft);
+  color: var(--yumm-red);
+  border: 1px solid #fecaca;
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.yumm-dash-alert:hover {
+  background: #fee2e2;
+  color: var(--yumm-red-hover);
+}
+
+/* Stats row */
+.yumm-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 992px) {
+  .yumm-stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .yumm-stats-row { grid-template-columns: 1fr; }
+}
+
+.yumm-stat {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--yumm-shadow);
+}
+
+.yumm-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--yumm-red-soft);
+  color: var(--yumm-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.yumm-stat-icon--green  { background: #ecfdf5; color: #059669; }
+.yumm-stat-icon--amber  { background: #fffbeb; color: #d97706; }
+.yumm-stat-icon--blue   { background: #eff6ff; color: #2563eb; }
+
+.yumm-stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--yumm-text);
+  line-height: 1.2;
+}
+
+.yumm-stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--yumm-muted);
+  margin-top: 0.125rem;
+}
+
+/* Main grid */
+.yumm-dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .yumm-dash-grid { grid-template-columns: 1fr; }
+}
+
+.yumm-section-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--yumm-muted);
+  margin: 0 0 0.875rem;
+}
+
+/* Quick access cards */
+.yumm-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.yumm-quick-card {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+  box-shadow: var(--yumm-shadow);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+}
+
+.yumm-quick-card:hover {
+  border-color: var(--yumm-red);
+  box-shadow: 0 4px 20px rgba(190,49,39,.12);
+}
+
+.yumm-quick-card-main {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem;
+  flex: 1;
+  text-decoration: none;
+  color: var(--yumm-text);
+}
+
+.yumm-quick-card-main:hover {
+  color: var(--yumm-text);
+}
+
+.yumm-quick-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--yumm-red-soft);
+  color: var(--yumm-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.yumm-quick-card-icon i {
+  color: var(--yumm-red) !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.yumm-quick-card-name {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--yumm-text);
+}
+
+.yumm-quick-card-app {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--yumm-muted);
+  margin-top: 0.125rem;
+}
+
+.yumm-quick-add {
+  margin-right: 0.875rem;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 6px;
+  background: var(--yumm-red);
+  color: #fff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.yumm-quick-add-icon {
+  color: #fff !important;
+  font-size: 0.6875rem;
+  line-height: 1;
+  display: block;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900;
+}
+
+.yumm-quick-add:hover {
+  background: var(--yumm-red-hover);
+  color: #fff;
+}
+
+/* Recent actions */
+.yumm-recent-card {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+  padding: 1rem;
+  box-shadow: var(--yumm-shadow);
+}
+
+.yumm-recent-empty {
+  color: var(--yumm-muted);
+  font-size: 0.875rem;
+  margin: 0;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.yumm-recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.yumm-recent-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--yumm-border);
+}
+
+.yumm-recent-item:last-child {
+  border-bottom: none;
+}
+
+.yumm-recent-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.yumm-recent-icon i {
+  display: block;
+  line-height: 1;
+  font-size: 0.625rem;
+}
+
+.yumm-recent-icon--add  { background: #ecfdf5; color: #059669; }
+.yumm-recent-icon--edit { background: #eff6ff; color: #2563eb; }
+.yumm-recent-icon--del  { background: #fef2f2; color: #dc2626; }
+
+.yumm-recent-text a {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--yumm-text) !important;
+  text-decoration: none;
+}
+
+.yumm-recent-text a:hover {
+  color: var(--yumm-red) !important;
+}
+
+.yumm-recent-text small {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--yumm-muted);
+  margin-top: 0.125rem;
+}
+
+html[dir="rtl"] .yumm-recent-time,
+body.yumm-rtl .yumm-recent-time {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+/* ── Changelist pages ── */
+.card {
+  background: var(--yumm-card) !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: var(--yumm-radius) !important;
+  box-shadow: var(--yumm-shadow) !important;
+  color: var(--yumm-text) !important;
+}
+
+.card-header {
+  background: #f9fafb !important;
+  border-bottom: 1px solid var(--yumm-border) !important;
+  color: var(--yumm-text) !important;
+  font-weight: 600;
+}
+
+.table {
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #1a1a1a;
+  color: var(--yumm-text) !important;
+}
+
+.table thead th {
+  background: #f9fafb !important;
+  color: var(--yumm-muted) !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-color: var(--yumm-border) !important;
+}
+
+.table tbody tr {
+  background: #ffffff !important;
+}
+
+.table tbody tr:hover {
+  background: var(--yumm-red-soft) !important;
+}
+
+.table td,
+.table th {
+  border-color: var(--yumm-border) !important;
+  color: var(--yumm-text) !important;
+  vertical-align: middle;
+}
+
+.btn-primary,
+.btn-success {
+  background: var(--yumm-red) !important;
+  border-color: var(--yumm-red) !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  background: var(--yumm-red-hover) !important;
+  border-color: var(--yumm-red-hover) !important;
+}
+
+.btn-info,
+.btn-secondary {
+  background: #f3f4f6 !important;
+  border-color: var(--yumm-border) !important;
+  color: var(--yumm-muted) !important;
+  border-radius: 8px !important;
+}
+
+.form-control,
+.form-select {
+  background: #f3f4f6 !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px !important;
+  color: var(--yumm-text) !important;
+}
+
+.form-control:focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190,49,39,.12) !important;
+}
+
+#changelist-filter {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+}
+
+#changelist-filter h2 {
+  background: #f9fafb !important;
+  color: var(--yumm-muted) !important;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.actions {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.app-footer {
+  background: var(--yumm-card) !important;
+  border-top: 1px solid var(--yumm-border) !important;
+  color: var(--yumm-muted) !important;
+  font-size: 0.8125rem;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  text-align: center;
+}
+
+.yumm-footer-inner {
+  width: 100%;
+  text-align: center;
+  color: var(--yumm-muted);
+  font-size: 0.8125rem;
+}
+
+/* Stats on restaurant changelist */
+.yumm-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.875rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.yumm-stat-card {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+  padding: 1rem;
+  box-shadow: var(--yumm-shadow);
+}
+
+.yumm-stat-card strong {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--yumm-muted);
+  margin-bottom: 0.375rem;
+}
+
+.yumm-stat-card span {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--yumm-red);
+}
+
+/* ==================================================================
+   GLOBAL POLISH — navbar, breadcrumbs, selects, changelist
+   ================================================================== */
+
+/* Shared horizontal rhythm */
+.app-header.navbar > .container-fluid,
+.app-content-header > .container-fluid,
+.app-content > .container-fluid,
+.app-footer > .container-fluid {
+  padding-left: 1.75rem !important;
+  padding-right: 1.75rem !important;
+}
+
+@media (min-width: 1200px) {
+  .app-header.navbar > .container-fluid,
+  .app-content-header > .container-fluid,
+  .app-content > .container-fluid,
+  .app-footer > .container-fluid {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/* ── Top navbar ── */
+.app-header.navbar {
+  min-height: 56px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.app-header .navbar-nav {
+  gap: 0.125rem;
+}
+
+.app-header .nav-link {
+  padding: 0.5rem 0.875rem !important;
+  border-radius: 8px;
+}
+
+.app-header .nav-link:hover {
+  background: var(--yumm-red-soft);
+}
+
+.app-header .yumm-sidebar-toggle .fa-columns {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.app-header .yumm-sidebar-toggle:hover .fa-columns,
+.app-header .yumm-sidebar-toggle[aria-expanded="true"] .fa-columns {
+  color: var(--yumm-red);
+  opacity: 1;
+}
+
+.app-header form.d-flex {
+  max-width: 240px;
+  margin-left: 0.75rem !important;
+}
+
+.app-header .input-group {
+  border: 1px solid var(--yumm-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.app-header .form-control-navbar {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.app-header .btn-navbar {
+  background: transparent !important;
+  border: none !important;
+  color: var(--yumm-muted) !important;
+  padding: 0 0.75rem;
+}
+
+.app-header .btn-navbar:hover {
+  color: var(--yumm-red) !important;
+}
+
+/* ── Page header & breadcrumbs ── */
+.yumm-page-header,
+.app-content-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--yumm-border) !important;
+  padding-top: 1rem !important;
+  padding-bottom: 0.875rem !important;
+  margin-bottom: 0.25rem;
+}
+
+.yumm-page-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.yumm-page-title,
+.app-content-header h3 {
+  font-size: 1.375rem !important;
+  font-weight: 700 !important;
+  color: var(--yumm-text) !important;
+  letter-spacing: -0.02em;
+  margin: 0 !important;
+  line-height: 1.3;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.yumm-page-breadcrumbs {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.8125rem;
+  justify-content: flex-end !important;
+  flex-wrap: wrap;
+}
+
+.breadcrumb-item,
+.breadcrumb-item.active {
+  color: var(--yumm-muted) !important;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item a:link,
+.breadcrumb-item a:visited {
+  color: var(--yumm-muted) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb-item a:focus {
+  color: var(--yumm-red) !important;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: #d1d5db !important;
+  opacity: 1 !important;
+}
+
+html[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+}
+
+/* ── Native selects (changelist filters & actions — not multiple/listbox) ── */
+select:not([multiple]),
+select.form-control:not([multiple]),
+select.form-select:not([multiple]),
+select.search-filter,
+.actions select:not([multiple]) {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-height: 38px;
+  padding: 0.4375rem 2.25rem 0.4375rem 0.875rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  background-color: #fff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.65rem center !important;
+  background-size: 14px !important;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+html[dir="rtl"] select:not([multiple]),
+html[dir="rtl"] select.form-control:not([multiple]),
+html[dir="rtl"] select.form-select:not([multiple]),
+html[dir="rtl"] select.search-filter {
+  padding: 0.4375rem 0.875rem 0.4375rem 2.25rem !important;
+  background-position: left 0.65rem center !important;
+}
+
+select:not([multiple]):focus,
+select.form-control:not([multiple]):focus,
+select.form-select:not([multiple]):focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190, 49, 39, 0.1) !important;
+  outline: none;
+}
+
+/* ── Select2 (Jazzmin changelist filters & actions) ── */
+.select2-container--default .select2-selection--single {
+  background: #fff !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px !important;
+  min-height: 38px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: var(--yumm-text) !important;
+  line-height: 36px !important;
+  padding-left: 0.875rem !important;
+  padding-right: 2rem !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: var(--yumm-muted) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 36px !important;
+  right: 6px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+  border-color: var(--yumm-muted) transparent transparent transparent !important;
+  border-width: 5px 5px 0 5px !important;
+  margin-left: -5px !important;
+  margin-top: -2px !important;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  border-color: transparent transparent var(--yumm-muted) transparent !important;
+  border-width: 0 5px 5px 5px !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open .select2-selection--single {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190, 49, 39, 0.1) !important;
+}
+
+.select2-dropdown {
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 6px !important;
+  padding: 0.375rem 0.625rem !important;
+  font-size: 0.875rem;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field:focus {
+  border-color: var(--yumm-red) !important;
+  outline: none;
+}
+
+.select2-container--default .select2-results__option {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.875rem;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background: var(--yumm-red) !important;
+  color: #fff !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+  background: var(--yumm-red-soft) !important;
+  color: var(--yumm-red) !important;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 260px;
+}
+
+#change-list-filters .select2-container,
+.change-list-actions .select2-container {
+  min-width: 150px;
+}
+
+.change-list-actions .select2-container {
+  min-width: 220px;
+}
+
+/* ── Changelist filter bar ── */
+#change-list-filters {
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: var(--yumm-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--yumm-shadow);
+}
+
+#change-list-filters > .d-flex {
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Override Jazzmin main.css: select { display:block; width:100% } inside filters */
+#changelist-search {
+  display: flex !important;
+  flex-flow: row wrap;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (min-width: 992px) {
+  #changelist-search {
+    flex-wrap: nowrap !important;
+  }
+}
+
+#changelist-search .form-group {
+  margin-bottom: 0 !important;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+}
+
+#changelist-search select.search-filter {
+  display: inline-block !important;
+  width: 148px !important;
+  min-width: 148px !important;
+  max-width: 148px !important;
+}
+
+#changelist-search .form-group .select2-container {
+  width: 148px !important;
+  min-width: 148px !important;
+  max-width: 148px !important;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+#changelist-search .form-group .select2-container .select2-selection--single {
+  height: 38px;
+}
+
+#changelist-search .form-group .select2-container .select2-selection__rendered {
+  line-height: 36px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#searchbar.form-control {
+  flex: 0 1 220px;
+  min-width: 180px !important;
+  max-width: 280px;
+  width: auto !important;
+  background: #fff !important;
+  font-size: 0.875rem;
+}
+
+#changelist-search .btn-primary {
+  flex-shrink: 0;
+}
+
+#change-list-filters .btn-primary {
+  padding: 0.4375rem 1.125rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+#change-list-filters .small.quiet,
+#change-list-filters .small.quiet a {
+  color: var(--yumm-muted) !important;
+  font-size: 0.8125rem;
+}
+
+#change-list-filters .small.quiet a:hover {
+  color: var(--yumm-red) !important;
+}
+
+/* Object tools (Add button) */
+.object-tools {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.object-tools li {
+  display: inline;
+}
+
+.object-tools a,
+.object-tools .addlink {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.375rem;
+  background: var(--yumm-red) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.4375rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.object-tools a:hover,
+.object-tools .addlink:hover {
+  background: var(--yumm-red-hover) !important;
+  color: #fff !important;
+}
+
+/* Actions row */
+.change-list-actions {
+  margin-bottom: 0.5rem;
+}
+
+.change-list-actions .actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  background: var(--yumm-card);
+  border: 1px solid var(--yumm-border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.change-list-actions .actions label {
+  color: var(--yumm-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.change-list-actions .actions .button,
+.change-list-actions .actions button[type="submit"] {
+  background: #f3f4f6 !important;
+  border: 1px solid var(--yumm-border) !important;
+  color: var(--yumm-text) !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.4375rem 1rem;
+}
+
+.change-list-actions .actions .button:hover,
+.change-list-actions .actions button[type="submit"]:hover {
+  background: var(--yumm-red-soft) !important;
+  border-color: var(--yumm-red) !important;
+  color: var(--yumm-red) !important;
+}
+
+/* Platform stats on changelist */
+.yumm-stats-dashboard {
+  margin-bottom: 1.5rem;
+}
+
+.yumm-stats-dashboard h2 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--yumm-muted);
+  margin: 0 0 0.875rem;
+}
+
+/* Pagination */
+.pagination {
+  gap: 0.25rem;
+}
+
+.page-link {
+  border-radius: 8px !important;
+  border-color: var(--yumm-border) !important;
+  color: var(--yumm-muted) !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+}
+
+.page-link:hover {
+  background: var(--yumm-red-soft) !important;
+  border-color: var(--yumm-red) !important;
+  color: var(--yumm-red) !important;
+}
+
+.page-item.active .page-link {
+  background: var(--yumm-red) !important;
+  border-color: var(--yumm-red) !important;
+  color: #fff !important;
+}
+
+/* Links inside tables & content */
+.app-content a:not(.btn):not(.nav-link):not(.breadcrumb-item a):not(.object-tools a):not(.yumm-quick-card-main):not(.yumm-quick-add):not(.yumm-dash-alert) {
+  color: var(--yumm-red);
+  font-weight: 500;
+}
+
+.app-content a:not(.btn):not(.nav-link):not(.breadcrumb-item a):not(.object-tools a):not(.yumm-quick-card-main):not(.yumm-quick-add):not(.yumm-dash-alert):hover {
+  color: var(--yumm-red-hover);
+}
+
+/* Form inputs consistency */
+.form-control,
+.form-select {
+  background: #fff !important;
+  font-size: 0.875rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190, 49, 39, 0.1) !important;
+}
+
+/* ==================================================================
+   LOGIN / LOGOUT PAGES
+   ================================================================== */
+
+.yumm-login-page {
+  font-family: var(--yumm-font) !important;
+  background: var(--yumm-bg) !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[dir="rtl"] .yumm-login-page,
+body.yumm-rtl .yumm-login-page {
+  font-family: var(--yumm-font-ar) !important;
+}
+
+.yumm-login-page .login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+
+.yumm-login-page .login-logo {
+  margin-bottom: 0.75rem;
+  text-align: center;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+}
+
+.yumm-login-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.yumm-login-logo,
+.yumm-login-page .login-logo img,
+.yumm-login-page .login-logo .yumm-login-logo,
+body.login-page.yumm-login-page .login-box .login-logo a img {
+  width: 36px !important;
+  height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(190, 49, 39, 0.18);
+}
+
+.yumm-login-brand {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--yumm-text);
+}
+
+.yumm-login-card {
+  background: var(--yumm-card) !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: var(--yumm-radius) !important;
+  box-shadow: var(--yumm-shadow) !important;
+  overflow: hidden;
+}
+
+.yumm-login-page .login-card-body {
+  padding: 2rem 1.75rem !important;
+}
+
+.yumm-login-page .login-box-msg {
+  font-size: 1.0625rem !important;
+  font-weight: 600 !important;
+  color: var(--yumm-text) !important;
+  text-align: center;
+  margin-bottom: 0.75rem !important;
+}
+
+.yumm-login-page .login-card-body > p.text-center {
+  color: var(--yumm-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.yumm-login-page .btn-primary {
+  background: var(--yumm-red) !important;
+  border-color: var(--yumm-red) !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+  padding: 0.625rem 1rem;
+}
+
+.yumm-login-page .btn-primary:hover {
+  background: var(--yumm-red-hover) !important;
+  border-color: var(--yumm-red-hover) !important;
+}
+
+.yumm-login-page .input-group .form-control {
+  background: #fff !important;
+  border-color: var(--yumm-border) !important;
+  border-radius: 8px 0 0 8px !important;
+  font-size: 0.875rem;
+}
+
+.yumm-login-page .input-group .input-group-text {
+  background: #f9fafb !important;
+  border-color: var(--yumm-border) !important;
+  color: var(--yumm-muted);
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.yumm-login-page .input-group .form-control:focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: none !important;
+}
+
+.yumm-login-page .callout-danger {
+  border-radius: 8px;
+  border-left: 3px solid var(--yumm-red);
+}
+
+html[dir="rtl"] .yumm-login-page .input-group .form-control {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+html[dir="rtl"] .yumm-login-page .input-group .input-group-text {
+  border-radius: 8px 0 0 8px !important;
+}
+
+/* ==================================================================
+   CHANGE FORM — unified inputs & permissions selector
+   ================================================================== */
+
+:is(.change-form, .yumm-admin-form-page) .card-body,
+:is(.change-form, .yumm-admin-form-page) .tab-content .p-5 {
+  padding: 1.5rem !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group {
+  margin-bottom: 1.125rem;
+}
+
+/* Label + field grid — LTR: label left, field right */
+:is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)) {
+  display: grid !important;
+  grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
+  gap: 0.625rem 1rem;
+  align-items: start;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  --bs-gutter-x: 0;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)) > label.col-sm-3 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100% !important;
+  max-width: none !important;
+  flex: none !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)) > .col-sm-9 {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100% !important;
+  max-width: none !important;
+  flex: none !important;
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group > .row:has(.fieldBox) {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .readonly {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: embed;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+  font-size: 0.8125rem;
+  color: var(--yumm-muted);
+  background: #f9fafb;
+  border: 1px solid var(--yumm-border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group > .row > .col-sm-9 {
+  min-width: 0;
+  max-width: 100%;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="checkbox"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="radio"] {
+  width: auto !important;
+  min-height: auto;
+  margin-top: 0.35rem;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card .card,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card .card {
+  direction: rtl;
+  text-align: right;
+  width: 100%;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card-body,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .module.aligned,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .tab-content,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card-header,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card .p-5,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card .p-4,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .yumm-fieldset-body,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .yumm-tab-pane,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .yumm-fieldset-card-body,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card-body,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .module.aligned,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .tab-content,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card-header,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card .p-5,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card .p-4,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .yumm-fieldset-body,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .yumm-tab-pane,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .yumm-fieldset-card-body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card .p-5,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .card .p-4,
+html[dir="rtl"] #jazzy-collapsible .yumm-fieldset-body,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card .p-5,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .card .p-4,
+body.yumm-rtl #jazzy-collapsible .yumm-fieldset-body {
+  padding: 1.25rem 1.5rem !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .yumm-tab-pane,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .yumm-tab-pane {
+  padding: 0.25rem 0.125rem 0.5rem;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) #jazzy-collapsible .card-body,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) #jazzy-collapsible .card-body {
+  width: 100%;
+  max-width: 100%;
+}
+
+:is(.change-form, .yumm-admin-form-page) .card-body,
+:is(.change-form, .yumm-admin-form-page) .yumm-fieldset-body,
+:is(.change-form, .yumm-admin-form-page) .yumm-tab-pane,
+:is(.change-form, .yumm-admin-form-page) #jazzy-collapsible .card-body {
+  overflow-x: clip;
+}
+
+/* RTL form rows — stacked from the right (label above field) */
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])),
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  direction: rtl;
+  gap: 0.375rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > label.col-sm-3,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > label.col-sm-3 {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: right;
+  padding-top: 0 !important;
+  padding-inline: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > .col-sm-9,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > .col-sm-9 {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+  padding-inline: 0 !important;
+  text-align: right;
+  overflow: hidden;
+}
+
+/* Complex widgets — stack label above field, full width */
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) > .row,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions > .row,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-groups > .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) > .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions > .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-groups > .row {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  direction: rtl;
+  gap: 0.5rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) label.col-sm-3,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions label.col-sm-3,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-groups label.col-sm-3,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) label.col-sm-3,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions label.col-sm-3,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-groups label.col-sm-3 {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  text-align: right;
+  padding-top: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) .col-sm-9,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .col-sm-9,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-groups .col-sm-9,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(.selector) .col-sm-9,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .col-sm-9,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-groups .col-sm-9 {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  min-width: 0;
+  padding-inline: 0 !important;
+  overflow: hidden;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input:not([type="checkbox"]):not([type="radio"]):not([type="email"]):not([type="url"]),
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 textarea,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input:not([type="checkbox"]):not([type="radio"]):not([type="email"]):not([type="url"]),
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 textarea,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Checkbox / boolean fields — label + box from the right */
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row {
+  display: grid !important;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  direction: rtl;
+  justify-content: start;
+  align-items: center;
+  gap: 0.375rem 0.5rem;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row > label.col-sm-3,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row > label.col-sm-3 {
+  grid-column: 1;
+  grid-row: 1;
+  width: auto !important;
+  max-width: none !important;
+  padding-top: 0 !important;
+  text-align: right;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row > .col-sm-9,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) > .row > .col-sm-9 {
+  display: contents;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) input[type="checkbox"],
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) input[type="checkbox"] {
+  grid-column: 2;
+  grid-row: 1;
+  width: auto !important;
+  min-height: auto;
+  margin: 0 !important;
+  float: none !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block {
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: right;
+  direction: rtl;
+  margin-top: 0.25rem;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block.red:empty,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block.text-red:empty,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block.red:empty,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group:has(> .row > .col-sm-9 > input[type="checkbox"]) .help-block.text-red:empty {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .help-block,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .helptext,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .help-block,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .helptext {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:has(.fieldBox),
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:has(.fieldBox) {
+  flex-direction: row !important;
+  direction: rtl;
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .row,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group.field-groups .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .row,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group.field-groups .row {
+  direction: rtl;
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > label.col-sm-3,
+  html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > .col-sm-9,
+  body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > label.col-sm-3,
+  body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group > .row:not(:has(.fieldBox)):not(:has(.selector)):not(:has(> .col-sm-9 > input[type="checkbox"])) > .col-sm-9 {
+    width: 100% !important;
+  }
+}
+
+html[dir="rtl"] #jazzy-collapsible .collapsible-header,
+body.yumm-rtl #jazzy-collapsible .collapsible-header {
+  display: flex;
+  direction: rtl;
+  justify-content: flex-start;
+  text-align: right;
+}
+
+html[dir="rtl"] #jazzy-collapsible .card-title,
+body.yumm-rtl #jazzy-collapsible .card-title {
+  text-align: right;
+  width: 100%;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .selector .selector-filter,
+html[dir="rtl"] .app-content .selector .selector-filter,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .selector .selector-filter,
+body.yumm-rtl .app-content .selector .selector-filter {
+  direction: rtl;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .selector .selector-filter input,
+html[dir="rtl"] .app-content .selector .selector-filter input,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .selector .selector-filter input,
+body.yumm-rtl .app-content .selector .selector-filter input {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .selector-available-title,
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .selector-chosen-title,
+html[dir="rtl"] .app-content .selector-available-title,
+html[dir="rtl"] .app-content .selector-chosen-title,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .selector-available-title,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .selector-chosen-title,
+body.yumm-rtl .app-content .selector-available-title,
+body.yumm-rtl .app-content .selector-chosen-title {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="email"],
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="url"],
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="email"],
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="url"] {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="rtl"] #content-main form > .row > .col-lg-9,
+body.yumm-rtl #content-main form > .row > .col-lg-9 {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group label.col-sm-3 {
+  color: var(--yumm-muted);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  padding-top: 0.5rem;
+}
+
+/* Same width & style for all single-line fields */
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="text"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="email"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="password"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="number"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="url"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="tel"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="date"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input[type="time"],
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 textarea,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]),
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vTextField,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vLargeTextField,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vIntegerField,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vURLField,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vForeignKeyRawIdAdminField {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  background: #fff !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px !important;
+  color: var(--yumm-text) !important;
+  font-size: 0.875rem !important;
+  min-height: 38px;
+  padding: 0.4375rem 0.875rem !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]) {
+  padding-right: 2.25rem !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.65rem center !important;
+  background-size: 14px !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]),
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]) {
+  padding-right: 0.875rem !important;
+  padding-left: 2.25rem !important;
+  background-position: left 0.65rem center !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 input:focus,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 textarea:focus,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]):focus,
+:is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 .vTextField:focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190, 49, 39, 0.1) !important;
+  outline: none;
+}
+
+html[dir="rtl"] .yumm-field-label,
+body.yumm-rtl .yumm-field-label {
+  text-align: right !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .help-block,
+:is(.change-form, .yumm-admin-form-page) .helptext {
+  color: var(--yumm-muted);
+  font-size: 0.8125rem;
+  margin-top: 0.375rem;
+}
+
+:is(.change-form, .yumm-admin-form-page) .help-block ul {
+  margin: 0.625rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.8125rem;
+  color: var(--yumm-muted);
+  line-height: 1.55;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .help-block ul,
+body.yumm-rtl :is(.change-form, .yumm-admin-form-page) .help-block ul {
+  padding-left: 0;
+  padding-right: 1.25rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.yumm-form-intro {
+  color: var(--yumm-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  max-width: 42rem;
+}
+
+html[dir="rtl"] .yumm-form-intro,
+body.yumm-rtl .yumm-form-intro {
+  direction: rtl;
+  text-align: right;
+}
+
+.yumm-required-mark {
+  color: var(--yumm-red);
+  margin-inline-start: 0.2rem;
+  font-weight: 700;
+}
+
+.yumm-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem !important;
+  background: #f9fafb !important;
+  border-top: 1px solid var(--yumm-border) !important;
+}
+
+html[dir="rtl"] .yumm-form-actions,
+body.yumm-rtl .yumm-form-actions {
+  direction: rtl;
+  justify-content: flex-start;
+}
+
+html:not([dir="rtl"]) .yumm-form-actions {
+  justify-content: flex-end;
+}
+
+.yumm-form-success {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--yumm-radius);
+  font-weight: 500;
+}
+
+html[dir="rtl"] .yumm-form-success,
+body.yumm-rtl .yumm-form-success {
+  direction: rtl;
+  text-align: right;
+}
+
+html:not([dir="rtl"]) :is(.change-form, .yumm-admin-form-page) .form-group label.col-sm-3 {
+  text-align: left;
+}
+
+.yumm-admin-form-page .card {
+  margin-bottom: 1.5rem;
+}
+
+/* filter_horizontal / filter_vertical — Django 5 permissions widget */
+:is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .row,
+:is(.change-form, .yumm-admin-form-page) .form-group.field-groups .row {
+  flex-direction: column;
+}
+
+:is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions label.col-sm-3,
+:is(.change-form, .yumm-admin-form-page) .form-group.field-groups label.col-sm-3,
+:is(.change-form, .yumm-admin-form-page) .form-group.field-user_permissions .col-sm-9,
+:is(.change-form, .yumm-admin-form-page) .form-group.field-groups .col-sm-9 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector,
+.app-content .selector {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0.625rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-available,
+:is(.change-form, .yumm-admin-form-page) .selector-chosen,
+.app-content .selector-available,
+.app-content .selector-chosen {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  overflow: hidden !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-available-title,
+:is(.change-form, .yumm-admin-form-page) .selector-chosen-title,
+.app-content .selector-available-title,
+.app-content .selector-chosen-title {
+  flex: 0 0 auto;
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  background: #f9fafb !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px 8px 0 0 !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--yumm-muted) !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-available-title label,
+:is(.change-form, .yumm-admin-form-page) .selector-chosen-title label,
+.app-content .selector-available-title label,
+.app-content .selector-chosen-title label {
+  width: 100%;
+  margin: 0;
+  color: inherit;
+  font-weight: inherit;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector .helptext,
+.app-content .selector .helptext {
+  display: none;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector ul.selector-chooser,
+.app-content .selector ul.selector-chooser {
+  flex: 0 0 2.25rem !important;
+  width: 2.25rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-self: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+  gap: 0.375rem;
+  transform: none !important;
+  background: transparent !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-chooser li,
+.app-content .selector-chooser li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector select[multiple],
+:is(.change-form, .yumm-admin-form-page) .selector-available select,
+:is(.change-form, .yumm-admin-form-page) .selector-chosen select,
+.app-content .selector select[multiple],
+.app-content .selector-available select,
+.app-content .selector-chosen select {
+  flex: 1 1 auto !important;
+  display: block !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 17em !important;
+  min-height: 17em !important;
+  overflow: auto !important;
+  appearance: listbox !important;
+  -webkit-appearance: listbox !important;
+  -moz-appearance: listbox !important;
+  background-image: none !important;
+  background-color: #fff !important;
+  padding: 0.375rem 0.625rem !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 0 0 8px 8px !important;
+  border-top: none !important;
+  font-size: 0.8125rem !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+  cursor: default;
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector select option,
+.app-content .selector select option {
+  padding: 0.25rem 0.375rem;
+  white-space: normal;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-available h2,
+:is(.change-form, .yumm-admin-form-page) .selector-chosen h2,
+.app-content .selector-available h2,
+.app-content .selector-chosen h2 {
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  background: #f9fafb !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 8px 8px 0 0 !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--yumm-muted) !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector .selector-filter,
+.app-content .selector .selector-filter {
+  flex: 0 0 auto;
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem !important;
+  margin: 0 !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-top: none !important;
+  background: #fff !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector .selector-filter label,
+.app-content .selector .selector-filter label {
+  flex: 0 0 auto;
+  float: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  margin: 0 !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector .selector-filter input,
+.app-content .selector .selector-filter input {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  min-height: 34px;
+  padding: 0.375rem 0.625rem !important;
+  font-size: 0.875rem !important;
+  background: #fff !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 6px !important;
+  box-sizing: border-box;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector .selector-filter input:focus,
+.app-content .selector .selector-filter input:focus {
+  border-color: var(--yumm-red) !important;
+  box-shadow: 0 0 0 3px rgba(190, 49, 39, 0.1) !important;
+  outline: none;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-chooseall,
+:is(.change-form, .yumm-admin-form-page) .selector-clearall,
+.app-content .selector-chooseall,
+.app-content .selector-clearall {
+  align-self: flex-start;
+  margin: 0.5rem 0 0 !important;
+  padding: 0.375rem 0.625rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  color: var(--yumm-muted) !important;
+  background: #f9fafb !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 6px !important;
+  opacity: 1 !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-chooseall:hover:not(:disabled),
+:is(.change-form, .yumm-admin-form-page) .selector-clearall:hover:not(:disabled),
+.app-content .selector-chooseall:hover:not(:disabled),
+.app-content .selector-clearall:hover:not(:disabled) {
+  background: var(--yumm-red-soft) !important;
+  border-color: var(--yumm-red) !important;
+  color: var(--yumm-red) !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector ul.selector-chooser a,
+.app-content .selector ul.selector-chooser a {
+  border-radius: 6px !important;
+  border-color: var(--yumm-border) !important;
+  background: #f9fafb !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-add,
+:is(.change-form, .yumm-admin-form-page) .selector-remove,
+.app-content .selector-add,
+.app-content .selector-remove {
+  opacity: 1 !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector ul.selector-chooser a:hover,
+.app-content .selector ul.selector-chooser a:hover {
+  background: var(--yumm-red) !important;
+  border-color: var(--yumm-red) !important;
+  color: #fff !important;
+}
+
+:is(.change-form, .yumm-admin-form-page) .selector-chosen .list-footer-display,
+.app-content .selector-chosen .list-footer-display {
+  border: 1px solid var(--yumm-border) !important;
+  border-top: none !important;
+  border-radius: 0 0 8px 8px !important;
+  background: var(--yumm-red-soft) !important;
+  color: var(--yumm-red) !important;
+  font-size: 0.75rem;
+  padding: 0.5rem !important;
+  margin: 0 !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .form-group .col-sm-9 select:not([multiple]) {
+  padding-right: 0.875rem !important;
+  padding-left: 2.25rem !important;
+  background-position: left 0.65rem center !important;
+}
+
+html[dir="rtl"] :is(.change-form, .yumm-admin-form-page) .selector select[multiple],
+html[dir="rtl"] .app-content .selector select[multiple] {
+  padding: 0.375rem 0.5rem !important;
+  background-image: none !important;
+}
+
+/* ==================================================================
+   RTL — Arabic layout (loads last — overrides global polish above)
+   ================================================================== */
+
+html[dir="rtl"],
+html[dir="rtl"] body,
+body.yumm-rtl,
+body.yumm-rtl .app-main {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"],
+html[dir="rtl"] body,
+body.yumm-rtl {
+  overflow-x: hidden;
+}
+
+/* AdminLTE 4 shell — RTL sidebar on the right */
+html[dir="rtl"] .app-wrapper,
+body.yumm-rtl .app-wrapper {
+  direction: rtl;
+  max-width: 100% !important;
+  width: 100% !important;
+  overflow-x: clip;
+}
+
+html[dir="rtl"] .app-header,
+html[dir="rtl"] .app-main,
+html[dir="rtl"] .app-footer,
+body.yumm-rtl .app-header,
+body.yumm-rtl .app-main,
+body.yumm-rtl .app-footer {
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+html[dir="rtl"] .app-sidebar,
+body.yumm-rtl .app-sidebar {
+  margin-left: 0 !important;
+}
+
+html[dir="rtl"] .sidebar-collapse:not(.sidebar-mini) .app-sidebar,
+body.yumm-rtl .sidebar-collapse:not(.sidebar-mini) .app-sidebar {
+  margin-left: 0 !important;
+  margin-right: calc(var(--lte-sidebar-width) * -1) !important;
+}
+
+html[dir="rtl"] .sidebar-open .app-sidebar,
+html[dir="rtl"] .sidebar-expand-lg.sidebar-open .app-sidebar,
+html[dir="rtl"] .sidebar-expand-md.sidebar-open .app-sidebar,
+html[dir="rtl"] .sidebar-expand-sm.sidebar-open .app-sidebar,
+html[dir="rtl"] .sidebar-expand-xl.sidebar-open .app-sidebar,
+body.yumm-rtl .sidebar-open .app-sidebar,
+body.yumm-rtl .sidebar-expand-lg.sidebar-open .app-sidebar,
+body.yumm-rtl .sidebar-expand-md.sidebar-open .app-sidebar,
+body.yumm-rtl .sidebar-expand-sm.sidebar-open .app-sidebar,
+body.yumm-rtl .sidebar-expand-xl.sidebar-open .app-sidebar {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media (max-width: 991.98px) {
+  html[dir="rtl"] .sidebar-expand-lg .app-sidebar,
+  body.yumm-rtl .sidebar-expand-lg .app-sidebar {
+    left: auto !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: calc(var(--lte-sidebar-width) * -1) !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  html[dir="rtl"] .sidebar-expand-md .app-sidebar,
+  body.yumm-rtl .sidebar-expand-md .app-sidebar {
+    left: auto !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: calc(var(--lte-sidebar-width) * -1) !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  html[dir="rtl"] .sidebar-expand-sm .app-sidebar,
+  body.yumm-rtl .sidebar-expand-sm .app-sidebar {
+    left: auto !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: calc(var(--lte-sidebar-width) * -1) !important;
+  }
+}
+
+/* Top header / navbar */
+html[dir="rtl"] .app-header,
+html[dir="rtl"] .app-content-header,
+html[dir="rtl"] .app-content,
+body.yumm-rtl .app-header,
+body.yumm-rtl .app-content-header,
+body.yumm-rtl .app-content {
+  direction: rtl;
+}
+
+html[dir="rtl"] .app-header.navbar > .container-fluid,
+body.yumm-rtl .app-header.navbar > .container-fluid {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  direction: rtl;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+html[dir="rtl"] .app-header .navbar-nav,
+body.yumm-rtl .app-header .navbar-nav {
+  direction: rtl;
+  flex-shrink: 0;
+}
+
+html[dir="rtl"] .app-header .navbar-nav:first-of-type,
+body.yumm-rtl .app-header .navbar-nav:first-of-type {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] .app-header .navbar-nav.ms-auto,
+body.yumm-rtl .app-header .navbar-nav.ms-auto {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+html[dir="rtl"] .app-header form.d-flex,
+body.yumm-rtl .app-header form.d-flex {
+  flex: 0 1 220px;
+  min-width: 0;
+  max-width: 240px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] .app-header .dropdown-menu-end,
+body.yumm-rtl .app-header .dropdown-menu-end {
+  right: auto !important;
+  left: 0 !important;
+}
+
+html[dir="rtl"] .app-header .form-control,
+html[dir="rtl"] .app-header input[type="search"],
+html[dir="rtl"] .form-control-navbar,
+body.yumm-rtl .app-header .form-control,
+body.yumm-rtl .app-header input[type="search"],
+body.yumm-rtl .form-control-navbar {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .app-header .input-group,
+body.yumm-rtl .app-header .input-group {
+  flex-direction: row-reverse;
+}
+
+/* Sidebar navigation */
+html[dir="rtl"] .sidebar-brand .brand-link,
+body.yumm-rtl .sidebar-brand .brand-link {
+  display: flex !important;
+  flex-direction: row !important;
+  direction: rtl;
+  justify-content: flex-start !important;
+  gap: 0.75rem;
+}
+
+html[dir="rtl"] .user-panel,
+body.yumm-rtl .user-panel,
+html[dir="rtl"] #jazzy-sidebar .user-panel,
+body.yumm-rtl #jazzy-sidebar .user-panel {
+  flex-direction: row !important;
+  direction: rtl;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  text-align: right;
+}
+
+html[dir="rtl"] .user-panel .info,
+body.yumm-rtl .user-panel .info,
+html[dir="rtl"] #jazzy-sidebar .user-panel .info,
+body.yumm-rtl #jazzy-sidebar .user-panel .info {
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: right;
+  min-width: 0;
+  flex: 1;
+}
+
+html[dir="rtl"] .nav-header,
+body.yumm-rtl .nav-header {
+  text-align: right;
+}
+
+html[dir="rtl"] .sidebar-menu .nav-link,
+body.yumm-rtl .sidebar-menu .nav-link {
+  display: flex !important;
+  flex-direction: row !important;
+  direction: rtl;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: right !important;
+  gap: 0.75rem;
+}
+
+html[dir="rtl"] .sidebar-menu .nav-link .nav-icon,
+body.yumm-rtl .sidebar-menu .nav-link .nav-icon {
+  margin: 0 !important;
+}
+
+html[dir="rtl"] .sidebar-menu .nav-link p,
+body.yumm-rtl .sidebar-menu .nav-link p {
+  text-align: right;
+  margin: 0;
+  flex: 1;
+}
+
+html[dir="rtl"] .sidebar-menu .nav-arrow.fa-chevron-right::before,
+body.yumm-rtl .sidebar-menu .nav-arrow.fa-chevron-right::before {
+  content: "\f053";
+}
+
+/* Dashboard — cards, stats, quick access */
+html[dir="rtl"] .app-content,
+body.yumm-rtl .app-content {
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html[dir="rtl"] .yumm-dashboard,
+body.yumm-rtl .yumm-dashboard {
+  direction: rtl;
+  text-align: right;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+html[dir="rtl"] .yumm-dash-header,
+html[dir="rtl"] .yumm-dash-alert,
+html[dir="rtl"] .yumm-stat,
+html[dir="rtl"] .yumm-quick-card,
+html[dir="rtl"] .yumm-quick-card-main,
+html[dir="rtl"] .yumm-recent-item,
+body.yumm-rtl .yumm-dash-header,
+body.yumm-rtl .yumm-dash-alert,
+body.yumm-rtl .yumm-stat,
+body.yumm-rtl .yumm-quick-card,
+body.yumm-rtl .yumm-quick-card-main,
+body.yumm-rtl .yumm-recent-item {
+  direction: rtl;
+}
+
+html[dir="rtl"] .yumm-dash-title,
+html[dir="rtl"] .yumm-dash-subtitle,
+html[dir="rtl"] .yumm-stat-body,
+html[dir="rtl"] .yumm-section-title,
+html[dir="rtl"] .yumm-quick-card-body,
+html[dir="rtl"] .yumm-recent-text,
+html[dir="rtl"] .yumm-stat-card,
+body.yumm-rtl .yumm-dash-title,
+body.yumm-rtl .yumm-dash-subtitle,
+body.yumm-rtl .yumm-stat-body,
+body.yumm-rtl .yumm-section-title,
+body.yumm-rtl .yumm-quick-card-body,
+body.yumm-rtl .yumm-recent-text,
+body.yumm-rtl .yumm-stat-card {
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-stats-row,
+html[dir="rtl"] .yumm-dash-grid,
+html[dir="rtl"] .yumm-quick-grid,
+html[dir="rtl"] .yumm-stats-grid,
+body.yumm-rtl .yumm-stats-row,
+body.yumm-rtl .yumm-dash-grid,
+body.yumm-rtl .yumm-quick-grid,
+body.yumm-rtl .yumm-stats-grid {
+  direction: rtl;
+}
+
+html[dir="rtl"] .yumm-quick-add,
+body.yumm-rtl .yumm-quick-add {
+  margin-right: 0 !important;
+  margin-left: 0.875rem !important;
+}
+
+/* Admin pages */
+html[dir="rtl"] .yumm-page-header-bar,
+body.yumm-rtl .yumm-page-header-bar {
+  direction: rtl;
+}
+
+html[dir="rtl"] .yumm-page-title,
+html[dir="rtl"] .app-content-header h3,
+body.yumm-rtl .yumm-page-title,
+body.yumm-rtl .app-content-header h3 {
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-page-breadcrumbs .breadcrumb,
+body.yumm-rtl .yumm-page-breadcrumbs .breadcrumb {
+  justify-content: flex-start !important;
+}
+
+html:not([dir="rtl"]) .yumm-page-title,
+html:not([dir="rtl"]) .app-content-header h3 {
+  text-align: left;
+}
+
+html:not([dir="rtl"]) .yumm-page-breadcrumbs .breadcrumb {
+  justify-content: flex-end !important;
+}
+
+html[dir="rtl"] .table thead th,
+html[dir="rtl"] .table tbody td,
+body.yumm-rtl .table thead th,
+body.yumm-rtl .table tbody td {
+  text-align: right;
+}
+
+html[dir="rtl"] .nav-tabs,
+body.yumm-rtl .nav-tabs {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+html[dir="rtl"] .card-title,
+html[dir="rtl"] .card-header,
+body.yumm-rtl .card-title,
+body.yumm-rtl .card-header {
+  text-align: right;
+}
+
+html[dir="rtl"] #jazzy-actions,
+body.yumm-rtl #jazzy-actions {
+  text-align: right;
+}
+
+html[dir="rtl"] .object-tools,
+body.yumm-rtl .object-tools {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] #change-list-filters > .d-flex,
+html[dir="rtl"] #changelist-search,
+html[dir="rtl"] .actions,
+html[dir="rtl"] .change-list-actions .actions,
+html[dir="rtl"] .pagination,
+body.yumm-rtl #change-list-filters > .d-flex,
+body.yumm-rtl #changelist-search,
+body.yumm-rtl .actions,
+body.yumm-rtl .change-list-actions .actions,
+body.yumm-rtl .pagination {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .pagination,
+body.yumm-rtl .pagination {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .row,
+body.yumm-rtl .row {
+  direction: rtl;
+}
+
+html[dir="rtl"] .form-control,
+html[dir="rtl"] .form-select,
+html[dir="rtl"] textarea,
+html[dir="rtl"] input:not([type="checkbox"]):not([type="radio"]),
+body.yumm-rtl .form-control,
+body.yumm-rtl .form-select,
+body.yumm-rtl textarea,
+body.yumm-rtl input:not([type="checkbox"]):not([type="radio"]) {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .dropdown-menu,
+html[dir="rtl"] .alert,
+body.yumm-rtl .dropdown-menu,
+body.yumm-rtl .alert {
+  text-align: right;
+}
+
+html[dir="rtl"] .selector,
+body.yumm-rtl .selector {
+  flex-direction: row-reverse !important;
+}
+
+html[dir="rtl"] .select2-container--default .select2-selection--single .select2-selection__rendered,
+body.yumm-rtl .select2-container--default .select2-selection--single .select2-selection__rendered {
+  padding-left: 2rem !important;
+  padding-right: 0.875rem !important;
+  text-align: right;
+}
+
+html[dir="rtl"] .select2-container--default .select2-selection--single .select2-selection__arrow,
+body.yumm-rtl .select2-container--default .select2-selection--single .select2-selection__arrow {
+  left: 6px !important;
+  right: auto !important;
+}
+
+html[dir="rtl"] .yumm-footer-inner,
+body.yumm-rtl .yumm-footer-inner {
+  text-align: center;
+}
+
+/* ==================================================================
+   User account menu
+   ================================================================== */
+
+.yumm-user-menu {
+  min-width: 240px;
+  padding: 0.375rem 0 !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.yumm-user-menu .dropdown-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--yumm-muted) !important;
+  padding: 0.625rem 1rem 0.375rem;
+  text-align: center;
+}
+
+.yumm-user-menu .dropdown-item,
+.yumm-user-menu button.dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 1rem !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--yumm-text) !important;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: start;
+}
+
+.yumm-user-menu .dropdown-item:hover,
+.yumm-user-menu button.dropdown-item:hover {
+  background: var(--yumm-red-soft) !important;
+  color: var(--yumm-red) !important;
+}
+
+.yumm-user-menu .yumm-menu-icon {
+  width: 1.125rem;
+  text-align: center;
+  color: var(--yumm-muted);
+  flex-shrink: 0;
+}
+
+.yumm-user-menu .dropdown-item:hover .yumm-menu-icon,
+.yumm-user-menu button.dropdown-item:hover .yumm-menu-icon {
+  color: var(--yumm-red);
+}
+
+html[dir="rtl"] .yumm-user-menu,
+body.yumm-rtl .yumm-user-menu {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-user-menu .dropdown-item,
+html[dir="rtl"] .yumm-user-menu button.dropdown-item,
+body.yumm-rtl .yumm-user-menu .dropdown-item,
+body.yumm-rtl .yumm-user-menu button.dropdown-item {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-user-menu.dropdown-menu-end,
+body.yumm-rtl .yumm-user-menu.dropdown-menu-end {
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* ==================================================================
+   Language menu
+   ================================================================== */
+
+.yumm-language-menu {
+  min-width: 200px;
+  padding: 0.375rem 0 !important;
+  border: 1px solid var(--yumm-border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden;
+}
+
+.yumm-language-menu form {
+  margin: 0;
+  padding: 0;
+}
+
+.yumm-language-menu .dropdown-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--yumm-muted) !important;
+  padding: 0.625rem 1rem 0.375rem;
+  text-align: center;
+}
+
+.yumm-language-menu .dropdown-divider {
+  margin: 0.25rem 0;
+  border-color: var(--yumm-border);
+}
+
+.yumm-language-menu .dropdown-item,
+.yumm-language-menu button.dropdown-item {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--yumm-text) !important;
+  background: transparent !important;
+  border: none;
+  width: 100%;
+  text-align: start;
+}
+
+.yumm-language-menu .dropdown-item:hover,
+.yumm-language-menu button.dropdown-item:hover,
+.yumm-language-menu .dropdown-item:focus,
+.yumm-language-menu button.dropdown-item:focus {
+  background: var(--yumm-red-soft) !important;
+  color: var(--yumm-red) !important;
+}
+
+.yumm-language-menu .dropdown-item.active,
+.yumm-language-menu button.dropdown-item.active {
+  background: var(--yumm-red-soft) !important;
+  color: var(--yumm-red) !important;
+  font-weight: 600;
+}
+
+.yumm-language-menu .yumm-language-check {
+  color: var(--yumm-red);
+  font-size: 0.8125rem;
+  flex-shrink: 0;
+}
+
+.app-header .yumm-language-toggle.show,
+.app-header .yumm-language-toggle[aria-expanded="true"] {
+  background: var(--yumm-red-soft);
+  color: var(--yumm-red) !important;
+}
+
+html[dir="rtl"] .yumm-language-menu,
+body.yumm-rtl .yumm-language-menu {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-language-menu .dropdown-item,
+html[dir="rtl"] .yumm-language-menu button.dropdown-item,
+body.yumm-rtl .yumm-language-menu .dropdown-item,
+body.yumm-rtl .yumm-language-menu button.dropdown-item {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-language-menu.dropdown-menu-end,
+body.yumm-rtl .yumm-language-menu.dropdown-menu-end {
+  left: 0 !important;
+  right: auto !important;
+}
+
+/* ==================================================================
+   Object history page
+   ================================================================== */
+
+.yumm-history-page #content-main {
+  max-width: 100%;
+}
+
+.yumm-history-card-body {
+  padding: 1.5rem !important;
+}
+
+.yumm-history-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.25rem 0;
+}
+
+.yumm-history-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  inset-inline-start: 1.125rem;
+  width: 2px;
+  background: var(--yumm-border);
+  z-index: 0;
+}
+
+.yumm-history-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  z-index: 1;
+}
+
+.yumm-history-marker {
+  padding-top: 0.125rem;
+}
+
+.yumm-history-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.8125rem;
+  box-shadow: 0 0 0 4px var(--yumm-card);
+}
+
+.yumm-history-icon--blue {
+  background: var(--yumm-red);
+}
+
+.yumm-history-icon--success {
+  background: #16a34a;
+}
+
+.yumm-history-icon--danger {
+  background: #dc2626;
+}
+
+.yumm-history-content {
+  background: #f9fafb;
+  border: 1px solid var(--yumm-border);
+  border-radius: 10px;
+  padding: 0.875rem 1rem;
+  min-width: 0;
+}
+
+.yumm-history-meta {
+  margin-bottom: 0.5rem;
+}
+
+.yumm-history-meta time {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--yumm-red);
+  background: var(--yumm-red-soft);
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+}
+
+.yumm-history-user {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--yumm-red);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.yumm-history-user:hover {
+  color: var(--yumm-red-hover);
+  text-decoration: underline;
+}
+
+.yumm-history-message {
+  margin: 0.375rem 0 0;
+  color: var(--yumm-text);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.yumm-history-message strong {
+  color: var(--yumm-text);
+  font-weight: 700;
+}
+
+.yumm-history-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--yumm-muted);
+}
+
+.yumm-history-empty-icon {
+  display: block;
+  font-size: 2rem;
+  color: var(--yumm-border);
+  margin: 0 auto 0.75rem;
+}
+
+.yumm-history-empty p {
+  margin: 0;
+  max-width: 32rem;
+  margin-inline: auto;
+  line-height: 1.65;
+}
+
+html[dir="rtl"] .yumm-history-timeline,
+html[dir="rtl"] .yumm-history-entry,
+html[dir="rtl"] .yumm-history-content,
+html[dir="rtl"] .yumm-history-message,
+body.yumm-rtl .yumm-history-timeline,
+body.yumm-rtl .yumm-history-entry,
+body.yumm-rtl .yumm-history-content,
+body.yumm-rtl .yumm-history-message {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-history-empty,
+body.yumm-rtl .yumm-history-empty {
+  direction: rtl;
+  text-align: center;
+}
+
+/* ==================================================================
+   Change form — action sidebar
+   ================================================================== */
+
+#content-main form > .row {
+  align-items: flex-start;
+}
+
+#jazzy-actions {
+  position: sticky;
+  top: 1rem;
+}
+
+.yumm-submit-row,
+#jazzy-actions .yumm-submit-row,
+#jazzy-actions .d-flex.flex-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 0.5rem !important;
+  width: 100%;
+}
+
+.yumm-submit-row .btn,
+.yumm-submit-row input[type="submit"],
+#jazzy-actions .btn,
+#jazzy-actions input[type="submit"],
+#jazzy-actions a.btn {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.5625rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+#jazzy-actions .object-tools {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+#jazzy-actions .object-tools a,
+#jazzy-actions .object-tools .historylink {
+  width: 100% !important;
+  justify-content: center;
+  text-align: center;
+}
+
+html[dir="rtl"] #content-main form > .row,
+body.yumm-rtl #content-main form > .row {
+  direction: rtl;
+}
+
+html[dir="rtl"] #jazzy-actions,
+body.yumm-rtl #jazzy-actions {
+  text-align: right;
+}
+
+html[dir="rtl"] .yumm-submit-row .btn,
+html[dir="rtl"] #jazzy-actions .btn,
+html[dir="rtl"] #jazzy-actions input[type="submit"],
+body.yumm-rtl .yumm-submit-row .btn,
+body.yumm-rtl #jazzy-actions .btn,
+body.yumm-rtl #jazzy-actions input[type="submit"] {
+  direction: rtl;
+}
+
+@media (max-width: 991px) {
+  .yumm-page-header-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.375rem;
+  }
+
+  html[dir="rtl"] .yumm-page-header-bar,
+  body.yumm-rtl .yumm-page-header-bar {
+    align-items: flex-end;
+  }
+
+  .yumm-page-breadcrumbs .breadcrumb {
+    justify-content: flex-start !important;
+  }
+
+  html[dir="rtl"] .yumm-page-breadcrumbs .breadcrumb,
+  body.yumm-rtl .yumm-page-breadcrumbs .breadcrumb {
+    justify-content: flex-end !important;
+  }
+}

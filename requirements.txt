@@ -1,6 +1,10 @@
 # Core
 django
 mysqlclient
+Pillow
+
+# Admin UI
+django-jazzmin==3.0.5
 
 # API
 djangorestframework
