@@ -124,7 +124,7 @@ Login — Yumm
             />
             <button
               type="button"
-              onclick="togglePass()"
+              onclick="togglePass('passInput', 'eyeIcon')"
               class="absolute right-3.5 top-1/2 -translate-y-1/2"
             >
               <i
@@ -161,6 +161,6 @@ Login — Yumm
 </main>
 
 {% endblock %} {% block extra_js %}
-<script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
 
  {% endblock %}
