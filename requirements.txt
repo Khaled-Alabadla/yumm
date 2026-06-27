@@ -6,6 +6,9 @@ Pillow
 # Admin UI
 django-jazzmin==3.0.5
 
+# Image processing (required for ImageField in Restaurant and MenuItem)
+Pillow
+
 # API
 djangorestframework
 django-cors-headers
