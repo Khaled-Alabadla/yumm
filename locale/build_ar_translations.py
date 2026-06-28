@@ -152,6 +152,17 @@ TRANSLATIONS = {
     "User": "مستخدم",
     "Active": "نشط",
     "Rejected": "مرفوض",
+    "approved": "موافق عليه",
+    "Approved": "موافق عليه",
+    "Pending approval": "بانتظار الموافقة",
+    "Approval status": "حالة الموافقة",
+    "Approve selected restaurant owners": "الموافقة على أصحاب المطاعم المحددين",
+    "Reject selected restaurant owners": "رفض أصحاب المطاعم المحددين",
+    "%(count)d owner account(s) approved.": "تمت الموافقة على %(count)d حساب صاحب مطعم.",
+    "%(count)d owner account(s) rejected.": "تم رفض %(count)d حساب صاحب مطعم.",
+    "Restaurant owners must be approved by an admin before they can operate on the platform.": (
+        "يجب أن يوافق المدير على أصحاب المطاعم قبل أن يتمكنوا من العمل على المنصة."
+    ),
     "read": "مقروء",
     "unread": "غير مقروء",
 

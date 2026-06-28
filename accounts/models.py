@@ -32,6 +32,14 @@ class CustomUser(AbstractUser):
         default=Role.USER,
         db_index=True,
     )
+    is_approved = models.BooleanField(
+        _("approved"),
+        default=False,
+        db_index=True,
+        help_text=_(
+            "Restaurant owners must be approved by an admin before they can operate on the platform."
+        ),
+    )
 
     USERNAME_FIELD  = "email"
     REQUIRED_FIELDS = []  
@@ -45,6 +53,21 @@ class CustomUser(AbstractUser):
 
     def __str__(self) -> str:
         return self.email
+
+    def save(self, *args, **kwargs):
+        if self.role != self.Role.OWNER:
+            self.is_approved = True
+        elif not self.pk:
+            self.is_approved = False
+        else:
+            old_role = (
+                CustomUser.objects.filter(pk=self.pk)
+                .values_list("role", flat=True)
+                .first()
+            )
+            if old_role and old_role != self.Role.OWNER:
+                self.is_approved = False
+        super().save(*args, **kwargs)
 
     # ------------------------------------------------------------------
     # Display helpers
@@ -75,3 +98,7 @@ class CustomUser(AbstractUser):
     @property
     def is_plain_user(self) -> bool:
         return self.role == self.Role.USER
+
+    @property
+    def is_pending_owner(self) -> bool:
+        return self.is_owner_role and not self.is_approved
