@@ -253,6 +253,12 @@ class DemoLoginView(View):
 def about(request):
     return render(request, 'about.html')
 
+class PendingView(TemplateView):
+    template_name = "accounts/pending.html"
+
+def about(request):
+    return render(request, 'about.html')
+
 
 def contact(request):
     if request.method == 'POST':

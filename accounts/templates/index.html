@@ -75,12 +75,6 @@ NAVBAR
         <i data-lucide="sun"  id="icon-sun"  class="w-4 h-4 hidden"></i>
       </button>
 
-      <!-- Accessibility trigger -->
-      <button onclick="openA11y()"
-        class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
-        aria-label="Open accessibility settings" aria-haspopup="dialog">
-        <i data-lucide="accessibility" class="w-4 h-4"></i>
-      </button>
 
       <!-- Auth -->
       <a href="#" class="hidden sm:inline-flex px-4 py-2 text-sm font-medium rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-login">Login</a>
@@ -128,7 +122,7 @@ HERO
     </h1>
 
     <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light" data-i18n="hero-desc">
-      Explore menus, reviews, ratings, reservations, and AI-powered recommendations — all in one place.
+      Explore menus, reviews, ratings and AI-powered recommendations — all in one place.
     </p>
 
     <!-- Search -->
@@ -214,7 +208,7 @@ FEATURES
       <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3" data-i18n="feat-label">Features</p>
       <h2 id="feat-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-i18n="feat-h2">Everything You Need</h2>
       <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md mx-auto leading-relaxed" data-i18n="feat-desc">
-        A complete platform for discovering, reviewing, and reserving the best dining in Palestine.
+        A complete platform for discovering and reviewing the best dining in Palestine.
       </p>
     </div>
 
@@ -472,7 +466,7 @@ FOOTER
           </div>
           <span class="text-xl font-display font-bold text-white">Yumm</span>
         </div>
-        <p class="text-sm leading-relaxed" data-i18n="footer-desc">Palestine's leading restaurant discovery and reservation platform. Find exceptional dining across every city.</p>
+        <p class="text-sm leading-relaxed" data-i18n="footer-desc">Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.</p>
         <div class="flex gap-3 mt-5">
           <!-- Instagram -->
           <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#B5451B] flex items-center justify-center transition-colors" aria-label="Instagram">
@@ -516,7 +510,7 @@ FOOTER
 
     </div>
     <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
-      <p data-i18n="footer-copy">© 2026 Yumm. Made with love for Palestine 🇵🇸</p>
+      <p data-i18n="footer-copy">©Yumm! Made with love for Palestine 🇵🇸</p>
       <a href="mailto:hello@yumm.ps" class="hover:text-white transition-colors flex items-center gap-1">
         <i data-lucide="mail" class="w-3 h-3" aria-hidden="true"></i> hello@yumm.ps
       </a>
@@ -555,11 +549,6 @@ ACCESSIBILITY WIDGET
         <ul id="lang-drop" class="hidden absolute right-0 top-10 w-48 bg-white text-gray-800 rounded-2xl shadow-2xl p-1 z-50 max-h-60 overflow-y-auto" role="listbox">
           <li role="option" onclick="setLang('🇺🇸','ENGLISH (US)','en',false)" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇺🇸 English (US)</li>
           <li role="option" onclick="setLang('🇸🇦','ARABIC','ar',true)"        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇸🇦 Arabic</li>
-          <li role="option" onclick="setLang('🇫🇷','FRENCH','fr',false)"       class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇫🇷 French</li>
-          <li role="option" onclick="setLang('🇩🇪','GERMAN','de',false)"       class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇩🇪 German</li>
-          <li role="option" onclick="setLang('🇪🇸','SPANISH','es',false)"      class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇪🇸 Spanish</li>
-          <li role="option" onclick="setLang('🇹🇷','TURKISH','tr',false)"      class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇹🇷 Turkish</li>
-          <li role="option" onclick="setLang('🇷🇺','RUSSIAN','ru',false)"      class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇷🇺 Russian</li>
         </ul>
       </div>
     </div>
@@ -589,24 +578,12 @@ ACCESSIBILITY WIDGET
         <h3 class="text-sm font-semibold text-gray-700 mb-3">Customize your browsing experience</h3>
         <div class="space-y-3">
           <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
-            <div class="toggle-track" id="tg-seizure" onclick="toggleProfile('seizure','stop-anim')"><div class="toggle-knob"></div></div>
-            <div><p class="text-sm font-semibold text-gray-800">Seizure Safety</p><p class="text-xs text-gray-400 mt-0.5">Reduce motion and visual triggers</p></div>
-          </div>
-          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
             <div class="toggle-track" id="tg-vision" onclick="toggleProfile('vision','hc-mode')"><div class="toggle-knob"></div></div>
             <div><p class="text-sm font-semibold text-gray-800">Low Vision Support</p><p class="text-xs text-gray-400 mt-0.5">Improve clarity and contrast</p></div>
           </div>
           <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
-            <div class="toggle-track" id="tg-adhd" onclick="toggleProfile('adhd','highlight-focus highlight-links')"><div class="toggle-knob"></div></div>
-            <div><p class="text-sm font-semibold text-[#B5451B]">ADHD Friendly</p><p class="text-xs text-[#B5451B]/70 mt-0.5">Support focus and reduce distractions</p></div>
-          </div>
-          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
             <div class="toggle-track" id="tg-reading" onclick="toggleProfile('reading','readable-font highlight-titles')"><div class="toggle-knob"></div></div>
             <div><p class="text-sm font-semibold text-gray-800">Reading &amp; Cognitive Support</p><p class="text-xs text-gray-400 mt-0.5">Simplify reading and navigation</p></div>
-          </div>
-          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
-            <div class="toggle-track" id="tg-keyboard" onclick="toggleProfile('keyboard','highlight-focus')"><div class="toggle-knob"></div></div>
-            <div><p class="text-sm font-semibold text-gray-800">Keyboard Navigation</p><p class="text-xs text-gray-400 mt-0.5">Use website with the keyboard</p></div>
           </div>
           <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
             <div class="toggle-track" id="tg-screen" onclick="toggleProfile('screen','readable-font')"><div class="toggle-knob"></div></div>
