@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
+from config.admin_filters import RecentCreatedFilter
 from config.admin_mixins import SiteOwnerPermissionMixin
 from config.dashboard import get_platform_stats
 
@@ -80,7 +81,7 @@ class RestaurantAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
     change_list_template = "admin/restaurants/restaurant/change_list.html"
 
     list_display = ("display_name", "owner", "status", "city", "created_at")
-    list_filter = ("status", "city", "is_open", ("created_at", admin.DateFieldListFilter))
+    list_filter = ("status", "city", "is_open", RecentCreatedFilter)
     search_fields = (
         "name_ar",
         "name_en",
@@ -93,7 +94,6 @@ class RestaurantAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
         "owner__last_name",
     )
     list_select_related = ("owner",)
-    date_hierarchy = "created_at"
     filter_horizontal = ("tags",)
     inlines = (RestaurantImageInline, MenuCategoryInline)
     actions = (approve_restaurants, reject_restaurants)
