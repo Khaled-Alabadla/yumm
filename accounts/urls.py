@@ -10,7 +10,7 @@ Mounted at /accounts/ from the root URLconf.
 """
 
 from django.urls import path
-
+from . import views
 from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView,PendingView
 
 app_name = "accounts"

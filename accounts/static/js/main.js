@@ -1139,3 +1139,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+function toggleSidebar() {
+  const sidebar = document.getElementById('mobileSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (!sidebar || !overlay) return;
+  const isOpen = !sidebar.classList.contains('translate-x-full');
+  sidebar.classList.toggle('translate-x-full', isOpen);
+  overlay.classList.toggle('hidden', isOpen);
+}
+
+function toggleUserMenu() {
+  const menu = document.getElementById('userMenu');
+  if (menu) menu.classList.toggle('hidden');
+}
+
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('userMenu');
+  if (!menu) return;
+  if (!e.target.closest('#userMenu') && !e.target.closest('[onclick="toggleUserMenu()"]')) {
+    menu.classList.add('hidden');
+  }
+});
