@@ -16,10 +16,15 @@ from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterVi
 app_name = "accounts"
 
 urlpatterns = [
-    path("register/", RegisterView.as_view(), name="register"),
-    path("login/", LoginView.as_view(), name="login"),
-    path("logout/", LogoutView.as_view(), name="logout"),
-    path("profile/", ProfileView.as_view(), name="profile"),
-    path("demo-login/", DemoLoginView.as_view(), name="demo-login"),
+    path("register/",   RegisterView.as_view(),  name="register"),
+    path("login/",      LoginView.as_view(),      name="login"),
+    path("logout/",     LogoutView.as_view(),     name="logout"),
+    path("profile/",    ProfileView.as_view(),    name="profile"),
+    path("demo-login/", DemoLoginView.as_view(),  name="demo-login"),    
+    path('contact/', views.contact, name='contact'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/',   views.terms,   name='terms'),
+    path('about/',   views.about,   name='about'),   
+    path('', views.index, name='index'), 
     path("pending/", PendingView.as_view(), name="pending"),
 ]

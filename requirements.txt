@@ -16,3 +16,5 @@ django-cors-headers
 # Environment & deployment
 python-dotenv
 gunicorn
+asgiref==3.11.1
+sqlparse==0.5.5
