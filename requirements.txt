@@ -1,3 +1,20 @@
+# Core
+django
+mysqlclient
+Pillow
+
+# Admin UI
+django-jazzmin==3.0.5
+
+# Image processing (required for ImageField in Restaurant and MenuItem)
+Pillow
+
+# API
+djangorestframework
+django-cors-headers
+
+# Environment & deployment
+python-dotenv
+gunicorn
 asgiref==3.11.1
-Django==6.0.6
 sqlparse==0.5.5

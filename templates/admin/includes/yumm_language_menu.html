@@ -1,0 +1,27 @@
+{% load i18n jazzmin %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+<div class="dropdown-menu dropdown-menu-end yumm-language-menu" id="jazzy-languagemenu">
+    <span class="dropdown-header">{% trans "Language" %}</span>
+    <div class="dropdown-divider"></div>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path|remove_lang:CURRENT_LANGUAGE }}" />
+        {% for language in languages %}
+            <button
+                type="submit"
+                name="language"
+                value="{{ language.code }}"
+                class="dropdown-item yumm-language-item{% if language.code == CURRENT_LANGUAGE %} active{% endif %}"
+                lang="{{ language.code }}"
+            >
+                <span class="yumm-language-label">{{ language.name_local|title }}</span>
+                {% if language.code == CURRENT_LANGUAGE %}
+                    <i class="fas fa-check yumm-language-check" aria-hidden="true"></i>
+                {% endif %}
+            </button>
+        {% endfor %}
+    </form>
+</div>

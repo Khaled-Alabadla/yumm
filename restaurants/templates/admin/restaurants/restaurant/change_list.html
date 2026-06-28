@@ -1,0 +1,39 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block content %}
+{% if platform_stats %}
+<div class="yumm-stats-dashboard">
+  <h2>{% trans "Platform Statistics" %}</h2>
+  <ul class="yumm-stats-grid">
+    <li class="yumm-stat-card">
+      <strong>{% trans "Total Users" %}</strong>
+      <span>{{ platform_stats.total_users }}</span>
+    </li>
+    <li class="yumm-stat-card">
+      <strong>{% trans "Active Restaurants" %}</strong>
+      <span>{{ platform_stats.active_restaurants }}</span>
+    </li>
+    <li class="yumm-stat-card">
+      <strong>{% trans "Pending Restaurants" %}</strong>
+      <span>{{ platform_stats.pending_restaurants }}</span>
+    </li>
+    <li class="yumm-stat-card">
+      <strong>{% trans "Total Reviews" %}</strong>
+      <span>{{ platform_stats.total_reviews }}</span>
+    </li>
+    <li class="yumm-stat-card">
+      <strong>{% trans "Average Platform Rating" %}</strong>
+      <span>
+        {% if platform_stats.average_rating %}
+          {{ platform_stats.average_rating }} ★
+        {% else %}
+          {% trans "N/A" %}
+        {% endif %}
+      </span>
+    </li>
+  </ul>
+</div>
+{% endif %}
+{{ block.super }}
+{% endblock %}

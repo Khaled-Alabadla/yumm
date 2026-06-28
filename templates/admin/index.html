@@ -1,0 +1,132 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static jazzmin yumm_admin_tags %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+{% yumm_platform_stats as stats %}
+{% get_side_menu using="app_list" as app_list %}
+
+<div class="yumm-dashboard">
+
+  {# ── Header ── #}
+  <div class="yumm-dash-header">
+    <div>
+      <h1 class="yumm-dash-title">{% trans "Dashboard" %}</h1>
+      <p class="yumm-dash-subtitle">
+        {% trans "Welcome back" %},
+        {% firstof user.full_name user.email %}
+      </p>
+    </div>
+    <a href="{% url 'admin:restaurants_restaurant_changelist' %}?status__exact=pending"
+       class="yumm-dash-alert">
+      <i class="fas fa-clock"></i>
+      {{ stats.pending_restaurants }}
+      {% trans "pending approval" %}
+    </a>
+  </div>
+
+  {# ── Stats row ── #}
+  <div class="yumm-stats-row">
+    <div class="yumm-stat">
+      <div class="yumm-stat-icon"><i class="fas fa-users"></i></div>
+      <div class="yumm-stat-body">
+        <span class="yumm-stat-value">{{ stats.total_users }}</span>
+        <span class="yumm-stat-label">{% trans "Total Users" %}</span>
+      </div>
+    </div>
+    <div class="yumm-stat">
+      <div class="yumm-stat-icon yumm-stat-icon--green"><i class="fas fa-store"></i></div>
+      <div class="yumm-stat-body">
+        <span class="yumm-stat-value">{{ stats.active_restaurants }}</span>
+        <span class="yumm-stat-label">{% trans "Active Restaurants" %}</span>
+      </div>
+    </div>
+    <div class="yumm-stat">
+      <div class="yumm-stat-icon yumm-stat-icon--amber"><i class="fas fa-hourglass-half"></i></div>
+      <div class="yumm-stat-body">
+        <span class="yumm-stat-value">{{ stats.pending_restaurants }}</span>
+        <span class="yumm-stat-label">{% trans "Pending" %}</span>
+      </div>
+    </div>
+    <div class="yumm-stat">
+      <div class="yumm-stat-icon yumm-stat-icon--blue"><i class="fas fa-star"></i></div>
+      <div class="yumm-stat-body">
+        <span class="yumm-stat-value">
+          {% if stats.average_rating %}{{ stats.average_rating }}{% else %}—{% endif %}
+        </span>
+        <span class="yumm-stat-label">{% trans "Avg. Rating" %} · {{ stats.total_reviews }} {% trans "reviews" %}</span>
+      </div>
+    </div>
+  </div>
+
+  {# ── Main grid: quick access + recent actions ── #}
+  <div class="yumm-dash-grid">
+
+    <div class="yumm-dash-main">
+      <h2 class="yumm-section-title">{% trans "Quick Access" %}</h2>
+      <div class="yumm-quick-grid">
+        {% for app in app_list %}
+          {% for model in app.models %}
+            <div class="yumm-quick-card">
+              <a href="{{ model.url|default:'#' }}" class="yumm-quick-card-main">
+                <div class="yumm-quick-card-icon">
+                  <i class="{{ model.icon|default:'fas fa-circle' }}"></i>
+                </div>
+                <div class="yumm-quick-card-body">
+                  <span class="yumm-quick-card-name">{{ model.name }}</span>
+                  <span class="yumm-quick-card-app">{{ app.name }}</span>
+                </div>
+              </a>
+              {% if model.add_url %}
+                <a href="{{ model.add_url }}" class="yumm-quick-add" title="{% trans 'Add new' %} {{ model.name }}" aria-label="{% trans 'Add new' %} {{ model.name }}">
+                  <i class="fas fa-plus yumm-quick-add-icon" aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="yumm-dash-side">
+      <h2 class="yumm-section-title">{% trans "Recent Actions" %}</h2>
+      <div class="yumm-recent-card">
+        {% load log %}
+        {% get_admin_log 8 as admin_log for_user user %}
+        {% if not admin_log %}
+          <p class="yumm-recent-empty">{% trans "No recent activity." %}</p>
+        {% else %}
+          <ul class="yumm-recent-list">
+            {% for entry in admin_log %}
+              <li class="yumm-recent-item">
+                <span class="yumm-recent-icon
+                  {% if entry.is_addition %}yumm-recent-icon--add
+                  {% elif entry.is_deletion %}yumm-recent-icon--del
+                  {% else %}yumm-recent-icon--edit{% endif %}">
+                  {% if entry.is_addition %}<i class="fas fa-plus"></i>
+                  {% elif entry.is_deletion %}<i class="fas fa-trash"></i>
+                  {% else %}<i class="fas fa-pen"></i>{% endif %}
+                </span>
+                <div class="yumm-recent-text">
+                  {% if entry.get_admin_url %}
+                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                  {% else %}
+                    {{ entry.object_repr }}
+                  {% endif %}
+                  <small class="yumm-recent-time">{% trans "Since" %} {{ entry.action_time|timesince }}</small>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

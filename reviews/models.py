@@ -38,13 +38,25 @@ class Review(models.Model):
         _("comment"),
         help_text=_("Written feedback about the restaurant."),
     )
+    is_reported = models.BooleanField(
+        _("is reported"),
+        default=False,
+        db_index=True,
+        help_text=_("Flagged by users for admin moderation."),
+    )
+    is_visible = models.BooleanField(
+        _("is visible"),
+        default=True,
+        db_index=True,
+        help_text=_("Uncheck to hide this review from the public site."),
+    )
     created_at = models.DateTimeField(_("created at"), auto_now_add=True)
     updated_at = models.DateTimeField(_("updated at"), auto_now=True)
 
     class Meta:
         verbose_name        = _("review")
         verbose_name_plural = _("reviews")
-        ordering            = ["-created_at"]
+        ordering            = ["-is_reported", "-created_at"]
         # One review per user per restaurant.
         unique_together = [["user", "restaurant"]]
         indexes = [
