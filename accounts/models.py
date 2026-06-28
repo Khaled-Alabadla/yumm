@@ -40,9 +40,11 @@ class CustomUser(AbstractUser):
             "Restaurant owners must be approved by an admin before they can operate on the platform."
         ),
     )
+    
+    phone = models.CharField(_("phone"), max_length=20, blank=True)
 
     USERNAME_FIELD  = "email"
-    REQUIRED_FIELDS = []  
+    REQUIRED_FIELDS = []  # email is already USERNAME_FIELD
 
     objects = CustomUserManager()
 
