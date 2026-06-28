@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import ngettext
 
+from config.admin_filters import RecentCreatedFilter
 from config.admin_mixins import SiteOwnerPermissionMixin
 
 from .models import CommentReply, Notification, Review, ReviewImage, Wishlist
@@ -98,7 +99,7 @@ class ReviewAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
         "is_reported",
         "is_visible",
         "rating",
-        ("created_at", admin.DateFieldListFilter),
+        RecentCreatedFilter,
     )
     search_fields = (
         "comment",
@@ -109,7 +110,6 @@ class ReviewAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
         "restaurant__name_en",
     )
     list_select_related = ("user", "restaurant")
-    date_hierarchy = "created_at"
     inlines = (ReviewImageInline, CommentReplyInline)
     actions = (resolve_reported_reviews, hide_reviews, show_reviews)
 

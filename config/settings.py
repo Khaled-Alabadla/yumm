@@ -91,6 +91,10 @@ DATABASES = {
         "OPTIONS": {
             # utf8mb4 is required for Arabic text and emoji storage
             "charset": "utf8mb4",
+            # Keep session time zone in UTC; avoids some MySQL datetime issues.
+            "init_command": (
+                "SET sql_mode='STRICT_TRANS_TABLES', time_zone='+00:00'"
+            ),
         },
     }
 }
@@ -156,14 +160,127 @@ USE_TZ = True
 # ---------------------------------------------------------------------------
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] 
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+
+# ---------------------------------------------------------------------------
+# Jazzmin — Yumm admin panel theme
+# ---------------------------------------------------------------------------
+
+JAZZMIN_SETTINGS = {
+    # Branding — matches the public Yumm site
+    "site_title": "Yumm Admin",
+    "site_header": "Yumm",
+    "site_brand": "Yumm",
+    "site_logo": "admin/img/yumm-logo.svg",
+    "site_icon": "admin/img/yumm-logo.svg",
+    "site_logo_classes": "yumm-brand-logo",
+    "welcome_sign": _("Welcome back — Yumm Admin"),
+    "copyright": "Yumm Palestine",
+
+    # Custom assets — full Yumm styling (CSS + light-mode / RTL JS)
+    "custom_css": "admin/css/yumm_admin.css",
+    "custom_js": "admin/js/yumm_admin.js",
+
+    # Single search bar in navbar
+    "search_model": ["restaurants.Restaurant"],
+
+    # Top navbar — minimal; sidebar handles full navigation
+    "topmenu_links": [
+        {
+            "name": _("Dashboard"),
+            "url": "admin:index",
+            "permissions": ["auth.view_user"],
+        },
+        {
+            "name": _("Restaurants"),
+            "url": "admin:restaurants_restaurant_changelist",
+            "permissions": ["restaurants.view_restaurant"],
+        },
+        {
+            "name": _("Reviews"),
+            "url": "admin:reviews_review_changelist",
+            "permissions": ["reviews.view_review"],
+        },
+    ],
+
+    # Sidebar
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": ["auth"],
+    "hide_models": [],
+    "order_with_respect_to": [
+        "accounts",
+        "restaurants",
+        "reviews",
+    ],
+
+    # Model icons (Font Awesome 5)
+    "icons": {
+        "accounts": "fas fa-users-cog",
+        "accounts.CustomUser": "fas fa-user",
+        "restaurants": "fas fa-store",
+        "restaurants.Restaurant": "fas fa-utensils",
+        "restaurants.RestaurantCategory": "fas fa-list",
+        "restaurants.RestaurantImage": "fas fa-images",
+        "restaurants.Tag": "fas fa-tags",
+        "restaurants.MenuCategory": "fas fa-book-open",
+        "restaurants.MenuItem": "fas fa-hamburger",
+        "reviews": "fas fa-comments",
+        "reviews.Review": "fas fa-star",
+        "reviews.ReviewImage": "fas fa-camera",
+        "reviews.CommentReply": "fas fa-reply",
+        "reviews.Wishlist": "fas fa-heart",
+        "reviews.Notification": "fas fa-bell",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    # UX
+    "related_modal_active": False,
+    "use_google_fonts_cdn": False,
+    "show_ui_builder": False,
+    "show_theme_chooser": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "accounts.customuser": "collapsible",
+        "restaurants.restaurant": "horizontal_tabs",
+    },
+
+    # Bilingual language switcher (Arabic / English)
+    "language_chooser": True,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "default",
+    "default_theme_mode": "light",
+    "navbar": "navbar-white navbar-light",
+    "navbar_fixed": True,
+    "footer_fixed": False,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_fixed": True,
+    "sidebar_nav_flat_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "accent": "accent-danger",
+    "brand_colour": "navbar-white",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}
+
 
 # ---------------------------------------------------------------------------
 # Authentication redirects
