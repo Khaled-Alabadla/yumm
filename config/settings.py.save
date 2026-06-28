@@ -63,7 +63,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [BASE_DIR / 'templates'],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -81,7 +81,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.getenv("MYSQL_DATABASE", "yumm_db"),
         "USER": os.getenv("MYSQL_USER", "root"),
         "PASSWORD": os.getenv("MYSQL_PASSWORD", "root"),
@@ -155,10 +155,6 @@ USE_TZ = True
 # ---------------------------------------------------------------------------
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
