@@ -1,14 +1,14 @@
 /* ─────────────────────────────
    Yumm — Main JavaScript
 ───────────────────────────── */
-
+ 
 lucide.createIcons();
-
+ 
 /* ─────────────────────────────
    Theme (dark / light)
 ───────────────────────────── */
 const html = document.documentElement;
-
+ 
 function applyTheme(dark) {
   html.classList.toggle('dark', dark);
   document.getElementById('icon-moon')?.classList.toggle('hidden',  dark);
@@ -16,15 +16,15 @@ function applyTheme(dark) {
   document.getElementById('theme-btn')?.setAttribute('aria-pressed', String(dark));
   localStorage.setItem('yumm-theme', dark ? 'dark' : 'light');
 }
-
+ 
 const savedTheme = localStorage.getItem('yumm-theme');
 applyTheme(
   savedTheme === 'dark' ||
   (!savedTheme && window.matchMedia('(prefers-color-scheme:dark)').matches)
 );
-
+ 
 function toggleTheme() { applyTheme(!html.classList.contains('dark')); }
-
+ 
 /* ─────────────────────────────
    Live Clock
 ───────────────────────────── */
@@ -38,17 +38,19 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 1000);
-
+ 
 /* ─────────────────────────────
    Translations
 ───────────────────────────── */
 const translations = {
   en: {
-    'nav-home': 'Home', 'nav-restaurants': 'Restaurants', 'nav-ai': 'AI Assistant',
-    'nav-login': 'Login', 'nav-register': 'Register',
+    "home": "Home",
+    "restaurants": "Restaurants",
+    "ai_assistant": "AI Assistant",
+    'login': 'Login', 'register': 'Register',
     'hero-badge': "Palestine's #1 Food Platform",
     'hero-h1-line1': 'Discover the Best', 'hero-h1-span': 'Restaurants', 'hero-h1-line2': 'in Palestine',
-    'hero-desc': 'Explore menus, reviews, ratings, reservations, and AI-powered recommendations — all in one place.',
+    'hero-desc': 'Explore menus, reviews, ratings, and AI assistant — all in one place.',
     'hero-search-ph': 'Search restaurants, cuisines, cities...', 'hero-search-btn': 'Search',
     'hero-cta1': 'Explore Restaurants', 'hero-cta2': 'Ask AI Assistant',
     'stat-restaurants': 'Restaurants', 'stat-reviews': 'Reviews', 'stat-users': 'Happy Users', 'stat-rated': 'Top Rated',
@@ -72,7 +74,7 @@ const translations = {
     'footer-desc': "Palestine's leading restaurant discovery and reservation platform.",
     'footer-platform': 'Platform', 'footer-company': 'Company', 'footer-about': 'About Us',
     'footer-contact': 'Contact', 'footer-privacy': 'Privacy Policy', 'footer-terms': 'Terms of Service',
-    'footer-copy': '© 2024 Yumm. Made with love for Palestine 🇵🇸',
+    'footer-copy': '© Yumm. Made with love for Palestine 🇵🇸',
     // A11y widget
     'a11y-title': 'Accessibility Adjustments', 'a11y-reset': 'Reset Settings',
     'a11y-content': 'Content Adjustments', 'a11y-scale': 'Content Scaling',
@@ -91,13 +93,39 @@ const translations = {
     'a11y-mute': 'Mute Sounds', 'a11y-links': 'Useful Links',
     'a11y-footer': 'Web Accessibility by Yumm ♿',
     'a11y-default': 'Default',
+    "login-title": "Welcome Back",
+    "login-subtitle": "Sign in to your Yumm account",
+    "email": "Email",
+    "password": "Password",
+    "sign-in": "Sign In",
+    "no-account": "Don't have an account?",
+    "register": "Register",
+    "regular_user": "Regular User",
+    "restaurant_owner": "Restaurant Owner",
+    "join_yumm": "Join Yumm",
+    "create_account": "Create your account today — it's free",
+    "full_name": "Full Name",
+    "confirm_password": "Confirm Password",
+    "create_account_btn": "Create Account",
+    "submit_request": "Submit Request",
+    "restaurant_name": "Restaurant Name",
+    "restaurant_placeholder": "Restaurant Name",
+    "phone_number": "Phone Number",
+    "owner_note":
+    "Your request will be reviewed by our admin team. You'll be notified once your restaurant is approved.",
+    "already_have_account": "Already have an account?",
+    "login": "Login",
+    
   },
   ar: {
-    'nav-home': 'الرئيسية', 'nav-restaurants': 'المطاعم', 'nav-ai': 'مساعد الذكاء الاصطناعي',
-    'nav-login': 'تسجيل الدخول', 'nav-register': 'إنشاء حساب',
+    
+    home: "الرئيسية",
+    "restaurants": "المطاعم",
+    "ai_assistant": "المساعد الذكي",
+    'login': 'تسجيل الدخول', 'register': 'إنشاء حساب',
     'hero-badge': 'منصة الطعام الأولى في فلسطين',
     'hero-h1-line1': 'اكتشف أفضل', 'hero-h1-span': 'المطاعم', 'hero-h1-line2': 'في فلسطين',
-    'hero-desc': 'استكشف القوائم والتقييمات والحجوزات وتوصيات الذكاء الاصطناعي — كل شيء في مكان واحد.',
+    'hero-desc': 'استكشف القوائم والتقييمات وتوصيات الذكاء الاصطناعي — كل شيء في مكان واحد.',
     'hero-search-ph': 'ابحث عن مطاعم، مأكولات، مدن...', 'hero-search-btn': 'بحث',
     'hero-cta1': 'استكشف المطاعم', 'hero-cta2': 'اسأل المساعد الذكي',
     'stat-restaurants': 'مطعم', 'stat-reviews': 'تقييم', 'stat-users': 'مستخدم سعيد', 'stat-rated': 'الأعلى تقييماً',
@@ -121,7 +149,7 @@ const translations = {
     'footer-desc': 'منصة فلسطين الرائدة لاكتشاف المطاعم وحجزها.',
     'footer-platform': 'المنصة', 'footer-company': 'الشركة', 'footer-about': 'من نحن',
     'footer-contact': 'تواصل معنا', 'footer-privacy': 'سياسة الخصوصية', 'footer-terms': 'شروط الخدمة',
-    'footer-copy': '© 2024 Yumm. صُنع بحب لفلسطين 🇵🇸',
+    'footer-copy': '© Yumm. صُنع بحب لفلسطين 🇵🇸',
     // A11y widget - Arabic ✅ كاملة
     'a11y-title': 'إعدادات إمكانية الوصول', 'a11y-reset': 'إعادة الضبط',
     'a11y-content': 'ضبط المحتوى', 'a11y-scale': 'تغيير حجم المحتوى',
@@ -140,61 +168,84 @@ const translations = {
     'a11y-mute': 'كتم الأصوات', 'a11y-links': 'روابط مفيدة',
     'a11y-footer': 'إمكانية الوصول بواسطة Yumm ♿',
     'a11y-default': 'الافتراضي',
+    "login-title": "مرحبًا بعودتك",
+    "login-subtitle": "سجل الدخول إلى حساب Yumm",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "sign-in": "تسجيل الدخول",
+    "no-account": "ليس لديك حساب؟",
+    "register": "إنشاء حساب",
+    "regular_user": "مستخدم عادي",
+    "restaurant_owner": "صاحب مطعم",
+    "join_yumm": "انضم إلى Yumm",
+    "create_account": "أنشئ حسابك اليوم — مجاناً",
+    "full_name": "الاسم الكامل",
+    "confirm_password": "تأكيد كلمة المرور",
+    "create_account_btn": "إنشاء حساب",
+    "submit_request": "إرسال الطلب",
+    "restaurant_name": "اسم المطعم",
+    "restaurant_placeholder":"اسم المطعم",
+    "email_placeholder": "restaurant@example.com",
+    "phone_number": "رقم الهاتف",
+    "owner_note":
+    "سيتم مراجعة طلبك من قبل الإدارة، وسيتم إشعارك عند الموافقة على مطعمك.",
+    "already_have_account": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول",
   },
 };
-
+ 
 /* ─────────────────────────────
    Apply translations to page
 ───────────────────────────── */
 function applyTranslations(code) {
   const t = translations[code] || translations['en'];
-
+ 
   // data-i18n على النصوص العادية
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (!t[key]) return;
     el.textContent = t[key];
   });
-
+ 
   // data-i18n-placeholder على الـ inputs
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (t[key]) el.placeholder = t[key];
   });
 }
-
+ 
 /* ─────────────────────────────
-   Language toggle 
+   Language toggle
 ───────────────────────────── */
 //
 let currentLang = localStorage.getItem('yumm-lang') || 'en';
-
+ 
 function applyLang(code) {
   currentLang = code;
   const isRtl = (code === 'ar');
   html.lang = code;
   html.dir  = isRtl ? 'rtl' : 'ltr';
-
+ 
   const langBtn = document.getElementById('lang-btn');
   if (langBtn) langBtn.textContent = isRtl ? 'EN' : 'العربية';
-
+ 
   const flagEl = document.getElementById('lang-flag');
   const nameEl = document.getElementById('lang-name');
   if (flagEl) flagEl.textContent = isRtl ? '🇸🇦' : '🇺🇸';
   if (nameEl) nameEl.textContent = isRtl ? 'ARABIC' : 'ENGLISH (US)';
-
+ 
   localStorage.setItem('yumm-lang', code);
   applyTranslations(code);
 }
-
+ 
 function toggleLang() {
-
+ 
   applyLang(currentLang === 'en' ? 'ar' : 'en');
 }
-
-
+ 
+ 
 applyLang(currentLang);
-
+ 
 /* ─────────────────────────────
    Accessibility Widget — open / close
 ───────────────────────────── */
@@ -206,27 +257,27 @@ function closeA11y() {
   document.getElementById('a11y-widget').classList.remove('open');
   document.body.style.overflow = '';
 }
-
+ 
 /* ─────────────────────────────
    Widget — Language dropdown (inside a11y panel)
 ───────────────────────────── */
 function toggleLangDrop() {
   document.getElementById('lang-drop').classList.toggle('hidden');
 }
-
+ 
 function setLang(flag, name, code, rtl) {
   document.getElementById('lang-flag').textContent = flag;
   document.getElementById('lang-name').textContent = name;
   document.getElementById('lang-drop').classList.add('hidden');
   applyLang(code);
 }
-
+ 
 document.addEventListener('click', e => {
   if (!e.target.closest('#lang-drop') && !e.target.closest('[onclick="toggleLangDrop()"]')) {
     document.getElementById('lang-drop')?.classList.add('hidden');
   }
 });
-
+ 
 /* ─────────────────────────────
    Toggle a single HTML class
 ───────────────────────────── */
@@ -240,20 +291,20 @@ function toggleClass(cls) {
     btn.classList.toggle('text-[#B5451B]',   active);
   });
 }
-
+ 
 /* ─────────────────────────────
    Color mode
 ───────────────────────────── */
 function setColorMode(m) {
   applyTheme(m === 'dark');
 }
-
+ 
 /* ─────────────────────────────
    Text / Title / Background colors
 ───────────────────────────── */
 const colorStyle = document.createElement('style');
 document.head.appendChild(colorStyle);
-
+ 
 function setTextColor(c) {
   colorStyle.textContent = c ? `body, body * { color:${c}!important; }` : '';
 }
@@ -261,12 +312,12 @@ function setTitleColor(c) {
   colorStyle.textContent = c ? `h1,h2,h3,h4,h5,h6 { color:${c}!important; }` : '';
 }
 function setBgColor(c) { document.body.style.background = c || ''; }
-
+ 
 /* ─────────────────────────────
    Font size
 ───────────────────────────── */
 let fs = 16;
-
+ 
 function changeFont(d) {
   fs = Math.max(12, Math.min(28, fs + d));
   html.style.fontSize = fs + 'px';
@@ -274,19 +325,19 @@ function changeFont(d) {
   document.getElementById('font-val').textContent = fs === 16 ? def : fs + 'px';
   localStorage.setItem('yumm-fs', fs);
 }
-
+ 
 const sfs = localStorage.getItem('yumm-fs');
 if (sfs) {
   fs = parseInt(sfs);
   html.style.fontSize = fs + 'px';
   document.getElementById('font-val').textContent = fs + 'px';
 }
-
+ 
 /* ─────────────────────────────
    Line height
 ───────────────────────────── */
 let lh = 0;
-
+ 
 function changeLineH(d) {
   lh = Math.round((lh + d) * 10) / 10;
   lh = Math.max(-0.4, Math.min(1.2, lh));
@@ -299,12 +350,12 @@ function changeLineH(d) {
     document.getElementById('lineh-val').textContent = (1.5 + lh).toFixed(1);
   }
 }
-
+ 
 /* ─────────────────────────────
    Letter spacing
 ───────────────────────────── */
 let ls = 0;
-
+ 
 function changeLetterS(d) {
   ls = Math.round((ls + d) * 100) / 100;
   ls = Math.max(-0.1, Math.min(0.3, ls));
@@ -317,26 +368,26 @@ function changeLetterS(d) {
     document.getElementById('letters-val').textContent = ls + 'em';
   }
 }
-
+ 
 /* ─────────────────────────────
    Content scaling
 ───────────────────────────── */
 let scaleVal = 100;
-
+ 
 function changeScale(d) {
   scaleVal = Math.max(70, Math.min(150, scaleVal + d));
   const def = translations[currentLang]?.['a11y-default'] || 'Default';
   document.getElementById('main').style.zoom = scaleVal === 100 ? '' : (scaleVal / 100);
   document.getElementById('scale-val').textContent = scaleVal === 100 ? def : scaleVal + '%';
 }
-
+ 
 /* ─────────────────────────────
    Text alignment
 ───────────────────────────── */
 function setTextAlign(align) {
   document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = align);
 }
-
+ 
 /* ─────────────────────────────
    Reset all accessibility settings
 ───────────────────────────── */
@@ -344,32 +395,32 @@ function resetAllA11y() {
   ['stop-anim','hc-mode','hc-mode-light','monochrome','low-sat','high-sat',
    'hide-images','highlight-focus','highlight-links','readable-font','highlight-titles'
   ].forEach(c => html.classList.remove(c));
-
+ 
   setTextColor(null);
   setTitleColor(null);
   setBgColor(null);
-
+ 
   document.body.style.lineHeight    = '';
   document.body.style.letterSpacing = '';
   document.getElementById('main').style.zoom = '';
   document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
-
+ 
   const def = translations[currentLang]?.['a11y-default'] || 'Default';
   fs = 16; html.style.fontSize = '16px';
   lh = 0;  ls = 0;  scaleVal = 100;
-
+ 
   document.getElementById('font-val')  .textContent = def;
   document.getElementById('lineh-val') .textContent = def;
   document.getElementById('letters-val').textContent = def;
   document.getElementById('scale-val') .textContent = def;
-
+ 
   document.querySelectorAll('.a11y-opt').forEach(b =>
     b.classList.remove('border-[#B5451B]', 'text-[#B5451B]')
   );
-
+ 
   localStorage.removeItem('yumm-fs');
 }
-
+ 
 /* ─────────────────────────────
    Wishlist heart buttons
 ───────────────────────────── */
@@ -385,12 +436,12 @@ document.querySelectorAll('.wish-btn').forEach(btn => {
     btn.setAttribute('aria-pressed', String(!on));
   });
 });
-
+ 
 /* ─────────────────────────────
    Scroll reveal + animated counters
 ───────────────────────────── */
 const countered = new WeakSet();
-
+ 
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -409,9 +460,9 @@ const revealObs = new IntersectionObserver(entries => {
     });
   });
 }, { threshold: 0.18 });
-
+ 
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
+ 
 /* ─────────────────────────────
    Modals — open / close
 ───────────────────────────── */
@@ -424,14 +475,14 @@ function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('modal-open');
   document.body.style.overflow = '';
 }
-
+ 
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-backdrop')) {
     e.target.classList.remove('modal-open');
     document.body.style.overflow = '';
   }
 });
-
+ 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.modal-backdrop.modal-open').forEach(m => {
@@ -440,7 +491,7 @@ document.addEventListener('keydown', e => {
     });
   }
 });
-
+ 
 /* ─────────────────────────────
    Wishlist data + render
 ───────────────────────────── */
@@ -448,7 +499,7 @@ const wishlist = [
   { name: 'Al-Kanaan',             cuisine: 'Traditional Palestinian', city: 'Ramallah',  rating: '4.8' },
   { name: 'Jerusalem Garden Cafe', cuisine: 'Cafe & Breakfast',        city: 'Jerusalem', rating: '4.9' },
 ];
-
+ 
 function renderWishlist() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
@@ -469,17 +520,17 @@ function renderWishlist() {
     </div>
   `).join('');
 }
-
+ 
 function removeWishlist(index) {
   wishlist.splice(index, 1);
   renderWishlist();
 }
-
+ 
 /* ─────────────────────────────
    AI Chat
 ───────────────────────────── */
 const aiMessages = [];
-
+ 
 async function sendAIMessage() {
   const input = document.getElementById('ai-input');
   const msg   = input.value.trim();
@@ -487,7 +538,7 @@ async function sendAIMessage() {
   input.value = '';
   aiMessages.push({ role: 'user', content: msg });
   renderChat();
-
+ 
   const chat = document.getElementById('ai-chat');
   const typing = document.createElement('div');
   typing.id = 'typing-indicator';
@@ -495,7 +546,7 @@ async function sendAIMessage() {
   typing.innerHTML = `<div class="px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-500 text-sm"><span class="typing-dots">●●●</span></div>`;
   chat.appendChild(typing);
   chat.scrollTop = chat.scrollHeight;
-
+ 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -517,11 +568,11 @@ When recommending restaurants, mention ones from our platform: Al-Kanaan (Ramall
   } catch {
     aiMessages.push({ role: 'assistant', content: 'عذراً، تحقق من اتصالك. / Please check your connection.' });
   }
-
+ 
   document.getElementById('typing-indicator')?.remove();
   renderChat();
 }
-
+ 
 function renderChat() {
   const chat = document.getElementById('ai-chat');
   if (!chat) return;
@@ -546,23 +597,23 @@ function renderChat() {
   `;
   chat.scrollTop = chat.scrollHeight;
 }
-
+ 
 document.getElementById('ai-input')?.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAIMessage(); }
 });
-
+ 
 /* ─────────────────────────────
    Leaflet Map
 ───────────────────────────── */
 let yummMap = null;
 let searchMarker = null;
-
+ 
 const restaurants = [
   { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',           desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
   { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',      desc: 'Grills & BBQ · Gaza ★ 4.6'              },
   { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕', desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
 ];
-
+ 
 function initMap() {
   if (yummMap) { yummMap.invalidateSize(); return; }
   if (!window.L) {
@@ -574,25 +625,25 @@ function initMap() {
     buildMap();
   }
 }
-
+ 
 function buildMap() {
   yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>', maxZoom: 18,
   }).addTo(yummMap);
-
+ 
   const redIcon = L.divIcon({
     html: `<div style="background:#B5451B;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`,
     iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -36], className: '',
   });
-
+ 
   restaurants.forEach(r => {
     L.marker([r.lat, r.lng], { icon: redIcon })
       .addTo(yummMap)
       .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, { maxWidth: 200 });
   });
 }
-
+ 
 function flyToRestaurant(lat, lng, name, desc) {
   if (!yummMap) return;
   yummMap.flyTo([lat, lng], 14, { duration: 1.2 });
@@ -603,7 +654,7 @@ function flyToRestaurant(lat, lng, name, desc) {
       .openOn(yummMap);
   }, 1300);
 }
-
+ 
 async function searchMapLocation() {
   const query = document.getElementById('map-search-input')?.value.trim();
   if (!query || !yummMap) return;
@@ -619,11 +670,11 @@ async function searchMapLocation() {
     yummMap.flyTo([lat, lon], 13, { duration: 1.2 });
   } catch { alert('Search failed. Please try again.'); }
 }
-
+ 
 document.getElementById('map-search-input')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') searchMapLocation();
 });
-
+ 
 /* ─────────────────────────────
    Sidebar & User Menu
 ───────────────────────────── */
@@ -635,12 +686,12 @@ function toggleSidebar() {
   sidebar.classList.toggle('translate-x-full', isOpen);
   overlay.classList.toggle('hidden', isOpen);
 }
-
+ 
 function toggleUserMenu() {
   const menu = document.getElementById('userMenu');
   if (menu) menu.classList.toggle('hidden');
 }
-
+ 
 document.addEventListener('click', function(e) {
   const menu = document.getElementById('userMenu');
   if (!menu) return;
@@ -648,7 +699,7 @@ document.addEventListener('click', function(e) {
     menu.classList.add('hidden');
   }
 });
-
+ 
 /* ─────────────────────────────
    Contact form validation
 ───────────────────────────── */

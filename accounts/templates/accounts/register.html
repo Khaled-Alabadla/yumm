@@ -13,10 +13,11 @@ Register — Yumm
       <h1
         class="text-3xl font-extrabold tracking-tight"
         style="color: var(--text-primary)"
+        data-i18n="join_yumm"
       >
         Join Yumm
       </h1>
-      <p class="text-sm mt-1" style="color: var(--text-secondary)">
+      <p class="text-sm mt-1" style="color: var(--text-secondary)" data-i18n="create_account">
         Create your account today — it's free
       </p>
     </div>
@@ -53,6 +54,7 @@ Register — Yumm
             color: var(--text-primary);
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
           "
+          data-i18n="regular_user"
         >
           Regular User
         </button>
@@ -61,6 +63,7 @@ Register — Yumm
           id="tab-owner"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
           style="background: transparent; color: var(--text-secondary)"
+          data-i18n="restaurant_owner"
         >
           Restaurant Owner
         </button>
@@ -93,6 +96,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="full_name"
             >Full Name</label
           >
           <input
@@ -116,6 +120,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="email"
             >Email</label
           >
           <input
@@ -139,6 +144,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="password"
             >Password</label
           >
           <div class="relative">
@@ -175,6 +181,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="confirm_password"
             >Confirm Password</label
           >
           <div class="relative">
@@ -213,6 +220,7 @@ Register — Yumm
           style="background: var(--primary)"
           onmouseover="this.style.background = 'var(--primary-hover)'"
           onmouseout="this.style.background = 'var(--primary)'"
+          data-i18n="create_account_btn"
         >
           Create Account
         </button>
@@ -231,12 +239,15 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="restaurant_name"
             >Restaurant Name</label
           >
           <input
             type="text"
             name="full_name"
             placeholder="Restaurant name"
+              data-i18n-placeholder="restaurant_placeholder"
+
             autocomplete="name"
             class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
             style="
@@ -253,6 +264,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="email
             >Email</label
           >
           <input
@@ -275,6 +287,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="phone_number"
             >Phone Number</label
           >
           <div class="relative">
@@ -304,6 +317,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="password"
             >Password</label
           >
           <div class="relative">
@@ -340,6 +354,7 @@ Register — Yumm
           <label
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
+            data-i18n="confirm_password"
             >Confirm Password</label
           >
           <div class="relative">
@@ -386,6 +401,7 @@ Register — Yumm
           <p
             class="text-xs leading-relaxed"
             style="color: var(--text-secondary)"
+            data-i18n="owner_note"
           >
             Your request will be reviewed by our admin team. You'll be notified
             once your restaurant is approved.
@@ -398,17 +414,19 @@ Register — Yumm
           style="background: var(--primary)"
           onmouseover="this.style.background = 'var(--primary-hover)'"
           onmouseout="this.style.background = 'var(--primary)'"
+          data-i18n="submit_request"
         >
           Submit Request
         </button>
       </form>
 
-      <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
-        Already have an account?
+      <p class="text-center text-sm mt-5" style="color: var(--text-secondary)" >
+        <span data-i18n="already_have_account">Already have an account?</span>
         <a
           href="{% url 'accounts:login' %}"
           class="font-semibold hover:underline"
           style="color: var(--primary)"
+          data-i18n="login"
           >Login</a
         >
       </p>

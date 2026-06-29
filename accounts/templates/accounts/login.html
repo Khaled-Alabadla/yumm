@@ -17,12 +17,13 @@ Login — Yumm
         <i class="fa-solid fa-utensils text-white text-xl"></i>
       </div>
       <h1
+        data-i18n="login-title"
         class="text-3xl font-extrabold tracking-tight"
         style="color: var(--text-primary)"
       >
         Welcome Back
       </h1>
-      <p class="text-sm mt-1" style="color: var(--text-secondary)">
+      <p data-i18n="login-subtitle" class="text-sm mt-1" style="color: var(--text-secondary)">
         Sign in to your Yumm account
       </p>
     </div>
@@ -57,6 +58,7 @@ Login — Yumm
             color: var(--text-primary);
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
           "
+          data-i18n="regular_user"
         >
           Regular User
         </button>
@@ -65,6 +67,7 @@ Login — Yumm
           id="tab-owner"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
           style="background: transparent; color: var(--text-secondary)"
+          data-i18n="restaurant_owner"
         >
           Restaurant Owner
         </button>
@@ -80,6 +83,7 @@ Login — Yumm
 
         <div class="flex flex-col gap-1.5">
           <label
+            data-i18n="email"
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
             >Email</label
@@ -102,6 +106,7 @@ Login — Yumm
 
         <div class="flex flex-col gap-1.5">
           <label
+            data-i18n="password"
             class="text-xs font-medium"
             style="color: var(--text-secondary)"
             >Password</label
@@ -137,6 +142,7 @@ Login — Yumm
         </div>
 
         <button
+          data-i18n="sign-in"
           type="submit"
           class="w-full text-white font-semibold py-3 rounded-xl transition-all hover:-translate-y-px text-sm mt-1"
           style="background: var(--primary)"
@@ -148,14 +154,12 @@ Login — Yumm
       </form>
 
       <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
-        Don't have an account?
-        <a
-          href="{% url 'accounts:register' %}"
-          class="font-semibold hover:underline"
-          style="color: var(--primary)"
-          >Register</a
-        >
-      </p>
+  <span data-i18n="no-account">Don't have an account?</span>
+  <a href="{% url 'accounts:register' %}"
+     class="font-semibold hover:underline"
+     style="color: var(--primary)"
+     data-i18n="register">Register</a>
+</p>
     </div>
   </div>
 </main>
