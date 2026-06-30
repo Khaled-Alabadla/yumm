@@ -1,6 +1,8 @@
-{% load static %}
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <!doctype html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" {% if LANGUAGE_BIDI %}dir="rtl" class="lang-ar"{% endif %}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,13 +19,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    {% if LANGUAGE_BIDI %}
+    <style id="yumm-ar-font">
+      html,
+      html body,
+      html body :not(i[class*="fa-"]) {
+        font-family: "Tajawal", sans-serif !important;
+      }
+      html .font-display,
+      html .font-sans {
+        font-family: "Tajawal", sans-serif !important;
+      }
+      html i[class*="fa-"] {
+        font-family: "Font Awesome 6 Free" !important;
+      }
+    </style>
+    {% endif %}
     {% block extra_head %}{% endblock %}
   </head>
   <body
-    class="font-['Inter'] min-h-screen"
+    class="min-h-screen yumm-auth {% if LANGUAGE_BIDI %}font-tajawal{% else %}font-inter{% endif %}"
     style="background: var(--background); color: var(--text-primary)"
   >
     <header
@@ -31,12 +49,12 @@
     >
       <nav
         class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-3"
-        aria-label="Main navigation"
+        aria-label="{% trans 'Main navigation' %}"
       >
         <a
           href="/"
           class="flex items-center gap-2 shrink-0"
-          aria-label="Yumm Home"
+          aria-label="{% trans 'Yumm Home' %}"
         >
           <div
             class="w-9 h-9 bg-[#B5451B] rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(181,69,27,.4)]"
@@ -65,22 +83,25 @@
           <li>
             <a
               href="/"
-              class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
-              >Home</a
+              class="px-4 py-2 rounded-xl text-sm font-medium transition-colors {{ nav.home.desktop }}"
+              {% if nav.home.active %}aria-current="page"{% endif %}
+              >{% trans "Home" %}</a
             >
           </li>
           <li>
             <a
               href="/restaurants"
-              class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
-              >Restaurants</a
+              class="px-4 py-2 rounded-xl text-sm font-medium transition-colors {{ nav.restaurants.desktop }}"
+              {% if nav.restaurants.active %}aria-current="page"{% endif %}
+              >{% trans "Restaurants" %}</a
             >
           </li>
           <li>
             <a
               href="/ai"
-              class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
-              >AI Assistant</a
+              class="px-4 py-2 rounded-xl text-sm font-medium transition-colors {{ nav.ai.desktop }}"
+              {% if nav.ai.active %}aria-current="page"{% endif %}
+              >{% trans "AI Assistant" %}</a
             >
           </li>
         </ul>
@@ -99,20 +120,35 @@
             ></span>
           </div>
 
-          <button
-            id="lang-btn"
-            onclick="toggleLang()"
-            class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-[11px] font-bold text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
-            aria-label="Switch language"
+          <form
+            id="lang-form"
+            action="{% url 'set_language' %}"
+            method="post"
+            class="inline"
           >
-            EN
-          </button>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+            <input
+              type="hidden"
+              name="language"
+              id="lang-input"
+              value="{% if LANGUAGE_CODE == 'ar' %}en{% else %}ar{% endif %}"
+            />
+            <button
+              type="submit"
+              id="lang-btn"
+              class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-[11px] font-bold text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+              aria-label="{% trans 'Switch language' %}"
+            >
+              {% if LANGUAGE_CODE == 'ar' %}EN{% else %}ع{% endif %}
+            </button>
+          </form>
 
           <button
             id="theme-btn"
             onclick="toggleTheme()"
             class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
-            aria-label="Toggle dark mode"
+            aria-label="{% trans 'Toggle dark mode' %}"
           >
             <i data-lucide="moon" id="icon-moon" class="w-4 h-4"></i>
             <i data-lucide="sun" id="icon-sun" class="w-4 h-4 hidden"></i>
@@ -121,7 +157,7 @@
           <button
             onclick="openA11y()"
             class="hidden md:flex w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
-            aria-label="Open accessibility settings"
+            aria-label="{% trans 'Open accessibility settings' %}"
           >
             <i data-lucide="accessibility" class="w-4 h-4"></i>
           </button>
@@ -136,13 +172,13 @@
             </button>
             <div
               id="userMenu"
-              class="hidden absolute right-0 top-11 w-44 rounded-xl shadow-lg py-1 z-50 bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A]"
+              class="hidden absolute end-0 top-11 w-44 rounded-xl shadow-lg py-1 z-50 bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A]"
             >
               <a
                 href="{% url 'accounts:profile' %}"
                 class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
               >
-                <i data-lucide="user" class="w-4 h-4"></i> Profile
+                <i data-lucide="user" class="w-4 h-4"></i> {% trans "Profile" %}
               </a>
               <div
                 class="border-t border-[#E8E8E8] dark:border-[#2A2A2A] my-1"
@@ -153,7 +189,7 @@
                   type="submit"
                   class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
                 >
-                  <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+                  <i data-lucide="log-out" class="w-4 h-4"></i> {% trans "Log out" %}
                 </button>
               </form>
             </div>
@@ -161,20 +197,22 @@
           {% else %}
           <a
             href="{% url 'accounts:login' %}"
-            class="hidden md:inline-flex px-4 py-2 text-sm font-medium rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
-            >Login</a
+            class="hidden md:inline-flex px-4 py-2 text-sm font-medium rounded-xl transition-colors {{ nav.login.auth }}"
+            {% if nav.login.active %}aria-current="page"{% endif %}
+            >{% trans "Log in" %}</a
           >
           <a
             href="{% url 'accounts:register' %}"
-            class="hidden md:inline-flex px-4 py-2 text-sm font-semibold bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-xl transition-colors shadow-[0_4px_12px_rgba(181,69,27,.35)]"
-            >Register</a
+            class="hidden md:inline-flex px-4 py-2 text-sm font-semibold bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-xl transition-colors shadow-[0_4px_12px_rgba(181,69,27,.35)] {{ nav.register.register }}"
+            {% if nav.register.active %}aria-current="page"{% endif %}
+            >{% trans "Register" %}</a
           >
           {% endif %}
 
           <button
             onclick="toggleSidebar()"
             class="md:hidden w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
-            aria-label="Open menu"
+            aria-label="{% trans 'Open menu' %}"
           >
             <i data-lucide="menu" class="w-4 h-4"></i>
           </button>
@@ -191,8 +229,8 @@
 
     <div
       id="mobileSidebar"
-      class="fixed top-0 right-0 h-full w-72 z-50 flex flex-col transform translate-x-full transition-transform duration-300"
-      style="background: var(--card, #fff); border-left: 1px solid #e8e8e8"
+      class="fixed top-0 end-0 h-full w-72 z-50 flex flex-col transform translate-x-full rtl:-translate-x-full transition-transform duration-300"
+      style="background: var(--card, #fff); border-inline-start: 1px solid #e8e8e8"
     >
       <div
         class="h-16 flex items-center justify-between px-5 border-b border-[#E8E8E8] dark:border-[#2A2A2A]"
@@ -220,7 +258,7 @@
         <button
           onclick="toggleSidebar()"
           class="w-8 h-8 rounded-lg flex items-center justify-center border border-[#E8E8E8] dark:border-[#2A2A2A]"
-          aria-label="Close menu"
+          aria-label="{% trans 'Close menu' %}"
         >
           <i data-lucide="x" class="w-4 h-4 text-gray-500"></i>
         </button>
@@ -230,24 +268,27 @@
         <a
           href="/"
           onclick="toggleSidebar()"
-          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors {{ nav.home.mobile }}"
+          {% if nav.home.active %}aria-current="page"{% endif %}
         >
-          <i data-lucide="home" class="w-4 h-4 text-[#B5451B]"></i> Home
+          <i data-lucide="home" class="w-4 h-4 text-[#B5451B]"></i> {% trans "Home" %}
         </a>
         <a
           href="/restaurants"
           onclick="toggleSidebar()"
-          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors {{ nav.restaurants.mobile }}"
+          {% if nav.restaurants.active %}aria-current="page"{% endif %}
         >
           <i data-lucide="utensils" class="w-4 h-4 text-[#B5451B]"></i>
-          Restaurants
+          {% trans "Restaurants" %}
         </a>
         <a
           href="/ai"
           onclick="toggleSidebar()"
-          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors {{ nav.ai.mobile }}"
+          {% if nav.ai.active %}aria-current="page"{% endif %}
         >
-          <i data-lucide="bot" class="w-4 h-4 text-[#B5451B]"></i> AI Assistant
+          <i data-lucide="bot" class="w-4 h-4 text-[#B5451B]"></i> {% trans "AI Assistant" %}
         </a>
 
         {% if user.is_authenticated %}
@@ -255,9 +296,10 @@
         <a
           href="{% url 'accounts:profile' %}"
           onclick="toggleSidebar()"
-          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors {{ nav.profile.mobile }}"
+          {% if nav.profile.active %}aria-current="page"{% endif %}
         >
-          <i data-lucide="user" class="w-4 h-4 text-[#B5451B]"></i> Profile
+          <i data-lucide="user" class="w-4 h-4 text-[#B5451B]"></i> {% trans "Profile" %}
         </a>
         {% endif %}
       </nav>
@@ -270,27 +312,31 @@
             type="submit"
             class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition-colors"
           >
-            <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+            <i data-lucide="log-out" class="w-4 h-4"></i> {% trans "Log out" %}
           </button>
         </form>
         {% else %}
         <a
           href="{% url 'accounts:login' %}"
-          class="block text-center py-2.5 rounded-xl text-sm font-medium mb-2 border border-[#E8E8E8] dark:border-[#2A2A2A] text-gray-700 dark:text-gray-300 hover:bg-gray-100 transition-colors"
+          class="block text-center py-2.5 rounded-xl text-sm font-medium mb-2 border border-[#E8E8E8] dark:border-[#2A2A2A] transition-colors {{ nav.login.mobile }}"
+          {% if nav.login.active %}aria-current="page"{% endif %}
         >
-          Login
+          {% trans "Log in" %}
         </a>
         <a
           href="{% url 'accounts:register' %}"
-          class="block text-center py-2.5 rounded-xl text-sm font-semibold text-white bg-[#B5451B] hover:bg-[#9A3A16] transition-colors"
+          class="block text-center py-2.5 rounded-xl text-sm font-semibold text-white bg-[#B5451B] hover:bg-[#9A3A16] transition-colors {{ nav.register.register }}"
+          {% if nav.register.active %}aria-current="page"{% endif %}
         >
-          Register
+          {% trans "Register" %}
         </a>
         {% endif %}
       </div>
     </div>
 
     {% block content %}{% endblock %}
+
+    {% include "includes/a11y_widget.html" %}
 
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}

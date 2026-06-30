@@ -72,6 +72,7 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "accounts.context_processors.navbar",
             ],
         },
     },
@@ -291,7 +292,7 @@ LOGIN_URL = "/accounts/login/"
 
 # Where Django's LoginView redirects after a successful login when no
 # ?next= parameter is present.
-LOGIN_REDIRECT_URL = "/accounts/profile/"
+LOGIN_REDIRECT_URL = "/"
 
 # Where Django's LogoutView redirects after logging out.
 LOGOUT_REDIRECT_URL = "/accounts/login/"

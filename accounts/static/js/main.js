@@ -56,7 +56,7 @@ const translations = {
         'hero-h1-line1':     'Discover the Best',
         'hero-h1-span':      'Restaurants',
         'hero-h1-line2':     'in Palestine',
-        'hero-desc':         'Explore menus, reviews, ratings, reservations, and AI-powered recommendations — all in one place.',
+        'hero-desc':         'Explore menus, reviews, ratings, and our AI Assistant — all in one place.',
         'hero-search-ph':    'Search restaurants, cuisines, cities...',
         'hero-search-btn':   'Search',
         'hero-cta1':         'Explore Restaurants',
@@ -103,7 +103,7 @@ const translations = {
         'cta-desc':          "Join 1000+ food lovers discovering Palestine's best restaurants every day.",
         'cta-btn':           'Create Free Account',
         // Footer
-        'footer-desc':       "Palestine's leading restaurant discovery and reservation platform. Find exceptional dining across every city.",
+        'footer-desc':       "Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.",
         'footer-platform':   'Platform',
         'footer-company':    'Company',
         'footer-about':      'About Us',
@@ -122,7 +122,7 @@ const translations = {
         'hero-h1-line1':     'اكتشف أفضل',
         'hero-h1-span':      'المطاعم',
         'hero-h1-line2':     'في فلسطين',
-        'hero-desc':         'استكشف القوائم والتقييمات والحجوزات وتوصيات الذكاء الاصطناعي — كل شيء في مكان واحد.',
+        'hero-desc':         'استكشف القوائم والتقييمات ومساعد الذكاء الاصطناعي — كل شيء في مكان واحد.',
         'hero-search-ph':    'ابحث عن مطاعم، مأكولات، مدن...',
         'hero-search-btn':   'بحث',
         'hero-cta1':         'استكشف المطاعم',
@@ -163,7 +163,7 @@ const translations = {
         'cta-h2':            'مستعد للاستكشاف؟',
         'cta-desc':          'انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم.',
         'cta-btn':           'إنشاء حساب مجاني',
-        'footer-desc':       'منصة فلسطين الرائدة لاكتشاف المطاعم وحجزها. اعثر على أرقى تجارب الطعام في كل مدينة.',
+        'footer-desc':       'منصة فلسطين الرائدة لاكتشاف المطاعم وتقييمها. اعثر على أرقى تجارب الطعام في كل مدينة.',
         'footer-platform':   'المنصة',
         'footer-company':    'الشركة',
         'footer-about':      'من نحن',
@@ -488,28 +488,39 @@ function applyTranslations(code) {
     });
 }
 
+function submitSiteLanguage(code) {
+    const form = document.getElementById('lang-form');
+    if (!form) return false;
+    const input = form.querySelector('input[name="language"]');
+    if (input) input.value = code;
+    form.submit();
+    return true;
+}
+
 /* ─────────────────────────────
 Language (navbar button)
 ───────────────────────────── */
-let currentLang = 'ar';
+let currentLang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
 
 function toggleLang() {
-    currentLang = currentLang === 'en' ? 'ar' : 'en';
-    html.lang = currentLang;
-    html.dir  = currentLang === 'ar' ? 'rtl' : 'ltr';
-    document.getElementById('lang-btn').textContent = currentLang === 'ar' ? 'EN' : 'العربية';
-    applyTranslations(currentLang);
+    submitSiteLanguage(currentLang === 'ar' ? 'en' : 'ar');
 }
 
 /* ─────────────────────────────
 Accessibility Widget – open / close
 ───────────────────────────── */
 function openA11y() {
-    document.getElementById('a11y-widget').classList.add('open');
+    const widget = document.getElementById('a11y-widget');
+    if (!widget) return;
+    widget.classList.add('open');
     document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons();
 }
+
 function closeA11y() {
-    document.getElementById('a11y-widget').classList.remove('open');
+    const widget = document.getElementById('a11y-widget');
+    if (!widget) return;
+    widget.classList.remove('open');
     document.body.style.overflow = '';
 }
 
@@ -523,10 +534,17 @@ function setLang(flag, name, code, rtl) {
     document.getElementById('lang-flag').textContent = flag;
     document.getElementById('lang-name').textContent = name;
     document.getElementById('lang-drop').classList.add('hidden');
+
+    if (code === 'ar' || code === 'en') {
+        submitSiteLanguage(code);
+        return;
+    }
+
     html.lang    = code;
     html.dir     = rtl ? 'rtl' : 'ltr';
     currentLang  = code;
-    document.getElementById('lang-btn').textContent = code === 'ar' ? 'EN' : 'العربية';
+    const btn = document.getElementById('lang-btn');
+    if (btn) btn.textContent = code === 'ar' ? 'EN' : 'ع';
 
     applyTranslations(code);
 }
@@ -598,10 +616,17 @@ Font size
 ───────────────────────────── */
 let fs = 16;
 
+function defaultFontLabel() {
+    return document.getElementById('font-val')?.dataset.defaultLabel || 'Default';
+}
+
 function changeFont(d) {
     fs = Math.max(12, Math.min(28, fs + d));
     html.style.fontSize = fs + 'px';
-    document.getElementById('font-val').textContent = fs === 16 ? 'Default' : fs + 'px';
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) {
+        fontVal.textContent = fs === 16 ? defaultFontLabel() : fs + 'px';
+    }
     localStorage.setItem('yumm-fs', fs);
 }
 
@@ -609,7 +634,8 @@ const sfs = localStorage.getItem('yumm-fs');
 if (sfs) {
     fs = parseInt(sfs);
     html.style.fontSize = fs + 'px';
-    document.getElementById('font-val').textContent = fs + 'px';
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) fontVal.textContent = fs + 'px';
 }
 
 /* ─────────────────────────────
@@ -682,16 +708,20 @@ function resetAllA11y() {
 
     document.body.style.lineHeight    = '';
     document.body.style.letterSpacing = '';
-    document.getElementById('main').style.zoom = '';
+    document.getElementById('main')?.style && (document.getElementById('main').style.zoom = '');
     document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
 
     fs = 16; html.style.fontSize = '16px';
     lh = 0;  ls = 0;  scaleVal = 100;
 
-    document.getElementById('font-val')  .textContent = 'Default';
-    document.getElementById('lineh-val') .textContent = 'Default';
-    document.getElementById('letters-val').textContent = 'Default';
-    document.getElementById('scale-val') .textContent = 'Default';
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) fontVal.textContent = defaultFontLabel();
+    const linehVal = document.getElementById('lineh-val');
+    if (linehVal) linehVal.textContent = 'Default';
+    const lettersVal = document.getElementById('letters-val');
+    if (lettersVal) lettersVal.textContent = 'Default';
+    const scaleValEl = document.getElementById('scale-val');
+    if (scaleValEl) scaleValEl.textContent = 'Default';
 
     Object.keys(profiles).forEach(id => {
         profiles[id] = false;

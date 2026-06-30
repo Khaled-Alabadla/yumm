@@ -1,8 +1,6 @@
 {% extends "baseaccount.html" %}
-{% load static %} 
-{% block title %}
-Login — Yumm
-{%endblock %} 
+{% load static i18n %}
+{% block title %}{% trans "Log in" %} — Yumm{% endblock %}
 {% block content %}
 
 <main
@@ -20,10 +18,10 @@ Login — Yumm
         class="text-3xl font-extrabold tracking-tight"
         style="color: var(--text-primary)"
       >
-        Welcome Back
+        {% trans "Welcome Back" %}
       </h1>
       <p class="text-sm mt-1" style="color: var(--text-secondary)">
-        Sign in to your Yumm account
+        {% trans "Sign in to your Yumm account" %}
       </p>
     </div>
 
@@ -31,7 +29,9 @@ Login — Yumm
       class="rounded-2xl p-7"
       style="background: var(--card); border: 1px solid var(--border)"
     >
-      {% for message in messages %}
+      {% include "accounts/includes/messages.html" %}
+
+      {% if form.non_field_errors %}
       <div
         class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
         style="
@@ -40,15 +40,17 @@ Login — Yumm
           color: var(--danger);
         "
       >
-        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>{% for error in form.non_field_errors %}{{ error }}{% endfor %}</span>
       </div>
-      {% endfor %}
+      {% endif %}
 
       <div
         class="flex rounded-xl p-1 mb-5 gap-1"
         style="background: var(--input-bg); border: 1px solid var(--border)"
       >
         <button
+          type="button"
           onclick="setRole('user')"
           id="tab-user"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
@@ -58,15 +60,16 @@ Login — Yumm
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
           "
         >
-          Regular User
+          {% trans "Regular User" %}
         </button>
         <button
+          type="button"
           onclick="setRole('owner')"
           id="tab-owner"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
           style="background: transparent; color: var(--text-secondary)"
         >
-          Restaurant Owner
+          {% trans "Restaurant Owner" %}
         </button>
       </div>
 
@@ -76,36 +79,34 @@ Login — Yumm
         class="flex flex-col gap-4"
       >
         {% csrf_token %}
-        <input type="hidden" name="role" id="roleInput" value="user" />
+        <input type="hidden" name="role" id="roleInput" value="{{ selected_role|default:'user' }}" />
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Email</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Email" %}
+          </label>
           <input
             type="email"
             name="username"
             placeholder="name@example.com"
             autocomplete="email"
+            value="{{ form.username.value|default:'' }}"
             class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
             style="
               background: var(--input-bg);
-              border: 1px solid var(--border);
+              border: 1px solid {% if form.username.errors %}var(--danger){% else %}var(--border){% endif %};
               color: var(--text-primary);
             "
             onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = 'var(--border)'"
+            onblur="this.style.borderColor = '{% if form.username.errors %}var(--danger){% else %}var(--border){% endif %}'"
           />
+          {% include "accounts/includes/field_errors.html" with errors=form.username.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Password</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Password" %}
+          </label>
           <div class="relative">
             <input
               type="password"
@@ -113,19 +114,19 @@ Login — Yumm
               id="passInput"
               placeholder="••••••••"
               autocomplete="current-password"
-              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
               style="
                 background: var(--input-bg);
-                border: 1px solid var(--border);
+                border: 1px solid {% if form.password.errors %}var(--danger){% else %}var(--border){% endif %};
                 color: var(--text-primary);
               "
               onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
+              onblur="this.style.borderColor = '{% if form.password.errors %}var(--danger){% else %}var(--border){% endif %}'"
             />
             <button
               type="button"
               onclick="togglePass('passInput', 'eyeIcon')"
-              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2"
             >
               <i
                 id="eyeIcon"
@@ -134,6 +135,7 @@ Login — Yumm
               ></i>
             </button>
           </div>
+          {% include "accounts/includes/field_errors.html" with errors=form.password.errors %}
         </div>
 
         <button
@@ -143,24 +145,29 @@ Login — Yumm
           onmouseover="this.style.background = 'var(--primary-hover)'"
           onmouseout="this.style.background = 'var(--primary)'"
         >
-          Sign In
+          {% trans "Sign In" %}
         </button>
       </form>
 
       <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
-        Don't have an account?
+        {% trans "Don't have an account?" %}
         <a
           href="{% url 'accounts:register' %}"
           class="font-semibold hover:underline"
           style="color: var(--primary)"
-          >Register</a
+          >{% trans "Register" %}</a
         >
       </p>
     </div>
   </div>
 </main>
 
-{% endblock %} {% block extra_js %}
+{% endblock %}
+{% block extra_js %}
 <script src="{% static 'js/auth.js' %}"></script>
-
- {% endblock %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setRole("{{ selected_role|default:'user' }}");
+  });
+</script>
+{% endblock %}

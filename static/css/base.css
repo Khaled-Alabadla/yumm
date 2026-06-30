@@ -27,6 +27,10 @@
 
   /* Radius */
   --radius:         12px;
+
+  /* Fonts */
+  --font-body:      'Inter', system-ui, sans-serif;
+  --font-display:   'Inter', system-ui, sans-serif;
 }
 
 
@@ -58,7 +62,7 @@
 body {
   background-color: var(--background);
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body, 'Inter', system-ui, sans-serif);
   transition: background-color 0.2s, color 0.2s;
 }
 

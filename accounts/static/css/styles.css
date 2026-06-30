@@ -53,6 +53,9 @@ Yumm — Custom CSS
   inset: 0;
   z-index: 9999;
   background: rgba(0,0,0,.45);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 #a11y-widget.open { display: flex; }
 #a11y-panel-inner { animation: slideRight .3s ease; }
@@ -105,10 +108,95 @@ Yumm — Custom CSS
 ::-webkit-scrollbar       { width: 5px; }
 ::-webkit-scrollbar-thumb { background: #B5451B55; border-radius: 99px; }
 
-/* ── RTL / Arabic ── */
-html[lang="ar"] body {
-  font-family: 'Cairo', 'Tajawal', sans-serif;
+/* ── Fonts ── */
+:root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+}
+
+.font-inter {
+  font-family: var(--font-body) !important;
+}
+
+.font-tajawal,
+.yumm-auth.font-tajawal,
+.yumm-site.font-tajawal {
+  font-family: var(--font-body) !important;
+}
+
+/* ── RTL / Arabic — Tajawal on all text (overrides Tailwind utilities) ── */
+html.lang-ar,
+html[lang="ar"],
+html[dir="rtl"] {
+  --font-body: 'Tajawal', sans-serif;
+  --font-display: 'Tajawal', sans-serif;
+}
+
+html.lang-ar body,
+html[lang="ar"] body,
+html[dir="rtl"] body,
+html.lang-ar body.yumm-auth,
+html.lang-ar body.yumm-site,
+html[dir="rtl"] body.yumm-auth,
+html[dir="rtl"] body.yumm-site {
   direction: rtl;
+  font-family: 'Tajawal', sans-serif !important;
+}
+
+html.lang-ar :where(
+  h1, h2, h3, h4, h5, h6,
+  p, a, span, div, button, input, textarea, select, option, label,
+  li, td, th, nav, footer, header, main, section, article,
+  small, strong, em, figcaption, blockquote, summary, legend
+),
+html[lang="ar"] :where(
+  h1, h2, h3, h4, h5, h6,
+  p, a, span, div, button, input, textarea, select, option, label,
+  li, td, th, nav, footer, header, main, section, article,
+  small, strong, em, figcaption, blockquote, summary, legend
+),
+html[dir="rtl"] :where(
+  h1, h2, h3, h4, h5, h6,
+  p, a, span, div, button, input, textarea, select, option, label,
+  li, td, th, nav, footer, header, main, section, article,
+  small, strong, em, figcaption, blockquote, summary, legend
+) {
+  font-family: 'Tajawal', sans-serif !important;
+}
+
+html.lang-ar .font-display,
+html[lang="ar"] .font-display,
+html[dir="rtl"] .font-display,
+html.lang-ar .font-sans,
+html[lang="ar"] .font-sans,
+html[dir="rtl"] .font-sans {
+  font-family: 'Tajawal', sans-serif !important;
+}
+
+html.lang-ar #a11y-widget,
+html.lang-ar #a11y-widget *,
+html.lang-ar .modal-backdrop,
+html.lang-ar .modal-backdrop *,
+html[lang="ar"] #a11y-widget,
+html[lang="ar"] #a11y-widget *,
+html[lang="ar"] .modal-backdrop,
+html[lang="ar"] .modal-backdrop * {
+  font-family: 'Tajawal', sans-serif !important;
+}
+
+html[dir="rtl"] i[class*="fa-"],
+html[lang="ar"] i[class*="fa-"] {
+  font-family: "Font Awesome 6 Free" !important;
+}
+
+html[dir="rtl"] i[data-lucide="arrow-right"]:not(.arrow-west),
+html[lang="ar"] i[data-lucide="arrow-right"]:not(.arrow-west) {
+  transform: rotate(180deg);
+}
+
+html[dir="rtl"] i.arrow-west,
+html[lang="ar"] i.arrow-west {
+  transform: none !important;
 }
 
 /* ── Accessibility overrides ── */
@@ -127,8 +215,6 @@ html.highlight-focus *:focus {
   outline: 3px solid #f59e0b !important;
   outline-offset: 3px !important;
 }
-html.highlight-links a { text-decoration: underline !important; color: #B5451B !important; }
-
 html.readable-font body,
 html.readable-font p,
 html.readable-font li,

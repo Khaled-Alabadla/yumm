@@ -8,18 +8,16 @@ msgstr ""
 "POT-Creation-Date: 2024-01-01 00:00+0300\n"
 "PO-Revision-Date: 2024-01-01 00:00+0300\n"
 "Last-Translator: Yumm Team\n"
-"Language: ar\n"
 "Language-Team: Arabic\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 # ---------------------------------------------------------------------------
 # accounts/managers.py
 # ---------------------------------------------------------------------------
-
 msgid "The email address must be set."
 msgstr "يجب تعيين عنوان البريد الإلكتروني."
 
@@ -32,7 +30,6 @@ msgstr "يجب أن يكون للمشرف العام is_superuser=True."
 # ---------------------------------------------------------------------------
 # accounts/models.py
 # ---------------------------------------------------------------------------
-
 msgid "Admin"
 msgstr "مدير"
 
@@ -63,7 +60,6 @@ msgstr "مستخدمون"
 # ---------------------------------------------------------------------------
 # accounts/forms.py
 # ---------------------------------------------------------------------------
-
 msgid "full name"
 msgstr "الاسم الكامل"
 
@@ -91,7 +87,6 @@ msgstr "هذا الحساب لا يتطابق مع الدور المحدد."
 # ---------------------------------------------------------------------------
 # accounts/permissions.py + accounts/decorators.py
 # ---------------------------------------------------------------------------
-
 msgid "Admin access required."
 msgstr "مطلوب صلاحيات المدير."
 
@@ -107,7 +102,6 @@ msgstr "ليس لديك إذن لتنفيذ هذا الإجراء."
 # ---------------------------------------------------------------------------
 # accounts/views.py
 # ---------------------------------------------------------------------------
-
 msgid "Create Account"
 msgstr "إنشاء حساب"
 
@@ -146,3 +140,1182 @@ msgstr "دور تجريبي غير صالح."
 
 msgid "Logged in as demo %(role)s account."
 msgstr "تم تسجيل الدخول كحساب %(role)s التجريبي."
+
+# ---------------------------------------------------------------------------
+# Auth templates — login, register, profile
+# ---------------------------------------------------------------------------
+msgid "Main navigation"
+msgstr "التنقل الرئيسي"
+
+msgid "Yumm Home"
+msgstr "الصفحة الرئيسية لـ Yumm"
+
+msgid "AI Assistant"
+msgstr "مساعد الذكاء الاصطناعي"
+
+msgid "Switch language"
+msgstr "تغيير اللغة"
+
+msgid "Toggle dark mode"
+msgstr "تبديل الوضع الداكن"
+
+msgid "Open accessibility settings"
+msgstr "فتح إعدادات إمكانية الوصول"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+msgid "Register"
+msgstr "إنشاء حساب"
+
+msgid "Open menu"
+msgstr "فتح القائمة"
+
+msgid "Close menu"
+msgstr "إغلاق القائمة"
+
+msgid "Welcome Back"
+msgstr "مرحباً بعودتك"
+
+msgid "Sign in to your Yumm account"
+msgstr "سجّل الدخول إلى حساب Yumm"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Don't have an account?"
+msgstr "ليس لديك حساب؟"
+
+msgid "Join Yumm"
+msgstr "انضم إلى Yumm"
+
+msgid "Create your account today — it's free"
+msgstr "أنشئ حسابك اليوم — مجاناً"
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Restaurant Name"
+msgstr "اسم المطعم"
+
+msgid "Restaurant name"
+msgstr "اسم المطعم"
+
+msgid ""
+"Your request will be reviewed by our admin team. You'll be notified once "
+"your restaurant is approved."
+msgstr "سيراجع فريق الإدارة طلبك. سنُبلّغك عند الموافقة على مطعمك."
+
+msgid "Submit Request"
+msgstr "إرسال الطلب"
+
+msgid "Already have an account?"
+msgstr "لديك حساب بالفعل؟"
+
+msgid "Manage your account details"
+msgstr "إدارة بيانات حسابك"
+
+msgid "Pending Approval"
+msgstr "بانتظار الموافقة"
+
+msgid "Member since %(date)s"
+msgstr "عضو منذ %(date)s"
+
+msgid "Personal Details"
+msgstr "البيانات الشخصية"
+
+msgid "Email cannot be changed. Contact support if you need help."
+msgstr "لا يمكن تغيير البريد الإلكتروني. تواصل مع الدعم إذا احتجت مساعدة."
+
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Street, building, area…"
+msgstr "الشارع، المبنى، المنطقة…"
+
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Leave blank if you don't want to change your password."
+msgstr "اترك الحقول فارغة إذا لم ترغب في تغيير كلمة المرور."
+
+msgid "Current Password"
+msgstr "كلمة المرور الحالية"
+
+msgid "Enter current password"
+msgstr "أدخل كلمة المرور الحالية"
+
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "New password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "Confirm new password"
+msgstr "أكّد كلمة المرور الجديدة"
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "Log Out"
+msgstr "تسجيل الخروج"
+
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحاً."
+
+msgid "Phone number is required for restaurant owners."
+msgstr "رقم الهاتف مطلوب لأصحاب المطاعم."
+
+msgid "Select a city"
+msgstr "اختر مدينة"
+
+msgid "address"
+msgstr "العنوان"
+
+msgid "city"
+msgstr "المدينة"
+
+msgid "City is required for restaurant owners."
+msgstr "المدينة مطلوبة لأصحاب المطاعم."
+
+msgid "Address is required for restaurant owners."
+msgstr "العنوان مطلوب لأصحاب المطاعم."
+
+msgid "Enter your current password to set a new one."
+msgstr "أدخل كلمة مرورك الحالية لتعيين كلمة جديدة."
+
+msgid "Your current password is incorrect."
+msgstr "كلمة المرور الحالية غير صحيحة."
+
+msgid "Enter a new password or leave all password fields blank."
+msgstr "أدخل كلمة مرور جديدة أو اترك جميع حقول كلمة المرور فارغة."
+
+msgid "The two password fields didn't match."
+msgstr "حقلتا كلمة المرور غير متطابقتين."
+
+msgid "Required to change password"
+msgstr "مطلوبة لتغيير كلمة المرور"
+
+msgid "Leave blank to keep current password"
+msgstr "اتركها فارغة للإبقاء على كلمة المرور الحالية"
+
+msgid "Repeat new password"
+msgstr "أعد إدخال كلمة المرور الجديدة"
+
+msgid "Profile and password updated successfully."
+msgstr "تم تحديث الملف الشخصي وكلمة المرور بنجاح."
+
+msgid ""
+"Your restaurant owner account is pending admin approval. You will be able to"
+" sign in once approved."
+msgstr ""
+"حساب صاحب المطعم قيد انتظار موافقة الإدارة. ستتمكن من تسجيل الدخول بعد "
+"الموافقة."
+
+msgid "Accounts"
+msgstr "الحسابات"
+
+msgid "Restaurants"
+msgstr "المطاعم"
+
+msgid "Reviews"
+msgstr "التقييمات"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Arabic"
+msgstr "العربية"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Welcome back — Yumm Admin"
+msgstr "مرحباً بعودتك — لوحة تحكم Yumm"
+
+msgid "Welcome back"
+msgstr "مرحباً بعودتك"
+
+msgid "Copyright"
+msgstr "حقوق النشر"
+
+msgid "All rights reserved."
+msgstr "جميع الحقوق محفوظة."
+
+msgid "Home"
+msgstr "الرئيسية"
+
+msgid "Log in again"
+msgstr "تسجيل الدخول مجدداً"
+
+msgid "Account"
+msgstr "الحساب"
+
+msgid "See Profile"
+msgstr "عرض الملف الشخصي"
+
+msgid "History"
+msgstr "السجل"
+
+msgid "Date/time"
+msgstr "التاريخ/الوقت"
+
+msgid "Action"
+msgstr "الإجراء"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Last name"
+msgstr "اسم العائلة"
+
+msgid "Email address"
+msgstr "البريد الإلكتروني"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Is active"
+msgstr "نشط"
+
+msgid "Is staff"
+msgstr "حالة الطاقم"
+
+msgid "Is superuser"
+msgstr "حالة المستخدم الفائق"
+
+msgid "Groups"
+msgstr "المجموعات"
+
+msgid "User permissions"
+msgstr "صلاحيات المستخدم"
+
+msgid "Last login"
+msgstr "آخر تسجيل دخول"
+
+msgid "Date joined"
+msgstr "تاريخ الانضمام"
+
+msgid "Changed {fields}."
+msgstr "تم تغيير {fields}."
+
+msgid "Changed {fields} for {name} \"{object}\"."
+msgstr "تم تغيير {fields} لـ {name} «{object}»."
+
+msgid "Added {name} \"{object}\"."
+msgstr "تمت إضافة {name} «{object}»."
+
+msgid "Added."
+msgstr "تمت الإضافة."
+
+msgid "Deleted \"{object}\"."
+msgstr "تم حذف «{object}»."
+
+msgid "Deleted {name} \"{object}\"."
+msgstr "تم حذف {name} «{object}»."
+
+msgid "No fields changed."
+msgstr "لم يتم تغيير أي حقول."
+
+msgid "and"
+msgstr "و"
+
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this"
+" admin site."
+msgstr "لا يوجد سجل تغييرات لهذا العنصر. ربما لم تتم إضافته عبر لوحة الإدارة."
+
+msgid "Save and continue editing"
+msgstr "حفظ ومتابعة التعديل"
+
+msgid "Save and view"
+msgstr "حفظ وعرض"
+
+msgid "Save as new"
+msgstr "حفظ كجديد"
+
+msgid "Save and add another"
+msgstr "حفظ وإضافة آخر"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Password change"
+msgstr "تغيير كلمة المرور"
+
+msgid "Change password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Change your password"
+msgstr "تغيير كلمة المرور"
+
+msgid ""
+"For security, enter your current password, then enter your new password "
+"twice to confirm it."
+msgstr ""
+"لأسباب أمنية، أدخل كلمة مرورك الحالية ثم أدخل كلمة المرور الجديدة مرتين "
+"للتأكد من كتابتها بشكل صحيح."
+
+msgid "Your password was changed."
+msgstr "تم تغيير كلمة مرورك بنجاح."
+
+msgid "Enter a new password for"
+msgstr "أدخل كلمة مرور جديدة للمستخدم"
+
+msgid ""
+"First, enter an email address and password. Then, you'll be able to edit "
+"more user options."
+msgstr ""
+"أولاً، أدخل البريد الإلكتروني وكلمة المرور. بعدها ستتمكن من تعديل المزيد من "
+"خيارات المستخدم."
+
+msgid "Enter an email address and password."
+msgstr "أدخل البريد الإلكتروني وكلمة المرور."
+
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user"
+" options."
+msgstr ""
+"أولاً، أدخل اسم المستخدم وكلمة المرور. بعدها ستتمكن من تعديل المزيد من "
+"خيارات المستخدم."
+
+msgid "Enter a username and password."
+msgstr "أدخل اسم المستخدم وكلمة المرور."
+
+msgid "After you've created a user, you'll be able to edit more user options."
+msgstr "بعد إنشاء المستخدم، ستتمكن من تعديل المزيد من خيارات المستخدم."
+
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new"
+" password twice so we can verify you typed it in correctly."
+msgstr ""
+"لأسباب أمنية، أدخل كلمة مرورك الحالية ثم أدخل كلمة المرور الجديدة مرتين "
+"للتأكد من كتابتها بشكل صحيح."
+
+msgid "Old password"
+msgstr "كلمة المرور القديمة"
+
+msgid "New password confirmation"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "Your password can't be too similar to your other personal information."
+msgstr "لا يمكن أن تكون كلمة المرور مشابهة جداً لمعلوماتك الشخصية."
+
+msgid "Your password must contain at least 8 characters."
+msgstr "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل."
+
+msgid "Your password can't be a commonly used password."
+msgstr "لا يمكن أن تكون كلمة المرور شائعة الاستخدام."
+
+msgid "Your password can't be entirely numeric."
+msgstr "لا يمكن أن تكون كلمة المرور أرقاماً فقط."
+
+msgid "Please correct the error below."
+msgstr "يرجى تصحيح الخطأ أدناه."
+
+msgid "Please correct the errors below."
+msgstr "يرجى تصحيح الأخطاء أدناه."
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Add"
+msgstr "إضافة"
+
+msgid "Add new"
+msgstr "إضافة"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Change"
+msgstr "تعديل"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Actions"
+msgstr "إجراءات"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Permissions"
+msgstr "الصلاحيات"
+
+msgid "Personal info"
+msgstr "المعلومات الشخصية"
+
+msgid "Important dates"
+msgstr "تواريخ مهمة"
+
+msgid "Moderation"
+msgstr "الإشراف"
+
+msgid "Timestamps"
+msgstr "الطوابع الزمنية"
+
+msgid "Ownership & status"
+msgstr "الملكية والحالة"
+
+msgid "Identity"
+msgstr "الهوية"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Hours & pricing"
+msgstr "ساعات العمل والأسعار"
+
+msgid "pending approval"
+msgstr "بانتظار الموافقة"
+
+msgid "Total Users"
+msgstr "إجمالي المستخدمين"
+
+msgid "Active Restaurants"
+msgstr "المطاعم النشطة"
+
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+msgid "Pending Restaurants"
+msgstr "مطاعم قيد الانتظار"
+
+msgid "Avg. Rating"
+msgstr "متوسط التقييم"
+
+msgid "reviews"
+msgstr "التقييمات"
+
+msgid "Quick Access"
+msgstr "وصول سريع"
+
+msgid "Recent Actions"
+msgstr "آخر الإجراءات"
+
+msgid "No recent activity."
+msgstr "لا يوجد نشاط حديث."
+
+msgid "ago"
+msgstr "مضت"
+
+msgid "Since"
+msgstr "منذ"
+
+msgid "%(time)s ago"
+msgstr "منذ %(time)s"
+
+msgid "Platform Statistics"
+msgstr "إحصائيات المنصة"
+
+msgid "Total Reviews"
+msgstr "إجمالي التقييمات"
+
+msgid "Average Platform Rating"
+msgstr "متوسط تقييم المنصة"
+
+msgid "N/A"
+msgstr "غ/م"
+
+msgid "restaurant"
+msgstr "مطعم"
+
+msgid "restaurants"
+msgstr "المطاعم"
+
+msgid "restaurant category"
+msgstr "تصنيف مطعم"
+
+msgid "restaurant categories"
+msgstr "تصنيفات المطاعم"
+
+msgid "tag"
+msgstr "وسم"
+
+msgid "tags"
+msgstr "الوسوم"
+
+msgid "review"
+msgstr "تقييم"
+
+msgid "review image"
+msgstr "صورة تقييم"
+
+msgid "review images"
+msgstr "صور التقييمات"
+
+msgid "comment reply"
+msgstr "رد على تعليق"
+
+msgid "comment replies"
+msgstr "ردود التعليقات"
+
+msgid "wishlist entry"
+msgstr "عنصر مفضلة"
+
+msgid "wishlist entries"
+msgstr "قائمة المفضلة"
+
+msgid "notification"
+msgstr "إشعار"
+
+msgid "notifications"
+msgstr "الإشعارات"
+
+msgid "restaurant image"
+msgstr "صورة مطعم"
+
+msgid "restaurant images"
+msgstr "صور المطاعم"
+
+msgid "menu category"
+msgstr "تصنيف قائمة"
+
+msgid "menu categories"
+msgstr "تصنيفات القائمة"
+
+msgid "menu item"
+msgstr "صنف"
+
+msgid "menu items"
+msgstr "أصناف القائمة"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Rejected"
+msgstr "مرفوض"
+
+msgid "approved"
+msgstr "موافق عليه"
+
+msgid "Approved"
+msgstr "موافق عليه"
+
+msgid "Pending approval"
+msgstr "بانتظار الموافقة"
+
+msgid "Approval status"
+msgstr "حالة الموافقة"
+
+msgid "Approve selected restaurant owners"
+msgstr "الموافقة على أصحاب المطاعم المحددين"
+
+msgid "Reject selected restaurant owners"
+msgstr "رفض أصحاب المطاعم المحددين"
+
+msgid "%(count)d owner account(s) approved."
+msgstr "تمت الموافقة على %(count)d حساب صاحب مطعم."
+
+msgid "%(count)d owner account(s) rejected."
+msgstr "تم رفض %(count)d حساب صاحب مطعم."
+
+msgid ""
+"Restaurant owners must be approved by an admin before they can operate on "
+"the platform."
+msgstr ""
+"يجب أن يوافق المدير على أصحاب المطاعم قبل أن يتمكنوا من العمل على المنصة."
+
+msgid "read"
+msgstr "مقروء"
+
+msgid "unread"
+msgstr "غير مقروء"
+
+msgid "name"
+msgstr "الاسم"
+
+msgid "name (Arabic)"
+msgstr "الاسم (عربي)"
+
+msgid "name (English)"
+msgstr "الاسم (إنجليزي)"
+
+msgid "description (Arabic)"
+msgstr "الوصف (عربي)"
+
+msgid "description (English)"
+msgstr "الوصف (إنجليزي)"
+
+msgid "address (Arabic)"
+msgstr "العنوان (عربي)"
+
+msgid "address (English)"
+msgstr "العنوان (إنجليزي)"
+
+msgid "working hours (Arabic)"
+msgstr "ساعات العمل (عربي)"
+
+msgid "working hours (English)"
+msgstr "ساعات العمل (إنجليزي)"
+
+msgid "caption (Arabic)"
+msgstr "التعليق (عربي)"
+
+msgid "caption (English)"
+msgstr "التعليق (إنجليزي)"
+
+msgid "text (Arabic)"
+msgstr "النص (عربي)"
+
+msgid "text (English)"
+msgstr "النص (إنجليزي)"
+
+msgid "display order"
+msgstr "ترتيب العرض"
+
+msgid "created at"
+msgstr "تاريخ الإنشاء"
+
+msgid "updated at"
+msgstr "تاريخ التحديث"
+
+msgid "uploaded at"
+msgstr "تاريخ الرفع"
+
+msgid "saved at"
+msgstr "تاريخ الحفظ"
+
+msgid "owner"
+msgstr "المالك"
+
+msgid "category"
+msgstr "التصنيف"
+
+msgid "latitude"
+msgstr "خط العرض"
+
+msgid "longitude"
+msgstr "خط الطول"
+
+msgid "is open"
+msgstr "مفتوح الآن"
+
+msgid "status"
+msgstr "الحالة"
+
+msgid "price range"
+msgstr "نطاق السعر"
+
+msgid "price"
+msgstr "السعر"
+
+msgid "image"
+msgstr "الصورة"
+
+msgid "image type"
+msgstr "نوع الصورة"
+
+msgid "is primary"
+msgstr "صورة رئيسية"
+
+msgid "is available"
+msgstr "متوفر"
+
+msgid "rating"
+msgstr "التقييم"
+
+msgid "comment"
+msgstr "التعليق"
+
+msgid "reply text"
+msgstr "نص الرد"
+
+msgid "type"
+msgstr "النوع"
+
+msgid "recipient"
+msgstr "المستلم"
+
+msgid "is read"
+msgstr "مقروء"
+
+msgid "is reported"
+msgstr "مُبلّغ عنه"
+
+msgid "is visible"
+msgstr "ظاهر"
+
+msgid "is staff"
+msgstr "موظف"
+
+msgid "is superuser"
+msgstr "مدير النظام"
+
+msgid "is active"
+msgstr "نشط"
+
+msgid "last login"
+msgstr "آخر تسجيل دخول"
+
+msgid "date joined"
+msgstr "تاريخ الانضمام"
+
+msgid "password"
+msgstr "كلمة المرور"
+
+msgid "New Review"
+msgstr "تقييم جديد"
+
+msgid "New Reply"
+msgstr "رد جديد"
+
+msgid "Status Change"
+msgstr "تغيير الحالة"
+
+msgid "Cover Photo"
+msgstr "صورة الغلاف"
+
+msgid "Profile / Logo"
+msgstr "الشعار / الصورة الشخصية"
+
+msgid "Gallery"
+msgstr "معرض الصور"
+
+msgid "Budget (₪)"
+msgstr "اقتصادي (₪)"
+
+msgid "Moderate (₪₪)"
+msgstr "متوسط (₪₪)"
+
+msgid "Expensive (₪₪₪)"
+msgstr "مرتفع (₪₪₪)"
+
+msgid "Approve selected restaurants"
+msgstr "الموافقة على المطاعم المحددة"
+
+msgid "Reject selected restaurants"
+msgstr "رفض المطاعم المحددة"
+
+msgid "Mark selected reviews as resolved (clear report flag)"
+msgstr "تعليم التقييمات كمحلولة (إزالة بلاغ)"
+
+msgid "Hide selected reviews from the public site"
+msgstr "إخفاء التقييمات من الموقع"
+
+msgid "Restore selected reviews to the public site"
+msgstr "إظهار التقييمات على الموقع"
+
+msgid "Jerusalem"
+msgstr "القدس"
+
+msgid "Al-Ram"
+msgstr "الرام"
+
+msgid "Beit Hanina"
+msgstr "بيت حنينا"
+
+msgid "Al-Eizariya"
+msgstr "العيزرية"
+
+msgid "Abu Dis"
+msgstr "أبو ديس"
+
+msgid "Kafr Aqab"
+msgstr "كفر عقب"
+
+msgid "Ramallah"
+msgstr "رام الله"
+
+msgid "Al-Bireh"
+msgstr "البيرة"
+
+msgid "Birzeit"
+msgstr "بيرزيت"
+
+msgid "Silwad"
+msgstr "سلواد"
+
+msgid "Beit Rima"
+msgstr "بيت رима"
+
+msgid "Deir Dibwan"
+msgstr "دير دبوان"
+
+msgid "Beit Sira"
+msgstr "بيت سيرة"
+
+msgid "Jericho"
+msgstr "أريحا"
+
+msgid "Al-Auja"
+msgstr "العوجا"
+
+msgid "Bethlehem"
+msgstr "بيت لحم"
+
+msgid "Beit Jala"
+msgstr "بيت جala"
+
+msgid "Beit Sahour"
+msgstr "بيت سahour"
+
+msgid "Beit Fajjar"
+msgstr "بيت فajjar"
+
+msgid "Husan"
+msgstr "حوسan"
+
+msgid "Nahalin"
+msgstr "نحalin"
+
+msgid "Hebron"
+msgstr "الخليل"
+
+msgid "Yatta"
+msgstr "يطa"
+
+msgid "Dura"
+msgstr "دura"
+
+msgid "Halhul"
+msgstr "حalhul"
+
+msgid "Idhna"
+msgstr "إذna"
+
+msgid "Tarqumiyya"
+msgstr "ترqumiyya"
+
+msgid "Surif"
+msgstr "surif"
+
+msgid "Sa'ir"
+msgstr "sa'ir"
+
+msgid "Beit Ummar"
+msgstr "بيت ummar"
+
+msgid "Ad-Dhahriya"
+msgstr "الظahriya"
+
+msgid "Nablus"
+msgstr "نابلس"
+
+msgid "Sebastia"
+msgstr "سبsطia"
+
+msgid "Beit Furik"
+msgstr "بيت furik"
+
+msgid "Beita"
+msgstr "beita"
+
+msgid "Aqraba"
+msgstr "aqraba"
+
+msgid "Jenin"
+msgstr "جنin"
+
+msgid "Qabatiya"
+msgstr "qabatiya"
+
+msgid "Ya'bad"
+msgstr "ya'bad"
+
+msgid "Arraba"
+msgstr "arraba"
+
+msgid "Burqin"
+msgstr "burqin"
+
+msgid "Tubas"
+msgstr "طubas"
+
+msgid "Tamoun"
+msgstr "tamoun"
+
+msgid "Tulkarm"
+msgstr "طulkarm"
+
+msgid "Anabta"
+msgstr "anabta"
+
+msgid "Beit Iba"
+msgstr "بيت iba"
+
+msgid "Qalqilya"
+msgstr "قلqilya"
+
+msgid "Azzun"
+msgstr "azzun"
+
+msgid "Kafr Thulth"
+msgstr "kafr thulth"
+
+msgid "Salfit"
+msgstr "salfit"
+
+msgid "Haris"
+msgstr "haris"
+
+msgid "Kafr ad-Dik"
+msgstr "kafr ad-dik"
+
+msgid "Jabalia"
+msgstr "جabalia"
+
+msgid "Beit Lahiya"
+msgstr "بيت lahiya"
+
+msgid "Beit Hanoun"
+msgstr "بيت hanoun"
+
+msgid "Gaza City"
+msgstr "مدينة غزة"
+
+msgid "Nuseirat"
+msgstr "nuseirat"
+
+msgid "Bureij"
+msgstr "bureij"
+
+msgid "Maghazi"
+msgstr "maghazi"
+
+msgid "Deir al-Balah"
+msgstr "deir al-balah"
+
+msgid "Khan Yunis"
+msgstr "خان yunis"
+
+msgid "Abasan"
+msgstr "abasan"
+
+msgid "Bani Suheila"
+msgstr "bani suheila"
+
+msgid "Khuza'a"
+msgstr "khuza'a"
+
+msgid "Rafah"
+msgstr "رفح"
+
+msgid "Tel al-Sultan"
+msgstr "tel al-sultan"
+
+msgid "Discover the Best Restaurants in Palestine"
+msgstr "اكتشف أفضل المطاعم في فلسطين"
+
+msgid "Palestine's #1 Food Platform"
+msgstr "منصة الطعام الأولى في فلسطين"
+
+msgid "Discover the Best"
+msgstr "اكتشف أفضل"
+
+msgid "in Palestine"
+msgstr "في فلسطين"
+
+msgid ""
+"Explore menus, reviews, ratings, and our AI Assistant — all in one place."
+msgstr ""
+"استكشف القوائم والتقييمات ومساعد الذكاء الاصطناعي — كل شيء في مكان واحد."
+
+msgid "Search restaurants, cuisines, cities..."
+msgstr "ابحث عن مطاعم، مأكولات، مدن..."
+
+msgid "Search restaurants, cuisines, cities"
+msgstr "ابحث عن مطاعم، مأكولات، مدن"
+
+msgid "Explore Restaurants"
+msgstr "استكشف المطاعم"
+
+msgid "Ask AI Assistant"
+msgstr "اسأل المساعد الذكي"
+
+msgid "Platform statistics"
+msgstr "إحصائيات المنصة"
+
+msgid "Happy Users"
+msgstr "مستخدم سعيد"
+
+msgid "Top Rated"
+msgstr "الأعلى تقييماً"
+
+msgid "Features"
+msgstr "المميزات"
+
+msgid "Everything You Need"
+msgstr "كل ما تحتاجه"
+
+msgid ""
+"A complete platform for discovering, reviewing, and reserving the best "
+"dining in Palestine."
+msgstr "منصة متكاملة لاكتشاف أفضل المطاعم الفلسطينية ومراجعتها وحجزها."
+
+msgid "Describe your craving and our AI finds the perfect match instantly."
+msgstr "صف ما تشتهيه وسيجد ذكاؤنا الاصطناعي التطابق المثالي على الفور."
+
+msgid "Interactive Map"
+msgstr "خريطة تفاعلية"
+
+msgid "Discover restaurants near you on a live, interactive map."
+msgstr "اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية."
+
+msgid "Reviews & Ratings"
+msgstr "مراجعات وتقييمات"
+
+msgid "Honest reviews from a trusted Palestinian food community."
+msgstr "مراجعات صادقة من مجتمع طعام فلسطيني موثوق."
+
+msgid "Wishlist"
+msgstr "قائمة المفضلة"
+
+msgid "Save your favourite restaurants for future visits."
+msgstr "احفظ مطاعمك المفضلة لزيارات مستقبلية."
+
+msgid "Try it"
+msgstr "جرّبها"
+
+msgid "Open Map"
+msgstr "افتح الخريطة"
+
+msgid "Read Reviews"
+msgstr "اقرأ التقييمات"
+
+msgid "View Saved"
+msgstr "عرض المحفوظات"
+
+msgid "Process"
+msgstr "كيف يعمل"
+
+msgid "How It Works"
+msgstr "كيف يعمل التطبيق"
+
+msgid "Get started and find your next favourite restaurant in minutes."
+msgstr "ابدأ واعثر على مطعمك المفضل القادم في دقائق."
+
+msgid "Register in under a minute, for free."
+msgstr "سجّل في أقل من دقيقة، مجاناً."
+
+msgid "Browse hundreds of curated options."
+msgstr "تصفح مئات الخيارات المنتقاة."
+
+msgid "Get hyper-personalised suggestions."
+msgstr "احصل على اقتراحات مخصصة لك."
+
+msgid "Leave a Review"
+msgstr "اترك تقييماً"
+
+msgid "Share your experience with the community."
+msgstr "شارك تجربتك مع المجتمع."
+
+msgid "Handpicked"
+msgstr "مختارة بعناية"
+
+msgid "Top Restaurants"
+msgstr "أفضل المطاعم"
+
+msgid "Highest-rated picks across Palestine"
+msgstr "أعلى التقييمات في جميع أنحاء فلسطين"
+
+msgid "View All"
+msgstr "عرض الكل"
+
+msgid "View Restaurant"
+msgstr "عرض المطعم"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Ready to Explore?"
+msgstr "مستعد للاستكشاف؟"
+
+msgid ""
+"Join 1000+ food lovers discovering Palestine's best restaurants every day."
+msgstr "انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم."
+
+msgid ""
+"Palestine's leading restaurant discovery and review platform. Find "
+"exceptional dining across every city."
+msgstr ""
+"منصة فلسطين الرائدة لاكتشاف المطاعم وتقييمها. اعثر على أرقى تجارب الطعام في "
+"كل مدينة."
+
+msgid "Platform"
+msgstr "المنصة"
+
+msgid "Company"
+msgstr "الشركة"
+
+msgid "About Us"
+msgstr "من نحن"
+
+msgid "Contact"
+msgstr "تواصل معنا"
+
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
+
+msgid "© 2026 Yumm. Made with love for Palestine 🇵🇸"
+msgstr "© 2026 Yumm. صُنع بحب لفلسطين 🇵🇸"
+
+msgid "Accessibility settings"
+msgstr "إعدادات إمكانية الوصول"
+
+msgid "Text size"
+msgstr "حجم النص"
+
+msgid "Decrease font size"
+msgstr "تصغير حجم الخط"
+
+msgid "Increase font size"
+msgstr "تكبير حجم الخط"
+
+msgid "Default"
+msgstr "افتراضي"
+
+msgid "High contrast"
+msgstr "تباين عالٍ"
+
+msgid "Stop animations"
+msgstr "إيقاف الحركات"
+
+msgid "Highlight links"
+msgstr "تمييز الروابط"
+
+msgid "Dark mode"
+msgstr "الوضع الداكن"
+
+msgid "Reset settings"
+msgstr "إعادة ضبط الإعدادات"

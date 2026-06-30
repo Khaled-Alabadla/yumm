@@ -10,8 +10,9 @@ tailwind.config = {
             muted:    { DEFAULT: '#6B7280', dark: '#9CA3AF' },
         },
         fontFamily: {
-            display: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans:    ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Tajawal', 'Inter', 'system-ui', 'sans-serif'],
+            sans:    ['Inter', 'Tajawal', 'system-ui', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif'],
         },
         borderRadius: { '2xl': '1rem', '3xl': '1.5rem', '4xl': '2rem' },
         boxShadow: {
