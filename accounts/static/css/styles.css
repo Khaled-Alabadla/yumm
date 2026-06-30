@@ -258,6 +258,7 @@ html.highlight-titles h3 { text-decoration: underline !important; }
     max-height: 92vh;
     border-radius: 1.25rem;
   }
+<<<<<<< Updated upstream
 }
 
 /* ============================================
@@ -449,3 +450,6 @@ textarea.invalid {
     .star-empty { color: #E5E7EB; }
     .card-shadow { box-shadow: 0 2px 16px rgba(0,0,0,.07); }
     .card-shadow:hover { box-shadow: 0 12px 40px rgba(0,0,0,.13); }
+=======
+}
+>>>>>>> Stashed changes

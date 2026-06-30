@@ -1,0 +1,105 @@
+{% extends "index/index.html" %}
+{% block title %}Contact{% endblock %}
+{%load static %}
+{% block content %}
+
+<div class="max-w-5xl mx-auto px-6 py-16">
+
+  <div class="mb-10">
+    <p class="text-xs font-bold tracking-widest text-orange uppercase mb-2">Get In Touch</p>
+    <h1 class="text-4xl font-extrabold mb-2">We'd Love to Hear<br/>From You</h1>
+    <p class="text-gray-400">Whether you're a restaurant owner, food lover, or just curious — reach out.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-10">
+
+    {# ── Form ── #}
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+        <div class="mb-4 px-4 py-3 rounded-lg
+                    {% if message.tags == 'success' %}bg-green-900 border border-green-700 text-green-300
+                    {% else %}bg-red-900 border border-red-700 text-red-300{% endif %}
+                    text-sm">
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="POST" action="/contact/" class="flex flex-col gap-5">
+        {% csrf_token %}
+
+        {% set fields = [
+          ('name',    'text',  'Full Name',      'Your name'),
+          ('email',   'email', 'Email Address',  'you@email.com'),
+        ] %}
+        {% for name, type, label, placeholder in fields %}
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">{{ label }}</label>
+          <input type="{{ type }}" name="{{ name }}"
+                 placeholder="{{ placeholder }}"
+                 value="{{ form[name].value() if form else '' }}"
+                 class="w-full bg-dark-700 border border-dark-600 rounded-xl
+                        px-4 py-3 text-white text-sm placeholder-gray-600
+                        focus:outline-none focus:border-orange transition-colors">
+        </div>
+        {% endfor %}
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Subject</label>
+          <select name="subject"
+                  class="w-full bg-dark-700 border border-dark-600 rounded-xl
+                         px-4 py-3 text-white text-sm
+                         focus:outline-none focus:border-orange transition-colors">
+            {% for opt in ['Restaurant Partnership', 'Technical Support', 'Media & Press', 'General Inquiry'] %}
+            <option value="{{ opt }}" style="background:#1a1a1a;">{{ opt }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm text-gray-400 mb-1">Message</label>
+          <textarea name="message" rows="5"
+                    placeholder="Tell us how we can help..."
+                    class="w-full bg-dark-700 border border-dark-600 rounded-xl
+                           px-4 py-3 text-white text-sm placeholder-gray-600
+                           focus:outline-none focus:border-orange transition-colors resize-none">{{ form.message.value() if form else '' }}</textarea>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-orange hover:bg-orange-hover text-white font-bold
+                       py-3 rounded-xl transition-colors duration-200">
+          Send Message →
+        </button>
+      </form>
+    </div>
+
+    {# ── Info Cards ── #}
+    <div class="flex flex-col gap-4">
+      {% set cards = [
+        ('📧', 'Email Us',         '<a href="mailto:hello@yumm.ps" class="text-gray-400 text-sm hover:text-orange transition-colors">hello@yumm.ps</a>'),
+        ('📍', 'Based In',         '<p class="text-gray-400 text-sm">Ramallah, Palestine 🇵🇸</p>'),
+        ('⏰', 'Response Time',    '<p class="text-gray-400 text-sm">We reply within 24 hours, Sun–Thu.</p>'),
+        ('🍴', 'Restaurant Owners','<p class="text-gray-400 text-sm">Want to list? Email <a href="mailto:partners@yumm.ps" class="text-orange hover:underline">partners@yumm.ps</a></p>'),
+      ] %}
+      {% for icon, title, body_html in cards %}
+      <div class="bg-dark-700 border border-dark-600 rounded-xl p-5 flex gap-4 items-start">
+        <div class="w-11 h-11 min-w-11 rounded-xl bg-orange flex items-center justify-center text-xl">
+          {{ icon }}
+        </div>
+        <div>
+          <p class="font-semibold mb-1">{{ title }}</p>
+          {{ body_html | safe }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ static('js/main.js') }}"></script>
+{% endblock %}

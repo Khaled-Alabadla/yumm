@@ -10,8 +10,15 @@ Mounted at /accounts/ from the root URLconf.
 """
 
 from django.urls import path
+<<<<<<< Updated upstream
 from . import views
 from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView, PendingView
+=======
+
+from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView, PendingView
+
+from . import views
+>>>>>>> Stashed changes
 
 app_name = "accounts"
 
@@ -27,7 +34,16 @@ urlpatterns = [
     path('about/',   views.about,   name='about'),
     path('', views.index, name='index'),
     path("pending/", PendingView.as_view(), name="pending"),
+<<<<<<< Updated upstream
     path("restaurants/", views.restaurants_list, name="restaurants_list"),
     path("restaurants/<str:city>/", views.restaurants_list, name="restaurants_by_city"),
     path("restaurants/<str:city>/<str:tag>/", views.restaurants_by_city_and_tag, name="restaurants_by_city_and_tag"),
 ]
+=======
+    path('contact/', views.contact, name='contact'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
+    path('about/', views.about, name='about'),
+    path('', views.index, name='index'),
+]
+>>>>>>> Stashed changes

@@ -16,5 +16,10 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
 
     # Accounts — authentication and user profile
+<<<<<<< Updated upstream
     path("accounts/", include("accounts.urls", namespace="accounts")),   
+=======
+    path("accounts/", include("accounts.urls", namespace="accounts")),
+    path('', views.index, name='index'),    path('about/',   views.about,   name='about'),
+>>>>>>> Stashed changes
 ]

@@ -412,6 +412,7 @@ const revealObs = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+<<<<<<< Updated upstream
 /* ─────────────────────────────
    Modals — open / close
 ───────────────────────────── */
@@ -419,12 +420,27 @@ function openModal(id) {
   document.getElementById('modal-' + id).classList.add('modal-open');
   document.body.style.overflow = 'hidden';
   if (id === 'map') setTimeout(initMap, 150);
+=======
+
+/* ─────────────────────────────
+   Yumm — Modals JS
+───────────────────────────── */
+
+/* ── Open / Close ── */
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('modal-open');
+  document.body.style.overflow = 'hidden';
+>>>>>>> Stashed changes
 }
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('modal-open');
   document.body.style.overflow = '';
 }
 
+<<<<<<< Updated upstream
+=======
+// Close on backdrop click
+>>>>>>> Stashed changes
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-backdrop')) {
     e.target.classList.remove('modal-open');
@@ -432,6 +448,10 @@ document.addEventListener('click', e => {
   }
 });
 
+<<<<<<< Updated upstream
+=======
+// Close on ESC key
+>>>>>>> Stashed changes
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.modal-backdrop.modal-open').forEach(m => {
@@ -441,9 +461,13 @@ document.addEventListener('keydown', e => {
   }
 });
 
+<<<<<<< Updated upstream
 /* ─────────────────────────────
    Wishlist data + render
 ───────────────────────────── */
+=======
+/* ── Wishlist ── */
+>>>>>>> Stashed changes
 const wishlist = [
   { name: 'Al-Kanaan',             cuisine: 'Traditional Palestinian', city: 'Ramallah',  rating: '4.8' },
   { name: 'Jerusalem Garden Cafe', cuisine: 'Cafe & Breakfast',        city: 'Jerusalem', rating: '4.9' },
@@ -452,10 +476,22 @@ const wishlist = [
 function renderWishlist() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
+<<<<<<< Updated upstream
   if (!wishlist.length) {
     container.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">No saved restaurants yet. Hit the ♥ on any card!</p>`;
     return;
   }
+=======
+
+  if (!wishlist.length) {
+    container.innerHTML = `
+      <p class="text-gray-400 text-center py-8 text-sm">
+        No saved restaurants yet. Hit the ♥ on any card!
+      </p>`;
+    return;
+  }
+
+>>>>>>> Stashed changes
   container.innerHTML = wishlist.map((r, i) => `
     <div class="flex items-center justify-between bg-gray-50 rounded-2xl px-4 py-3">
       <div>
@@ -464,7 +500,15 @@ function renderWishlist() {
       </div>
       <div class="flex items-center gap-3">
         <span class="text-amber-400 font-bold text-sm">★ ${r.rating}</span>
+<<<<<<< Updated upstream
         <button onclick="removeWishlist(${i})" class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">Remove</button>
+=======
+        <button
+          onclick="removeWishlist(${i})"
+          class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">
+          Remove
+        </button>
+>>>>>>> Stashed changes
       </div>
     </div>
   `).join('');
@@ -475,6 +519,7 @@ function removeWishlist(index) {
   renderWishlist();
 }
 
+<<<<<<< Updated upstream
 /* ─────────────────────────────
    AI Chat
 ───────────────────────────── */
@@ -484,15 +529,36 @@ async function sendAIMessage() {
   const input = document.getElementById('ai-input');
   const msg   = input.value.trim();
   if (!msg) return;
+=======
+/* ── AI Chat ── */
+const aiMessages = [];
+
+async function sendAIMessage() {
+  const input  = document.getElementById('ai-input');
+  const msg    = input.value.trim();
+  if (!msg) return;
+
+>>>>>>> Stashed changes
   input.value = '';
   aiMessages.push({ role: 'user', content: msg });
   renderChat();
 
+<<<<<<< Updated upstream
+=======
+  // Show typing indicator
+>>>>>>> Stashed changes
   const chat = document.getElementById('ai-chat');
   const typing = document.createElement('div');
   typing.id = 'typing-indicator';
   typing.className = 'flex justify-start mb-3';
+<<<<<<< Updated upstream
   typing.innerHTML = `<div class="px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-500 text-sm"><span class="typing-dots">●●●</span></div>`;
+=======
+  typing.innerHTML = `
+    <div class="px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-500 text-sm">
+      <span class="typing-dots">●●●</span>
+    </div>`;
+>>>>>>> Stashed changes
   chat.appendChild(typing);
   chat.scrollTop = chat.scrollHeight;
 
@@ -508,6 +574,7 @@ Help users discover restaurants, suggest dishes, and answer food questions about
 Keep replies short, friendly, and practical.
 Respond in the same language the user writes in (Arabic or English).
 When recommending restaurants, mention ones from our platform: Al-Kanaan (Ramallah), Gaza Grill House (Gaza), Jerusalem Garden Cafe (Jerusalem).`,
+<<<<<<< Updated upstream
         messages: aiMessages,
       }),
     });
@@ -518,6 +585,20 @@ When recommending restaurants, mention ones from our platform: Al-Kanaan (Ramall
     aiMessages.push({ role: 'assistant', content: 'عذراً، تحقق من اتصالك. / Please check your connection.' });
   }
 
+=======
+        messages: aiMessages
+      })
+    });
+
+    const data  = await res.json();
+    const reply = data.content?.[0]?.text || 'عذراً، حدث خطأ. / Sorry, something went wrong.';
+    aiMessages.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    aiMessages.push({ role: 'assistant', content: 'عذراً، تحقق من اتصالك بالإنترنت. / Please check your connection.' });
+  }
+
+  // Remove typing indicator then render
+>>>>>>> Stashed changes
   document.getElementById('typing-indicator')?.remove();
   renderChat();
 }
@@ -525,7 +606,13 @@ When recommending restaurants, mention ones from our platform: Al-Kanaan (Ramall
 function renderChat() {
   const chat = document.getElementById('ai-chat');
   if (!chat) return;
+<<<<<<< Updated upstream
   chat.innerHTML = `
+=======
+
+  chat.innerHTML = `
+    <!-- Welcome bubble -->
+>>>>>>> Stashed changes
     <div class="flex justify-start mb-3">
       <div class="max-w-[82%] px-4 py-2.5 rounded-2xl rounded-bl-sm bg-gray-100 text-gray-800 text-sm leading-relaxed">
         👋 مرحباً! أنا مساعد Yumm الذكي.<br>
@@ -547,6 +634,7 @@ function renderChat() {
   chat.scrollTop = chat.scrollHeight;
 }
 
+<<<<<<< Updated upstream
 document.getElementById('ai-input')?.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAIMessage(); }
 });
@@ -554,10 +642,22 @@ document.getElementById('ai-input')?.addEventListener('keydown', e => {
 /* ─────────────────────────────
    Leaflet Map
 ───────────────────────────── */
+=======
+// Send on Enter key
+document.getElementById('ai-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendAIMessage();
+  }
+});
+
+/* ── Leaflet Map ── */
+>>>>>>> Stashed changes
 let yummMap = null;
 let searchMarker = null;
 
 const restaurants = [
+<<<<<<< Updated upstream
   { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',           desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
   { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',      desc: 'Grills & BBQ · Gaza ★ 4.6'              },
   { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕', desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
@@ -565,6 +665,20 @@ const restaurants = [
 
 function initMap() {
   if (yummMap) { yummMap.invalidateSize(); return; }
+=======
+  { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',             desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
+  { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',        desc: 'Grills & BBQ · Gaza ★ 4.6'              },
+  { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕',   desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
+];
+
+function initMap() {
+  if (yummMap) {
+    yummMap.invalidateSize();
+    return;
+  }
+
+  // Load Leaflet script dynamically
+>>>>>>> Stashed changes
   if (!window.L) {
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
@@ -577,6 +691,7 @@ function initMap() {
 
 function buildMap() {
   yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
+<<<<<<< Updated upstream
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>', maxZoom: 18,
   }).addTo(yummMap);
@@ -590,6 +705,38 @@ function buildMap() {
     L.marker([r.lat, r.lng], { icon: redIcon })
       .addTo(yummMap)
       .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, { maxWidth: 200 });
+=======
+
+  // OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
+    maxZoom: 18,
+  }).addTo(yummMap);
+
+  // Custom red icon
+  const redIcon = L.divIcon({
+    html: `<div style="
+      background:#B5451B;
+      width:32px;height:32px;
+      border-radius:50% 50% 50% 0;
+      transform:rotate(-45deg);
+      border:3px solid white;
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    "></div>`,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -36],
+    className: '',
+  });
+
+  // Add restaurant markers
+  restaurants.forEach(r => {
+    L.marker([r.lat, r.lng], { icon: redIcon })
+      .addTo(yummMap)
+      .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, {
+        maxWidth: 200
+      });
+>>>>>>> Stashed changes
   });
 }
 
@@ -607,6 +754,7 @@ function flyToRestaurant(lat, lng, name, desc) {
 async function searchMapLocation() {
   const query = document.getElementById('map-search-input')?.value.trim();
   if (!query || !yummMap) return;
+<<<<<<< Updated upstream
   try {
     const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
     const data = await res.json();
@@ -620,10 +768,48 @@ async function searchMapLocation() {
   } catch { alert('Search failed. Please try again.'); }
 }
 
+=======
+
+  try {
+    const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
+    const data = await res.json();
+
+    if (!data.length) {
+      alert('Location not found. Try a different search.');
+      return;
+    }
+
+    const { lat, lon, display_name } = data[0];
+
+    if (searchMarker) yummMap.removeLayer(searchMarker);
+
+    searchMarker = L.marker([lat, lon])
+      .addTo(yummMap)
+      .bindPopup(`<b>🔍 ${query}</b><br><span style="color:#666;font-size:11px">${display_name.substring(0, 60)}...</span>`)
+      .openPopup();
+
+    yummMap.flyTo([lat, lon], 13, { duration: 1.2 });
+  } catch (e) {
+    alert('Search failed. Please try again.');
+  }
+}
+
+// Initialize map when modal opens — patch openModal
+const _origOpenModal = openModal;
+window.openModal = function(id) {
+  _origOpenModal(id);
+  if (id === 'map') {
+    setTimeout(initMap, 150); // wait for modal animation
+  }
+};
+
+// Search on Enter key
+>>>>>>> Stashed changes
 document.getElementById('map-search-input')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') searchMapLocation();
 });
 
+<<<<<<< Updated upstream
 /* ─────────────────────────────
    Sidebar & User Menu
 ───────────────────────────── */
@@ -666,6 +852,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!message.value.trim() || message.value.trim().length < 10) { showError(message, 'Message must be at least 10 characters.'); valid = false; }
     if (!valid) e.preventDefault();
   });
+=======
+
+// ── contact.js — Contact Page Scripts ──
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.querySelector('form[action="/contact/"]');
+  if (!form) return;
+
+  // ── Client-side validation ──
+  form.addEventListener('submit', (e) => {
+    const name    = form.querySelector('[name="name"]');
+    const email   = form.querySelector('[name="email"]');
+    const message = form.querySelector('[name="message"]');
+
+    clearErrors();
+
+    let valid = true;
+
+    if (!name.value.trim()) {
+      showError(name, 'Name is required.');
+      valid = false;
+    }
+
+    if (!email.value.trim() || !email.value.includes('@')) {
+      showError(email, 'Please enter a valid email address.');
+      valid = false;
+    }
+
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      showError(message, 'Message must be at least 10 characters.');
+      valid = false;
+    }
+
+    if (!valid) e.preventDefault();
+  });
+
+>>>>>>> Stashed changes
   function showError(field, msg) {
     field.classList.add('border-red-500');
     const err = document.createElement('p');
@@ -673,12 +897,85 @@ document.addEventListener('DOMContentLoaded', () => {
     err.textContent = msg;
     field.parentElement.appendChild(err);
   }
+<<<<<<< Updated upstream
   function clearErrors() {
     document.querySelectorAll('.field-error').forEach(e => e.remove());
     form.querySelectorAll('input,textarea').forEach(f => f.classList.remove('border-red-500'));
   }
+=======
+
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach(e => e.remove());
+    form.querySelectorAll('input, textarea').forEach(f => f.classList.remove('border-red-500'));
+  }
+
+  // ── Character counter for message ──
+  const textarea = form.querySelector('[name="message"]');
+  if (textarea) {
+    const counter = document.createElement('p');
+    counter.className = 'text-xs text-gray-500 mt-1 text-right';
+    counter.textContent = '0 / 1000';
+    textarea.parentElement.appendChild(counter);
+
+    textarea.addEventListener('input', () => {
+      const len = textarea.value.length;
+      counter.textContent = `${len} / 1000`;
+      counter.classList.toggle('text-orange', len > 900);
+    });
+  }
+
+});
+
+
+// ── legal.js — Privacy & Terms Pages ──
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Smooth scroll for TOC links (enhances native scroll-behavior)
+  document.querySelectorAll('aside nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', link.getAttribute('href'));
+      }
+    });
+  });
+
+  // "Back to top" button — appears after scrolling past 400px
+  const topBtn = document.createElement('button');
+  topBtn.textContent = '↑';
+  topBtn.title = 'Back to top';
+  topBtn.className = [
+    'fixed', 'bottom-24', 'right-6',
+    'w-10', 'h-10', 'rounded-full',
+    'bg-dark-700', 'border', 'border-dark-600',
+    'text-gray-400', 'hover:bg-orange', 'hover:text-white',
+    'transition-all', 'duration-200',
+    'opacity-0', 'pointer-events-none',
+    'text-sm', 'font-bold', 'z-40'
+  ].join(' ');
+  document.body.appendChild(topBtn);
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      topBtn.classList.remove('opacity-0', 'pointer-events-none');
+    } else {
+      topBtn.classList.add('opacity-0', 'pointer-events-none');
+    }
+  });
+
+  topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+>>>>>>> Stashed changes
 });
 
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes

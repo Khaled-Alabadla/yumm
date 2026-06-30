@@ -1,8 +1,102 @@
 {% extends "base.html" %}
 {% load static %}
 
+<<<<<<< Updated upstream:templates/index.html
 {% block title %}Yumm — Discover the Best Restaurants in Palestine{% endblock %}
 {% block content %}
+=======
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="{% static 'js/tailwind.config.js' %}"></script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<!-- Custom styles -->
+<link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+</head>
+
+<body class="bg-white dark:bg-[#141414] text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col transition-colors duration-300">
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-primary-DEFAULT focus:text-white focus:px-4 focus:py-2 focus:rounded-xl focus:font-semibold">
+  Skip to main content
+</a>
+
+<!-- ════════════════════════════════════════
+NAVBAR
+════════════════════════════════════════ -->
+<header class="sticky top-0 z-40 bg-white/90 dark:bg-[#1E1E1E]/90 backdrop-blur-md border-b border-[#E8E8E8] dark:border-[#2A2A2A]">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-3" aria-label="Main navigation">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 shrink-0" aria-label="Yumm Home">
+      <div class="w-9 h-9 bg-[#B5451B] rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(181,69,27,.4)]">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.3" stroke-linecap="round">
+          <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/>
+          <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3z"/>
+        </svg>
+      </div>
+      <span class="text-[1.2rem] font-display font-bold tracking-tight text-gray-900 dark:text-white">Yumm</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-1 list-none m-0 p-0">
+      <li><a href="#" class="px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 dark:bg-[#2A2A2A] text-gray-900 dark:text-white" data-i18n="nav-home">Home</a></li>
+      <li><a href="#restaurants" class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-restaurants">Restaurants</a></li>
+      <li><a href="#ai" class="px-4 py-2 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-ai">AI Assistant</a></li>
+    </ul>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-2">
+
+      <!-- Live clock -->
+      <div class="flex flex-col items-end leading-none select-none" aria-live="polite" aria-label="Current time">
+        <span id="clock-time" class="font-semibold text-[13px] text-gray-700 dark:text-gray-200 tabular-nums"></span>
+        <span id="clock-date" class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5 tabular-nums"></span>
+      </div>
+
+      <!-- Language -->
+      <button id="lang-btn" onclick="toggleLang()"
+        class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-[11px] font-bold text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+        aria-label="Switch language" title="Switch to English">EN</button>
+
+      <!-- Dark mode -->
+      <button id="theme-btn" onclick="toggleTheme()"
+        class="w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 hover:border-[#B5451B] hover:text-[#B5451B] transition-colors"
+        aria-label="Toggle dark mode" aria-pressed="false">
+        <i data-lucide="moon" id="icon-moon" class="w-4 h-4"></i>
+        <i data-lucide="sun"  id="icon-sun"  class="w-4 h-4 hidden"></i>
+      </button>
+
+
+      <!-- Auth -->
+      <a href="#" class="hidden sm:inline-flex px-4 py-2 text-sm font-medium rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-login">Login</a>
+      <a href="#" class="inline-flex px-4 py-2 text-sm font-semibold bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-xl transition-colors shadow-[0_4px_12px_rgba(181,69,27,.35)]" data-i18n="nav-register">Register</a>
+
+      <!-- Mobile hamburger -->
+      <button id="mob-btn" onclick="document.getElementById('mob-nav').classList.toggle('hidden')"
+        class="md:hidden w-9 h-9 rounded-xl border border-[#E8E8E8] dark:border-[#2A2A2A] flex items-center justify-center text-gray-600 dark:text-gray-300 transition-colors"
+        aria-label="Open menu">
+        <i data-lucide="menu" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+  </nav>
+
+  <!-- Mobile nav -->
+  <div id="mob-nav" class="hidden md:hidden border-t border-[#E8E8E8] dark:border-[#2A2A2A] bg-white dark:bg-[#1E1E1E] px-5 pb-4 pt-2 space-y-1">
+    <a href="#" class="block px-3 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 dark:bg-[#2A2A2A]" data-i18n="nav-home">Home</a>
+    <a href="#restaurants" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-restaurants">Restaurants</a>
+    <a href="#ai" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A] transition-colors" data-i18n="nav-ai">AI Assistant</a>
+  </div>
+</header>
+>>>>>>> Stashed changes:accounts/templates/index.html
 
 <main id="main" tabindex="-1" class="flex-1">
 
@@ -26,7 +120,11 @@ HERO
     </h1>
 
     <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light" data-i18n="hero-desc">
+<<<<<<< Updated upstream:templates/index.html
       Explore menus, reviews, ratings and AI-powered assistant — all in one place.
+=======
+      Explore menus, reviews, ratings and AI-powered recommendations — all in one place.
+>>>>>>> Stashed changes:accounts/templates/index.html
     </p>
 
     <div class="flex max-w-[520px] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 gap-2 mb-8" role="search">
@@ -104,41 +202,67 @@ FEATURES
       <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3" data-i18n="feat-label">Features</p>
       <h2 id="feat-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-i18n="feat-h2">Everything You Need</h2>
       <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md mx-auto leading-relaxed" data-i18n="feat-desc">
-        A complete platform for discovering, reviewing, and reserving the best dining in Palestine.
+        A complete platform for discovering and reviewing the best dining in Palestine.
       </p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<<<<<<< Updated upstream:templates/index.html
+=======
+
+>>>>>>> Stashed changes:accounts/templates/index.html
       <article onclick="openModal('ai')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="bot" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat1-title">AI Assistant</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat1-desc">Describe your craving and our AI finds the perfect match instantly.</p>
+<<<<<<< Updated upstream:templates/index.html
         <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat1-link">Try it <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </article>
+=======
+        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]">Try it <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </article>
+
+>>>>>>> Stashed changes:accounts/templates/index.html
       <article onclick="openModal('map')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.06s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="map-pin" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat2-title">Interactive Map</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat2-desc">Discover restaurants near you on a live, interactive map.</p>
+<<<<<<< Updated upstream:templates/index.html
         <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat2-link">Open Map <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </article>
+=======
+        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]">Open Map <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </article>
+
+>>>>>>> Stashed changes:accounts/templates/index.html
       <article onclick="openModal('reviews')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.12s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="star" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat3-title">Reviews &amp; Ratings</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat3-desc">Honest reviews from a trusted Palestinian food community.</p>
+<<<<<<< Updated upstream:templates/index.html
         <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat3-link">Read Reviews <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </article>
+=======
+        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]">Read Reviews <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </article>
+
+>>>>>>> Stashed changes:accounts/templates/index.html
       <article onclick="openModal('wishlist');renderWishlist()" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.18s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="heart" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat4-title">Wishlist</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat4-desc">Save your favourite restaurants for future visits.</p>
+<<<<<<< Updated upstream:templates/index.html
         <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat4-link">View Saved <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+=======
+        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]">View Saved <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+>>>>>>> Stashed changes:accounts/templates/index.html
       </article>
     </div>
   </div>
@@ -271,7 +395,11 @@ TOP RESTAURANTS
           <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=80"
             alt="Jerusalem Garden Cafe" loading="lazy"
             class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
+<<<<<<< Updated upstream:templates/index.html
           <span class="absolute top-3 left-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full" data-i18n="badge-open">Open</span>
+=======
+           <span class="absolute top-3 left-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">Open</span>
+>>>>>>> Stashed changes:accounts/templates/index.html
           <button class="wish-btn absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
             aria-label="Add Jerusalem Garden Cafe to wishlist" aria-pressed="false">
             <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
@@ -326,6 +454,80 @@ CTA
   </div>
 </section>
 
+<<<<<<< Updated upstream:templates/index.html
+=======
+</main>
+
+<!-- ════════════════════════════════════════
+FOOTER
+════════════════════════════════════════ -->
+<footer class="bg-[#111] text-gray-400" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 bg-[#B5451B] rounded-xl flex items-center justify-center">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.3" stroke-linecap="round">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/>
+              <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-display font-bold text-white">Yumm</span>
+        </div>
+        <p class="text-sm leading-relaxed" data-i18n="footer-desc">Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.</p>
+        <div class="flex gap-3 mt-5">
+          <!-- Instagram -->
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#B5451B] flex items-center justify-center transition-colors" aria-label="Instagram">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <!-- Twitter / X -->
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#B5451B] flex items-center justify-center transition-colors" aria-label="Twitter">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-[#B5451B] flex items-center justify-center transition-colors" aria-label="Facebook">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-[11px] font-bold tracking-[.18em] uppercase text-[#B5451B] mb-4" data-i18n="footer-platform">Platform</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#" class="hover:text-white transition-colors" data-i18n="nav-home">Home</a></li>
+          <li><a href="#restaurants" class="hover:text-white transition-colors" data-i18n="nav-restaurants">Restaurants</a></li>
+          <li><a href="#ai" class="hover:text-white transition-colors" data-i18n="nav-ai">AI Assistant</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-[11px] font-bold tracking-[.18em] uppercase text-[#B5451B] mb-4" data-i18n="footer-company">Company</h3>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="#" class="hover:text-white transition-colors" data-i18n="footer-about">About Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors" data-i18n="footer-contact">Contact</a></li>
+          <li><a href="#" class="hover:text-white transition-colors" data-i18n="footer-privacy">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors" data-i18n="footer-terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+      <p data-i18n="footer-copy">©Yumm! Made with love for Palestine 🇵🇸</p>
+      <a href="mailto:hello@yumm.ps" class="hover:text-white transition-colors flex items-center gap-1">
+        <i data-lucide="mail" class="w-3 h-3" aria-hidden="true"></i> hello@yumm.ps
+      </a>
+    </div>
+  </div>
+</footer>
+
+>>>>>>> Stashed changes:accounts/templates/index.html
 <!-- ════════════════════════════════════════
 ACCESSIBILITY WIDGET
 ════════════════════════════════════════ -->
@@ -369,6 +571,33 @@ ACCESSIBILITY WIDGET
     </div>
 
     <div class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+<<<<<<< Updated upstream:templates/index.html
+=======
+
+      <!-- Profiles -->
+      <div class="bg-[#F7F7F7] rounded-2xl p-4">
+        <h3 class="text-sm font-semibold text-gray-700 mb-3">Customize your browsing experience</h3>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
+            <div class="toggle-track" id="tg-vision" onclick="toggleProfile('vision','hc-mode')"><div class="toggle-knob"></div></div>
+            <div><p class="text-sm font-semibold text-gray-800">Low Vision Support</p><p class="text-xs text-gray-400 mt-0.5">Improve clarity and contrast</p></div>
+          </div>
+          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
+            <div class="toggle-track" id="tg-reading" onclick="toggleProfile('reading','readable-font highlight-titles')"><div class="toggle-knob"></div></div>
+            <div><p class="text-sm font-semibold text-gray-800">Reading &amp; Cognitive Support</p><p class="text-xs text-gray-400 mt-0.5">Simplify reading and navigation</p></div>
+          </div>
+          <div class="flex items-start gap-3 pb-3 border-b border-[#E8E8E8]">
+            <div class="toggle-track" id="tg-screen" onclick="toggleProfile('screen','readable-font')"><div class="toggle-knob"></div></div>
+            <div><p class="text-sm font-semibold text-gray-800">Screen Reader Compatibility</p><p class="text-xs text-gray-400 mt-0.5">Optimize for screen-readers</p></div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="toggle-track" id="tg-older" onclick="toggleProfile('older','hc-mode-light readable-font')"><div class="toggle-knob"></div></div>
+            <div><p class="text-sm font-semibold text-gray-800">Older Adults</p><p class="text-xs text-gray-400 mt-0.5">Enhance visibility and reading comfort</p></div>
+          </div>
+        </div>
+      </div>
+
+>>>>>>> Stashed changes:accounts/templates/index.html
       <!-- Content Adjustments -->
       <div class="bg-[#F7F7F7] rounded-2xl p-4">
         <!-- ✅ ID added -->
@@ -529,6 +758,10 @@ ACCESSIBILITY WIDGET
   </div>
 </div>
 
+<<<<<<< Updated upstream:templates/index.html
+=======
+<!-- Leaflet CSS -->
+>>>>>>> Stashed changes:accounts/templates/index.html
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <!-- ── 2. INTERACTIVE MAP MODAL ── -->
@@ -542,6 +775,11 @@ ACCESSIBILITY WIDGET
       <button class="modal-close-btn" onclick="closeModal('map')" aria-label="Close">✕</button>
     </div>
     <div class="modal-body p-0 flex flex-col" style="height:520px">
+<<<<<<< Updated upstream:templates/index.html
+=======
+
+      <!-- Search bar -->
+>>>>>>> Stashed changes:accounts/templates/index.html
       <div class="flex gap-2 p-3 border-b border-gray-100 shrink-0">
         <div class="relative flex-1">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -553,6 +791,7 @@ ACCESSIBILITY WIDGET
           Search
         </button>
       </div>
+<<<<<<< Updated upstream:templates/index.html
       <div id="leaflet-map" class="flex-1" style="min-height:380px;z-index:0"></div>
       <div class="p-3 border-t border-gray-100 flex flex-wrap gap-2 shrink-0">
         <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 Featured Restaurants — click to fly there</span>
@@ -562,6 +801,27 @@ ACCESSIBILITY WIDGET
           class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Gaza Grill House · Gaza</button>
         <button onclick="flyToRestaurant(31.7683, 35.2137, 'Jerusalem Garden Cafe ☕', 'Cafe & Breakfast · Jerusalem')"
           class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Jerusalem Garden Cafe · Jerusalem</button>
+=======
+
+      <!-- Map container -->
+      <div id="leaflet-map" class="flex-1" style="min-height:380px;z-index:0"></div>
+
+      <!-- Restaurant chips -->
+      <div class="p-3 border-t border-gray-100 flex flex-wrap gap-2 shrink-0">
+        <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 Featured Restaurants — click to fly there</span>
+        <button onclick="flyToRestaurant(31.9038, 35.2034, 'Al-Kanaan 🍽️', 'Traditional Palestinian · Ramallah')"
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
+          Al-Kanaan · Ramallah
+        </button>
+        <button onclick="flyToRestaurant(31.5017, 34.4667, 'Gaza Grill House 🔥', 'Grills & BBQ · Gaza')"
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
+          Gaza Grill House · Gaza
+        </button>
+        <button onclick="flyToRestaurant(31.7683, 35.2137, 'Jerusalem Garden Cafe ☕', 'Cafe & Breakfast · Jerusalem')"
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
+          Jerusalem Garden Cafe · Jerusalem
+        </button>
+>>>>>>> Stashed changes:accounts/templates/index.html
       </div>
     </div>
   </div>
@@ -578,11 +838,28 @@ ACCESSIBILITY WIDGET
       <button class="modal-close-btn" onclick="closeModal('reviews')" aria-label="Close">✕</button>
     </div>
     <div class="modal-body flex flex-col gap-4">
+<<<<<<< Updated upstream:templates/index.html
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
           <div><p class="font-bold text-gray-900">Al-Kanaan</p><p class="text-xs text-gray-400">Traditional Palestinian · Ramallah</p></div>
           <span class="text-amber-400 font-bold">★ 4.8</span>
         </div>
+=======
+
+      <!-- Restaurant 1 -->
+      <div class="border border-gray-200 rounded-2xl p-4">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <p class="font-bold text-gray-900">Al-Kanaan</p>
+            <p class="text-xs text-gray-400">Traditional Palestinian · Ramallah</p>
+          </div>
+          <span class="text-amber-400 font-bold">★ 4.8</span>
+        </div>
+        <div class="flex gap-1.5 mb-3">
+          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Mansaf</span>
+          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Family</span>
+        </div>
+>>>>>>> Stashed changes:accounts/templates/index.html
         <div class="space-y-2">
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
             <p class="text-sm text-gray-700 mb-1">"أفضل منسف في رام الله! الأكل كان رائعاً والخدمة ممتازة."</p>
@@ -594,21 +871,55 @@ ACCESSIBILITY WIDGET
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream:templates/index.html
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
           <div><p class="font-bold text-gray-900">Jerusalem Garden Cafe</p><p class="text-xs text-gray-400">Cafe & Breakfast · Jerusalem</p></div>
           <span class="text-amber-400 font-bold">★ 4.9</span>
         </div>
+=======
+
+      <!-- Restaurant 2 -->
+      <div class="border border-gray-200 rounded-2xl p-4">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <p class="font-bold text-gray-900">Jerusalem Garden Cafe</p>
+            <p class="text-xs text-gray-400">Cafe & Breakfast · Jerusalem</p>
+          </div>
+          <span class="text-amber-400 font-bold">★ 4.9</span>
+        </div>
+        <div class="flex gap-1.5 mb-3">
+          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Organic</span>
+          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Cafe</span>
+        </div>
+>>>>>>> Stashed changes:accounts/templates/index.html
         <div class="space-y-2">
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
             <p class="text-sm text-gray-700 mb-1">"أجمل فطور في القدس، الأجواء رائعة وهادئة."</p>
             <p class="text-xs text-gray-400">— Lina H. · ★★★★★</p>
           </div>
+<<<<<<< Updated upstream:templates/index.html
         </div>
       </div>
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
           <div><p class="font-bold text-gray-900">Gaza Grill House</p><p class="text-xs text-gray-400">Grills & BBQ · Gaza</p></div>
+=======
+          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
+            <p class="text-sm text-gray-700 mb-1">"Best coffee in Jerusalem. Beautiful garden setting!"</p>
+            <p class="text-xs text-gray-400">— Omar T. · ★★★★★</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Restaurant 3 -->
+      <div class="border border-gray-200 rounded-2xl p-4">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <p class="font-bold text-gray-900">Gaza Grill House</p>
+            <p class="text-xs text-gray-400">Grills & BBQ · Gaza</p>
+          </div>
+>>>>>>> Stashed changes:accounts/templates/index.html
           <span class="text-amber-400 font-bold">★ 4.6</span>
         </div>
         <div class="bg-gray-50 rounded-xl px-3 py-2.5">
@@ -616,6 +927,10 @@ ACCESSIBILITY WIDGET
           <p class="text-xs text-gray-400">— Khalid R. · ★★★★★</p>
         </div>
       </div>
+<<<<<<< Updated upstream:templates/index.html
+=======
+
+>>>>>>> Stashed changes:accounts/templates/index.html
     </div>
   </div>
 </div>
@@ -640,8 +955,15 @@ ACCESSIBILITY WIDGET
   </div>
 </div>
 
+<<<<<<< Updated upstream:templates/index.html
 </main>
 {% endblock %}
 {% block extra_js %}
 <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
+=======
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
+>>>>>>> Stashed changes:accounts/templates/index.html
