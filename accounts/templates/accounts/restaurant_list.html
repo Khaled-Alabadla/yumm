@@ -1,0 +1,512 @@
+{% extends 'base/base.html' %}
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Welcome header -->
+    <div class="flex items-start justify-between mb-6">
+        <div>
+            {% if user.is_authenticated %}
+            <h1 class="text-2xl font-bold text-gray-900">Welcome back, {{ user.username }}</h1>
+            <p class="text-gray-500 text-sm mt-1">What are you craving today?</p>
+            {% else %}
+            <h1 class="text-2xl font-bold text-gray-900">Discover Restaurants</h1>
+            <p class="text-gray-500 text-sm mt-1">Search restaurants, cuisines, or cities...</p>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'create_restaurant' %}"
+           class="flex items-center gap-2 bg-primary text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-primary-dark transition-colors shrink-0">
+            <i class="fas fa-plus text-xs"></i>
+            Add Restaurant
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Search bar -->
+    <div class="flex gap-3 mb-5">
+        <form method="GET" action="{% url 'restaurants_list' %}" class="flex-1 flex gap-3">
+            <div class="flex-1 relative">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" name="q" value="{{ search_query }}"
+                    placeholder="Search restaurants, cuisines, or cities..."
+                    class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10">
+            </div>
+            <button type="submit" class="btn-primary px-6">
+                <i class="fas fa-filter mr-1.5"></i> Filter
+            </button>
+        </form>
+    </div>
+
+    <!-- City filters -->
+    <div class="flex flex-wrap gap-2 mb-3">
+        <a href="{% url 'restaurants_list' %}{% if search_query %}?q={{ search_query }}{% endif %}"
+           class="text-xs px-4 py-1.5 rounded-full border transition-colors
+           {% if not city_filter %}bg-primary text-white border-primary{% else %}bg-white text-gray-600 border-gray-200 hover:border-primary{% endif %}">
+            All
+        </a>
+        {% for city in cities %}
+        <a href="{% url 'restaurants_list' %}?city={{ city.name }}{% if search_query %}&q={{ search_query }}{% endif %}"
+           class="text-xs px-4 py-1.5 rounded-full border transition-colors
+           {% if city_filter == city.name %}bg-primary text-white border-primary{% else %}bg-white text-gray-600 border-gray-200 hover:border-primary{% endif %}">
+            {{ city.name }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Category filters -->
+    <div class="flex flex-wrap gap-2 mb-8">
+        <a href="{% url 'restaurants_list' %}{% if city_filter %}?city={{ city_filter }}{% endif %}"
+           class="text-xs px-4 py-1.5 rounded-full border transition-colors
+           {% if not category_filter %}bg-primary text-white border-primary{% else %}bg-white text-gray-600 border-gray-200 hover:border-primary{% endif %}">
+            All
+        </a>
+        {% for cat in categories %}
+        <a href="{% url 'restaurants_list' %}?category={{ cat.name }}{% if city_filter %}&city={{ city_filter }}{% endif %}"
+           class="text-xs px-4 py-1.5 rounded-full border transition-colors
+           {% if category_filter == cat.name %}bg-primary text-white border-primary{% else %}bg-white text-gray-600 border-gray-200 hover:border-primary{% endif %}">
+            {{ cat.name }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="relative h-56 rounded-3xl bg-primary-light overflow-hidden mb-8">
+        <div class="absolute inset-0 flex items-center justify-center text-center">
+            <div>
+                <i class="fas fa-map-marker-alt text-primary/70 text-2xl mb-1"></i>
+                <p class="text-gray-700 font-semibold text-sm">Interactive Restaurant Map</p>
+                <p class="text-gray-400 text-xs">Showing {{ restaurant_count|default:"6" }} restaurants</p>
+            </div>
+        </div>
+        <!-- Decorative pins -->
+        <span class="absolute top-6 left-10 w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center shadow-md"><i class="fas fa-utensils text-xs"></i></span>
+        <span class="absolute top-20 left-1/3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md"><i class="fas fa-utensils text-xs"></i></span>
+        <span class="absolute top-32 right-1/3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md"><i class="fas fa-utensils text-xs"></i></span>
+        <span class="absolute top-10 right-12 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shadow-md"><i class="fas fa-utensils text-xs"></i></span>
+        <button class="absolute top-4 left-4 bg-white text-gray-900 font-bold px-5 py-2 rounded-full shadow-card text-sm">Crop</button>
+    </div>
+
+    <!-- Restaurant Grid -->
+    <div class="mb-3 flex items-center justify-between">
+        <h2 class="text-lg font-bold text-gray-900">Restaurants <span class="text-gray-400 font-normal text-base">(6)</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+
+        <!-- Card template repeated 6x -->
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Al-Kanaan" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-green-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Al-Kanaan</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Traditional Palestinian</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.8</span>
+                            <span class="text-xs text-gray-400">(234)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Ramallah
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Mansaf</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Musakhan</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Family</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-utensils mr-1"></i> Menu</span>
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Gaza Grill House" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-green-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Gaza Grill House</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Grills & BBQ</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-empty"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.6</span>
+                            <span class="text-xs text-gray-400">(189)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Gaza
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Grills</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">BBQ</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Seafood</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-utensils mr-1"></i> Menu</span>
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&q=80" alt="Jerusalem Garden Cafe" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-gray-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Closed</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Jerusalem Garden Cafe</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Cafe & Breakfast</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.9</span>
+                            <span class="text-xs text-gray-400">(412)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Jerusalem
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Cafe</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Breakfast</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Organic</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Nablus Sweets Palace" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-green-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Nablus Sweets Palace</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Sweets & Desserts</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-empty"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.7</span>
+                            <span class="text-xs text-gray-400">(567)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Nablus
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Kunafa</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Sweets</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Desserts</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Bethlehem Terrace" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-green-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Open</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Bethlehem Terrace</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Mediterranean</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-empty"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.5</span>
+                            <span class="text-xs text-gray-400">(143)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Bethlehem
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Mediterranean</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Seafood</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">View</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-utensils mr-1"></i> Menu</span>
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-0.5 transition-all duration-200">
+            <div class="relative h-48 bg-gray-200 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=600&q=80" alt="Jericho Palm" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3">
+                    <span class="bg-gray-500 text-white text-xs px-2.5 py-1 rounded-full font-medium">Closed</span>
+                </div>
+                <button class="wishlist-btn absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform">
+                    <i class="fas fa-heart text-gray-300 text-sm"></i>
+                </button>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                    <h3 class="text-white font-bold text-lg">Jericho Palm</h3>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">Traditional</p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="flex">
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-filled"></i>
+                                <i class="fas fa-star text-xs star-empty"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-gray-800">4.4</span>
+                            <span class="text-xs text-gray-400">(98)</span>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex items-center gap-1 text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                            Jericho
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Traditional</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Outdoor</span>
+                    <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-600">Family</span>
+                </div>
+                <div class="flex items-center gap-3 mb-4 text-xs text-gray-400">
+                    <span><i class="fas fa-utensils mr-1"></i> Menu</span>
+                    <span><i class="fas fa-calendar mr-1"></i> Reserve</span>
+                    <span><i class="fas fa-motorcycle mr-1"></i> Delivery</span>
+                </div>
+                <a href="#" class="block w-full text-center bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">
+                    View Restaurant
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Top Rated Section -->
+    <div class="mt-4">
+        <h2 class="text-lg font-bold text-gray-900 mb-5">Top Rated</h2>
+        <div class="bg-white rounded-2xl overflow-hidden card-shadow divide-y divide-gray-50">
+
+            <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                <span class="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 shrink-0">1</span>
+                <div class="w-11 h-11 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=100&q=80" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-900 text-sm truncate">Jerusalem Garden Cafe</p>
+                    <p class="text-xs text-gray-500 truncate">Jerusalem · Cafe & Breakfast</p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                    <i class="fas fa-star star-filled text-xs"></i>
+                    <span class="text-sm font-bold text-gray-800">4.9</span>
+                </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                <span class="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 shrink-0">2</span>
+                <div class="w-11 h-11 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=100&q=80" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-900 text-sm truncate">Al-Kanaan</p>
+                    <p class="text-xs text-gray-500 truncate">Ramallah · Traditional Palestinian</p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                    <i class="fas fa-star star-filled text-xs"></i>
+                    <span class="text-sm font-bold text-gray-800">4.8</span>
+                </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                <span class="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 shrink-0">3</span>
+                <div class="w-11 h-11 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=100&q=80" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-900 text-sm truncate">Nablus Sweets Palace</p>
+                    <p class="text-xs text-gray-500 truncate">Nablus · Sweets & Desserts</p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                    <i class="fas fa-star star-filled text-xs"></i>
+                    <span class="text-sm font-bold text-gray-800">4.7</span>
+                </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors">
+                <span class="w-7 h-7 bg-gray-100 rounded-full flex items-center justify-center text-xs font-bold text-gray-500 shrink-0">4</span>
+                <div class="w-11 h-11 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=100&q=80" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-900 text-sm truncate">Gaza Grill House</p>
+                    <p class="text-xs text-gray-500 truncate">Gaza · Grills & BBQ</p>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                    <i class="fas fa-star star-filled text-xs"></i>
+                    <span class="text-sm font-bold text-gray-800">4.6</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+{% block extra_js %}
+<script>
+    // Wishlist toggle
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const id = btn.dataset.id;
+            const icon = btn.querySelector('i');
+
+            try {
+                const res = await fetch(/restaurants/${id}/wishlist/, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await res.json();
+                if (data.status === 'added') {
+                    icon.classList.replace('text-gray-300', 'text-red-500');
+                } else {
+                    icon.classList.replace('text-red-500', 'text-gray-300');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    });
+</script>
+{% endblock %} {% endcomment %}

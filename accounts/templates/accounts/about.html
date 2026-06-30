@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}about — Yumm{% endblock %}
+
+{% block content %}
+
+{# ── Hero ── #}
+<section class="bg-gradient-to-br from-red-950 via-orange-800 to-orange-500 py-20 px-6 text-center">
+  <p class="text-xs font-bold tracking-widest text-orange-200 uppercase mb-3" data-i18n="about-badge">Our Story</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight" data-i18n="about-title">
+    Built for Palestine's Food Lovers
+  </h1>
+  <p class="text-orange-200 text-lg max-w-xl mx-auto leading-relaxed" data-i18n="about-subtitle">
+    We believe every Palestinian deserves to discover exceptional dining —
+    from Ramallah's rooftops to Gaza's seaside. Yumm was born from that belief.
+  </p>
+</section>
+
+{# ── Stats ── #}
+<section class="py-14 px-6">
+  <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <div class="bg-dark-700 border border-dark-600 rounded-xl p-6 text-center">
+      <p class="text-3xl font-extrabold text-orange">1000+</p>
+      <p class="text-gray-400 text-sm mt-1" data-i18n="stat-lovers">Food Lovers</p>
+    </div>
+    <div class="bg-dark-700 border border-dark-600 rounded-xl p-6 text-center">
+      <p class="text-3xl font-extrabold text-orange">100+</p>
+      <p class="text-gray-400 text-sm mt-1" data-i18n="stat-restaurants">Restaurants</p>
+    </div>
+    <div class="bg-dark-700 border border-dark-600 rounded-xl p-6 text-center">
+      <p class="text-3xl font-extrabold text-orange">20+</p>
+      <p class="text-gray-400 text-sm mt-1" data-i18n="stat-cities">Cities</p>
+    </div>
+    <div class="bg-dark-700 border border-dark-600 rounded-xl p-6 text-center">
+      <p class="text-3xl font-extrabold text-orange">4.8★</p>
+      <p class="text-gray-400 text-sm mt-1" data-i18n="stat-rating">Avg Rating</p>
+    </div>
+
+  </div>
+</section>
+
+{# ── Values ── #}
+<section class="py-4 pb-16 px-6">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold mb-8" data-i18n="about-values">Our Values</h2>
+    <div class="flex flex-col gap-6">
+
+      <div class="flex gap-4 items-start">
+        <div class="w-11 h-11 min-w-11 rounded-xl bg-orange flex items-center justify-center text-xl">🍽️</div>
+        <div>
+          <p class="font-semibold mb-1" data-i18n="val1-title">Local First</p>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="val1-desc">We champion Palestinian restaurants, chefs, and food culture above all else.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 items-start">
+        <div class="w-11 h-11 min-w-11 rounded-xl bg-orange flex items-center justify-center text-xl">🤝</div>
+        <div>
+          <p class="font-semibold mb-1" data-i18n="val2-title">Community Driven</p>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="val2-desc">Real reviews from real diners. No paid placements, no fake stars.</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4 items-start">
+        <div class="w-11 h-11 min-w-11 rounded-xl bg-orange flex items-center justify-center text-xl">✨</div>
+        <div>
+          <p class="font-semibold mb-1" data-i18n="val3-title">Always Improving</p>
+          <p class="text-gray-400 text-sm leading-relaxed" data-i18n="val3-desc">AI-powered assisstant that get smarter with every search.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

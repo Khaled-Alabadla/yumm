@@ -11,7 +11,7 @@ Mounted at /accounts/ from the root URLconf.
 
 from django.urls import path
 from . import views
-from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView,PendingView
+from .views import DemoLoginView, LoginView, LogoutView, ProfileView, RegisterView, PendingView
 
 app_name = "accounts"
 
@@ -20,11 +20,14 @@ urlpatterns = [
     path("login/",      LoginView.as_view(),      name="login"),
     path("logout/",     LogoutView.as_view(),     name="logout"),
     path("profile/",    ProfileView.as_view(),    name="profile"),
-    path("demo-login/", DemoLoginView.as_view(),  name="demo-login"),    
+    path("demo-login/", DemoLoginView.as_view(),  name="demo-login"),
     path('contact/', views.contact, name='contact'),
     path('privacy/', views.privacy, name='privacy'),
     path('terms/',   views.terms,   name='terms'),
-    path('about/',   views.about,   name='about'),   
-    path('', views.index, name='index'), 
+    path('about/',   views.about,   name='about'),
+    path('', views.index, name='index'),
     path("pending/", PendingView.as_view(), name="pending"),
+    path("restaurants/", views.restaurants_list, name="restaurants_list"),
+    path("restaurants/<str:city>/", views.restaurants_list, name="restaurants_by_city"),
+    path("restaurants/<str:city>/<str:tag>/", views.restaurants_by_city_and_tag, name="restaurants_by_city_and_tag"),
 ]

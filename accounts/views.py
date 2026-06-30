@@ -14,27 +14,27 @@ Template contract (context keys available in every view's template):
     form          — the bound/unbound form instance
     page_title    — translated string for <title> / <h1>
 """
-
-from django.conf import settings
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.contrib.auth import login
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import (
-    LoginView as BaseLoginView,
-    LogoutView as BaseLogoutView,
-)
-from django.http import HttpResponseForbidden
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-from django.views import View
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, UpdateView, TemplateView
-
-from .forms import UserLoginForm, UserProfileForm, UserRegistrationForm
-from .models import CustomUser
-from django.shortcuts import render
-from django.contrib import messages
-from .forms import ContactForm
+from django.views import View
+from django.http import JsonResponse, HttpResponseForbidden
+from django.urls import reverse_lazy
+from django.db.models import Avg
+from django.conf import settings
+import json
+from .models import (
+    CustomUser,
+    Restaurant,
+    Review,
+    Wishlist,
+    City,
+    CuisineTag,
+    MenuCategory,
+    MenuItem
+)
 # Shared by RegisterView and LoginView — keeps the toggle choices in one place.
 _ROLE_CHOICES = [
     (CustomUser.Role.USER, _("Regular User")),
@@ -62,7 +62,7 @@ class RegisterView(CreateView):
     def get_success_url(self):
         if self.object.role == CustomUser.Role.OWNER:
             return reverse_lazy("accounts:pending")
-        return reverse_lazy("accounts:home")
+        return reverse_lazy("accounts:index")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -237,6 +237,7 @@ class DemoLoginView(View):
         return redirect(reverse_lazy("accounts:profile"))
 
     @staticmethod
+    
     def _get_or_create_demo_user(role: str, credentials: dict) -> CustomUser:
         """Return the demo user for the given role, creating it if absent."""
         user, created = CustomUser.objects.get_or_create(
@@ -259,18 +260,16 @@ def about(request):
 
 
 def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # TODO: send_mail(...) أو احفظ في DB
-            messages.success(request, "Message sent! We'll get back to you within 24 hours.")
-            return redirect('contact')
-        else:
-            messages.error(request, 'Please fix the errors below.')
-    else:
-        form = ContactForm()
+    subject_choices = [
+        'Restaurant Partnership',
+        'Technical Support', 
+        'Media & Press',
+        'General Inquiry'
+    ]
+    return render(request, 'contact.html', {
+        'subject_choices': subject_choices
+    })
 
-    return render(request, 'contact.html', {'form': form})
 
 
 def privacy(request):
@@ -282,3 +281,224 @@ def terms(request):
 
 class PendingView(TemplateView):
     template_name = "accounts/pending.html"
+
+
+def home(request):
+    """Landing page - redirect to restaurants if logged in"""
+    if request.user.is_authenticated:
+        return redirect('restaurants_list')
+    return render(request, 'restaurants/home.html')
+
+
+
+def restaurant_list(request):
+    restaurants = Restaurant.objects.annotate(
+        avg_rating=Avg('reviews__rating')
+    )
+
+    return render(request, 'restaurants/list.html', {
+        'restaurants': restaurants
+    })
+
+def restaurant_detail(request, pk):
+    """Restaurant detail page with menu and reviews"""
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    reviews = restaurant.reviews.select_related('user').all()
+    menu_categories = restaurant.menu_categories.prefetch_related('items').all()
+
+    user_review = None
+    in_wishlist = False
+    if request.user.is_authenticated:
+        user_review = reviews.filter(user=request.user).first()
+        in_wishlist = Wishlist.objects.filter(user=request.user, restaurant=restaurant).exists()
+
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        action = request.POST.get('action')
+
+        if action == 'submit_review':
+            rating = int(request.POST.get('rating', 0))
+            comment = request.POST.get('comment', '').strip()
+            if rating and comment:
+                Review.objects.update_or_create(
+                    restaurant=restaurant,
+                    user=request.user,
+                    defaults={'rating': rating, 'comment': comment}
+                )
+                messages.success(request, 'Review submitted successfully!')
+                return redirect('restaurant_detail', pk=pk)
+
+    context = {
+        'restaurant': restaurant,
+        'reviews': reviews,
+        'menu_categories': menu_categories,
+        'user_review': user_review,
+        'in_wishlist': in_wishlist,
+        'avg_rating': restaurant.average_rating(),
+        'rating_dist': restaurant.rating_distribution(),
+        'review_count': restaurant.review_count(),
+    }
+    return render(request, 'restaurants/restaurant_detail.html', context)
+
+
+@login_required
+@require_POST
+def toggle_wishlist(request, pk):
+    """Toggle wishlist status for a restaurant"""
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    wishlist_item, created = Wishlist.objects.get_or_create(
+        user=request.user, restaurant=restaurant
+    )
+    if not created:
+        wishlist_item.delete()
+        return JsonResponse({'status': 'removed', 'message': 'Removed from wishlist'})
+    return JsonResponse({'status': 'added', 'message': 'Added to wishlist'})
+
+
+@login_required
+def my_wishlist(request):
+    """User wishlist page"""
+    wishlist = Wishlist.objects.filter(user=request.user).select_related('restaurant')
+    return render(request, 'restaurants/wishlist.html', {'wishlist': wishlist})
+
+
+@login_required
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('restaurants_list')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            next_url = request.GET.get('next', 'restaurants_list')
+            return redirect(next_url)
+        else:
+            messages.error(request, 'Invalid username or password.')
+
+    return render(request, 'restaurants/login.html')
+
+
+def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('restaurants_list')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+
+        if password != password2:
+            messages.error(request, 'Passwords do not match.')
+        elif User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken.')
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already registered.')
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            login(request, user)
+            messages.success(request, f'Welcome to Yumm, {username}!')
+            return redirect('restaurants_list')
+
+    return render(request, 'restaurants/register.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+
+def api_restaurants(request):
+    """API endpoint for restaurant data (for map/JS)"""
+    restaurants = Restaurant.objects.select_related('city').all()
+    data = []
+    for r in restaurants:
+        data.append({
+            'id': r.pk,
+            'name': r.name,
+            'city': r.city.name if r.city else '',
+            'category': r.get_category_display(),
+            'rating': r.average_rating(),
+            'review_count': r.review_count(),
+            'is_open': r.is_open,
+            'latitude': r.latitude,
+            'longitude': r.longitude,
+            'address': r.address,
+        })
+    return JsonResponse({'restaurants': data})
+
+
+
+#  MENU CATEGORY  CRUD (AJAX)
+# ──────────────────────────────────────────
+@login_required
+@require_POST
+def add_menu_category(request, restaurant_pk):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_pk)
+    data = json.loads(request.body)
+    name = data.get('name', '').strip()
+    if not name:
+        return JsonResponse({'error': 'Name required'}, status=400)
+    order = restaurant.menu_categories.count() + 1
+    cat = MenuCategory.objects.create(restaurant=restaurant, name=name, order=order)
+    return JsonResponse({'id': cat.pk, 'name': cat.name})
+
+
+@login_required
+@require_POST
+def delete_menu_category(request, pk):
+    cat = get_object_or_404(MenuCategory, pk=pk)
+    cat.delete()
+    return JsonResponse({'status': 'deleted'})
+
+
+# ──────────────────────────────────────────
+#  MENU ITEM  CRUD (AJAX)
+# ──────────────────────────────────────────
+@login_required
+@require_POST
+def add_menu_item(request, category_pk):
+    cat  = get_object_or_404(MenuCategory, pk=category_pk)
+    data = json.loads(request.body)
+    name  = data.get('name', '').strip()
+    price = data.get('price', 0)
+    if not name:
+        return JsonResponse({'error': 'Name required'}, status=400)
+    item = MenuItem.objects.create(
+        category=cat,
+        name=name,
+        description=data.get('description', ''),
+        price=float(price),
+        image_url=data.get('image_url', ''),
+    )
+    return JsonResponse({'id': item.pk, 'name': item.name, 'price': str(item.price)})
+
+
+@login_required
+@require_POST
+def delete_menu_item(request, pk):
+    item = get_object_or_404(MenuItem, pk=pk)
+    item.delete()
+    return JsonResponse({'status': 'deleted'})
+
+
+def restaurants_by_city(request, city):
+    restaurants = Restaurant.objects.filter(city=city)
+    return render(request, "accounts/restaurants_list.html", {"restaurants": restaurants})
+
+
+def restaurants_by_city_and_tag(request, city, tag):
+    restaurants = Restaurant.objects.filter(
+        city__name__iexact=city, 
+        tags__name__icontains=tag
+    ).distinct()
+    return render(request, 'restaurants/restaurants_list.html', {
+        'restaurants': restaurants,
+        'city_filter': city,
+        'category_filter': tag,
+    })
+    
+    

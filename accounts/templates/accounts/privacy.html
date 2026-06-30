@@ -1,27 +1,8 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Yumm{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{% static 'js/tailwind.config.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    {% block extra_head %}{% endblock %}
-  </head>
+{% extends "base.html" %}
+{% load static %} 
+{% block title %} privacy — Yumm {%endblock %} 
+{% block content %}
+
 {# ── Header ── #}
 <div class="bg-dark-800 border-b border-dark-600 px-6 py-12">
   <div class="max-w-4xl mx-auto">
@@ -123,11 +104,9 @@
 
   </main>
 </div>
-
-
-    {% block content %}{% endblock %}
-
-    <script src="{% static 'js/main.js' %}"></script>
-    {% block extra_js %}{% endblock %}
-  </body>
+</body>
 </html>
+
+{% block extra_js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
