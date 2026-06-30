@@ -12,7 +12,6 @@ HERO
 <section class="hero-bg flex items-center" aria-labelledby="hero-h1">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full py-28 lg:py-36">
 
-    <!-- Badge -->
     <div class="inline-flex items-center gap-2 anim-shimmer text-white text-[11px] font-bold px-4 py-2 rounded-full mb-7 select-none tracking-wide uppercase">
       <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -20,7 +19,6 @@ HERO
       <span>{% trans "Palestine's #1 Food Platform" %}</span>
     </div>
 
-    <!-- Headline -->
     <h1 id="hero-h1" class="font-display text-white font-black leading-[1.06] text-5xl sm:text-6xl lg:text-[72px] max-w-[580px] mb-6">
       <span>{% trans "Discover the Best" %}</span>
       <span class="text-[#B5451B]">{% trans "Restaurants" %}</span><br/>
@@ -29,7 +27,6 @@ HERO
 
     <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light">{% trans "Explore menus, reviews, ratings, and our AI Assistant — all in one place." %}</p>
 
-    <!-- Search -->
     <div class="flex max-w-[520px] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 gap-2 mb-8" role="search">
       <label for="hero-q" class="sr-only">{% trans "Search restaurants, cuisines, cities" %}</label>
       <div class="relative flex-1">
@@ -40,7 +37,6 @@ HERO
       <button class="px-5 py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors shrink-0">{% trans "Search" %}</button>
     </div>
 
-    <!-- CTAs -->
     <div class="flex flex-wrap gap-3">
       <a href="#restaurants"
         class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white font-semibold rounded-2xl transition-colors text-sm sm:text-base shadow-[0_8px_28px_rgba(181,69,27,.45)]">
@@ -63,7 +59,6 @@ STATS BAR
 <section class="bg-white dark:bg-[#1E1E1E] border-b border-[#E8E8E8] dark:border-[#2A2A2A]" aria-label="{% trans 'Platform statistics' %}">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#E8E8E8] dark:divide-[#2A2A2A]">
-
       <div class="flex flex-col items-center py-9 px-4 text-center reveal">
         <i data-lucide="utensils" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
@@ -71,7 +66,6 @@ STATS BAR
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Restaurants" %}</p>
       </div>
-
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.08s">
         <i data-lucide="message-square" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-[#B5451B]">
@@ -79,7 +73,6 @@ STATS BAR
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Reviews" %}</p>
       </div>
-
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.16s">
         <i data-lucide="users" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
@@ -87,7 +80,6 @@ STATS BAR
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Happy Users" %}</p>
       </div>
-
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.24s">
         <i data-lucide="award" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
@@ -95,7 +87,6 @@ STATS BAR
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Top Rated" %}</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -105,13 +96,11 @@ FEATURES
 ════════════════════════════════════════ -->
 <section class="py-24 bg-[#F7F7F7] dark:bg-[#141414]" aria-labelledby="feat-h2">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
     <div class="text-center mb-14 reveal">
       <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3">{% trans "Features" %}</p>
       <h2 id="feat-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">{% trans "Everything You Need" %}</h2>
       <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md mx-auto leading-relaxed">{% trans "A complete platform for discovering, reviewing, and reserving the best dining in Palestine." %}</p>
     </div>
-
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
       <article class="bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 transition-colors duration-300 reveal">
@@ -145,7 +134,6 @@ FEATURES
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Wishlist" %}</h3>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{% trans "Save your favourite restaurants for future visits." %}</p>
       </article>
-
     </div>
   </div>
 </section>
@@ -155,14 +143,12 @@ HOW IT WORKS
 ════════════════════════════════════════ -->
 <section class="py-24 bg-white dark:bg-[#1E1E1E]" aria-labelledby="how-h2">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
     <div class="text-center mb-16 reveal">
       <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3">{% trans "Process" %}</p>
       <h2 id="how-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">{% trans "How It Works" %}</h2>
       <p class="text-gray-500 dark:text-gray-400 text-lg">{% trans "Get started and find your next favourite restaurant in minutes." %}</p>
     </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
       <div class="text-center px-2 reveal">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">01</div>
         <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Create Account" %}</h3>
@@ -178,14 +164,12 @@ HOW IT WORKS
         <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Ask AI Assistant" %}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Get hyper-personalised suggestions." %}</p>
       </div>
-    </div>
-      <div class="text-center px-2 reveal" style="transition-delay:.08s">
+      <div class="text-center px-2 reveal" style="transition-delay:.24s">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">04</div>
         <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Leave a Review" %}</h3>
         <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Share your experience with the community." %}</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -194,7 +178,6 @@ TOP RESTAURANTS
 ════════════════════════════════════════ -->
 <section id="restaurants" class="py-24 bg-[#F7F7F7] dark:bg-[#141414]" aria-labelledby="rest-h2">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
-
     <div class="flex items-end justify-between mb-10 reveal">
       <div>
         <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-2">{% trans "Handpicked" %}</p>
@@ -205,14 +188,12 @@ TOP RESTAURANTS
         <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
       </a>
     </div>
-
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
       <!-- Card: Al-Kanaan -->
       <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal">
         <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Al-Kanaan restaurant">
           <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
-            alt="Al-Kanaan restaurant — lush tropical interior" loading="lazy"
+            alt="Al-Kanaan restaurant" loading="lazy"
             class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
           <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
           <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
@@ -224,7 +205,7 @@ TOP RESTAURANTS
           </div>
         </a>
         <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Traditional Palestinian</p>
+          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-traditional">Traditional Palestinian</p>
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-0.5" aria-label="4.8 out of 5 stars">
               <span class="text-amber-400">★★★★★</span>
@@ -238,17 +219,16 @@ TOP RESTAURANTS
           <div class="flex flex-wrap gap-1.5 mb-4">
             <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Mansaf</span>
             <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Musakhan</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Family</span>
+            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full" data-i18n="tag-family">Family</span>
           </div>
           <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
         </div>
       </article>
-
       <!-- Card: Gaza Grill House -->
       <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.1s">
         <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Gaza Grill House restaurant">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80"
-            alt="Gaza Grill House elegant interior" loading="lazy"
+            alt="Gaza Grill House" loading="lazy"
             class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
           <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
           <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
@@ -260,7 +240,7 @@ TOP RESTAURANTS
           </div>
         </a>
         <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Grills &amp; BBQ</p>
+          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-grill">Grills &amp; BBQ</p>
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-0.5" aria-label="4.6 out of 5 stars">
               <span class="text-amber-400">★★★★½</span>
@@ -279,12 +259,11 @@ TOP RESTAURANTS
           <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
         </div>
       </article>
-
       <!-- Card: Jerusalem Garden Cafe -->
       <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.2s">
         <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Jerusalem Garden Cafe">
           <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=80"
-            alt="Jerusalem Garden Cafe cosy atmosphere" loading="lazy"
+            alt="Jerusalem Garden Cafe" loading="lazy"
             class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
            <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
           <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
@@ -296,7 +275,7 @@ TOP RESTAURANTS
           </div>
         </a>
         <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">Cafe &amp; Breakfast</p>
+          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-cafe">Cafe &amp; Breakfast</p>
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-0.5" aria-label="4.9 out of 5 stars">
               <span class="text-amber-400">★★★★★</span>
@@ -315,9 +294,7 @@ TOP RESTAURANTS
           <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
         </div>
       </article>
-
     </div>
-
     <div class="text-center mt-8 sm:hidden">
       <a href="#" class="inline-flex items-center gap-1 text-[#B5451B] font-semibold text-sm">
         <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -338,12 +315,6 @@ CTA
      >{% trans "Create Account" %}</a>
   </div>
 </section>
-
-
-
-<!-- ════════════════════════════════════════
-FOOTER
-════════════════════════════════════════ -->
 
 <!-- ════════════════════════════════════════
      FEATURE MODALS
@@ -381,7 +352,6 @@ FOOTER
   </div>
 </div>
 
-<!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <!-- ── 2. INTERACTIVE MAP MODAL ── -->
@@ -395,8 +365,6 @@ FOOTER
       <button class="modal-close-btn" onclick="closeModal('map')" aria-label="Close">✕</button>
     </div>
     <div class="modal-body p-0 flex flex-col" style="height:520px">
-
-      <!-- Search bar -->
       <div class="flex gap-2 p-3 border-b border-gray-100 shrink-0">
         <div class="relative flex-1">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -408,25 +376,15 @@ FOOTER
           Search
         </button>
       </div>
-
-      <!-- Map container -->
       <div id="leaflet-map" class="flex-1" style="min-height:380px;z-index:0"></div>
-
-      <!-- Restaurant chips -->
       <div class="p-3 border-t border-gray-100 flex flex-wrap gap-2 shrink-0">
         <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 Featured Restaurants — click to fly there</span>
         <button onclick="flyToRestaurant(31.9038, 35.2034, 'Al-Kanaan 🍽️', 'Traditional Palestinian · Ramallah')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
-          Al-Kanaan · Ramallah
-        </button>
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Al-Kanaan · Ramallah</button>
         <button onclick="flyToRestaurant(31.5017, 34.4667, 'Gaza Grill House 🔥', 'Grills & BBQ · Gaza')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
-          Gaza Grill House · Gaza
-        </button>
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Gaza Grill House · Gaza</button>
         <button onclick="flyToRestaurant(31.7683, 35.2137, 'Jerusalem Garden Cafe ☕', 'Cafe & Breakfast · Jerusalem')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
-          Jerusalem Garden Cafe · Jerusalem
-        </button>
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Jerusalem Garden Cafe · Jerusalem</button>
       </div>
     </div>
   </div>
@@ -443,19 +401,10 @@ FOOTER
       <button class="modal-close-btn" onclick="closeModal('reviews')" aria-label="Close">✕</button>
     </div>
     <div class="modal-body flex flex-col gap-4">
-
-      <!-- Restaurant 1 -->
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
-          <div>
-            <p class="font-bold text-gray-900">Al-Kanaan</p>
-            <p class="text-xs text-gray-400">Traditional Palestinian · Ramallah</p>
-          </div>
+          <div><p class="font-bold text-gray-900">Al-Kanaan</p><p class="text-xs text-gray-400">Traditional Palestinian · Ramallah</p></div>
           <span class="text-amber-400 font-bold">★ 4.8</span>
-        </div>
-        <div class="flex gap-1.5 mb-3">
-          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Mansaf</span>
-          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Family</span>
         </div>
         <div class="space-y-2">
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
@@ -468,39 +417,21 @@ FOOTER
           </div>
         </div>
       </div>
-
-      <!-- Restaurant 2 -->
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
-          <div>
-            <p class="font-bold text-gray-900">Jerusalem Garden Cafe</p>
-            <p class="text-xs text-gray-400">Cafe & Breakfast · Jerusalem</p>
-          </div>
+          <div><p class="font-bold text-gray-900">Jerusalem Garden Cafe</p><p class="text-xs text-gray-400">Cafe & Breakfast · Jerusalem</p></div>
           <span class="text-amber-400 font-bold">★ 4.9</span>
-        </div>
-        <div class="flex gap-1.5 mb-3">
-          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Organic</span>
-          <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Cafe</span>
         </div>
         <div class="space-y-2">
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
             <p class="text-sm text-gray-700 mb-1">"أجمل فطور في القدس، الأجواء رائعة وهادئة."</p>
             <p class="text-xs text-gray-400">— Lina H. · ★★★★★</p>
           </div>
-          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"Best coffee in Jerusalem. Beautiful garden setting!"</p>
-            <p class="text-xs text-gray-400">— Omar T. · ★★★★★</p>
-          </div>
         </div>
       </div>
-
-      <!-- Restaurant 3 -->
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
-          <div>
-            <p class="font-bold text-gray-900">Gaza Grill House</p>
-            <p class="text-xs text-gray-400">Grills & BBQ · Gaza</p>
-          </div>
+          <div><p class="font-bold text-gray-900">Gaza Grill House</p><p class="text-xs text-gray-400">Grills & BBQ · Gaza</p></div>
           <span class="text-amber-400 font-bold">★ 4.6</span>
         </div>
         <div class="bg-gray-50 rounded-xl px-3 py-2.5">
@@ -508,7 +439,6 @@ FOOTER
           <p class="text-xs text-gray-400">— Khalid R. · ★★★★★</p>
         </div>
       </div>
-
     </div>
   </div>
 </div>
