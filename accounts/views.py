@@ -32,6 +32,7 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 
 from .forms import ContactForm, UserLoginForm, UserProfileForm, UserRegistrationForm
 from .models import CustomUser
+from .redirects import redirect_owner_home
 # Shared by RegisterView and LoginView — keeps the toggle choices in one place.
 _ROLE_CHOICES = [
     (CustomUser.Role.USER, _("Regular User")),
@@ -39,8 +40,26 @@ _ROLE_CHOICES = [
 ]
 
 
+from django.utils.translation import gettext
+
+
+def get_landing_i18n():
+    return {
+        "wishlistEmpty": gettext("No saved restaurants yet. Hit the ♥ on any card!"),
+        "remove": gettext("Remove"),
+        "traditionalPalestinian": gettext("Traditional Palestinian"),
+        "cafeBreakfast": gettext("Cafe & Breakfast"),
+        "grillsBbq": gettext("Grills & BBQ"),
+        "ramallah": gettext("Ramallah"),
+        "gaza": gettext("Gaza"),
+        "jerusalem": gettext("Jerusalem"),
+    }
+
+
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated and request.user.is_owner_role:
+        return redirect_owner_home(request.user)
+    return render(request, "index.html", {"landing_i18n": get_landing_i18n()})
 
 class RegisterView(CreateView):
     """
@@ -63,6 +82,8 @@ class RegisterView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            if request.user.is_owner_role:
+                return redirect_owner_home(request.user)
             return redirect(reverse_lazy("index"))
         return super().dispatch(request, *args, **kwargs)
 
@@ -111,6 +132,17 @@ class LoginView(BaseLoginView):
     form_class = UserLoginForm
     template_name = "accounts/login.html"
     redirect_authenticated_user = True
+
+    def get_success_url(self):
+        user = self.request.user
+        if user.is_authenticated and user.is_owner_role:
+            return reverse_lazy("restaurants:dashboard")
+
+        redirect_to = self.get_redirect_url()
+        if redirect_to:
+            return redirect_to
+
+        return super().get_success_url()
 
     def form_valid(self, form):
         messages.success(self.request, _("Login successful."))
@@ -258,6 +290,10 @@ class DemoLoginView(View):
             request,
             _("Logged in as demo %(role)s account.") % {"role": role},
         )
+        if role == CustomUser.Role.OWNER:
+            return redirect(reverse_lazy("restaurants:dashboard"))
+        if role == CustomUser.Role.ADMIN:
+            return redirect(reverse_lazy("admin:index"))
         return redirect(reverse_lazy("index"))
 
     @staticmethod

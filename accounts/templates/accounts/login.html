@@ -47,7 +47,7 @@
 
       <div
         class="flex rounded-xl p-1 mb-5 gap-1"
-        style="background: var(--input-bg); border: 1px solid var(--border)"
+        style="background: var(--secondary-bg); border: 1px solid var(--border)"
       >
         <button
           type="button"
@@ -88,17 +88,10 @@
           <input
             type="email"
             name="username"
-            placeholder="name@example.com"
+            placeholder="{% trans 'name@example.com' %}"
             autocomplete="email"
             value="{{ form.username.value|default:'' }}"
-            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
-            style="
-              background: var(--input-bg);
-              border: 1px solid {% if form.username.errors %}var(--danger){% else %}var(--border){% endif %};
-              color: var(--text-primary);
-            "
-            onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = '{% if form.username.errors %}var(--danger){% else %}var(--border){% endif %}'"
+            class="yumm-input w-full rounded-xl px-4 py-3 text-sm border border-solid{% if form.username.errors %} yumm-input--error{% endif %}"
           />
           {% include "accounts/includes/field_errors.html" with errors=form.username.errors %}
         </div>
@@ -114,14 +107,7 @@
               id="passInput"
               placeholder="••••••••"
               autocomplete="current-password"
-              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
-              style="
-                background: var(--input-bg);
-                border: 1px solid {% if form.password.errors %}var(--danger){% else %}var(--border){% endif %};
-                color: var(--text-primary);
-              "
-              onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = '{% if form.password.errors %}var(--danger){% else %}var(--border){% endif %}'"
+              class="yumm-input w-full rounded-xl px-4 py-3 pe-11 text-sm border border-solid{% if form.password.errors %} yumm-input--error{% endif %}"
             />
             <button
               type="button"

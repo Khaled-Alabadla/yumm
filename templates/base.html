@@ -10,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{% static 'js/tailwind.config.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=4" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link
       rel="stylesheet"
@@ -39,6 +39,55 @@
     </style>
     {% endif %}
     {% block extra_head %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}?v=4" />
+    <style id="yumm-critical">
+      .hero-bg {
+        background:
+          linear-gradient(135deg, rgba(0, 0, 0, 0.78) 0%, rgba(20, 6, 2, 0.88) 100%),
+          #1a0a06 center / cover no-repeat;
+        min-height: 92vh;
+      }
+      .cta-bg {
+        background:
+          linear-gradient(135deg, rgba(100, 18, 0, 0.93), rgba(20, 6, 2, 0.96)),
+          #2a0f08 center / cover;
+      }
+      .hero-search {
+        display: flex;
+        align-items: stretch;
+        max-width: 520px;
+        overflow: hidden;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .hero-search__field {
+        position: relative;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .hero-search__input,
+      .hero-search__input:focus {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 2.5rem;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        outline: none !important;
+        font-size: 0.875rem;
+      }
+      [dir="rtl"] .hero-search__input,
+      [dir="rtl"] .hero-search__input:focus {
+        padding: 0.875rem 2.5rem 0.875rem 1rem;
+      }
+      .hero-search__input::placeholder {
+        color: rgba(255, 255, 255, 0.58) !important;
+        opacity: 1 !important;
+      }
+    </style>
   </head>
   <body
     class="min-h-screen yumm-site {% if LANGUAGE_BIDI %}font-tajawal{% else %}font-inter{% endif %}"
@@ -381,7 +430,8 @@
       </div>
     </footer>
 
-    <script src="{% static 'js/main.js' %}"></script>
+    {% block pre_main_js %}{% endblock %}
+    <script src="{% static 'js/main.js' %}?v=3"></script>
     {% block extra_js %}{% endblock %}
   </body>
 </html>

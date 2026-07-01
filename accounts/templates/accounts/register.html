@@ -41,7 +41,7 @@
 
       <div
         class="flex rounded-xl p-1 mb-6 gap-1"
-        style="background: var(--input-bg); border: 1px solid var(--border)"
+        style="background: var(--secondary-bg); border: 1px solid var(--border)"
       >
         <button
           type="button"
@@ -212,24 +212,32 @@
 
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium" style="color: var(--text-secondary)">
-            {% trans "Restaurant Name" %}
+            {% trans "Restaurant Name (English)" %}
           </label>
           <input
             type="text"
-            name="full_name"
-            placeholder="{% trans 'Restaurant name' %}"
+            name="restaurant_name_en"
+            placeholder="Al-Kanaan"
             autocomplete="organization"
-            value="{{ form.full_name.value|default:'' }}"
-            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
-            style="
-              background: var(--input-bg);
-              border: 1px solid {% if form.full_name.errors %}var(--danger){% else %}var(--border){% endif %};
-              color: var(--text-primary);
-            "
-            onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = '{% if form.full_name.errors %}var(--danger){% else %}var(--border){% endif %}'"
+            value="{{ form.restaurant_name_en.value|default:'' }}"
+            class="yumm-input"
           />
-          {% include "accounts/includes/field_errors.html" with errors=form.full_name.errors %}
+          {% include "accounts/includes/field_errors.html" with errors=form.restaurant_name_en.errors %}
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Restaurant Name (Arabic)" %}
+          </label>
+          <input
+            type="text"
+            name="restaurant_name_ar"
+            placeholder="الكنعان"
+            dir="rtl"
+            value="{{ form.restaurant_name_ar.value|default:'' }}"
+            class="yumm-input"
+          />
+          {% include "accounts/includes/field_errors.html" with errors=form.restaurant_name_ar.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">

@@ -20,7 +20,7 @@ _REGISTER = {
     "inactive": "",
 }
 
-_NAV_SECTIONS = ("home", "restaurants", "ai", "login", "register", "profile")
+_NAV_SECTIONS = ("home", "restaurants", "ai", "login", "register", "profile", "dashboard")
 
 
 def _is_active(request, section: str) -> bool:
@@ -41,6 +41,8 @@ def _is_active(request, section: str) -> bool:
         return namespace == "accounts" and name == "register"
     if section == "profile":
         return namespace == "accounts" and name == "profile"
+    if section == "dashboard":
+        return namespace == "restaurants" and name and name.startswith("dashboard")
     return False
 
 

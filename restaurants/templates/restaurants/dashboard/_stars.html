@@ -1,0 +1,9 @@
+{% load i18n %}
+<span class="rd-stars" aria-label="{{ rating }} {% trans 'out of 5 stars' %}">
+  {% for i in full_stars %}
+  <i class="fa-solid fa-star rd-star rd-star--full"></i>
+  {% endfor %}
+  {% for i in empty_stars %}
+  <i class="fa-regular fa-star rd-star rd-star--empty"></i>
+  {% endfor %}
+</span>

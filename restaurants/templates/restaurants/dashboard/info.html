@@ -1,0 +1,74 @@
+{% extends "restaurants/dashboard/base.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+<section class="rd-card">
+  <h2 class="rd-card-title">{% trans "Restaurant Information" %}</h2>
+
+  <form method="POST" class="rd-form">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="rd-form-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="rd-form-stack">
+      {% trans "Restaurant Name" as restaurant_name_heading %}
+      {% include "restaurants/dashboard/_bilingual_pair.html" with heading=restaurant_name_heading en_field=form.name_en ar_field=form.name_ar en_errors=form.name_en.errors.0 ar_errors=form.name_ar.errors.0 %}
+
+      <div class="rd-field">
+        <label for="{{ form.restaurant_type.id_for_label }}">{{ form.restaurant_type.label }}</label>
+        {{ form.restaurant_type }}
+        {% if form.restaurant_type.errors %}<span class="rd-field-error">{{ form.restaurant_type.errors.0 }}</span>{% endif %}
+      </div>
+
+      {% trans "Address" as address_heading %}
+      {% include "restaurants/dashboard/_bilingual_pair.html" with heading=address_heading en_field=form.address_en ar_field=form.address_ar en_errors=form.address_en.errors.0 ar_errors=form.address_ar.errors.0 %}
+
+      {% trans "Description" as description_heading %}
+      {% include "restaurants/dashboard/_bilingual_pair.html" with heading=description_heading en_field=form.description_en ar_field=form.description_ar en_errors=form.description_en.errors.0 ar_errors=form.description_ar.errors.0 %}
+
+      <div class="rd-hours-section">
+        <h3 class="rd-hours-heading">{% trans "Location on Map" %}</h3>
+        <p class="rd-field-hint">{% trans "Enter GPS coordinates to show your restaurant on the map. You can copy them from Google Maps." %}</p>
+        <div class="rd-form-row">
+          <div class="rd-field">
+            <label for="{{ form.latitude.id_for_label }}">{{ form.latitude.label }}</label>
+            {{ form.latitude }}
+            {% if form.latitude.errors %}<span class="rd-field-error">{{ form.latitude.errors.0 }}</span>{% endif %}
+          </div>
+
+          <div class="rd-field">
+            <label for="{{ form.longitude.id_for_label }}">{{ form.longitude.label }}</label>
+            {{ form.longitude }}
+            {% if form.longitude.errors %}<span class="rd-field-error">{{ form.longitude.errors.0 }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="rd-hours-section">
+        <h3 class="rd-hours-heading">{% trans "Working Hours" %}</h3>
+        <div class="rd-form-row">
+          <div class="rd-field">
+            <label for="{{ form.opening_time.id_for_label }}">{{ form.opening_time.label }}</label>
+            {{ form.opening_time }}
+            {% if form.opening_time.errors %}<span class="rd-field-error">{{ form.opening_time.errors.0 }}</span>{% endif %}
+          </div>
+
+          <div class="rd-field">
+            <label for="{{ form.closing_time.id_for_label }}">{{ form.closing_time.label }}</label>
+            {{ form.closing_time }}
+            {% if form.closing_time.errors %}<span class="rd-field-error">{{ form.closing_time.errors.0 }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rd-form-actions">
+      <button type="submit" class="rd-btn rd-btn--primary">
+        {% trans "Save Changes" %}
+      </button>
+    </div>
+  </form>
+</section>
+{% endblock %}

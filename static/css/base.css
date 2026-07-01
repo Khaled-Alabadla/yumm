@@ -23,7 +23,9 @@
   --warning:        #FACC15;
 
   /* Inputs */
-  --input-bg:       #F0EDEB;
+  --input-bg:       #ffffff;
+  --input-border:   rgba(100, 40, 30, 0.28);
+  --input-focus:    rgba(192, 57, 43, 0.15);
 
   /* Radius */
   --radius:         12px;
@@ -54,6 +56,8 @@
   --warning:        #FACC15;
 
   --input-bg:       #241F1D;
+  --input-border:   rgba(200, 120, 100, 0.18);
+  --input-focus:    rgba(224, 92, 75, 0.22);
 }
 
 
@@ -110,4 +114,113 @@ body {
 }
 .theme-toggle:hover {
   background: var(--secondary-bg);
+}
+
+.yumm-input,
+select.yumm-input,
+textarea.yumm-input {
+  width: 100%;
+  padding: 0.72rem 0.95rem;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 0.75rem;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.yumm-input::placeholder,
+textarea.yumm-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.75;
+}
+
+.yumm-input:focus,
+select.yumm-input:focus,
+textarea.yumm-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+.yumm-input.yumm-input--error,
+select.yumm-input.yumm-input--error,
+textarea.yumm-input.yumm-input--error {
+  border-color: var(--danger) !important;
+}
+
+.yumm-input.yumm-input--error:focus,
+select.yumm-input.yumm-input--error:focus,
+textarea.yumm-input.yumm-input--error:focus {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* White backgrounds + borders for all text fields */
+.yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):not(.hero-search__input),
+.yumm-site select,
+.yumm-site textarea,
+.yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]),
+.yumm-auth select,
+.yumm-auth textarea,
+.yumm-dashboard input.rd-input,
+.yumm-dashboard select.rd-input,
+.yumm-dashboard textarea.rd-input,
+.yumm-dashboard .rd-reply-input {
+  background-color: #ffffff !important;
+  border: 1px solid var(--input-border) !important;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):focus,
+.yumm-site select:focus,
+.yumm-site textarea:focus,
+.yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):focus,
+.yumm-auth select:focus,
+.yumm-auth textarea:focus,
+.yumm-dashboard input.rd-input:focus,
+.yumm-dashboard select.rd-input:focus,
+.yumm-dashboard textarea.rd-input:focus,
+.yumm-dashboard .rd-reply-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+.dark .yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):not(.hero-search__input),
+.dark .yumm-site select,
+.dark .yumm-site textarea,
+.dark .yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]),
+.dark .yumm-auth select,
+.dark .yumm-auth textarea,
+.dark.yumm-dashboard input.rd-input,
+.dark.yumm-dashboard select.rd-input,
+.dark .yumm-dashboard textarea.rd-input,
+html.dark .yumm-dashboard input.rd-input,
+html.dark .yumm-dashboard select.rd-input,
+html.dark .yumm-dashboard textarea.rd-input {
+  background-color: var(--input-bg) !important;
+}
+
+.yumm-site input:-webkit-autofill,
+.yumm-site input:-webkit-autofill:hover,
+.yumm-site input:-webkit-autofill:focus,
+.yumm-auth input:-webkit-autofill,
+.yumm-auth input:-webkit-autofill:hover,
+.yumm-auth input:-webkit-autofill:focus,
+.yumm-dashboard input.rd-input:-webkit-autofill,
+.yumm-dashboard input.rd-input:-webkit-autofill:hover,
+.yumm-dashboard input.rd-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
+html.dark .yumm-site input:-webkit-autofill,
+html.dark .yumm-auth input:-webkit-autofill,
+html.dark .yumm-dashboard input.rd-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
 }
