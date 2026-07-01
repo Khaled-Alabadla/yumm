@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<div class="rd-bilingual-group">
+  <span class="rd-bilingual-heading">{{ heading }}</span>
+  <div class="rd-form-row">
+    <div class="rd-field">
+      <label for="{{ en_field.id_for_label }}">{% trans "English" %}</label>
+      {{ en_field }}
+      {% if en_errors %}<span class="rd-field-error">{{ en_errors }}</span>{% endif %}
+    </div>
+    <div class="rd-field">
+      <label for="{{ ar_field.id_for_label }}">{% trans "Arabic" %}</label>
+      {{ ar_field }}
+      {% if ar_errors %}<span class="rd-field-error">{{ ar_errors }}</span>{% endif %}
+    </div>
+  </div>
+</div>

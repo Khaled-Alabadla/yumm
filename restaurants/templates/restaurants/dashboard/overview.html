@@ -1,0 +1,54 @@
+{% extends "restaurants/dashboard/base.html" %}
+{% load i18n humanize restaurant_tags %}
+
+{% block dashboard_content %}
+<div class="rd-stats-grid">
+  <article class="rd-stat-card">
+    <div class="rd-stat-top">
+      <span class="rd-stat-icon"><i data-lucide="message-square" class="w-5 h-5"></i></span>
+      {% if review_growth_pct is not None %}
+      <span class="rd-stat-delta rd-stat-delta--up">+{{ review_growth_pct }}%</span>
+      {% endif %}
+    </div>
+    <p class="rd-stat-value">{{ total_reviews }}</p>
+    <p class="rd-stat-label">{% trans "Total Reviews" %}</p>
+  </article>
+
+  <article class="rd-stat-card">
+    <div class="rd-stat-top">
+      <span class="rd-stat-icon"><i data-lucide="star" class="w-5 h-5"></i></span>
+      {% if rating_growth is not None and rating_growth > 0 %}
+      <span class="rd-stat-delta rd-stat-delta--up">+{{ rating_growth }}</span>
+      {% elif rating_growth is not None and rating_growth < 0 %}
+      <span class="rd-stat-delta rd-stat-delta--down">{{ rating_growth }}</span>
+      {% endif %}
+    </div>
+    <p class="rd-stat-value">{% if avg_rating %}{{ avg_rating }}{% else %}—{% endif %}</p>
+    <p class="rd-stat-label">{% trans "Avg Rating" %}</p>
+  </article>
+</div>
+
+<section class="rd-card">
+  <h2 class="rd-card-title">{% trans "Recent Reviews" %}</h2>
+
+  {% if recent_reviews %}
+  <ul class="rd-review-list">
+    {% for review in recent_reviews %}
+    <li class="rd-review-item">
+      <div class="rd-review-head">
+        <span class="rd-review-author">{{ review.user|user_display_name }}</span>
+        <span class="rd-review-date">{{ review.created_at|naturaltime }}</span>
+      </div>
+      <div class="rd-review-rating">
+        {% star_rating review.rating %}
+        <span class="rd-rating-num">{{ review.rating }}</span>
+      </div>
+      <p class="rd-review-text">{{ review.comment }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="rd-empty">{% trans "No reviews yet." %}</p>
+  {% endif %}
+</section>
+{% endblock %}

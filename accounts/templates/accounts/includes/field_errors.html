@@ -1,0 +1,6 @@
+{% if errors %}
+<p class="text-xs mt-1 flex items-start gap-1.5" style="color: var(--danger)">
+  <i class="fa-solid fa-circle-exclamation mt-0.5 shrink-0 text-[10px]"></i>
+  <span>{% for error in errors %}{{ error }}{% if not forloop.last %} {% endif %}{% endfor %}</span>
+</p>
+{% endif %}

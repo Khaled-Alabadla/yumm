@@ -1,8 +1,6 @@
-{% extends "baseaccount.html" %} 
-{% load static %} 
-{% block title %} 
-Register — Yumm
-{%endblock %}
+{% extends "baseaccount.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Register" %} — Yumm{% endblock %}
 {% block content %}
 
 <main
@@ -14,10 +12,10 @@ Register — Yumm
         class="text-3xl font-extrabold tracking-tight"
         style="color: var(--text-primary)"
       >
-        Join Yumm
+        {% trans "Join Yumm" %}
       </h1>
       <p class="text-sm mt-1" style="color: var(--text-secondary)">
-        Create your account today — it's free
+        {% trans "Create your account today — it's free" %}
       </p>
     </div>
 
@@ -25,8 +23,9 @@ Register — Yumm
       class="rounded-2xl p-7"
       style="background: var(--card); border: 1px solid var(--border)"
     >
+      {% include "accounts/includes/messages.html" %}
 
-    {% for message in messages %}
+      {% if form.non_field_errors %}
       <div
         class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
         style="
@@ -35,16 +34,17 @@ Register — Yumm
           color: var(--danger);
         "
       >
-        <i class="fa-solid fa-circle-exclamation"></i> {{ message }}
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>{% for error in form.non_field_errors %}{{ error }}{% endfor %}</span>
       </div>
-      {% endfor %}
-
+      {% endif %}
 
       <div
         class="flex rounded-xl p-1 mb-6 gap-1"
-        style="background: var(--input-bg); border: 1px solid var(--border)"
+        style="background: var(--secondary-bg); border: 1px solid var(--border)"
       >
         <button
+          type="button"
           onclick="setRole('user')"
           id="tab-user"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
@@ -54,15 +54,16 @@ Register — Yumm
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
           "
         >
-          Regular User
+          {% trans "Regular User" %}
         </button>
         <button
+          type="button"
           onclick="setRole('owner')"
           id="tab-owner"
           class="flex-1 text-sm font-semibold py-2 rounded-lg transition-all"
           style="background: transparent; color: var(--text-secondary)"
         >
-          Restaurant Owner
+          {% trans "Restaurant Owner" %}
         </button>
       </div>
 
@@ -75,49 +76,32 @@ Register — Yumm
         {% csrf_token %}
         <input type="hidden" name="role" value="user" />
 
-        {% if form.non_field_errors %}
-        <div
-          class="rounded-xl px-4 py-3 text-sm flex items-center gap-2"
-          style="
-            background: rgba(239, 68, 68, 0.08);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: var(--danger);
-          "
-        >
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {% for error in form.non_field_errors %}{{ error }}{% endfor %}
-        </div>
-        {% endif %}
-
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Full Name</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Full Name" %}
+          </label>
           <input
             type="text"
             name="full_name"
-            placeholder="Name"
+            placeholder="{% trans 'Name' %}"
             autocomplete="name"
             value="{{ form.full_name.value|default:'' }}"
             class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
             style="
               background: var(--input-bg);
-              border: 1px solid var(--border);
+              border: 1px solid {% if form.full_name.errors %}var(--danger){% else %}var(--border){% endif %};
               color: var(--text-primary);
             "
             onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = 'var(--border)'"
+            onblur="this.style.borderColor = '{% if form.full_name.errors %}var(--danger){% else %}var(--border){% endif %}'"
           />
+          {% include "accounts/includes/field_errors.html" with errors=form.full_name.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Email</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Email" %}
+          </label>
           <input
             type="email"
             name="email"
@@ -127,20 +111,19 @@ Register — Yumm
             class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
             style="
               background: var(--input-bg);
-              border: 1px solid var(--border);
+              border: 1px solid {% if form.email.errors %}var(--danger){% else %}var(--border){% endif %};
               color: var(--text-primary);
             "
             onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = 'var(--border)'"
+            onblur="this.style.borderColor = '{% if form.email.errors %}var(--danger){% else %}var(--border){% endif %}'"
           />
+          {% include "accounts/includes/field_errors.html" with errors=form.email.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Password</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Password" %}
+          </label>
           <div class="relative">
             <input
               type="password"
@@ -148,19 +131,19 @@ Register — Yumm
               id="userPass"
               placeholder="••••••••"
               autocomplete="new-password"
-              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
               style="
                 background: var(--input-bg);
-                border: 1px solid var(--border);
+                border: 1px solid {% if form.password1.errors %}var(--danger){% else %}var(--border){% endif %};
                 color: var(--text-primary);
               "
               onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
+              onblur="this.style.borderColor = '{% if form.password1.errors %}var(--danger){% else %}var(--border){% endif %}'"
             />
             <button
               type="button"
               onclick="togglePass('userPass', 'eyeUser')"
-              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2"
             >
               <i
                 id="eyeUser"
@@ -169,14 +152,13 @@ Register — Yumm
               ></i>
             </button>
           </div>
+          {% include "accounts/includes/field_errors.html" with errors=form.password1.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Confirm Password</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Confirm Password" %}
+          </label>
           <div class="relative">
             <input
               type="password"
@@ -184,19 +166,19 @@ Register — Yumm
               id="userPass2"
               placeholder="••••••••"
               autocomplete="new-password"
-              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
               style="
                 background: var(--input-bg);
-                border: 1px solid var(--border);
+                border: 1px solid {% if form.password2.errors %}var(--danger){% else %}var(--border){% endif %};
                 color: var(--text-primary);
               "
               onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
+              onblur="this.style.borderColor = '{% if form.password2.errors %}var(--danger){% else %}var(--border){% endif %}'"
             />
             <button
               type="button"
               onclick="togglePass('userPass2', 'eyeUser2')"
-              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2"
             >
               <i
                 id="eyeUser2"
@@ -205,6 +187,7 @@ Register — Yumm
               ></i>
             </button>
           </div>
+          {% include "accounts/includes/field_errors.html" with errors=form.password2.errors %}
         </div>
 
         <button
@@ -214,7 +197,7 @@ Register — Yumm
           onmouseover="this.style.background = 'var(--primary-hover)'"
           onmouseout="this.style.background = 'var(--primary)'"
         >
-          Create Account
+          {% trans "Create Account" %}
         </button>
       </form>
 
@@ -228,84 +211,63 @@ Register — Yumm
         <input type="hidden" name="role" value="owner" />
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Restaurant Name</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Restaurant Name (English)" %}
+          </label>
           <input
             type="text"
-            name="full_name"
-            placeholder="Restaurant name"
-            autocomplete="name"
-            class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
-            style="
-              background: var(--input-bg);
-              border: 1px solid var(--border);
-              color: var(--text-primary);
-            "
-            onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = 'var(--border)'"
+            name="restaurant_name_en"
+            placeholder="Al-Kanaan"
+            autocomplete="organization"
+            value="{{ form.restaurant_name_en.value|default:'' }}"
+            class="yumm-input"
           />
+          {% include "accounts/includes/field_errors.html" with errors=form.restaurant_name_en.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Email</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Restaurant Name (Arabic)" %}
+          </label>
+          <input
+            type="text"
+            name="restaurant_name_ar"
+            placeholder="الكنعان"
+            dir="rtl"
+            value="{{ form.restaurant_name_ar.value|default:'' }}"
+            class="yumm-input"
+          />
+          {% include "accounts/includes/field_errors.html" with errors=form.restaurant_name_ar.errors %}
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Email" %}
+          </label>
           <input
             type="email"
             name="email"
             placeholder="restaurant@example.ps"
             autocomplete="email"
+            value="{{ form.email.value|default:'' }}"
             class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
             style="
               background: var(--input-bg);
-              border: 1px solid var(--border);
+              border: 1px solid {% if form.email.errors %}var(--danger){% else %}var(--border){% endif %};
               color: var(--text-primary);
             "
             onfocus="this.style.borderColor = 'var(--primary)'"
-            onblur="this.style.borderColor = 'var(--border)'"
+            onblur="this.style.borderColor = '{% if form.email.errors %}var(--danger){% else %}var(--border){% endif %}'"
           />
+          {% include "accounts/includes/field_errors.html" with errors=form.email.errors %}
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Phone Number</label
-          >
-          <div class="relative">
-            <span
-              class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-medium select-none"
-              style="color: var(--text-secondary)"
-              >+970</span
-            >
-            <input
-              type="tel"
-              name="phone"
-              placeholder="59 000 0000"
-              autocomplete="tel"
-              class="w-full rounded-xl pl-14 pr-4 py-3 text-sm outline-none transition-colors"
-              style="
-                background: var(--input-bg);
-                border: 1px solid var(--border);
-                color: var(--text-primary);
-              "
-              onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
-            />
-          </div>
-        </div>
+        {% include "accounts/includes/phone_field.html" with required=True %}
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Password</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Password" %}
+          </label>
           <div class="relative">
             <input
               type="password"
@@ -313,19 +275,19 @@ Register — Yumm
               id="ownerPass"
               placeholder="••••••••"
               autocomplete="new-password"
-              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
               style="
                 background: var(--input-bg);
-                border: 1px solid var(--border);
+                border: 1px solid {% if form.password1.errors %}var(--danger){% else %}var(--border){% endif %};
                 color: var(--text-primary);
               "
               onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
+              onblur="this.style.borderColor = '{% if form.password1.errors %}var(--danger){% else %}var(--border){% endif %}'"
             />
             <button
               type="button"
               onclick="togglePass('ownerPass', 'eyeOwner')"
-              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2"
             >
               <i
                 id="eyeOwner"
@@ -334,14 +296,13 @@ Register — Yumm
               ></i>
             </button>
           </div>
+          {% include "accounts/includes/field_errors.html" with errors=form.password1.errors %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label
-            class="text-xs font-medium"
-            style="color: var(--text-secondary)"
-            >Confirm Password</label
-          >
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "Confirm Password" %}
+          </label>
           <div class="relative">
             <input
               type="password"
@@ -349,19 +310,19 @@ Register — Yumm
               id="ownerPass2"
               placeholder="••••••••"
               autocomplete="new-password"
-              class="w-full rounded-xl px-4 py-3 pr-11 text-sm outline-none transition-colors"
+              class="w-full rounded-xl px-4 py-3 pe-11 text-sm outline-none transition-colors"
               style="
                 background: var(--input-bg);
-                border: 1px solid var(--border);
+                border: 1px solid {% if form.password2.errors %}var(--danger){% else %}var(--border){% endif %};
                 color: var(--text-primary);
               "
               onfocus="this.style.borderColor = 'var(--primary)'"
-              onblur="this.style.borderColor = 'var(--border)'"
+              onblur="this.style.borderColor = '{% if form.password2.errors %}var(--danger){% else %}var(--border){% endif %}'"
             />
             <button
               type="button"
               onclick="togglePass('ownerPass2', 'eyeOwner2')"
-              class="absolute right-3.5 top-1/2 -translate-y-1/2"
+              class="absolute end-3.5 top-1/2 -translate-y-1/2"
             >
               <i
                 id="eyeOwner2"
@@ -370,6 +331,7 @@ Register — Yumm
               ></i>
             </button>
           </div>
+          {% include "accounts/includes/field_errors.html" with errors=form.password2.errors %}
         </div>
 
         <div
@@ -383,12 +345,8 @@ Register — Yumm
             class="fa-solid fa-clock-rotate-left text-sm mt-0.5"
             style="color: var(--primary)"
           ></i>
-          <p
-            class="text-xs leading-relaxed"
-            style="color: var(--text-secondary)"
-          >
-            Your request will be reviewed by our admin team. You'll be notified
-            once your restaurant is approved.
+          <p class="text-xs leading-relaxed" style="color: var(--text-secondary)">
+            {% trans "Your request will be reviewed by our admin team. You'll be notified once your restaurant is approved." %}
           </p>
         </div>
 
@@ -399,23 +357,29 @@ Register — Yumm
           onmouseover="this.style.background = 'var(--primary-hover)'"
           onmouseout="this.style.background = 'var(--primary)'"
         >
-          Submit Request
+          {% trans "Submit Request" %}
         </button>
       </form>
 
       <p class="text-center text-sm mt-5" style="color: var(--text-secondary)">
-        Already have an account?
+        {% trans "Already have an account?" %}
         <a
           href="{% url 'accounts:login' %}"
           class="font-semibold hover:underline"
           style="color: var(--primary)"
-          >Login</a
+          >{% trans "Log in" %}</a
         >
       </p>
     </div>
   </div>
 </main>
 
-{% endblock %} {% block extra_js %}
+{% endblock %}
+{% block extra_js %}
 <script src="{% static 'js/auth.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setRole("{{ selected_role|default:'user' }}");
+  });
+</script>
 {% endblock %}

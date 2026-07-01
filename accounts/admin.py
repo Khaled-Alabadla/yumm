@@ -10,10 +10,17 @@ from .models import CustomUser
 
 @admin.action(description=_("Approve selected restaurant owners"))
 def approve_owners(modeladmin, request, queryset):
-    updated = queryset.filter(role=CustomUser.Role.OWNER).update(
+    from restaurants.owner_sync import sync_restaurants_for_owner
+
+    owner_ids = list(
+        queryset.filter(role=CustomUser.Role.OWNER).values_list("pk", flat=True)
+    )
+    updated = CustomUser.objects.filter(pk__in=owner_ids).update(
         is_approved=True,
         is_active=True,
     )
+    for owner in CustomUser.objects.filter(pk__in=owner_ids):
+        sync_restaurants_for_owner(owner)
     modeladmin.message_user(
         request,
         _("%(count)d owner account(s) approved.") % {"count": updated},

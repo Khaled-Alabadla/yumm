@@ -471,6 +471,7 @@ function openModal(id) {
   document.getElementById('modal-' + id).classList.add('modal-open');
   document.body.style.overflow = 'hidden';
   if (id === 'map') setTimeout(initMap, 150);
+  if (id === 'wishlist') renderWishlist();
 }
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('modal-open');
@@ -496,19 +497,41 @@ document.addEventListener('keydown', e => {
 /* ─────────────────────────────
    Wishlist data + render
 ───────────────────────────── */
-const wishlist = [
-  { name: 'Al-Kanaan',             cuisine: 'Traditional Palestinian', city: 'Ramallah',  rating: '4.8' },
-  { name: 'Jerusalem Garden Cafe', cuisine: 'Cafe & Breakfast',        city: 'Jerusalem', rating: '4.9' },
-];
+function getLandingI18n() {
+  const el = document.getElementById('landing-i18n');
+  if (!el) return {};
+  try {
+    return JSON.parse(el.textContent);
+  } catch {
+    return {};
+  }
+}
+
+function buildDefaultWishlist() {
+  const i = getLandingI18n();
+  return [
+    { name: 'Al-Kanaan', cuisine: i.traditionalPalestinian || 'Traditional Palestinian', city: i.ramallah || 'Ramallah', rating: '4.8' },
+    { name: 'Jerusalem Garden Cafe', cuisine: i.cafeBreakfast || 'Cafe & Breakfast', city: i.jerusalem || 'Jerusalem', rating: '4.9' },
+  ];
+}
+
+let wishlist = null;
+function getWishlist() {
+  if (!wishlist) wishlist = buildDefaultWishlist();
+  return wishlist;
+}
 
 function renderWishlist() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
-  if (!wishlist.length) {
-    container.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">No saved restaurants yet. Hit the ♥ on any card!</p>`;
+  const i = getLandingI18n();
+  const list = getWishlist();
+  if (!list.length) {
+    container.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">${i.wishlistEmpty || 'No saved restaurants yet. Hit the ♥ on any card!'}</p>`;
     return;
   }
-  container.innerHTML = wishlist.map((r, i) => `
+  const removeLabel = i.remove || 'Remove';
+  container.innerHTML = list.map((r, idx) => `
     <div class="flex items-center justify-between bg-gray-50 rounded-2xl px-4 py-3">
       <div>
         <p class="font-semibold text-sm text-gray-900">${r.name}</p>
@@ -516,14 +539,14 @@ function renderWishlist() {
       </div>
       <div class="flex items-center gap-3">
         <span class="text-amber-400 font-bold text-sm">★ ${r.rating}</span>
-        <button onclick="removeWishlist(${i})" class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">Remove</button>
+        <button onclick="removeWishlist(${idx})" class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">${removeLabel}</button>
       </div>
     </div>
   `).join('');
 }
 
 function removeWishlist(index) {
-  wishlist.splice(index, 1);
+  getWishlist().splice(index, 1);
   renderWishlist();
 }
 

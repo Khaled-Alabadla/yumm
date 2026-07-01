@@ -38,6 +38,101 @@ Yumm — Custom CSS
     center / cover;
 }
 
+/* ── Hero search bar (dark glass, no white input box) ── */
+.hero-search {
+  display: flex;
+  align-items: stretch;
+  max-width: 520px;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-search:focus-within {
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 0 0 3px rgba(181, 69, 27, 0.28);
+}
+
+.hero-search__field {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+}
+
+.hero-search__icon {
+  position: absolute;
+  inset-inline-start: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+.hero-search__input {
+  width: 100%;
+  padding-block: 0.875rem;
+  padding-inline-start: 2.5rem;
+  padding-inline-end: 1rem;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  outline: none !important;
+}
+
+.hero-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.58) !important;
+  opacity: 1 !important;
+}
+
+.hero-search__input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.58) !important;
+  opacity: 1 !important;
+}
+
+.hero-search__input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.58) !important;
+  opacity: 1 !important;
+}
+
+.hero-search__input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.hero-search__btn {
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 0 1.35rem;
+  border: none;
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.14);
+  background: #B5451B;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.hero-search__btn:hover {
+  background: #9A3A16;
+}
+
+.hero-search__btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -2px;
+}
+
 /* ── Scroll reveal ── */
 .reveal {
   opacity: 1;

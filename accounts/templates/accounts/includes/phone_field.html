@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class="flex flex-col gap-1.5">
+  <label class="text-xs font-medium" style="color: var(--text-secondary)">
+    {% trans "Phone Number" %}
+    {% if required %}<span style="color: var(--danger)">*</span>{% endif %}
+  </label>
+  <input
+    type="tel"
+    name="phone"
+    autocomplete="tel"
+    placeholder="+970 59 000 0000"
+    value="{{ form.phone.value|default:'' }}"
+    class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+    style="
+      background: var(--input-bg);
+      border: 1px solid {% if form.phone.errors %}var(--danger){% else %}var(--border){% endif %};
+      color: var(--text-primary);
+    "
+    onfocus="this.style.borderColor = 'var(--primary)'"
+    onblur="this.style.borderColor = '{% if form.phone.errors %}var(--danger){% else %}var(--border){% endif %}'"
+  />
+  {% include "accounts/includes/field_errors.html" with errors=form.phone.errors %}
+</div>

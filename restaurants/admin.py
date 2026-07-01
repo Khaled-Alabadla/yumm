@@ -23,7 +23,12 @@ from .models import (
 
 @admin.action(description=_("Approve selected restaurants"))
 def approve_restaurants(modeladmin, request, queryset):
-    updated = queryset.update(status=Restaurant.Status.ACTIVE)
+    updated = 0
+    for restaurant in queryset.select_related("owner"):
+        restaurant.status = Restaurant.Status.ACTIVE
+        restaurant.is_open = True
+        restaurant.save(update_fields=["status", "is_open", "updated_at"])
+        updated += 1
     modeladmin.message_user(
         request,
         ngettext(
@@ -37,7 +42,12 @@ def approve_restaurants(modeladmin, request, queryset):
 
 @admin.action(description=_("Reject selected restaurants"))
 def reject_restaurants(modeladmin, request, queryset):
-    updated = queryset.update(status=Restaurant.Status.REJECTED)
+    updated = 0
+    for restaurant in queryset.select_related("owner"):
+        restaurant.status = Restaurant.Status.REJECTED
+        restaurant.is_open = False
+        restaurant.save(update_fields=["status", "is_open", "updated_at"])
+        updated += 1
     modeladmin.message_user(
         request,
         ngettext(
