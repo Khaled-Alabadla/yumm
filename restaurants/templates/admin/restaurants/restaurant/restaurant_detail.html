@@ -1,0 +1,263 @@
+{% extends 'base/base.html' %}
+{% block title %}{{ restaurant.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto">
+
+    <!-- Hero Image -->
+    <div class="relative h-64 md:h-80 bg-gray-800 overflow-hidden">
+        {% if restaurant.cover_image_url %}
+        <img src="{{ restaurant.cover_image_url }}" alt="{{ restaurant.name }}" class="w-full h-full object-cover">
+        {% elif restaurant.cover_image %}
+        <img src="{{ restaurant.cover_image.url }}" alt="{{ restaurant.name }}" class="w-full h-full object-cover">
+        {% else %}
+        <div class="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900"></div>
+        {% endif %}
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+        <a href="{% url 'restaurants_list' %}" class="absolute top-4 left-4 w-9 h-9 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+            <i class="fas fa-arrow-left text-sm"></i>
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edit_restaurant' restaurant.pk %}"
+           class="absolute top-4 right-4 flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full hover:bg-white/30 transition-colors">
+            <i class="fas fa-pen text-xs"></i> Edit
+        </a>
+        {% endif %}
+
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="flex items-end justify-between">
+                <div>
+                    <span class="{% if restaurant.is_open %}badge-open{% else %}badge-closed{% endif %} mb-2 inline-block">
+                        {% if restaurant.is_open %}Open Now{% else %}Closed{% endif %}
+                    </span>
+                    <h1 class="text-3xl font-bold text-white">{{ restaurant.name }}</h1>
+                    <div class="flex items-center gap-2 mt-1">
+                        <div class="flex">
+                            {% for i in "12345" %}
+                            <i class="fas fa-star text-xs {% if forloop.counter <= avg_rating %}star-filled{% else %}text-gray-500{% endif %}"></i>
+                            {% endfor %}
+                        </div>
+                        <span class="text-white/80 text-sm">({{ review_count }} reviews)</span>
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                <button data-wishlist-btn="{{ restaurant.pk }}"
+                    class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="fas fa-heart {% if in_wishlist %}text-red-400{% else %}text-white/60{% endif %}"></i>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="bg-white">
+
+        <!-- About -->
+        <div class="px-6 py-6 border-b border-gray-100">
+            <h2 class="text-lg font-bold text-gray-900 mb-3">About</h2>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">{{ restaurant.description }}</p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                        <i class="fas fa-clock text-primary text-xs"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-medium">Working Hours</p>
+                        <p class="text-sm font-semibold text-gray-800">{{ restaurant.working_hours_display }}</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                        <i class="fas fa-map-marker-alt text-primary text-xs"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-medium">Address</p>
+                        <p class="text-sm font-semibold text-gray-800">{{ restaurant.address }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="px-6 pt-4">
+            <div class="flex gap-1 mb-6">
+                <button data-tab-btn="menu" class="px-5 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-white">Menu</button>
+                <button data-tab-btn="reviews" class="px-5 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-600 hover:bg-gray-200">Reviews</button>
+            </div>
+
+            <!-- MENU TAB -->
+            <div data-tab-content="menu">
+                {% if menu_categories %}
+                <div class="flex gap-2 mb-5 overflow-x-auto scrollbar-hide pb-1">
+                    {% for cat in menu_categories %}
+                    <button data-menu-cat-btn="cat{{ forloop.counter }}"
+                        class="whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium transition-colors
+                        {% if forloop.first %}bg-primary text-white{% else %}bg-gray-100 text-gray-600{% endif %}">
+                        {{ cat.name }}
+                    </button>
+                    {% endfor %}
+                </div>
+
+                {% for cat in menu_categories %}
+                <div data-menu-cat-content="cat{{ forloop.counter }}" {% if not forloop.first %}class="hidden"{% endif %}>
+                    <div class="space-y-4 mb-8">
+                        {% for item in cat.items.all %}
+                        {% if item.is_available %}
+                        <div class="flex items-center gap-4 py-3 border-b border-gray-50 last:border-0">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                                {% if item.image_url %}
+                                <img src="{{ item.image_url }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+                                {% elif item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-full object-cover">
+                                {% else %}
+                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-drumstick-bite text-gray-400 text-xs"></i>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-semibold text-gray-900 text-sm">{{ item.name }}</h4>
+                                <p class="text-xs text-gray-500 mt-0.5 leading-relaxed line-clamp-2">{{ item.description }}</p>
+                                <p class="text-primary font-bold text-sm mt-1">₪{{ item.price }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <div class="text-center py-12 text-gray-400">
+                    <i class="fas fa-utensils text-3xl mb-3"></i>
+                    <p class="text-sm">Menu not available yet</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- REVIEWS TAB -->
+            <div data-tab-content="reviews" class="hidden">
+                <!-- Rating summary -->
+                <div class="flex items-center gap-6 mb-6 p-4 bg-warm-gray rounded-2xl">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-primary">{{ avg_rating }}</div>
+                        <div class="flex justify-center my-1">
+                            {% for i in "12345" %}
+                            <i class="fas fa-star text-xs {% if forloop.counter <= avg_rating %}star-filled{% else %}star-empty{% endif %}"></i>
+                            {% endfor %}
+                        </div>
+                        <div class="text-xs text-gray-500">{{ review_count }} reviews</div>
+                    </div>
+                    <div class="flex-1 space-y-1.5">
+                        {% for star, pct in rating_dist.items %}
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-gray-500 w-2">{{ star }}</span>
+                            <div class="flex-1 rating-bar-bg">
+                                <div class="h-full bg-yellow-400 rounded-full transition-all" style="width: {{ pct }}%"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Reviews list -->
+                <div class="space-y-5 mb-8">
+                    {% for review in reviews %}
+                    <div class="flex gap-3">
+                        <div class="w-9 h-9 bg-primary/20 rounded-full flex items-center justify-center shrink-0 text-sm font-bold text-primary">
+                            {{ review.user.username|first|upper }}
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-semibold text-sm text-gray-800">{{ review.user.username }}</span>
+                                <span class="text-xs text-gray-400">{{ review.created_at|timesince }} ago</span>
+                            </div>
+                            <div class="flex mb-2">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star text-xs {% if forloop.counter <= review.rating %}star-filled{% else %}star-empty{% endif %}"></i>
+                                {% endfor %}
+                            </div>
+                            <p class="text-sm text-gray-600 leading-relaxed">{{ review.comment }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-8 text-gray-400">
+                        <i class="fas fa-comment-slash text-2xl mb-2"></i>
+                        <p class="text-sm">No reviews yet. Be the first!</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Write a Review -->
+                {% if user.is_authenticated %}
+                <div class="border-t border-gray-100 pt-6 mb-8">
+                    <h3 class="font-bold text-gray-900 mb-4">Write a Review</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="submit_review">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div id="star-rating" class="flex gap-1">
+                                {% for i in "12345" %}
+                                <button type="button" data-star="{{ forloop.counter }}" class="text-2xl text-gray-300 hover:text-yellow-400 transition-colors">
+                                    <i class="fas fa-star"></i>
+                                </button>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="rating" id="rating-input" value="{{ user_review.rating|default:0 }}">
+                            <span id="rating-label" class="text-sm text-gray-400"></span>
+                        </div>
+                        <textarea name="comment" rows="3" placeholder="Share your dining experience..."
+                            class="form-input resize-none mb-3">{{ user_review.comment|default:'' }}</textarea>
+                        <button type="submit" class="bg-primary text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors">
+                            {% if user_review %}Update Review{% else %}Submit Review{% endif %}
+                        </button>
+                    </form>
+                </div>
+                {% else %}
+                <div class="bg-warm-gray rounded-xl p-5 text-center mb-8">
+                    <p class="text-sm text-gray-600 mb-3">Sign in to write a review</p>
+                    <a href="{% url 'login' %}?next={{ request.path }}" class="bg-primary text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors">Login to Review</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="px-6 pb-6">
+            <h3 class="font-bold text-gray-900 mb-3">Quick Actions</h3>
+            <div class="space-y-2">
+                {% if user.is_authenticated %}
+                <button data-wishlist-btn="{{ restaurant.pk }}"
+                    class="w-full flex items-center gap-3 px-4 py-3 border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-primary hover:text-primary transition-colors">
+                    <i class="fas fa-heart {% if in_wishlist %}text-red-500{% endif %}"></i>
+                    <span data-wishlist-label>{% if in_wishlist %}Remove from Wishlist{% else %}Add to Wishlist{% endif %}</span>
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}?next={{ request.path }}" class="quick-action-btn block">
+                    <i class="fas fa-heart"></i> Add to Wishlist
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="px-6 pb-8">
+            <div class="bg-gray-100 rounded-2xl overflow-hidden h-44 relative cursor-pointer">
+                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-100 flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
+                            <i class="fas fa-map-marker-alt text-white text-sm"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-700">{{ restaurant.address }}</p>
+                        <p class="text-xs text-gray-400 mt-1">Tap to open in maps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

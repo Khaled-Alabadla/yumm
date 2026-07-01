@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}My Wishlist{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-3 mb-8">
+        <a href="{% url 'accounts:restaurants_list' %}" class="w-9 h-9 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors">
+            <i class="fas fa-arrow-left text-sm"></i>
+        </a>
+        <div>
+            <h1 class="text-xl font-bold text-gray-900">My Wishlist</h1>
+            <p class="text-sm text-gray-500">{{ wishlist.count }} saved restaurant{{ wishlist.count|pluralize }}</p>
+        </div>
+    </div>
+
+    {% if wishlist %}
+    <div class="space-y-4">
+        {% for item in wishlist %}
+        <div data-wishlist-card class="bg-white rounded-2xl overflow-hidden card-shadow flex items-center gap-4 p-4">
+            <div class="w-20 h-20 rounded-xl overflow-hidden bg-gray-200 shrink-0">
+                {% if item.restaurant.cover_image_url %}
+                <img src="{{ item.restaurant.cover_image_url }}" alt="{{ item.restaurant.name }}" class="w-full h-full object-cover">
+                {% else %}
+                <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                    <i class="fas fa-utensils text-primary"></i>
+                </div>
+                {% endif %}
+            </div>
+            <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-gray-900 truncate">{{ item.restaurant.name }}</h3>
+                <p class="text-xs text-gray-500 mt-0.5">{{ item.restaurant.city.name|default:"Palestine" }} · {{ item.restaurant.get_category_display }}</p>
+                <div class="flex items-center gap-1.5 mt-1.5">
+                    <div class="flex">
+                        {% with avg=item.restaurant.average_rating %}
+                        {% for i in "12345" %}
+                        <i class="fas fa-star text-xs {% if forloop.counter <= avg %}star-filled{% else %}star-empty{% endif %}"></i>
+                        {% endfor %}
+                        {% endwith %}
+                    </div>
+                    <span class="text-xs text-gray-500">{{ item.restaurant.average_rating }}</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 shrink-0">
+                <a href="{% url 'restaurant_detail' item.restaurant.pk %}"
+                    class="text-xs bg-primary text-white px-4 py-2 rounded-xl font-medium hover:bg-primary-dark transition-colors text-center">
+                    View
+                </a>
+                <button data-remove-wishlist="{{ item.restaurant.pk }}"
+                    class="text-xs border border-gray-200 text-gray-500 px-4 py-2 rounded-xl hover:border-red-300 hover:text-red-500 transition-colors">
+                    Remove
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-20">
+        <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-heart text-gray-300 text-2xl"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Your wishlist is empty</h3>
+        <p class="text-gray-400 text-sm mb-5">Save restaurants you want to visit later</p>
+        <a href="{% url 'accounts:restaurants_list' %}" class="bg-primary text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-primary-dark transition-colors">Explore Restaurants</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

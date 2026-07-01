@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %} terms — Yumm {%endblock %} 
+{% block content %}
+
+{# ── Header ── #}
+<div class="bg-dark-800 border-b border-dark-600 px-6 py-12">
+  <div class="max-w-4xl mx-auto">
+    <p class="text-xs font-bold tracking-widest text-orange uppercase mb-2">Legal</p>
+    <h1 class="text-4xl font-extrabold mb-2">Terms of Service</h1>
+    <p class="text-gray-400 text-sm">Last updated: {{ last_updated | default('June 26, 2026') }}</p>
+  </div>
+</div>
+
+{# ── Content ── #}
+<div class="max-w-4xl mx-auto px-6 py-12 grid md:grid-cols-[200px_1fr] gap-10 items-start">
+
+  {# Sidebar TOC #}
+  <aside class="sticky top-24 hidden md:block">
+    <p class="text-xs font-bold tracking-widest text-gray-500 uppercase mb-3">Contents</p>
+    <nav class="flex flex-col gap-1">
+      {% set toc = [
+        ('acceptance',   '1. Acceptance'),
+        ('account',      '2. Your Account'),
+        ('use',          '3. Acceptable Use'),
+        ('reservations', '4. Reservations'),
+        ('content',      '5. User Content'),
+        ('ip',           '6. Intellectual Property'),
+        ('liability',    '7. Liability'),
+        ('termination',  '8. Termination'),
+        ('changes',      '9. Changes'),
+        ('contact',      '10. Contact'),
+      ] %}
+      {% for anchor, label in toc %}
+      <a href="#{{ anchor }}"
+         class="text-sm text-gray-400 hover:text-orange border-l-2 border-dark-600
+                hover:border-orange pl-3 py-1 transition-all duration-200">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  {# Main Content #}
+  <main class="min-w-0">
+
+    <div class="bg-dark-700 border border-dark-600 border-l-4 border-l-orange
+                rounded-lg px-5 py-4 text-gray-300 text-sm leading-relaxed mb-8">
+      By using Yumm, you agree to these terms. Please read them carefully — they govern your use of our platform.
+    </div>
+
+    {% set terms_sections = [
+      ('acceptance', '1. Acceptance of Terms',
+        '<p class="text-gray-400 text-sm leading-relaxed">By accessing or using Yumm, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>'
+      ),
+      ('account', '2. Your Account',
+        '<p class="text-gray-400 text-sm mb-2">You must be at least 16 years old to create an account. You are responsible for:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Keeping your password secure and confidential</li>
+           <li>All activity that occurs under your account</li>
+           <li>Providing accurate and current information</li>
+         </ul>
+         <p class="text-gray-400 text-sm mt-3">Notify us immediately at <a href="mailto:hello@yumm.ps" class="text-orange hover:underline">hello@yumm.ps</a> if you suspect unauthorized access.</p>'
+      ),
+      ('use', '3. Acceptable Use',
+        '<p class="text-gray-400 text-sm mb-2">You agree not to:</p>
+         <ul class="list-disc list-inside text-gray-400 text-sm leading-loose space-y-1">
+           <li>Post false, misleading, or fraudulent reviews</li>
+           <li>Scrape or harvest data from the platform</li>
+           <li>Attempt to gain unauthorized access to our systems</li>
+           <li>Use the platform for any unlawful purpose</li>
+           <li>Impersonate another person or restaurant</li>
+         </ul>'
+      ),
+      ('reservations', '4. Reservations',
+        '<p class="text-gray-400 text-sm leading-relaxed">Yumm facilitates reservations between users and restaurants. We are not a party to the dining agreement itself. Cancellation policies are set by each restaurant and shown before you confirm a booking.</p>
+         <p class="text-gray-400 text-sm mt-3">We are not liable for no-shows, cancellations, or changes made by restaurants.</p>'
+      ),
+      ('content', '5. User Content',
+        '<p class="text-gray-400 text-sm leading-relaxed">When you submit reviews, photos, or other content, you grant Yumm a non-exclusive, royalty-free license to display and distribute that content on the platform. You retain ownership of your content.</p>
+         <p class="text-gray-400 text-sm mt-3">We reserve the right to remove content that violates these terms.</p>'
+      ),
+      ('ip', '6. Intellectual Property',
+        '<p class="text-gray-400 text-sm leading-relaxed">All platform content, logos, code, and design are the property of Yumm or its licensors. You may not copy, reproduce, or distribute any part without written permission.</p>'
+      ),
+      ('liability', '7. Limitation of Liability',
+        '<p class="text-gray-400 text-sm leading-relaxed">Yumm is provided "as is." We do not guarantee uninterrupted or error-free service. To the maximum extent permitted by law, Yumm shall not be liable for indirect, incidental, or consequential damages.</p>'
+      ),
+      ('termination', '8. Termination',
+        '<p class="text-gray-400 text-sm leading-relaxed">We may suspend or terminate your account at any time for violations of these terms. You may delete your account at any time via account settings.</p>'
+      ),
+      ('changes', '9. Changes to These Terms',
+        '<p class="text-gray-400 text-sm leading-relaxed">We may update these terms from time to time. We will notify registered users by email of significant changes. Continued use after changes constitutes acceptance.</p>'
+      ),
+      ('contact', '10. Contact',
+        '<p class="text-gray-400 text-sm leading-relaxed">Questions? Email <a href="mailto:legal@yumm.ps" class="text-orange hover:underline">legal@yumm.ps</a> or visit our <a href="/contact/" class="text-orange hover:underline">Contact page</a>.</p>'
+      ),
+    ] %}
+
+    {% for anchor, heading, body_html in terms_sections %}
+    <section id="{{ anchor }}" class="mb-10 scroll-mt-24">
+      <h2 class="text-lg font-bold mb-4 text-white">{{ heading }}</h2>
+      {{ body_html | safe }}
+    </section>
+    {% endfor %}
+
+  </main>
+</div>
+</body>
+</html>
+
+{% block extra_js %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
