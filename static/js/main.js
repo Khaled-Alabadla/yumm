@@ -32,13 +32,27 @@ function toggleTheme() { applyTheme(!html.classList.contains('dark')); }
 /* ─────────────────────────────
    Live Clock
 ───────────────────────────── */
+function getClockLocale() {
+  const lang = document.documentElement.lang || 'en';
+  return lang.startsWith('ar') ? 'ar-PS' : 'en-US';
+}
+
 function updateClock() {
   const now = new Date();
   const t = document.getElementById('clock-time');
   const d = document.getElementById('clock-date');
-  if (!t) return;
-  t.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  d.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+  if (!t || !d) return;
+  const locale = getClockLocale();
+  t.textContent = now.toLocaleTimeString(locale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  d.textContent = now.toLocaleDateString(locale, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  });
 }
 updateClock();
 setInterval(updateClock, 1000);
@@ -423,18 +437,140 @@ function resetAllA11y() {
 }
 
 /* ─────────────────────────────
-   Wishlist heart buttons
+   Toast notifications
 ───────────────────────────── */
-document.querySelectorAll('.wish-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const icon = btn.querySelector('[data-lucide="heart"]');
-    const on   = btn.getAttribute('aria-pressed') === 'true';
-    icon.classList.toggle('text-[#B5451B]', !on);
-    icon.classList.toggle('fill-[#B5451B]', !on);
-    icon.classList.toggle('text-gray-400',   on);
-    btn.setAttribute('aria-pressed', String(!on));
+function getWishlistI18n() {
+  const el = document.getElementById('wishlist-i18n');
+  if (!el) return {};
+  try {
+    return JSON.parse(el.textContent);
+  } catch {
+    return {};
+  }
+}
+
+function showYummToast(message, type = 'success') {
+  const root = document.getElementById('yumm-toast-root');
+  if (!root || !message) return;
+  const text = String(message).replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, '').trim();
+  const toast = document.createElement('div');
+  toast.className = `yumm-toast yumm-toast--${type}`;
+  toast.innerHTML = `<span class="yumm-toast__text">${text}</span>`;
+  root.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+    setTimeout(() => toast.remove(), 280);
+  }, 2800);
+}
+window.showYummToast = showYummToast;
+
+/* ─────────────────────────────
+   Wishlist AJAX (landing + public cards + detail)
+───────────────────────────── */
+function updateWishlistFabBadge() {
+  const badge = document.querySelector('.yumm-fab-wishlist__badge');
+  const fab = document.querySelector('.yumm-fab-wishlist');
+  if (!fab) return;
+  const count = getWishlist().length;
+  if (badge) {
+    badge.textContent = String(count);
+    badge.hidden = count === 0;
+  } else if (count > 0) {
+    const el = document.createElement('span');
+    el.className = 'yumm-fab-wishlist__badge';
+    el.textContent = String(count);
+    fab.appendChild(el);
+  }
+}
+
+function updateWishlistCacheFromForm(form, added) {
+  const source = form.closest('[data-restaurant-id]') || form;
+  const id = parseInt(source.dataset.restaurantId, 10);
+  if (!id) return;
+  let list = [...getWishlist()];
+  if (added) {
+    if (!list.some((item) => item.id === id)) {
+      list.unshift({
+        id,
+        name: source.dataset.restaurantName || '',
+        cuisine: source.dataset.restaurantCuisine || '',
+        city: source.dataset.restaurantCity || '',
+        rating: source.dataset.restaurantRating || '',
+        url: source.dataset.restaurantUrl || '',
+      });
+    }
+  } else {
+    list = list.filter((item) => item.id !== id);
+  }
+  wishlistCache = list;
+  updateWishlistFabBadge();
+}
+
+function syncWishlistButtonState(btn, added) {
+  if (!btn) return;
+  btn.classList.toggle('is-active', added);
+  btn.setAttribute('aria-pressed', added ? 'true' : 'false');
+  const icon = btn.querySelector('[data-lucide="heart"]');
+  if (icon) {
+    icon.classList.toggle('text-[#B5451B]', added);
+    icon.classList.toggle('fill-[#B5451B]', added);
+    icon.classList.toggle('text-gray-400', !added);
+  }
+  const label = btn.querySelector('.rp-wishlist-btn__label');
+  const form = btn.closest('form');
+  if (label && form) {
+    label.textContent = added
+      ? (form.dataset.labelRemove || 'Remove from Wishlist')
+      : (form.dataset.labelAdd || 'Add to Wishlist');
+  }
+}
+
+function initWishlistAjax() {
+  document.querySelectorAll('.landing-wishlist-form[data-ajax="1"], .rp-wishlist-form[data-ajax="1"]').forEach((form) => {
+    if (form.dataset.wishlistBound) return;
+    form.dataset.wishlistBound = '1';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const btn = form.querySelector('.wish-btn, .rp-wishlist-btn, .rp-action-btn');
+      const csrf = form.querySelector('[name=csrfmiddlewaretoken]');
+      const i = getWishlistI18n();
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrf ? csrf.value : '',
+          },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (!data.success) {
+          showYummToast(data.message || i.loginRequired || 'Action failed', 'info');
+          return;
+        }
+        syncWishlistButtonState(btn, data.added);
+        updateWishlistCacheFromForm(form, data.added);
+        if (document.getElementById('modal-wishlist')?.classList.contains('modal-open')) {
+          renderWishlist();
+        }
+        showYummToast(
+          data.message || (data.added ? i.added : i.removed) || 'Saved',
+          data.added ? 'success' : 'removed',
+        );
+      } catch {
+        form.submit();
+      }
+    });
+  });
+}
+window.initWishlistAjax = initWishlistAjax;
+
+document.querySelectorAll('.wish-btn-guest, .rp-wishlist-btn--guest').forEach((link) => {
+  link.addEventListener('click', () => {
+    const i = getWishlistI18n();
+    showYummToast(i.loginRequired || 'Please log in to save restaurants', 'info');
   });
 });
 
@@ -471,7 +607,10 @@ function openModal(id) {
   document.getElementById('modal-' + id).classList.add('modal-open');
   document.body.style.overflow = 'hidden';
   if (id === 'map') setTimeout(initMap, 150);
-  if (id === 'wishlist') renderWishlist();
+  if (id === 'wishlist') {
+    renderWishlist();
+    if (window.lucide) lucide.createIcons();
+  }
 }
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('modal-open');
@@ -507,41 +646,61 @@ function getLandingI18n() {
   }
 }
 
-function buildDefaultWishlist() {
-  const i = getLandingI18n();
-  return [
-    { name: 'Al-Kanaan', cuisine: i.traditionalPalestinian || 'Traditional Palestinian', city: i.ramallah || 'Ramallah', rating: '4.8' },
-    { name: 'Jerusalem Garden Cafe', cuisine: i.cafeBreakfast || 'Cafe & Breakfast', city: i.jerusalem || 'Jerusalem', rating: '4.9' },
-  ];
+function getLandingWishlist() {
+  const el = document.getElementById('landing-wishlist');
+  if (!el) return [];
+  try {
+    const data = JSON.parse(el.textContent);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
 }
 
-let wishlist = null;
+let wishlistCache = null;
 function getWishlist() {
-  if (!wishlist) wishlist = buildDefaultWishlist();
-  return wishlist;
+  if (wishlistCache === null) wishlistCache = getLandingWishlist();
+  return wishlistCache;
 }
 
 function renderWishlist() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
-  const i = getLandingI18n();
+  const i = getWishlistI18n();
   const list = getWishlist();
+  const countEl = document.getElementById('wishlist-count');
+
+  if (countEl) {
+    if (list.length) {
+      countEl.textContent = list.length === 1
+        ? (i.savedOne || '1 restaurant saved')
+        : `${list.length} ${i.savedMany || 'restaurants saved'}`;
+      countEl.hidden = false;
+    } else {
+      countEl.hidden = true;
+      countEl.textContent = '';
+    }
+  }
+
   if (!list.length) {
-    container.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">${i.wishlistEmpty || 'No saved restaurants yet. Hit the ♥ on any card!'}</p>`;
+    container.innerHTML = `
+      <div class="wishlist-empty">
+        <span class="wishlist-empty__icon" aria-hidden="true"><i data-lucide="heart"></i></span>
+        <p class="wishlist-empty__title">${i.wishlistEmpty || 'Nothing saved yet'}</p>
+        <p class="wishlist-empty__hint">${i.wishlistHint || 'Tap ♥ on a restaurant to save it'}</p>
+      </div>`;
+    if (window.lucide) lucide.createIcons();
     return;
   }
-  const removeLabel = i.remove || 'Remove';
-  container.innerHTML = list.map((r, idx) => `
-    <div class="flex items-center justify-between bg-gray-50 rounded-2xl px-4 py-3">
-      <div>
-        <p class="font-semibold text-sm text-gray-900">${r.name}</p>
-        <p class="text-xs text-gray-400 mt-0.5">${r.cuisine} · ${r.city}</p>
+
+  container.innerHTML = list.map((r) => `
+    <a href="${r.url || '#'}" class="wishlist-item">
+      <div class="wishlist-item__body">
+        <span class="wishlist-item__name">${r.name}</span>
+        <span class="wishlist-item__meta">${[r.cuisine, r.city].filter(Boolean).join(' · ')}</span>
       </div>
-      <div class="flex items-center gap-3">
-        <span class="text-amber-400 font-bold text-sm">★ ${r.rating}</span>
-        <button onclick="removeWishlist(${idx})" class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">${removeLabel}</button>
-      </div>
-    </div>
+      ${r.rating ? `<span class="wishlist-item__rating">★ ${r.rating}</span>` : ''}
+    </a>
   `).join('');
 }
 
@@ -632,11 +791,16 @@ document.getElementById('ai-input')?.addEventListener('keydown', e => {
 let yummMap = null;
 let searchMarker = null;
 
-const restaurants = [
-  { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',           desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
-  { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',      desc: 'Grills & BBQ · Gaza ★ 4.6'              },
-  { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕', desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
-];
+function getMapRestaurants() {
+  const el = document.getElementById('landing-map-restaurants');
+  if (!el) return [];
+  try {
+    const data = JSON.parse(el.textContent);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
 
 function initMap() {
   if (yummMap) { yummMap.invalidateSize(); return; }
@@ -652,20 +816,27 @@ function initMap() {
 
 function buildMap() {
   yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>', maxZoom: 18,
-  }).addTo(yummMap);
+  window.YummMap.addBaseTileLayer(yummMap);
 
   const redIcon = L.divIcon({
     html: `<div style="background:#B5451B;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`,
     iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -36], className: '',
   });
 
+  const restaurants = getMapRestaurants();
   restaurants.forEach(r => {
+    const popup = r.url
+      ? `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span><br><a href="${r.url}" style="color:#B5451B;font-size:12px;font-weight:600">View →</a>`
+      : `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span>`;
     L.marker([r.lat, r.lng], { icon: redIcon })
       .addTo(yummMap)
-      .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, { maxWidth: 200 });
+      .bindPopup(popup, { maxWidth: 220 });
   });
+
+  if (restaurants.length) {
+    const bounds = L.latLngBounds(restaurants.map(r => [r.lat, r.lng]));
+    yummMap.fitBounds(bounds.pad(0.15));
+  }
 }
 
 function flyToRestaurant(lat, lng, name, desc) {
@@ -683,7 +854,10 @@ async function searchMapLocation() {
   const query = document.getElementById('map-search-input')?.value.trim();
   if (!query || !yummMap) return;
   try {
-    const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
+      { headers: { 'Accept-Language': window.YummMap.mapSearchLanguage() } },
+    );
     const data = await res.json();
     if (!data.length) { alert('Location not found. Try a different search.'); return; }
     const { lat, lon, display_name } = data[0];
@@ -728,6 +902,9 @@ document.addEventListener('click', function(e) {
    Contact form validation
 ───────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  initWishlistAjax();
+  updateWishlistFabBadge();
+
   const form = document.querySelector('form[action="/contact/"]');
   if (!form) return;
   form.addEventListener('submit', e => {

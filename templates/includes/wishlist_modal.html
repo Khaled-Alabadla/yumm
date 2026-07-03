@@ -1,0 +1,13 @@
+{% load i18n %}
+<div id="modal-wishlist" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="{% trans 'Wishlist' %}">
+  <div class="modal-box modal-box--wishlist">
+    <div class="wishlist-modal__head">
+      <div class="wishlist-modal__brand">
+        <h3 class="wishlist-modal__title">{% trans 'My Wishlist' %}</h3>
+      </div>
+      <button type="button" class="wishlist-modal__close" onclick="closeModal('wishlist')" aria-label="{% trans 'Close' %}">×</button>
+    </div>
+    <p id="wishlist-count" class="wishlist-modal__sub" hidden></p>
+    <div id="wishlist-items" class="wishlist-modal__list"></div>
+  </div>
+</div>

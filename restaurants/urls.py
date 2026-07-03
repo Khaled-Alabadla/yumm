@@ -2,11 +2,27 @@
 
 from django.urls import path
 
-from . import views
+from . import public_views, views
 
 app_name = "restaurants"
 
 urlpatterns = [
+    path("restaurants/", public_views.RestaurantListView.as_view(), name="list"),
+    path(
+        "restaurants/<int:pk>/",
+        public_views.RestaurantDetailView.as_view(),
+        name="detail",
+    ),
+    path(
+        "restaurants/<int:pk>/wishlist/",
+        public_views.WishlistToggleView.as_view(),
+        name="wishlist-toggle",
+    ),
+    path(
+        "restaurants/<int:pk>/review/",
+        public_views.ReviewSubmitView.as_view(),
+        name="review-submit",
+    ),
     path("dashboard/", views.DashboardOverviewView.as_view(), name="dashboard"),
     path(
         "dashboard/info/",

@@ -629,9 +629,7 @@ function initMap() {
 
 function buildMap() {
   yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>', maxZoom: 18,
-  }).addTo(yummMap);
+  window.YummMap.addBaseTileLayer(yummMap);
 
   const redIcon = L.divIcon({
     html: `<div style="background:#B5451B;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`,
@@ -660,7 +658,10 @@ async function searchMapLocation() {
   const query = document.getElementById('map-search-input')?.value.trim();
   if (!query || !yummMap) return;
   try {
-    const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
+      { headers: { 'Accept-Language': window.YummMap.mapSearchLanguage() } },
+    );
     const data = await res.json();
     if (!data.length) { alert('Location not found. Try a different search.'); return; }
     const { lat, lon, display_name } = data[0];

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "About Us" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page" tabindex="-1">
+  <header class="yumm-page-hero">
+    <div class="yumm-page-hero__inner">
+      <p class="yumm-page-eyebrow">{% trans "Our Story" %}</p>
+      <h1 class="yumm-page-title">{% trans "Built for Palestine's Food Lovers" %}</h1>
+      <p class="yumm-page-lead">{% trans "Yumm helps people across Palestine discover great restaurants, read honest reviews, and save their favourite places — all in one platform." %}</p>
+    </div>
+  </header>
+
+  <div class="yumm-page-body yumm-page-body--wide">
+    <div class="yumm-page-grid yumm-page-grid--4 yumm-page-section">
+      <div class="yumm-stat">
+        <p class="yumm-stat__value">200+</p>
+        <p class="yumm-stat__label">{% trans "Restaurants" %}</p>
+      </div>
+      <div class="yumm-stat">
+        <p class="yumm-stat__value">15+</p>
+        <p class="yumm-stat__label">{% trans "Cities" %}</p>
+      </div>
+      <div class="yumm-stat">
+        <p class="yumm-stat__value">4.8★</p>
+        <p class="yumm-stat__label">{% trans "Avg Rating" %}</p>
+      </div>
+      <div class="yumm-stat">
+        <p class="yumm-stat__value">1000+</p>
+        <p class="yumm-stat__label">{% trans "Happy Users" %}</p>
+      </div>
+    </div>
+
+    <section class="yumm-page-section">
+      <h2 class="yumm-page-section__title">{% trans "Our Values" %}</h2>
+      <div class="yumm-page-grid" style="gap: 1.25rem;">
+        <div class="yumm-value-row">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="utensils"></i></span>
+          <div>
+            <p class="yumm-value-row__title">{% trans "Local First" %}</p>
+            <p class="yumm-value-row__text">{% trans "We champion Palestinian restaurants, chefs, and food culture above all else." %}</p>
+          </div>
+        </div>
+        <div class="yumm-value-row">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="users"></i></span>
+          <div>
+            <p class="yumm-value-row__title">{% trans "Community Driven" %}</p>
+            <p class="yumm-value-row__text">{% trans "Real reviews from real diners. No paid placements, no fake stars." %}</p>
+          </div>
+        </div>
+        <div class="yumm-value-row">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="sparkles"></i></span>
+          <div>
+            <p class="yumm-value-row__title">{% trans "Always Improving" %}</p>
+            <p class="yumm-value-row__text">{% trans "We keep refining search, maps, and recommendations so discovery feels effortless." %}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}

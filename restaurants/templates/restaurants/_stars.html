@@ -1,0 +1,6 @@
+{% load i18n %}
+<span class="rp-stars rp-stars--{{ size }}" aria-label="{{ rating }} {% trans 'out of 5 stars' %}">
+  {% for i in full_stars %}<i class="fa-solid fa-star"></i>{% endfor %}
+  {% if half_star %}<i class="fa-solid fa-star-half-stroke"></i>{% endif %}
+  {% for i in empty_stars %}<i class="fa-regular fa-star"></i>{% endfor %}
+</span>

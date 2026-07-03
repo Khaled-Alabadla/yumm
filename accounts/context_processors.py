@@ -1,5 +1,9 @@
 """Template context processors for the accounts app."""
 
+from django.utils.translation import gettext as _
+
+from .wishlist_utils import get_wishlist_i18n, get_wishlist_ids, get_wishlist_items
+
 _DESKTOP = {
     "active": "text-[#B5451B] bg-[#B5451B]/10 dark:bg-[#B5451B]/15 font-semibold",
     "inactive": "text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2A2A2A]",
@@ -63,3 +67,14 @@ def _nav_state(request):
 
 def navbar(request):
     return {"nav": _nav_state(request)}
+
+
+def wishlist(request):
+    user = request.user
+    items = get_wishlist_items(user)
+    return {
+        "wishlist_ids": get_wishlist_ids(user),
+        "wishlist_items": items,
+        "wishlist_count": len(items),
+        "wishlist_i18n": get_wishlist_i18n(),
+    }

@@ -81,3 +81,15 @@ html.dark .yumm-input:focus {
   color: rgba(255, 255, 255, 0.58) !important;
   opacity: 1 !important;
 }
+
+/* Restaurants list — search toolbar (separate rounded fields + gap) */
+.rp-search-toolbar input:focus,
+.rp-search-toolbar select:focus {
+  outline: none !important;
+}
+
+.rp-search-toolbar__btn,
+.rp-search-toolbar__btn:hover,
+.rp-search-toolbar__btn:focus {
+  box-shadow: none !important;
+}

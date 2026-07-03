@@ -27,14 +27,14 @@ Yumm — Custom CSS
 .hero-bg {
   background:
     linear-gradient(135deg, rgba(0,0,0,.78) 0%, rgba(20,6,2,.88) 100%),
-    url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80')
+    url('/static/restaurants/img/covers/hero-food.jpg')
     center / cover no-repeat;
   min-height: 92vh;
 }
 .cta-bg {
   background:
     linear-gradient(135deg, rgba(100,18,0,.93), rgba(20,6,2,.96)),
-    url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1200&q=70')
+    url('/static/restaurants/img/covers/al-sham-kitchen.jpg')
     center / cover;
 }
 

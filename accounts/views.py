@@ -25,10 +25,20 @@ from django.contrib.auth.views import (
 )
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.urls import reverse, reverse_lazy
+from django.utils import translation
+from django.utils.translation import gettext, gettext_lazy as _
 from django.views import View
 from django.views.generic import CreateView, TemplateView, UpdateView
+
+from restaurants.models import Restaurant
+from restaurants.querysets import (
+    annotate_public_stats,
+    get_landing_review_highlights,
+    get_landing_stats,
+    get_map_restaurants,
+    get_top_rated_restaurants,
+)
 
 from .forms import ContactForm, UserLoginForm, UserProfileForm, UserRegistrationForm
 from .models import CustomUser
@@ -40,13 +50,8 @@ _ROLE_CHOICES = [
 ]
 
 
-from django.utils.translation import gettext
-
-
 def get_landing_i18n():
     return {
-        "wishlistEmpty": gettext("No saved restaurants yet. Hit the ♥ on any card!"),
-        "remove": gettext("Remove"),
         "traditionalPalestinian": gettext("Traditional Palestinian"),
         "cafeBreakfast": gettext("Cafe & Breakfast"),
         "grillsBbq": gettext("Grills & BBQ"),
@@ -56,10 +61,90 @@ def get_landing_i18n():
     }
 
 
+def get_cta_subtitle(user_count: int) -> str:
+    if user_count == 1:
+        return gettext(
+            "Join one food lover discovering Palestine's best restaurants every day."
+        )
+    return gettext(
+        "Join %(count)s food lovers discovering Palestine's best restaurants every day."
+    ) % {"count": user_count}
+
+
+def _localized_restaurant_name(restaurant) -> str:
+    if translation.get_language() == "ar":
+        return restaurant.name_ar or restaurant.name_en
+    return restaurant.name_en or restaurant.name_ar
+
+
+def _localized_category_name(category) -> str:
+    if not category:
+        return ""
+    if translation.get_language() == "ar":
+        return category.name_ar or category.name_en
+    return category.name_en or category.name_ar
+
+
+def _landing_map_markers() -> list[dict]:
+    qs = annotate_public_stats(get_map_restaurants())
+    markers = []
+    for restaurant in qs:
+        if restaurant.latitude is None or restaurant.longitude is None:
+            continue
+        parts = []
+        if restaurant.category:
+            parts.append(_localized_category_name(restaurant.category))
+        parts.append(restaurant.get_city_display())
+        if restaurant.avg_rating:
+            parts.append(f"★ {restaurant.avg_rating:.1f}")
+        markers.append(
+            {
+                "id": restaurant.pk,
+                "name": _localized_restaurant_name(restaurant),
+                "lat": float(restaurant.latitude),
+                "lng": float(restaurant.longitude),
+                "url": reverse("restaurants:detail", args=[restaurant.pk]),
+                "desc": " · ".join(parts),
+                "city": restaurant.get_city_display(),
+            }
+        )
+    return markers
+
+
 def index(request):
     if request.user.is_authenticated and request.user.is_owner_role:
         return redirect_owner_home(request.user)
-    return render(request, "index.html", {"landing_i18n": get_landing_i18n()})
+
+    map_markers = _landing_map_markers()
+    top_restaurants = list(get_top_rated_restaurants(limit=3))
+    map_featured = [
+        marker
+        for marker in map_markers
+        if marker["id"] in {r.pk for r in top_restaurants}
+    ][:3]
+    if len(map_featured) < 3:
+        seen = {m["id"] for m in map_featured}
+        for marker in map_markers:
+            if marker["id"] not in seen:
+                map_featured.append(marker)
+                seen.add(marker["id"])
+            if len(map_featured) >= 3:
+                break
+
+    stats = get_landing_stats()
+    return render(
+        request,
+        "index.html",
+        {
+            "landing_i18n": get_landing_i18n(),
+            "stats": stats,
+            "cta_subtitle": get_cta_subtitle(stats["users"]),
+            "top_restaurants": top_restaurants,
+            "review_highlights": get_landing_review_highlights(),
+            "map_restaurants": map_markers,
+            "map_featured": map_featured,
+        },
+    )
 
 class RegisterView(CreateView):
     """
@@ -316,30 +401,39 @@ class DemoLoginView(View):
             user.save(update_fields=["password"])
         return user
 def about(request):
-    return render(request, 'about.html')
+    return render(request, "pages/about.html")
 
 
 def contact(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            # TODO: send_mail(...) أو احفظ في DB
-            messages.success(request, "Message sent! We'll get back to you within 24 hours.")
-            return redirect('contact')
-        else:
-            messages.error(request, 'Please fix the errors below.')
+            messages.success(
+                request,
+                _("Message sent! We'll get back to you within 24 hours."),
+            )
+            return redirect("contact")
+        messages.error(request, _("Please fix the errors below."))
     else:
         form = ContactForm()
 
-    return render(request, 'contact.html', {'form': form})
+    return render(request, "pages/contact.html", {"form": form})
 
 
 def privacy(request):
-    return render(request, 'privacy.html', {'last_updated': 'June 26, 2026'})
+    return render(
+        request,
+        "pages/privacy.html",
+        {"last_updated": _("July 2026")},
+    )
 
 
 def terms(request):
-    return render(request, 'terms.html', {'last_updated': 'June 26, 2026'})
+    return render(
+        request,
+        "pages/terms.html",
+        {"last_updated": _("July 2026")},
+    )
 
 class PendingView(TemplateView):
     template_name = "accounts/pending.html"

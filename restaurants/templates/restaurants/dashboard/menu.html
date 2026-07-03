@@ -19,13 +19,7 @@
   {% for item in menu_items %}
   <li class="rd-menu-card" data-item-id="{{ item.pk }}">
     <div class="rd-menu-image">
-      {% if item.image %}
-      <img src="{{ item.image.url }}" alt="{{ item|localized_name }}" />
-      {% else %}
-      <div class="rd-menu-placeholder">
-        <i data-lucide="utensils" class="w-6 h-6"></i>
-      </div>
-      {% endif %}
+      <img src="{{ item|menu_item_image }}" alt="{{ item|localized_name }}"/>
     </div>
     <div class="rd-menu-body">
       <h3 class="rd-menu-name">{{ item|localized_name }}</h3>

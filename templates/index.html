@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n restaurant_tags %}
 
 {% block title %}Yumm — {% trans "Discover the Best Restaurants in Palestine" %}{% endblock %}
 {% block content %}
@@ -9,7 +9,7 @@
 <!-- ════════════════════════════════════════
 HERO
 ════════════════════════════════════════ -->
-<section class="hero-bg flex items-center" aria-labelledby="hero-h1" style="background: linear-gradient(135deg, rgba(0,0,0,.78) 0%, rgba(20,6,2,.88) 100%), #1a0a06; min-height: 92vh;">
+<section class="hero-bg flex items-center" aria-labelledby="hero-h1">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full py-28 lg:py-36">
 
     <div class="inline-flex items-center gap-2 anim-shimmer text-white text-[11px] font-bold px-4 py-2 rounded-full mb-7 select-none tracking-wide uppercase">
@@ -27,19 +27,19 @@ HERO
 
     <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light">{% trans "Explore menus, reviews, ratings, and our AI Assistant — all in one place." %}</p>
 
-    <div class="hero-search mb-8" role="search">
+    <form class="hero-search mb-8" role="search" action="{% url 'restaurants:list' %}" method="get" id="hero-search-form">
       <label for="hero-q" class="sr-only">{% trans "Search restaurants" %}</label>
       <div class="hero-search__field">
         <i data-lucide="search" class="hero-search__icon" aria-hidden="true"></i>
-        <input id="hero-q" type="text" class="hero-search__input" autocomplete="off"
+        <input id="hero-q" name="q" type="search" class="hero-search__input" autocomplete="off"
           placeholder="{% trans 'Search restaurants...' %}"
           aria-label="{% trans 'Search restaurants' %}"/>
       </div>
-      <button type="button" class="hero-search__btn">{% trans "Search" %}</button>
-    </div>
+      <button type="submit" class="hero-search__btn">{% trans "Search" %}</button>
+    </form>
 
     <div class="flex flex-wrap gap-3">
-      <a href="#restaurants"
+      <a href="{% url 'restaurants:list' %}"
         class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white font-semibold rounded-2xl transition-colors text-sm sm:text-base shadow-[0_8px_28px_rgba(181,69,27,.45)]">
         <i data-lucide="utensils" class="w-4 h-4" aria-hidden="true"></i>
         <span>{% trans "Explore Restaurants" %}</span>
@@ -67,28 +67,28 @@ STATS BAR
       <div class="flex flex-col items-center py-9 px-4 text-center reveal">
         <i data-lucide="utensils" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="100">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.restaurants }}">0</span>
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Restaurants" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.08s">
         <i data-lucide="message-square" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-[#B5451B]">
-          <span class="counter" data-target="1000">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.reviews }}">0</span>
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Reviews" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.16s">
         <i data-lucide="users" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="1000">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.users }}">0</span>
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Happy Users" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.24s">
         <i data-lucide="award" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="100">0</span>
+          <span class="counter" data-target="{{ stats.top_rated }}">0</span>
         </p>
         <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Top Rated" %}</p>
       </div>
@@ -189,119 +189,19 @@ TOP RESTAURANTS
         <h2 id="rest-h2" class="font-display text-4xl font-black text-gray-900 dark:text-white">{% trans "Top Restaurants" %}</h2>
         <p class="text-gray-500 dark:text-gray-400 mt-1">{% trans "Highest-rated picks across Palestine" %}</p>
       </div>
-      <a href="#" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#B5451B] hover:opacity-75 transition-opacity">
+      <a href="{% url 'restaurants:list' %}" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#B5451B] hover:opacity-75 transition-opacity">
         <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
       </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card: Al-Kanaan -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Al-Kanaan restaurant">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
-            alt="Al-Kanaan restaurant" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-          <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
-          <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="{% trans 'Add to wishlist' %}" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Al-Kanaan</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">{% trans "Traditional Palestinian" %}</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.8 {% trans 'out of 5 stars' %}">
-              <span class="text-amber-400">★★★★★</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.8</span>
-              <span class="text-xs text-gray-400 ml-0.5">(234)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> {% trans "Ramallah" %}
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Mansaf" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Musakhan" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Family" %}</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
-        </div>
-      </article>
-      <!-- Card: Gaza Grill House -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.1s">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Gaza Grill House restaurant">
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80"
-            alt="Gaza Grill House" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-          <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
-          <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="{% trans 'Add to wishlist' %}" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Gaza Grill House</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">{% trans "Grills & BBQ" %}</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.6 {% trans 'out of 5 stars' %}">
-              <span class="text-amber-400">★★★★½</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.6</span>
-              <span class="text-xs text-gray-400 ml-0.5">(189)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> {% trans "Gaza" %}
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Grills" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "BBQ" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Seafood" %}</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
-        </div>
-      </article>
-      <!-- Card: Jerusalem Garden Cafe -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.2s">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Jerusalem Garden Cafe">
-          <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=80"
-            alt="Jerusalem Garden Cafe" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-           <span class="absolute top-3 start-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
-          <button class="wish-btn absolute top-3 end-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="{% trans 'Add to wishlist' %}" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Jerusalem Garden Cafe</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">{% trans "Cafe & Breakfast" %}</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.9 {% trans 'out of 5 stars' %}">
-              <span class="text-amber-400">★★★★★</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.9</span>
-              <span class="text-xs text-gray-400 ml-0.5">(412)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> {% trans "Jerusalem" %}
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Cafe" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Breakfast" %}</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">{% trans "Organic" %}</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
-        </div>
-      </article>
+      {% for restaurant in top_restaurants %}
+      {% include "partials/_landing_restaurant_card.html" with restaurant=restaurant card_delay=forloop.counter0 %}
+      {% empty %}
+      <p class="col-span-full text-center text-gray-500 dark:text-gray-400 py-12">{% trans "No restaurants yet. Check back soon!" %}</p>
+      {% endfor %}
     </div>
     <div class="text-center mt-8 sm:hidden">
-      <a href="#" class="inline-flex items-center gap-1 text-[#B5451B] font-semibold text-sm">
+      <a href="{% url 'restaurants:list' %}" class="inline-flex items-center gap-1 text-[#B5451B] font-semibold text-sm">
         <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
     </div>
@@ -314,7 +214,7 @@ CTA
 <section class="cta-bg py-24 text-center relative" aria-labelledby="cta-h2">
   <div class="relative z-10 max-w-xl mx-auto px-5">
     <h2 id="cta-h2" class="font-display text-4xl sm:text-5xl font-black text-white mb-4 reveal">{% trans "Ready to Explore?" %}</h2>
-    <p class="text-gray-300 text-lg mb-8 leading-relaxed reveal">{% trans "Join 1000+ food lovers discovering Palestine's best restaurants every day." %}</p>
+    <p class="text-gray-300 text-lg mb-8 leading-relaxed reveal">{{ cta_subtitle }}</p>
     <a href="{% url 'accounts:register' %}"
       class="inline-flex items-center gap-2 px-9 py-4 bg-[#B5451B] hover:bg-[#9A3A16] text-white font-bold rounded-2xl transition-colors text-lg shadow-[0_12px_36px_rgba(181,69,27,.5)] reveal"
      >{% trans "Create Account" %}</a>
@@ -383,12 +283,15 @@ CTA
       <div id="leaflet-map" class="flex-1" style="min-height:380px;z-index:0"></div>
       <div class="p-3 border-t border-gray-100 flex flex-wrap gap-2 shrink-0">
         <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 {% trans "Featured Restaurants — click to fly there" %}</span>
-        <button onclick="flyToRestaurant(31.9038, 35.2034, 'Al-Kanaan 🍽️', '{% filter escapejs %}{% trans "Traditional Palestinian" %} · {% trans "Ramallah" %}{% endfilter %}')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Al-Kanaan · {% trans "Ramallah" %}</button>
-        <button onclick="flyToRestaurant(31.5017, 34.4667, 'Gaza Grill House 🔥', '{% filter escapejs %}{% trans "Grills & BBQ" %} · {% trans "Gaza" %}{% endfilter %}')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Gaza Grill House · {% trans "Gaza" %}</button>
-        <button onclick="flyToRestaurant(31.7683, 35.2137, 'Jerusalem Garden Cafe ☕', '{% filter escapejs %}{% trans "Cafe & Breakfast" %} · {% trans "Jerusalem" %}{% endfilter %}')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Jerusalem Garden Cafe · {% trans "Jerusalem" %}</button>
+        {% for marker in map_featured %}
+        <button type="button"
+          onclick="flyToRestaurant({{ marker.lat }}, {{ marker.lng }}, '{{ marker.name|escapejs }}', '{{ marker.desc|escapejs }}')"
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
+          {{ marker.name }} · {{ marker.city }}
+        </button>
+        {% empty %}
+        <p class="text-xs text-gray-400">{% trans "No map locations available yet." %}</p>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -405,71 +308,41 @@ CTA
       <button class="modal-close-btn" onclick="closeModal('reviews')" aria-label="{% trans 'Close' %}">✕</button>
     </div>
     <div class="modal-body flex flex-col gap-4">
+      {% for group in review_highlights %}
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Al-Kanaan</p><p class="text-xs text-gray-400">{% trans "Traditional Palestinian" %} · {% trans "Ramallah" %}</p></div>
-          <span class="text-amber-400 font-bold">★ 4.8</span>
+          <div>
+            <p class="font-bold text-gray-900">{{ group.restaurant|localized_name }}</p>
+            <p class="text-xs text-gray-400">
+              {% if group.restaurant.category %}{{ group.restaurant.category|localized_category }} · {% endif %}{{ group.restaurant|city_label }}
+            </p>
+          </div>
+          {% if group.restaurant.avg_rating %}
+          <span class="text-amber-400 font-bold">★ {{ group.restaurant.avg_rating|floatformat:1 }}</span>
+          {% endif %}
         </div>
         <div class="space-y-2">
+          {% for review in group.reviews %}
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"أفضل منسف في رام الله! الأكل كان رائعاً والخدمة ممتازة."</p>
-            <p class="text-xs text-gray-400">— Ahmad K. · ★★★★★</p>
+            <p class="text-sm text-gray-700 mb-1">"{{ review.comment }}"</p>
+            <p class="text-xs text-gray-400">— {{ review.user|user_display_name }} · {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}{% endfor %}</p>
           </div>
-          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"Amazing musakhan, will definitely come back!"</p>
-            <p class="text-xs text-gray-400">— Sara M. · ★★★★★</p>
-          </div>
+          {% endfor %}
         </div>
       </div>
-      <div class="border border-gray-200 rounded-2xl p-4">
-        <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Jerusalem Garden Cafe</p><p class="text-xs text-gray-400">{% trans "Cafe & Breakfast" %} · {% trans "Jerusalem" %}</p></div>
-          <span class="text-amber-400 font-bold">★ 4.9</span>
-        </div>
-        <div class="space-y-2">
-          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"أجمل فطور في القدس، الأجواء رائعة وهادئة."</p>
-            <p class="text-xs text-gray-400">— Lina H. · ★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="border border-gray-200 rounded-2xl p-4">
-        <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Gaza Grill House</p><p class="text-xs text-gray-400">{% trans "Grills & BBQ" %} · {% trans "Gaza" %}</p></div>
-          <span class="text-amber-400 font-bold">★ 4.6</span>
-        </div>
-        <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-          <p class="text-sm text-gray-700 mb-1">"مشاوي على النار الحقيقية، طعم لا يُنسى!"</p>
-          <p class="text-xs text-gray-400">— Khalid R. · ★★★★★</p>
-        </div>
-      </div>
+      {% empty %}
+      <p class="text-center text-gray-400 py-8 text-sm">{% trans "No reviews yet. Be the first to share your experience!" %}</p>
+      {% endfor %}
     </div>
   </div>
 </div>
 
-<!-- ── 4. WISHLIST MODAL ── -->
-<div id="modal-wishlist" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="{% trans 'Wishlist' %}">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div class="flex items-center gap-3">
-        <i data-lucide="heart" class="w-5 h-5 text-white"></i>
-        <h3 class="font-semibold text-[15px]">{% trans "My Wishlist" %}</h3>
-      </div>
-      <button class="modal-close-btn" onclick="closeModal('wishlist')" aria-label="{% trans 'Close' %}">✕</button>
-    </div>
-    <div class="modal-body">
-      <p class="text-xs text-gray-400 mb-4">{% trans "Restaurants you've saved ❤️" %}</p>
-      <div id="wishlist-items" class="flex flex-col gap-3"></div>
-      <div class="mt-4 p-3 bg-[#B5451B]/10 rounded-2xl text-center">
-        <p class="text-xs text-[#B5451B] font-medium">💡 {% trans "Tap the ♥ on any restaurant card to save it here" %}</p>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ── 4. WISHLIST MODAL ── moved to base.html for all pages -->
 
 </main>
 {% endblock %}
 
 {% block pre_main_js %}
 {{ landing_i18n|json_script:"landing-i18n" }}
+{{ map_restaurants|json_script:"landing-map-restaurants" }}
 {% endblock %}

@@ -1,0 +1,5 @@
+{% load i18n %}
+<span class="rp-price-range rp-price-range--{{ variant }}" title="{% trans 'Average meal price level' %}" aria-label="{% trans 'Price range' %}: {{ label }}">
+  <span class="rp-price-range__label">{{ label }}</span>
+  <span class="rp-price-range__symbols" aria-hidden="true">{{ symbols }}</span>
+</span>

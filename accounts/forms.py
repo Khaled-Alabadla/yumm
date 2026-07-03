@@ -444,28 +444,30 @@ class UserProfileForm(forms.ModelForm):
 
 
 class ContactForm(forms.Form):
+    SUBJECT_CHOICES = [
+        ("Restaurant Partnership", _("Restaurant Partnership")),
+        ("Technical Support", _("Technical Support")),
+        ("Media & Press", _("Media & Press")),
+        ("General Inquiry", _("General Inquiry")),
+    ]
+
     name = forms.CharField(
         max_length=100,
-        error_messages={'required': 'Please enter your name.'}
+        error_messages={"required": _("Please enter your name.")},
     )
     email = forms.EmailField(
         error_messages={
-            'required': 'Please enter your email.',
-            'invalid': 'Enter a valid email address.'
+            "required": _("Please enter your email."),
+            "invalid": _("Enter a valid email address."),
         }
     )
-    subject = forms.ChoiceField(choices=[
-        ('Restaurant Partnership', 'Restaurant Partnership'),
-        ('Technical Support',      'Technical Support'),
-        ('Media & Press',          'Media & Press'),
-        ('General Inquiry',        'General Inquiry'),
-    ])
+    subject = forms.ChoiceField(choices=SUBJECT_CHOICES)
     message = forms.CharField(
         widget=forms.Textarea,
         min_length=10,
         max_length=1000,
         error_messages={
-            'required': 'Please enter a message.',
-            'min_length': 'Message must be at least 10 characters.'
+            "required": _("Please enter a message."),
+            "min_length": _("Message must be at least 10 characters."),
         }
     )

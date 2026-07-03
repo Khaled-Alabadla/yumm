@@ -1,0 +1,4 @@
+{% load i18n l10n %}
+<span class="landing-stars text-amber-400 text-sm leading-none" aria-label="{% blocktrans with rating=rating|floatformat:1 %}{{ rating }} out of 5 stars{% endblocktrans %}">
+  {% for i in full_stars %}★{% endfor %}{% for i in empty_stars %}<span class="text-gray-300 dark:text-gray-600">☆</span>{% endfor %}
+</span>

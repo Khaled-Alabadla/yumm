@@ -1,0 +1,66 @@
+{% load i18n l10n restaurant_tags %}
+<article class="rp-card" data-restaurant-id="{{ restaurant.pk }}"
+  data-restaurant-name="{{ restaurant|localized_name }}"
+  data-restaurant-cuisine="{% if restaurant.category %}{{ restaurant.category|localized_category }}{% endif %}"
+  data-restaurant-city="{{ restaurant|city_label }}"
+  data-restaurant-rating="{% if restaurant.avg_rating %}{{ restaurant.avg_rating|floatformat:1 }}{% endif %}"
+  data-restaurant-url="{% url 'restaurants:detail' restaurant.pk %}">
+  <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-card__media" aria-label="{{ restaurant|localized_name }}">
+    <img src="{{ restaurant|restaurant_cover }}" alt="{{ restaurant|localized_name }}" loading="lazy"/>
+    {% if restaurant|restaurant_is_open %}
+    <span class="rp-badge rp-badge--open">{% trans "Open" %}</span>
+    {% else %}
+    <span class="rp-badge rp-badge--closed">{% trans "Closed" %}</span>
+    {% endif %}
+    {% if user.is_authenticated and not user.is_owner_role %}
+    <form method="POST" action="{% url 'restaurants:wishlist-toggle' restaurant.pk %}" class="rp-wishlist-form" data-ajax="1">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
+      <button type="submit" class="rp-wishlist-btn !bg-white/95 hover:!bg-white shadow-md{% if restaurant.pk in wishlist_ids %} is-active{% endif %}"
+        aria-label="{% trans 'Add to wishlist' %}" aria-pressed="{% if restaurant.pk in wishlist_ids %}true{% else %}false{% endif %}">
+        <i data-lucide="heart" class="w-4 h-4 {% if restaurant.pk in wishlist_ids %}text-[#B5451B] fill-[#B5451B]{% else %}text-gray-500{% endif %}"></i>
+      </button>
+    </form>
+    {% else %}
+    <a href="{% url 'accounts:login' %}?next={{ request.get_full_path|urlencode }}"
+      class="rp-wishlist-btn rp-wishlist-btn--guest !bg-white/95 hover:!bg-white shadow-md"
+      aria-label="{% trans 'Log in to save to wishlist' %}"
+      onclick="event.stopPropagation();">
+      <i data-lucide="heart" class="w-4 h-4 text-gray-500"></i>
+    </a>
+    {% endif %}    <div class="rp-card__overlay">
+      <h3 class="rp-card__title">{{ restaurant|localized_name }}</h3>
+    </div>
+  </a>
+  <div class="rp-card__body">
+    {% if restaurant.category %}
+    <p class="rp-card__cuisine">{{ restaurant.category|localized_category }}</p>
+    {% endif %}
+    <div class="rp-card__meta">
+      <div class="rp-card__rating">
+        {% if restaurant.avg_rating %}
+        {% public_stars restaurant.avg_rating %}
+        {% localize off %}
+        <span class="rp-card__rating-num">{{ restaurant.avg_rating|floatformat:1 }}</span>
+        {% endlocalize %}
+        <span class="rp-card__rating-count">({{ restaurant.visible_review_count }})</span>
+        {% else %}
+        <span class="rp-card__no-rating">{% trans "No reviews yet" %}</span>
+        {% endif %}
+      </div>
+      <span class="rp-card__city">
+        <i data-lucide="map-pin" class="w-3 h-3"></i>
+        {{ restaurant|city_label }}
+      </span>
+    </div>
+    <div class="rp-card__tags">
+      {% price_range_badge restaurant variant="tag" %}
+      {% for tag in restaurant.tags.all|slice:":3" %}
+      <span class="rp-tag">{{ tag|localized_tag }}</span>
+      {% endfor %}
+    </div>
+    <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-btn rp-btn--primary rp-btn--block">
+      {% trans "View Restaurant" %}
+    </a>
+  </div>
+</article>

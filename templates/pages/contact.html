@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Contact" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page" tabindex="-1">
+  <header class="yumm-page-hero">
+    <div class="yumm-page-hero__inner">
+      <p class="yumm-page-eyebrow">{% trans "Get In Touch" %}</p>
+      <h1 class="yumm-page-title">{% trans "We'd Love to Hear From You" %}</h1>
+      <p class="yumm-page-lead">{% trans "Whether you're a restaurant owner, food lover, or just curious — reach out and our team will reply soon." %}</p>
+    </div>
+  </header>
+
+  <div class="yumm-page-body yumm-page-body--wide">
+    <div class="yumm-page-split">
+      <div class="yumm-page-card">
+        {% if messages %}
+        <div class="mb-4 flex flex-col gap-2">
+          {% for message in messages %}
+          <div class="rounded-xl px-4 py-3 text-sm {% if message.tags == 'success' %}bg-green-500/10 text-green-600 dark:text-green-400{% else %}bg-red-500/10 text-red-600 dark:text-red-400{% endif %}">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'contact' %}" class="yumm-form-stack" novalidate>
+          {% csrf_token %}
+          <div class="yumm-field">
+            <label for="id_name">{% trans "Full Name" %}</label>
+            <input type="text" name="name" id="id_name" class="yumm-input" placeholder="{% trans 'Your name' %}" value="{{ form.name.value|default:'' }}" required/>
+            {% if form.name.errors %}<p class="yumm-field-error">{{ form.name.errors.0 }}</p>{% endif %}
+          </div>
+          <div class="yumm-field">
+            <label for="id_email">{% trans "Email Address" %}</label>
+            <input type="email" name="email" id="id_email" class="yumm-input" placeholder="you@email.com" value="{{ form.email.value|default:'' }}" required/>
+            {% if form.email.errors %}<p class="yumm-field-error">{{ form.email.errors.0 }}</p>{% endif %}
+          </div>
+          <div class="yumm-field">
+            <label for="id_subject">{% trans "Subject" %}</label>
+            <select name="subject" id="id_subject" class="yumm-input" required>
+              {% for value, label in form.fields.subject.choices %}
+              <option value="{{ value }}"{% if form.subject.value == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            {% if form.subject.errors %}<p class="yumm-field-error">{{ form.subject.errors.0 }}</p>{% endif %}
+          </div>
+          <div class="yumm-field">
+            <label for="id_message">{% trans "Message" %}</label>
+            <textarea name="message" id="id_message" class="yumm-input" placeholder="{% trans 'Tell us how we can help...' %}" required>{{ form.message.value|default:'' }}</textarea>
+            {% if form.message.errors %}<p class="yumm-field-error">{{ form.message.errors.0 }}</p>{% endif %}
+          </div>
+          <button type="submit" class="yumm-btn-primary">{% trans "Send Message" %}</button>
+        </form>
+      </div>
+
+      <aside class="yumm-page-grid">
+        <div class="yumm-info-card">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="mail"></i></span>
+          <div>
+            <p class="yumm-info-card__title">{% trans "Email Us" %}</p>
+            <p class="yumm-info-card__text"><a href="mailto:hello@yumm.ps">hello@yumm.ps</a></p>
+          </div>
+        </div>
+        <div class="yumm-info-card">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <div>
+            <p class="yumm-info-card__title">{% trans "Based In" %}</p>
+            <p class="yumm-info-card__text">{% trans "Ramallah, Palestine 🇵🇸" %}</p>
+          </div>
+        </div>
+        <div class="yumm-info-card">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="clock"></i></span>
+          <div>
+            <p class="yumm-info-card__title">{% trans "Response Time" %}</p>
+            <p class="yumm-info-card__text">{% trans "We reply within 24 hours, Sunday–Thursday." %}</p>
+          </div>
+        </div>
+        <div class="yumm-info-card">
+          <span class="yumm-value-row__icon" aria-hidden="true"><i data-lucide="store"></i></span>
+          <div>
+            <p class="yumm-info-card__title">{% trans "Restaurant Owners" %}</p>
+            <p class="yumm-info-card__text">{% trans "Want to list your restaurant? Email" %} <a href="mailto:partners@yumm.ps">partners@yumm.ps</a></p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+{% endblock %}

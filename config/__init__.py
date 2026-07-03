@@ -1,1 +1,3 @@
+from config.i18n_boot import ensure_compiled_translations
 
+ensure_compiled_translations()
