@@ -5,7 +5,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=16"/>
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=19"/>
 {% endblock %}
 
 {% block content %}
@@ -182,7 +182,7 @@
           </div>
           {% elif not user.is_authenticated %}
           <p class="rp-login-prompt">
-            <a href="{% url 'accounts:login' %}?next={{ request.path }}%3Ftab%3Dreviews">{% trans "Log in" %}</a>{% trans " to write a review." %}
+            <a href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}%3Ftab%3Dreviews">{% trans "Log in to write a review." %}</a>
           </p>
           {% endif %}
         </section>

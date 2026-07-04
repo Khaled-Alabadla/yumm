@@ -24,6 +24,60 @@ msgstr "منذ %(time)s"
 msgid "1 restaurant saved"
 msgstr "مطعم واحد محفوظ"
 
+msgid "1. Acceptance"
+msgstr "1. القبول"
+
+msgid "1. Data We Collect"
+msgstr "1. البيانات التي نجمعها"
+
+msgid "2. How We Use It"
+msgstr "2. كيف نستخدمها"
+
+msgid "2. Your Account"
+msgstr "2. حسابك"
+
+msgid "3. Acceptable Use"
+msgstr "3. الاستخدام المقبول"
+
+msgid "3. Sharing"
+msgstr "3. المشاركة"
+
+msgid "3. Sharing Your Information"
+msgstr "3. مشاركة معلوماتك"
+
+msgid "4. Cookies"
+msgstr "4. ملفات تعريف الارتباط"
+
+msgid "4. User Content"
+msgstr "4. محتوى المستخدم"
+
+msgid "5. Intellectual Property"
+msgstr "5. الملكية الفكرية"
+
+msgid "5. Your Rights"
+msgstr "5. حقوقك"
+
+msgid "6. Liability"
+msgstr "6. المسؤولية"
+
+msgid "6. Security"
+msgstr "6. الأمان"
+
+msgid "7. Contact"
+msgstr "7. التواصل"
+
+msgid "7. Contact Us"
+msgstr "7. تواصل معنا"
+
+msgid "7. Termination"
+msgstr "7. إنهاء الحساب"
+
+msgid "8. Changes"
+msgstr "8. التعديلات"
+
+msgid "9. Contact"
+msgstr "9. التواصل"
+
 msgid ""
 "A complete platform for discovering, reviewing, and reserving the best "
 "dining in Palestine."
@@ -44,11 +98,17 @@ msgstr "من نحن"
 msgid "Abu Dis"
 msgstr "أبو ديس"
 
+msgid "Access the personal data we hold about you"
+msgstr "الاطلاع على بياناتك الشخصية لدينا"
+
 msgid "Accessibility settings"
 msgstr "إعدادات إمكانية الوصول"
 
 msgid "Account"
 msgstr "الحساب"
+
+msgid "Account info: name, email address, and password (hashed)"
+msgstr "معلومات الحساب: الاسم والبريد الإلكتروني وكلمة المرور (مشفّرة)"
 
 msgid "Accounts"
 msgstr "الحسابات"
@@ -182,6 +242,9 @@ msgstr "اسأل المساعد الذكي"
 msgid "Ask about a restaurant..."
 msgstr "اسأل عن مطعم..."
 
+msgid "Attempt to access accounts or data that are not yours"
+msgstr "محاولة الوصول إلى حسابات أو بيانات لا تخصك"
+
 msgid "Average Platform Rating"
 msgstr "متوسط تقييم المنصة"
 
@@ -272,6 +335,20 @@ msgstr "bureij"
 msgid "Burqin"
 msgstr "burqin"
 
+msgid ""
+"By accessing or using Yumm, you agree to be bound by these Terms of Service "
+"and our Privacy Policy."
+msgstr ""
+"بدخولك أو استخدامك Yumm، فإنك توافق على الالتزام بشروط الخدمة وسياسة "
+"الخصوصية."
+
+msgid ""
+"By using Yumm, you agree to these terms. Please read them carefully — they "
+"govern your use of our platform."
+msgstr ""
+"باستخدامك Yumm، فإنك توافق على هذه الشروط. يرجى قراءتها بعناية — فهي تحكم "
+"استخدامك للمنصة."
+
 msgid "Cafe"
 msgstr "مقهى"
 
@@ -347,6 +424,9 @@ msgstr "المحتويات"
 msgid "Copyright"
 msgstr "حقوق النشر"
 
+msgid "Correct inaccurate information"
+msgstr "تصحيح المعلومات غير الدقيقة"
+
 msgid "Could not delete this item."
 msgstr "تعذر حذف هذا الصنف."
 
@@ -407,6 +487,9 @@ msgstr "حذف الصنف؟"
 msgid "Delete this menu item?"
 msgstr "حذف هذا الصنف؟"
 
+msgid "Delete your account and associated data"
+msgstr "حذف حسابك والبيانات المرتبطة به"
+
 msgid "Deleted \"{object}\"."
 msgstr "تم حذف «{object}»."
 
@@ -427,6 +510,9 @@ msgstr "الوصف (عربي)"
 
 msgid "Description (English)"
 msgstr "الوصف (إنجليزي)"
+
+msgid "Device info: browser type, operating system, and IP address"
+msgstr "معلومات الجهاز: نوع المتصفح ونظام التشغيل وعنوان IP"
 
 msgid "Discover restaurants near you on a live, interactive map."
 msgstr "اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية."
@@ -644,6 +730,9 @@ msgstr "إذna"
 msgid "Important dates"
 msgstr "تواريخ مهمة"
 
+msgid "Improve features and fix bugs"
+msgstr "تحسين الميزات وإصلاح الأخطاء"
+
 msgid "Increase font size"
 msgstr "تكبير الخط"
 
@@ -749,11 +838,17 @@ msgstr "اتركه فارغاً للإبقاء على كلمة المرور ال
 msgid "Legal"
 msgstr "قانوني"
 
+msgid "Legal authorities — when required by law"
+msgstr "الجهات القانونية — عندما يقتضي القانون ذلك"
+
 msgid "Local First"
 msgstr "محلي أولاً"
 
 msgid "Location"
 msgstr "الموقع"
+
+msgid "Location data when you search for nearby restaurants"
+msgstr "بيانات الموقع عند البحث عن مطاعم قريبة"
 
 msgid "Location on Map"
 msgstr "الموقع على الخريطة"
@@ -766,6 +861,9 @@ msgstr "تسجيل الدخول مجدداً"
 
 msgid "Log in to save to wishlist"
 msgstr "سجّل الدخول للحفظ في المفضلة"
+
+msgid "Log in to write a review."
+msgstr "سجل الدخول لتكتب تقييماً."
 
 msgid "Log out"
 msgstr "تسجيل الخروج"
@@ -956,6 +1054,9 @@ msgstr "فتح القائمة"
 msgid "Opening Time"
 msgstr "وقت الفتح"
 
+msgid "Opt out of marketing emails at any time"
+msgstr "إلغاء الاشتراك في رسائل التسويق في أي وقت"
+
 msgid "Organic"
 msgstr "عضوي"
 
@@ -1023,6 +1124,9 @@ msgstr "البيانات الشخصية"
 msgid "Personal info"
 msgstr "المعلومات الشخصية"
 
+msgid "Personalise restaurant discovery and recommendations"
+msgstr "تخصيص اكتشاف المطاعم والاقتراحات"
+
 msgid "Phone Number"
 msgstr "رقم الهاتف"
 
@@ -1081,6 +1185,9 @@ msgstr "يرجى اختيار تقييم بالنجوم."
 msgid "Please write at least 10 characters."
 msgstr "يرجى كتابة 10 أحرف على الأقل."
 
+msgid "Post false, misleading, or abusive reviews"
+msgstr "نشر تقييمات كاذبة أو مضللة أو مسيئة"
+
 msgid "Previous"
 msgstr "السابق"
 
@@ -1116,6 +1223,12 @@ msgstr "qabatiya"
 
 msgid "Qalqilya"
 msgstr "قلqilya"
+
+msgid "Questions? Email"
+msgstr "لديك أسئلة؟ راسل"
+
+msgid "Questions? Reach out at"
+msgstr "لديك أسئلة؟ راسلنا على"
 
 msgid "Quick Access"
 msgstr "وصول سريع"
@@ -1234,6 +1347,9 @@ msgstr "المطاعم"
 msgid "Restaurants you've saved ❤️"
 msgstr "المطاعم التي حفظتها ❤️"
 
+msgid "Restaurants — when you interact with their listings or reviews"
+msgstr "المطاعم — عند تفاعلك مع صفحاتها أو تقييماتها"
+
 msgid "Restore selected reviews to the public site"
 msgstr "إظهار التقييمات على الموقع"
 
@@ -1242,6 +1358,13 @@ msgstr "التقييمات"
 
 msgid "Reviews & Ratings"
 msgstr "التقييمات والمراجعات"
+
+msgid ""
+"Reviews and other content you submit must be honest and based on your own "
+"experience. We may remove content that violates these terms."
+msgstr ""
+"يجب أن تكون التقييمات والمحتوى الذي تنشره صادقاً ومبنياً على تجربتك الشخصية."
+" قد نحذف المحتوى المخالف لهذه الشروط."
 
 msgid "Role"
 msgstr "الدور"
@@ -1275,6 +1398,12 @@ msgstr "حفظ كجديد"
 
 msgid "Save your favourite restaurants for future visits."
 msgstr "احفظ مطاعمك المفضلة لزياراتك القادمة."
+
+msgid "Save your wishlist and account preferences"
+msgstr "حفظ قائمة المفضلة وتفضيلات حسابك"
+
+msgid "Scrape, spam, or disrupt the service"
+msgstr "استخراج البيانات أو إرسال رسائل مزعجة أو تعطيل الخدمة"
 
 msgid "Seafood"
 msgstr "مأكولات بحرية"
@@ -1311,6 +1440,12 @@ msgstr "إرسال"
 
 msgid "Send Message"
 msgstr "إرسال الرسالة"
+
+msgid "Send important account and platform updates"
+msgstr "إرسال تحديثات مهمة للحساب والمنصة"
+
+msgid "Service providers — hosting and analytics, under strict agreements"
+msgstr "مزودي الخدمات — الاستضافة والتحليلات، بموجب اتفاقيات صارمة"
 
 msgid "Share your dining experience…"
 msgstr "شاركنا تجربتك في الطعام…"
@@ -1393,6 +1528,13 @@ msgstr "حجم النص"
 msgid "Thank you for your review!"
 msgstr "شكراً لتقييمك!"
 
+msgid ""
+"The Yumm name, logo, design, and platform code are owned by Yumm. Restaurant"
+" names, photos, and menus remain the property of their respective owners."
+msgstr ""
+"اسم Yumm وشعاره وتصميمه وكود المنصة مملوكة لـ Yumm. أسماء المطاعم وصورها "
+"وقوائمها تبقى ملكاً لأصحابها."
+
 msgid "The two password fields didn't match."
 msgstr "حقلتا كلمة المرور غير متطابقتين."
 
@@ -1412,6 +1554,9 @@ msgstr "لا يوجد سجل تغييرات لهذا العنصر. ربما لم
 
 msgid "Timestamps"
 msgstr "الطوابع الزمنية"
+
+msgid "To exercise these rights, email"
+msgstr "لممارسة هذه الحقوق، راسل"
 
 msgid "Toggle dark mode"
 msgstr "تبديل الوضع الليلي"
@@ -1440,6 +1585,13 @@ msgstr "طulkarm"
 msgid "Update Your Review"
 msgstr "تحديث تقييمك"
 
+msgid "Usage data: pages visited, search queries, and wishlist activity"
+msgstr ""
+"بيانات الاستخدام: الصفحات التي تزورها وعمليات البحث ونشاط قائمة المفضلة"
+
+msgid "Use the platform for unlawful purposes"
+msgstr "استخدام المنصة لأغراض غير قانونية"
+
 msgid "User"
 msgstr "مستخدم"
 
@@ -1462,13 +1614,47 @@ msgid ""
 "We champion Palestinian restaurants, chefs, and food culture above all else."
 msgstr "نُقدّم المطاعم والطهاة والثقافة الغذائية الفلسطينية فوق كل شيء."
 
+msgid "We do not sell your personal data to third parties."
+msgstr "لا نبيع بياناتك الشخصية لأطراف ثالثة."
+
 msgid ""
 "We keep refining search, maps, and recommendations so discovery feels "
 "effortless."
 msgstr "نواصل تحسين البحث والخرائط والاقتراحات لتكون تجربة الاكتشاف سلسة."
 
+msgid ""
+"We may suspend or terminate accounts that violate these terms. You may "
+"delete your account at any time from your profile settings."
+msgstr ""
+"قد نعلّق أو ننهي الحسابات المخالفة لهذه الشروط. يمكنك حذف حسابك في أي وقت من"
+" إعدادات الملف الشخصي."
+
+msgid ""
+"We may update these terms from time to time. Continued use after changes "
+"constitutes acceptance of the updated terms."
+msgstr ""
+"قد نحدّث هذه الشروط من وقت لآخر. استمرارك في الاستخدام بعد التعديلات يعني "
+"موافقتك على الشروط المحدّثة."
+
 msgid "We reply within 24 hours, Sunday–Thursday."
 msgstr "نرد خلال 24 ساعة، من الأحد إلى الخميس."
+
+msgid ""
+"We respect your privacy. Yumm collects only what's needed to help you "
+"discover great restaurants — nothing more."
+msgstr ""
+"نحترم خصوصيتك. يجمع Yumm فقط ما يلزم لمساعدتك على اكتشاف مطاعم رائعة — لا "
+"أكثر."
+
+msgid "We share your data only with:"
+msgstr "نشارك بياناتك فقط مع:"
+
+msgid ""
+"We use TLS encryption for data in transit. Passwords are hashed and never "
+"stored in plain text."
+msgstr ""
+"نستخدم تشفير TLS للبيانات أثناء النقل. كلمات المرور مشفّرة ولا تُخزَّن كنص "
+"واضح."
 
 msgid "We'd Love to Hear From You"
 msgstr "يسعدنا سماعك"
@@ -1487,6 +1673,9 @@ msgstr "مرحباً بعودتك، %(name)s"
 
 msgid "What are you craving today?"
 msgstr "ماذا تشتهي اليوم؟"
+
+msgid "When you use Yumm, we may collect:"
+msgstr "عند استخدامك لـ Yumm، قد نجمع:"
 
 msgid ""
 "Whether you're a restaurant owner, food lover, or just curious — reach out "
@@ -1513,8 +1702,24 @@ msgstr "يطa"
 msgid "Yes, delete"
 msgstr "نعم، احذف"
 
+msgid "You agree not to:"
+msgstr "توافق على عدم:"
+
+msgid ""
+"You are responsible for keeping your login credentials secure and for all "
+"activity under your account. Provide accurate information when registering."
+msgstr ""
+"أنت مسؤول عن حماية بيانات الدخول وعن كل نشاط يتم عبر حسابك. يرجى تقديم "
+"معلومات دقيقة عند التسجيل."
+
+msgid "You have the right to:"
+msgstr "لديك الحق في:"
+
 msgid "Your current password is incorrect."
 msgstr "كلمة المرور الحالية غير صحيحة."
+
+msgid "Your data helps us:"
+msgstr "تساعدنا بياناتك على:"
 
 msgid "Your name"
 msgstr "اسمك"
@@ -1564,6 +1769,22 @@ msgid ""
 msgstr ""
 "يساعد Yumm الناس في فلسطين على اكتشاف مطاعم رائعة وقراءة تقييمات صادقة وحفظ "
 "أماكنهم المفضلة — في منصة واحدة."
+
+msgid ""
+"Yumm provides restaurant information and reviews as-is. We are not "
+"responsible for the quality of food, service, or availability at listed "
+"restaurants."
+msgstr ""
+"يوفر Yumm معلومات المطاعم والتقييمات كما هي. لسنا مسؤولين عن جودة الطعام أو "
+"الخدمة أو التوفر في المطاعم المدرجة."
+
+msgid ""
+"Yumm uses cookies to keep you logged in, remember language preferences, and "
+"analyse traffic. You can disable cookies in your browser, though some "
+"features may not work."
+msgstr ""
+"يستخدم Yumm ملفات تعريف الارتباط لإبقائك مسجّل الدخول وتذكّر اللغة وتحليل "
+"الزيارات. يمكنك تعطيلها من المتصفح، لكن بعض الميزات قد لا تعمل."
 
 msgid "account type"
 msgstr "نوع الحساب"

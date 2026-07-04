@@ -5,8 +5,10 @@
   data-restaurant-city="{{ restaurant|city_label }}"
   data-restaurant-rating="{% if restaurant.avg_rating %}{{ restaurant.avg_rating|floatformat:1 }}{% endif %}"
   data-restaurant-url="{% url 'restaurants:detail' restaurant.pk %}">
-  <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-card__media" aria-label="{{ restaurant|localized_name }}">
-    <img src="{{ restaurant|restaurant_cover }}" alt="{{ restaurant|localized_name }}" loading="lazy"/>
+  <div class="rp-card__media">
+    <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-card__media-link" aria-label="{{ restaurant|localized_name }}">
+      <img src="{{ restaurant|restaurant_cover }}" alt="{{ restaurant|localized_name }}" loading="lazy"/>
+    </a>
     {% if restaurant|restaurant_is_open %}
     <span class="rp-badge rp-badge--open">{% trans "Open" %}</span>
     {% else %}
@@ -16,23 +18,21 @@
     <form method="POST" action="{% url 'restaurants:wishlist-toggle' restaurant.pk %}" class="rp-wishlist-form" data-ajax="1">
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
-      <button type="submit" class="rp-wishlist-btn !bg-white/95 hover:!bg-white shadow-md{% if restaurant.pk in wishlist_ids %} is-active{% endif %}"
+      <button type="submit" class="rp-wishlist-btn{% if restaurant.pk in wishlist_ids %} is-active{% endif %}"
         aria-label="{% trans 'Add to wishlist' %}" aria-pressed="{% if restaurant.pk in wishlist_ids %}true{% else %}false{% endif %}">
-        <i data-lucide="heart" class="w-4 h-4 {% if restaurant.pk in wishlist_ids %}text-[#B5451B] fill-[#B5451B]{% else %}text-gray-500{% endif %}"></i>
+        <i data-lucide="heart" class="w-4 h-4"></i>
       </button>
     </form>
     {% else %}
     <a href="{% url 'accounts:login' %}?next={{ request.get_full_path|urlencode }}"
-      class="rp-wishlist-btn rp-wishlist-btn--guest !bg-white/95 hover:!bg-white shadow-md"
-      aria-label="{% trans 'Log in to save to wishlist' %}"
-      onclick="event.stopPropagation();">
-      <i data-lucide="heart" class="w-4 h-4 text-gray-500"></i>
+      class="rp-wishlist-btn rp-wishlist-btn--guest"
+      aria-label="{% trans 'Log in to save to wishlist' %}">
+      <i data-lucide="heart" class="w-4 h-4"></i>
     </a>
-    {% endif %}    <div class="rp-card__overlay">
-      <h3 class="rp-card__title">{{ restaurant|localized_name }}</h3>
-    </div>
-  </a>
+    {% endif %}
+  </div>
   <div class="rp-card__body">
+    <h3 class="rp-card__name">{{ restaurant|localized_name }}</h3>
     {% if restaurant.category %}
     <p class="rp-card__cuisine">{{ restaurant.category|localized_category }}</p>
     {% endif %}
@@ -59,7 +59,7 @@
       <span class="rp-tag">{{ tag|localized_tag }}</span>
       {% endfor %}
     </div>
-    <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-btn rp-btn--primary rp-btn--block">
+    <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-btn rp-btn--primary rp-btn--block mt-auto">
       {% trans "View Restaurant" %}
     </a>
   </div>
