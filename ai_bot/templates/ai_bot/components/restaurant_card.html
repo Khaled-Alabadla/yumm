@@ -1,0 +1,51 @@
+<article class="rp-card" data-restaurant-id="{{ id }}">
+  
+  <div class="rp-card__media">
+    <a href="{{ url }}" class="rp-card__media-link">
+      <img src="{{ image }}" alt="{{ name }}" loading="lazy"/>
+    </a>
+
+    {% if is_open %}
+    <span class="rp-badge rp-badge--open">Open</span>
+    {% else %}
+    <span class="rp-badge rp-badge--closed">Closed</span>
+    {% endif %}
+  </div>
+
+  <div class="rp-card__body">
+
+    <h3 class="rp-card__name">{{ name }}</h3>
+
+    {% if category %}
+    <p class="rp-card__cuisine">{{ category }}</p>
+    {% endif %}
+
+    <div class="rp-card__meta">
+      
+      <div class="rp-card__rating">
+        {% if rating %}
+          <span>⭐ {{ rating }}</span>
+          <span>({{ review_count }})</span>
+        {% else %}
+          <span>No reviews yet</span>
+        {% endif %}
+      </div>
+
+      <span class="rp-card__city">
+        📍 {{ city }}
+      </span>
+
+    </div>
+
+    <div class="rp-card__tags">
+      <span class="rp-tag">{{ price_range }}</span>
+    </div>
+
+    {% if url %}
+    <a href="{{ url }}" class="rp-btn rp-btn--primary rp-btn--block mt-auto">
+      View Restaurant
+    </a>
+    {% endif %}
+
+  </div>
+</article>
