@@ -2,7 +2,11 @@
    Yumm — Main JavaScript
 ───────────────────────────── */
 
-lucide.createIcons();
+document.documentElement.classList.add("js");
+
+if (window.lucide) {
+  lucide.createIcons();
+}
 
 /* ─────────────────────────────
    Theme (dark / light)
@@ -43,104 +47,134 @@ setInterval(updateClock, 1000);
    Translations
 ───────────────────────────── */
 const translations = {
-  en: {
-    'nav-home': 'Home', 'nav-restaurants': 'Restaurants', 'nav-ai': 'AI Assistant',
-    'nav-login': 'Login', 'nav-register': 'Register',
-    'hero-badge': "Palestine's #1 Food Platform",
-    'hero-h1-line1': 'Discover the Best', 'hero-h1-span': 'Restaurants', 'hero-h1-line2': 'in Palestine',
-    'hero-desc': 'Explore menus, reviews, ratings, reservations, and AI-powered recommendations — all in one place.',
-    'hero-search-ph': 'Search restaurants, cuisines, cities...', 'hero-search-btn': 'Search',
-    'hero-cta1': 'Explore Restaurants', 'hero-cta2': 'Ask AI Assistant',
-    'stat-restaurants': 'Restaurants', 'stat-reviews': 'Reviews', 'stat-users': 'Happy Users', 'stat-rated': 'Top Rated',
-    'feat-label': 'Features', 'feat-h2': 'Everything You Need',
-    'feat-desc': 'A complete platform for discovering, reviewing, and reserving the best dining in Palestine.',
-    'feat1-title': 'AI Assistant', 'feat1-desc': 'Describe your craving and our AI finds the perfect match instantly.', 'feat1-link': 'Try it',
-    'feat2-title': 'Interactive Map', 'feat2-desc': 'Discover restaurants near you on a live, interactive map.', 'feat2-link': 'Open Map',
-    'feat3-title': 'Reviews & Ratings', 'feat3-desc': 'Honest reviews from a trusted Palestinian food community.', 'feat3-link': 'Read Reviews',
-    'feat4-title': 'Wishlist', 'feat4-desc': 'Save your favourite restaurants for future visits.', 'feat4-link': 'View Saved',
-    'how-label': 'Process', 'how-h2': 'How It Works', 'how-desc': 'Get started and find your next favourite restaurant in minutes.',
-    'step1-title': 'Create Account', 'step1-desc': 'Register in under a minute, for free.',
-    'step2-title': 'Explore Restaurants', 'step2-desc': 'Browse hundreds of curated options.',
-    'step3-title': 'Ask AI Assistant', 'step3-desc': 'Get hyper-personalised suggestions.',
-    'step4-title': 'Leave a Review', 'step4-desc': 'Share your experience with the community.',
-    'rest-label': 'Handpicked', 'rest-h2': 'Top Restaurants', 'rest-desc': 'Highest-rated picks across Palestine',
-    'rest-view-all': 'View All', 'card-view-btn': 'View Restaurant',
-    'badge-open': 'Open',
-    'cuisine-traditional': 'Traditional Palestinian', 'cuisine-grill': 'Grills & BBQ', 'cuisine-cafe': 'Cafe & Breakfast',
-    'tag-family': 'Family',
-    'cta-h2': 'Ready to Explore?', 'cta-desc': "Join 1000+ food lovers discovering Palestine's best restaurants every day.", 'cta-btn': 'Create Account',
-    'footer-desc': "Palestine's leading restaurant discovery and reservation platform.",
-    'footer-platform': 'Platform', 'footer-company': 'Company', 'footer-about': 'About Us',
-    'footer-contact': 'Contact', 'footer-privacy': 'Privacy Policy', 'footer-terms': 'Terms of Service',
-    'footer-copy': '© 2024 Yumm. Made with love for Palestine 🇵🇸',
-    // A11y widget
-    'a11y-title': 'Accessibility Adjustments', 'a11y-reset': 'Reset Settings',
-    'a11y-content': 'Content Adjustments', 'a11y-scale': 'Content Scaling',
-    'a11y-readable': 'Readable Font', 'a11y-htitles': 'Highlight Titles',
-    'a11y-hlinks': 'Highlight Links', 'a11y-center': 'Align Center',
-    'a11y-left': 'Align Left', 'a11y-right': 'Align Right',
-    'a11y-font': 'Adjust Font Sizing', 'a11y-lineh': 'Adjust Line Height',
-    'a11y-letters': 'Adjust Letter Spacing',
-    'a11y-colors': 'Color Adjustments', 'a11y-dark': 'Dark Contrast',
-    'a11y-light': 'Light Contrast', 'a11y-hc': 'High Contrast',
-    'a11y-highsat': 'High Saturation', 'a11y-mono': 'Monochrome', 'a11y-lowsat': 'Low Saturation',
-    'a11y-textcol': 'Adjust Text Colors', 'a11y-titlecol': 'Adjust Title Colors',
-    'a11y-bgcol': 'Adjust Background Colors', 'a11y-cancel': 'Cancel',
-    'a11y-orient': 'Orientation Adjustments', 'a11y-hideimg': 'Hide Images',
-    'a11y-stopanim': 'Stop Animations', 'a11y-hlfocus': 'Highlight Focus',
-    'a11y-mute': 'Mute Sounds', 'a11y-links': 'Useful Links',
-    'a11y-footer': 'Web Accessibility by Yumm ♿',
-    'a11y-default': 'Default',
-  },
-  ar: {
-    'nav-home': 'الرئيسية', 'nav-restaurants': 'المطاعم', 'nav-ai': 'مساعد الذكاء الاصطناعي',
-    'nav-login': 'تسجيل الدخول', 'nav-register': 'إنشاء حساب',
-    'hero-badge': 'منصة الطعام الأولى في فلسطين',
-    'hero-h1-line1': 'اكتشف أفضل', 'hero-h1-span': 'المطاعم', 'hero-h1-line2': 'في فلسطين',
-    'hero-desc': 'استكشف القوائم والتقييمات والحجوزات وتوصيات الذكاء الاصطناعي — كل شيء في مكان واحد.',
-    'hero-search-ph': 'ابحث عن مطاعم، مأكولات، مدن...', 'hero-search-btn': 'بحث',
-    'hero-cta1': 'استكشف المطاعم', 'hero-cta2': 'اسأل المساعد الذكي',
-    'stat-restaurants': 'مطعم', 'stat-reviews': 'تقييم', 'stat-users': 'مستخدم سعيد', 'stat-rated': 'الأعلى تقييماً',
-    'feat-label': 'المميزات', 'feat-h2': 'كل ما تحتاجه',
-    'feat-desc': 'منصة متكاملة لاكتشاف أفضل المطاعم الفلسطينية ومراجعتها وحجزها.',
-    'feat1-title': 'المساعد الذكي', 'feat1-desc': 'صف ما تشتهيه وسيجد ذكاؤنا الاصطناعي التطابق المثالي على الفور.', 'feat1-link': 'جرّبه',
-    'feat2-title': 'خريطة تفاعلية', 'feat2-desc': 'اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية.', 'feat2-link': 'افتح الخريطة',
-    'feat3-title': 'مراجعات وتقييمات', 'feat3-desc': 'مراجعات صادقة من مجتمع طعام فلسطيني موثوق.', 'feat3-link': 'اقرأ التقييمات',
-    'feat4-title': 'قائمة المفضلة', 'feat4-desc': 'احفظ مطاعمك المفضلة لزيارات مستقبلية.', 'feat4-link': 'عرض المحفوظات',
-    'how-label': 'كيف يعمل', 'how-h2': 'كيف يعمل التطبيق', 'how-desc': 'ابدأ واعثر على مطعمك المفضل القادم في دقائق.',
-    'step1-title': 'إنشاء حساب', 'step1-desc': 'سجّل في أقل من دقيقة، مجاناً.',
-    'step2-title': 'استكشف المطاعم', 'step2-desc': 'تصفح مئات الخيارات المنتقاة.',
-    'step3-title': 'اسأل المساعد الذكي', 'step3-desc': 'احصل على اقتراحات مخصصة لك.',
-    'step4-title': 'اترك تقييماً', 'step4-desc': 'شارك تجربتك مع المجتمع.',
-    'rest-label': 'مختارة بعناية', 'rest-h2': 'أفضل المطاعم', 'rest-desc': 'أعلى التقييمات في جميع أنحاء فلسطين',
-    'rest-view-all': 'عرض الكل', 'card-view-btn': 'عرض المطعم',
-    'badge-open': 'مفتوح',
-    'cuisine-traditional': 'فلسطيني أصيل', 'cuisine-grill': 'مشاوي وشواء', 'cuisine-cafe': 'كافيه وفطور',
-    'tag-family': 'عائلي',
-    'cta-h2': 'مستعد للاستكشاف؟', 'cta-desc': 'انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم.', 'cta-btn': 'إنشاء حساب',
-    'footer-desc': 'منصة فلسطين الرائدة لاكتشاف المطاعم وحجزها.',
-    'footer-platform': 'المنصة', 'footer-company': 'الشركة', 'footer-about': 'من نحن',
-    'footer-contact': 'تواصل معنا', 'footer-privacy': 'سياسة الخصوصية', 'footer-terms': 'شروط الخدمة',
-    'footer-copy': '© 2024 Yumm. صُنع بحب لفلسطين 🇵🇸',
-    // A11y widget - Arabic ✅ كاملة
-    'a11y-title': 'إعدادات إمكانية الوصول', 'a11y-reset': 'إعادة الضبط',
-    'a11y-content': 'ضبط المحتوى', 'a11y-scale': 'تغيير حجم المحتوى',
-    'a11y-readable': 'خط سهل القراءة', 'a11y-htitles': 'إبراز العناوين',
-    'a11y-hlinks': 'إبراز الروابط', 'a11y-center': 'توسيط النص',
-    'a11y-left': 'محاذاة يسار', 'a11y-right': 'محاذاة يمين',
-    'a11y-font': 'ضبط حجم الخط', 'a11y-lineh': 'ضبط ارتفاع السطر',
-    'a11y-letters': 'ضبط تباعد الأحرف',
-    'a11y-colors': 'ضبط الألوان', 'a11y-dark': 'تباين داكن',
-    'a11y-light': 'تباين فاتح', 'a11y-hc': 'تباين عالٍ',
-    'a11y-highsat': 'إشباع ألوان عالٍ', 'a11y-mono': 'أحادي اللون', 'a11y-lowsat': 'إشباع ألوان منخفض',
-    'a11y-textcol': 'ضبط لون النص', 'a11y-titlecol': 'ضبط لون العناوين',
-    'a11y-bgcol': 'ضبط لون الخلفية', 'a11y-cancel': 'إلغاء',
-    'a11y-orient': 'ضبط الاتجاه', 'a11y-hideimg': 'إخفاء الصور',
-    'a11y-stopanim': 'إيقاف الحركات', 'a11y-hlfocus': 'إبراز التركيز',
-    'a11y-mute': 'كتم الأصوات', 'a11y-links': 'روابط مفيدة',
-    'a11y-footer': 'إمكانية الوصول بواسطة Yumm ♿',
-    'a11y-default': 'الافتراضي',
-  },
+    en: {
+        // Navbar
+        'nav-home':          'Home',
+        'nav-restaurants':   'Restaurants',
+        'nav-ai':            'AI Assistant',
+        'nav-login':         'Login',
+        'nav-register':      'Register',
+        // Hero
+        'hero-badge':        "Palestine's #1 Food Platform",
+        'hero-h1-line1':     'Discover the Best',
+        'hero-h1-span':      'Restaurants',
+        'hero-h1-line2':     'in Palestine',
+        'hero-desc':         'Explore menus, reviews, ratings, and our AI Assistant — all in one place.',
+        'hero-search-ph':    'Search restaurants...',
+        'hero-search-btn':   'Search',
+        'hero-cta1':         'Explore Restaurants',
+        'hero-cta2':         'Ask AI Assistant',
+        // Stats
+        'stat-restaurants':  'Restaurants',
+        'stat-reviews':      'Reviews',
+        'stat-users':        'Happy Users',
+        'stat-rated':        'Top Rated',
+        // Features
+        'feat-label':        'Features',
+        'feat-h2':           'Everything You Need',
+        'feat-desc':         "A complete platform for discovering, reviewing, and reserving the best dining in Palestine.",
+        'feat1-title':       'AI Assistant',
+        'feat1-desc':        'Describe your craving and our AI finds the perfect match instantly.',
+        'feat2-title':       'Interactive Map',
+        'feat2-desc':        'Discover restaurants near you on a live, interactive map.',
+        'feat3-title':       'Reviews & Ratings',
+        'feat3-desc':        'Honest reviews from a trusted Palestinian food community.',
+        'feat4-title':       'Wishlist',
+        'feat4-desc':        'Save your favourite restaurants for future visits.',
+        // How it works
+        'how-label':         'Process',
+        'how-h2':            'How It Works',
+        'how-desc':          'Get started and find your next favourite restaurant in minutes.',
+        'step1-title':       'Create Account',
+        'step1-desc':        'Register in under a minute, for free.',
+        'step2-title':       'Explore Restaurants',
+        'step2-desc':        'Browse hundreds of curated options.',
+        'step3-title':       'Ask AI Assistant',
+        'step3-desc':        'Get hyper-personalised suggestions.',
+        'step4-title':       'Reserve or Order',
+        'step4-desc':        'Book a table or request delivery.',
+        'step5-title':       'Leave a Review',
+        'step5-desc':        'Share your experience with the community.',
+        // Restaurants section
+        'rest-label':        'Handpicked',
+        'rest-h2':           'Top Restaurants',
+        'rest-desc':         "Highest-rated picks across Palestine",
+        'rest-view-all':     'View All',
+        'card-view-btn':     'View Restaurant',
+        // CTA
+        'cta-h2':            'Ready to Explore?',
+        'cta-desc':          "Join 1000+ food lovers discovering Palestine's best restaurants every day.",
+        'cta-btn':           'Create Free Account',
+        // Footer
+        'footer-desc':       "Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.",
+        'footer-platform':   'Platform',
+        'footer-company':    'Company',
+        'footer-about':      'About Us',
+        'footer-contact':    'Contact',
+        'footer-privacy':    'Privacy Policy',
+        'footer-terms':      'Terms of Service',
+        'footer-copy':       '© 2024 Yumm. Made with love for Palestine 🇵🇸',
+    },
+    ar: {
+        'nav-home':          'الرئيسية',
+        'nav-restaurants':   'المطاعم',
+        'nav-ai':            'مساعد الذكاء الاصطناعي',
+        'nav-login':         'تسجيل الدخول',
+        'nav-register':      'إنشاء حساب',
+        'hero-badge':        'منصة الطعام الأولى في فلسطين',
+        'hero-h1-line1':     'اكتشف أفضل',
+        'hero-h1-span':      'المطاعم',
+        'hero-h1-line2':     'في فلسطين',
+        'hero-desc':         'استكشف القوائم والتقييمات ومساعد الذكاء الاصطناعي — كل شيء في مكان واحد.',
+        'hero-search-ph':    'ابحث عن مطاعم...',
+        'hero-search-btn':   'بحث',
+        'hero-cta1':         'استكشف المطاعم',
+        'hero-cta2':         'اسأل المساعد الذكي',
+        'stat-restaurants':  'مطعم',
+        'stat-reviews':      'تقييم',
+        'stat-users':        'مستخدم سعيد',
+        'stat-rated':        'الأعلى تقييماً',
+        'feat-label':        'المميزات',
+        'feat-h2':           'كل ما تحتاجه',
+        'feat-desc':         'منصة متكاملة لاكتشاف أفضل المطاعم الفلسطينية ومراجعتها وحجزها.',
+        'feat1-title':       'المساعد الذكي',
+        'feat1-desc':        'صف ما تشتهيه وسيجد ذكاؤنا الاصطناعي التطابق المثالي على الفور.',
+        'feat2-title':       'خريطة تفاعلية',
+        'feat2-desc':        'اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية.',
+        'feat3-title':       'مراجعات وتقييمات',
+        'feat3-desc':        'مراجعات صادقة من مجتمع طعام فلسطيني موثوق.',
+        'feat4-title':       'قائمة المفضلة',
+        'feat4-desc':        'احفظ مطاعمك المفضلة لزيارات مستقبلية.',
+        'how-label':         'كيف يعمل',
+        'how-h2':            'كيف يعمل التطبيق',
+        'how-desc':          'ابدأ واعثر على مطعمك المفضل القادم في دقائق.',
+        'step1-title':       'إنشاء حساب',
+        'step1-desc':        'سجّل في أقل من دقيقة، مجاناً.',
+        'step2-title':       'استكشف المطاعم',
+        'step2-desc':        'تصفح مئات الخيارات المنتقاة.',
+        'step3-title':       'اسأل المساعد الذكي',
+        'step3-desc':        'احصل على اقتراحات مخصصة لك.',
+        'step4-title':       'احجز أو اطلب',
+        'step4-desc':        'احجز طاولة أو اطلب التوصيل.',
+        'step5-title':       'اترك تقييماً',
+        'step5-desc':        'شارك تجربتك مع المجتمع.',
+        'rest-label':        'مختارة بعناية',
+        'rest-h2':           'أفضل المطاعم',
+        'rest-desc':         'أعلى التقييمات في جميع أنحاء فلسطين',
+        'rest-view-all':     'عرض الكل',
+        'card-view-btn':     'عرض المطعم',
+        'cta-h2':            'مستعد للاستكشاف؟',
+        'cta-desc':          'انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم.',
+        'cta-btn':           'إنشاء حساب مجاني',
+        'footer-desc':       'منصة فلسطين الرائدة لاكتشاف المطاعم وتقييمها. اعثر على أرقى تجارب الطعام في كل مدينة.',
+        'footer-platform':   'المنصة',
+        'footer-company':    'الشركة',
+        'footer-about':      'من نحن',
+        'footer-contact':    'تواصل معنا',
+        'footer-privacy':    'سياسة الخصوصية',
+        'footer-terms':      'شروط الخدمة',
+        'footer-copy':       '© 2024 Yumm. صُنع بحب لفلسطين 🇵🇸',
+    },
 };
 
 /* ─────────────────────────────
@@ -163,48 +197,43 @@ function applyTranslations(code) {
   });
 }
 
+function submitSiteLanguage(code) {
+    const form = document.getElementById('lang-form');
+    if (!form) return false;
+    const input = form.querySelector('input[name="language"]');
+    if (input) input.value = code;
+    form.submit();
+    return true;
+}
+
 /* ─────────────────────────────
    Language toggle 
 ───────────────────────────── */
-//
-let currentLang = localStorage.getItem('yumm-lang') || 'en';
-
-function applyLang(code) {
-  currentLang = code;
-  const isRtl = (code === 'ar');
-  html.lang = code;
-  html.dir  = isRtl ? 'rtl' : 'ltr';
-
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) langBtn.textContent = isRtl ? 'EN' : 'العربية';
-
-  const flagEl = document.getElementById('lang-flag');
-  const nameEl = document.getElementById('lang-name');
-  if (flagEl) flagEl.textContent = isRtl ? '🇸🇦' : '🇺🇸';
-  if (nameEl) nameEl.textContent = isRtl ? 'ARABIC' : 'ENGLISH (US)';
-
-  localStorage.setItem('yumm-lang', code);
-  applyTranslations(code);
-}
+let currentLang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
 
 function toggleLang() {
-
-  applyLang(currentLang === 'en' ? 'ar' : 'en');
+    submitSiteLanguage(currentLang === 'ar' ? 'en' : 'ar');
 }
 
 
-applyLang(currentLang);
+applyTranslations(currentLang);
 
 /* ─────────────────────────────
    Accessibility Widget — open / close
 ───────────────────────────── */
 function openA11y() {
-  document.getElementById('a11y-widget').classList.add('open');
-  document.body.style.overflow = 'hidden';
+    const widget = document.getElementById('a11y-widget');
+    if (!widget) return;
+    widget.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons();
 }
+
 function closeA11y() {
-  document.getElementById('a11y-widget').classList.remove('open');
-  document.body.style.overflow = '';
+    const widget = document.getElementById('a11y-widget');
+    if (!widget) return;
+    widget.classList.remove('open');
+    document.body.style.overflow = '';
 }
 
 /* ─────────────────────────────
@@ -215,10 +244,22 @@ function toggleLangDrop() {
 }
 
 function setLang(flag, name, code, rtl) {
-  document.getElementById('lang-flag').textContent = flag;
-  document.getElementById('lang-name').textContent = name;
-  document.getElementById('lang-drop').classList.add('hidden');
-  applyLang(code);
+    document.getElementById('lang-flag').textContent = flag;
+    document.getElementById('lang-name').textContent = name;
+    document.getElementById('lang-drop').classList.add('hidden');
+
+    if (code === 'ar' || code === 'en') {
+        submitSiteLanguage(code);
+        return;
+    }
+
+    html.lang    = code;
+    html.dir     = rtl ? 'rtl' : 'ltr';
+    currentLang  = code;
+    const btn = document.getElementById('lang-btn');
+    if (btn) btn.textContent = code === 'ar' ? 'EN' : 'ع';
+
+    applyTranslations(code);
 }
 
 document.addEventListener('click', e => {
@@ -267,19 +308,26 @@ function setBgColor(c) { document.body.style.background = c || ''; }
 ───────────────────────────── */
 let fs = 16;
 
+function defaultFontLabel() {
+    return document.getElementById('font-val')?.dataset.defaultLabel || 'Default';
+}
+
 function changeFont(d) {
-  fs = Math.max(12, Math.min(28, fs + d));
-  html.style.fontSize = fs + 'px';
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
-  document.getElementById('font-val').textContent = fs === 16 ? def : fs + 'px';
-  localStorage.setItem('yumm-fs', fs);
+    fs = Math.max(12, Math.min(28, fs + d));
+    html.style.fontSize = fs + 'px';
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) {
+        fontVal.textContent = fs === 16 ? defaultFontLabel() : fs + 'px';
+    }
+    localStorage.setItem('yumm-fs', fs);
 }
 
 const sfs = localStorage.getItem('yumm-fs');
 if (sfs) {
-  fs = parseInt(sfs);
-  html.style.fontSize = fs + 'px';
-  document.getElementById('font-val').textContent = fs + 'px';
+    fs = parseInt(sfs);
+    html.style.fontSize = fs + 'px';
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) fontVal.textContent = fs + 'px';
 }
 
 /* ─────────────────────────────
@@ -349,19 +397,23 @@ function resetAllA11y() {
   setTitleColor(null);
   setBgColor(null);
 
-  document.body.style.lineHeight    = '';
-  document.body.style.letterSpacing = '';
-  document.getElementById('main').style.zoom = '';
-  document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
+    document.body.style.lineHeight    = '';
+    document.body.style.letterSpacing = '';
+    document.getElementById('main')?.style && (document.getElementById('main').style.zoom = '');
+    document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
 
   const def = translations[currentLang]?.['a11y-default'] || 'Default';
   fs = 16; html.style.fontSize = '16px';
   lh = 0;  ls = 0;  scaleVal = 100;
 
-  document.getElementById('font-val')  .textContent = def;
-  document.getElementById('lineh-val') .textContent = def;
-  document.getElementById('letters-val').textContent = def;
-  document.getElementById('scale-val') .textContent = def;
+    const fontVal = document.getElementById('font-val');
+    if (fontVal) fontVal.textContent = defaultFontLabel();
+    const linehVal = document.getElementById('lineh-val');
+    if (linehVal) linehVal.textContent = 'Default';
+    const lettersVal = document.getElementById('letters-val');
+    if (lettersVal) lettersVal.textContent = 'Default';
+    const scaleValEl = document.getElementById('scale-val');
+    if (scaleValEl) scaleValEl.textContent = 'Default';
 
   document.querySelectorAll('.a11y-opt').forEach(b =>
     b.classList.remove('border-[#B5451B]', 'text-[#B5451B]')
@@ -577,9 +629,7 @@ function initMap() {
 
 function buildMap() {
   yummMap = L.map('leaflet-map').setView([31.9, 35.2], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>', maxZoom: 18,
-  }).addTo(yummMap);
+  window.YummMap.addBaseTileLayer(yummMap);
 
   const redIcon = L.divIcon({
     html: `<div style="background:#B5451B;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>`,
@@ -608,7 +658,10 @@ async function searchMapLocation() {
   const query = document.getElementById('map-search-input')?.value.trim();
   if (!query || !yummMap) return;
   try {
-    const res  = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
+      { headers: { 'Accept-Language': window.YummMap.mapSearchLanguage() } },
+    );
     const data = await res.json();
     if (!data.length) { alert('Location not found. Try a different search.'); return; }
     const { lat, lon, display_name } = data[0];

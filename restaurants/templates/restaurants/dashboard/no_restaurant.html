@@ -1,0 +1,26 @@
+{% load static i18n %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page_title }} — Yumm</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'restaurants/css/dashboard.css' %}" />
+  </head>
+  <body class="yumm-dashboard" style="background: var(--background); color: var(--text-primary)">
+    <main class="rd-main">
+      <section class="rd-card rd-card--center">
+        <div class="rd-empty-state">
+          <h1 class="rd-title">{% trans "No Restaurant Assigned" %}</h1>
+          <p class="rd-empty">
+            {% trans "Your account does not have a restaurant linked yet. Please contact the Yumm admin team to set up your listing." %}
+          </p>
+          <a href="{% url 'accounts:profile' %}" class="rd-btn rd-btn--primary">
+            {% trans "Back to Profile" %}
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

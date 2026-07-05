@@ -1,148 +1,2090 @@
-# Arabic translations for the Yumm project.
-# Copyright (C) 2024 Yumm
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yumm 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-01 00:00+0300\n"
-"PO-Revision-Date: 2024-01-01 00:00+0300\n"
-"Last-Translator: Yumm Team\n"
 "Language: ar\n"
-"Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-# ---------------------------------------------------------------------------
-# accounts/managers.py
-# ---------------------------------------------------------------------------
+msgid " to write a review."
+msgstr " لتكتب تقييماً."
 
-msgid "The email address must be set."
-msgstr "يجب تعيين عنوان البريد الإلكتروني."
+msgid "%(count)d owner account(s) approved."
+msgstr "تمت الموافقة على %(count)d حساب صاحب مطعم."
 
-msgid "Superuser must have is_staff=True."
-msgstr "يجب أن يكون للمشرف العام is_staff=True."
+msgid "%(count)d owner account(s) rejected."
+msgstr "تم رفض %(count)d حساب صاحب مطعم."
 
-msgid "Superuser must have is_superuser=True."
-msgstr "يجب أن يكون للمشرف العام is_superuser=True."
+msgid "%(time)s ago"
+msgstr "منذ %(time)s"
 
-# ---------------------------------------------------------------------------
-# accounts/models.py
-# ---------------------------------------------------------------------------
+msgid "1 restaurant saved"
+msgstr "مطعم واحد محفوظ"
+
+msgid "1. Acceptance"
+msgstr "1. القبول"
+
+msgid "1. Data We Collect"
+msgstr "1. البيانات التي نجمعها"
+
+msgid "2. How We Use It"
+msgstr "2. كيف نستخدمها"
+
+msgid "2. Your Account"
+msgstr "2. حسابك"
+
+msgid "3. Acceptable Use"
+msgstr "3. الاستخدام المقبول"
+
+msgid "3. Sharing"
+msgstr "3. المشاركة"
+
+msgid "3. Sharing Your Information"
+msgstr "3. مشاركة معلوماتك"
+
+msgid "4. Cookies"
+msgstr "4. ملفات تعريف الارتباط"
+
+msgid "4. User Content"
+msgstr "4. محتوى المستخدم"
+
+msgid "5. Intellectual Property"
+msgstr "5. الملكية الفكرية"
+
+msgid "5. Your Rights"
+msgstr "5. حقوقك"
+
+msgid "6. Liability"
+msgstr "6. المسؤولية"
+
+msgid "6. Security"
+msgstr "6. الأمان"
+
+msgid "7. Contact"
+msgstr "7. التواصل"
+
+msgid "7. Contact Us"
+msgstr "7. تواصل معنا"
+
+msgid "7. Termination"
+msgstr "7. إنهاء الحساب"
+
+msgid "8. Changes"
+msgstr "8. التعديلات"
+
+msgid "9. Contact"
+msgstr "9. التواصل"
+
+msgid ""
+"A complete platform for discovering, reviewing, and reserving the best "
+"dining in Palestine."
+msgstr "منصة متكاملة لاكتشاف أفضل المطاعم في فلسطين وتقييمها وحجزها."
+
+msgid "AI Assistant"
+msgstr "المساعد الذكي"
+
+msgid "Abasan"
+msgstr "abasan"
+
+msgid "About"
+msgstr "نبذة"
+
+msgid "About Us"
+msgstr "من نحن"
+
+msgid "Abu Dis"
+msgstr "أبو ديس"
+
+msgid "Access the personal data we hold about you"
+msgstr "الاطلاع على بياناتك الشخصية لدينا"
+
+msgid "Accessibility settings"
+msgstr "إعدادات إمكانية الوصول"
+
+msgid "Account"
+msgstr "الحساب"
+
+msgid "Account info: name, email address, and password (hashed)"
+msgstr "معلومات الحساب: الاسم والبريد الإلكتروني وكلمة المرور (مشفّرة)"
+
+msgid "Accounts"
+msgstr "الحسابات"
+
+msgid "Action"
+msgstr "الإجراء"
+
+msgid "Actions"
+msgstr "إجراءات"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Active Restaurants"
+msgstr "المطاعم النشطة"
+
+msgid "Ad-Dhahriya"
+msgstr "الظahriya"
+
+msgid "Add"
+msgstr "إضافة"
+
+msgid "Add Item"
+msgstr "إضافة صنف"
+
+msgid "Add Menu Item"
+msgstr "إضافة صنف للقائمة"
+
+msgid "Add new"
+msgstr "إضافة"
+
+msgid "Add to Wishlist"
+msgstr "أضف إلى المفضلة"
+
+msgid "Add to wishlist"
+msgstr "أضف إلى المفضلة"
+
+msgid "Added to wishlist"
+msgstr "تمت الإضافة للمفضلة"
+
+msgid "Added {name} \"{object}\"."
+msgstr "تمت إضافة {name} «{object}»."
+
+msgid "Added."
+msgstr "تمت الإضافة."
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Address (Arabic)"
+msgstr "العنوان (عربي)"
+
+msgid "Address (English)"
+msgstr "العنوان (إنجليزي)"
+
+msgid "Address is required for restaurant owners."
+msgstr "العنوان مطلوب لأصحاب المطاعم."
 
 msgid "Admin"
 msgstr "مدير"
 
+msgid "Admin role cannot be assigned during registration."
+msgstr "لا يمكن تعيين دور المدير أثناء التسجيل."
+
+msgid "After you've created a user, you'll be able to edit more user options."
+msgstr "بعد إنشاء المستخدم، ستتمكن من تعديل المزيد من خيارات المستخدم."
+
+msgid "Ahmad Al-Khalidi"
+msgstr "أحمد الخالدي"
+
+msgid "Al-Auja"
+msgstr "العوجا"
+
+msgid "Al-Bireh"
+msgstr "البيرة"
+
+msgid "Al-Eizariya"
+msgstr "العيزرية"
+
+msgid "Al-Ram"
+msgstr "الرام"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "All cities"
+msgstr "كل المدن"
+
+msgid "All rights reserved."
+msgstr "جميع الحقوق محفوظة."
+
+msgid "Already have an account?"
+msgstr "لديك حساب بالفعل؟"
+
+msgid "Always Improving"
+msgstr "نتحسّن باستمرار"
+
+msgid "Anabta"
+msgstr "anabta"
+
+msgid "Any"
+msgstr "أي"
+
+msgid "Approval status"
+msgstr "حالة الموافقة"
+
+msgid "Approve selected restaurant owners"
+msgstr "الموافقة على أصحاب المطاعم المحددين"
+
+msgid "Approve selected restaurants"
+msgstr "الموافقة على المطاعم المحددة"
+
+msgid "Approved"
+msgstr "موافق عليه"
+
+msgid "Aqraba"
+msgstr "aqraba"
+
+msgid "Arabic"
+msgstr "عربي"
+
+msgid "Arabic restaurant name is required."
+msgstr "اسم المطعم بالعربية مطلوب."
+
+msgid "Arraba"
+msgstr "arraba"
+
+msgid "Ask AI Assistant"
+msgstr "اسأل المساعد الذكي"
+
+msgid "Ask about a restaurant..."
+msgstr "اسأل عن مطعم..."
+
+msgid "Attempt to access accounts or data that are not yours"
+msgstr "محاولة الوصول إلى حسابات أو بيانات لا تخصك"
+
+msgid "Average Platform Rating"
+msgstr "متوسط تقييم المنصة"
+
+msgid "Average meal price level"
+msgstr "مستوى سعر الوجبة تقريباً"
+
+msgid "Avg Rating"
+msgstr "متوسط التقييم"
+
+msgid "Avg. Rating"
+msgstr "متوسط التقييم"
+
+msgid "Azzun"
+msgstr "azzun"
+
+msgid "BBQ"
+msgstr "شواء"
+
+msgid "Back to restaurants"
+msgstr "العودة للمطاعم"
+
+msgid "Bani Suheila"
+msgstr "bani suheila"
+
+msgid "Based In"
+msgstr "مقرنا"
+
+msgid "Beit Fajjar"
+msgstr "بيت فajjar"
+
+msgid "Beit Furik"
+msgstr "بيت furik"
+
+msgid "Beit Hanina"
+msgstr "بيت حنينا"
+
+msgid "Beit Hanoun"
+msgstr "بيت hanoun"
+
+msgid "Beit Iba"
+msgstr "بيت iba"
+
+msgid "Beit Jala"
+msgstr "بيت جala"
+
+msgid "Beit Lahiya"
+msgstr "بيت lahiya"
+
+msgid "Beit Rima"
+msgstr "بيت رима"
+
+msgid "Beit Sahour"
+msgstr "بيت سahour"
+
+msgid "Beit Sira"
+msgstr "بيت سيرة"
+
+msgid "Beit Ummar"
+msgstr "بيت ummar"
+
+msgid "Beita"
+msgstr "beita"
+
+msgid "Bethlehem"
+msgstr "بيت لحم"
+
+msgid "Birzeit"
+msgstr "بيرزيت"
+
+msgid "Breakfast"
+msgstr "فطور"
+
+msgid "Browse hundreds of curated options."
+msgstr "تصفّح مئات الخيارات المختارة."
+
+msgid "Budget"
+msgstr "اقتصادي"
+
+msgid "Budget (₪)"
+msgstr "اقتصادي (₪)"
+
+msgid "Built for Palestine's Food Lovers"
+msgstr "صُنع لعشّاق الطعام في فلسطين"
+
+msgid "Bureij"
+msgstr "bureij"
+
+msgid "Burqin"
+msgstr "burqin"
+
+msgid ""
+"By accessing or using Yumm, you agree to be bound by these Terms of Service "
+"and our Privacy Policy."
+msgstr ""
+"بدخولك أو استخدامك Yumm، فإنك توافق على الالتزام بشروط الخدمة وسياسة "
+"الخصوصية."
+
+msgid ""
+"By using Yumm, you agree to these terms. Please read them carefully — they "
+"govern your use of our platform."
+msgstr ""
+"باستخدامك Yumm، فإنك توافق على هذه الشروط. يرجى قراءتها بعناية — فهي تحكم "
+"استخدامك للمنصة."
+
+msgid "Cafe"
+msgstr "مقهى"
+
+msgid "Cafe & Breakfast"
+msgstr "مقهى وفطور"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Change"
+msgstr "تعديل"
+
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Change password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Change your password"
+msgstr "تغيير كلمة المرور"
+
+msgid "Changed {fields} for {name} \"{object}\"."
+msgstr "تم تغيير {fields} لـ {name} «{object}»."
+
+msgid "Changed {fields}."
+msgstr "تم تغيير {fields}."
+
+msgid "Cities"
+msgstr "مدن"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "City is required for restaurant owners."
+msgstr "المدينة مطلوبة لأصحاب المطاعم."
+
+msgid "Clear filters"
+msgstr "مسح الفلاتر"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Close menu"
+msgstr "إغلاق القائمة"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Closing Time"
+msgstr "وقت الإغلاق"
+
+msgid "Community Driven"
+msgstr "مدفوع بالمجتمع"
+
+msgid "Company"
+msgstr "الشركة"
+
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+msgid "Contact"
+msgstr "تواصل معنا"
+
+msgid "Contact page"
+msgstr "صفحة التواصل"
+
+msgid "Contents"
+msgstr "المحتويات"
+
+msgid "Copyright"
+msgstr "حقوق النشر"
+
+msgid "Correct inaccurate information"
+msgstr "تصحيح المعلومات غير الدقيقة"
+
+msgid "Could not delete this item."
+msgstr "تعذر حذف هذا الصنف."
+
+msgid "Cover Photo"
+msgstr "صورة الغلاف"
+
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+msgid "Create your account today — it's free"
+msgstr "أنشئ حسابك اليوم — مجاناً"
+
+msgid "Cuisine"
+msgstr "المطبخ"
+
+msgid "Current Password"
+msgstr "كلمة المرور الحالية"
+
+msgid "Customer Reviews"
+msgstr "تقييمات الزبائن"
+
+msgid "Dark mode"
+msgstr "الوضع الليلي"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Dashboard navigation"
+msgstr "تنقل لوحة التحكم"
+
+msgid "Dashboard sections"
+msgstr "أقسام لوحة التحكم"
+
+msgid "Date joined"
+msgstr "تاريخ الانضمام"
+
+msgid "Date/time"
+msgstr "التاريخ/الوقت"
+
+msgid "Decrease font size"
+msgstr "تصغير الخط"
+
+msgid "Default"
+msgstr "افتراضي"
+
+msgid "Deir Dibwan"
+msgstr "دير دبوان"
+
+msgid "Deir al-Balah"
+msgstr "deir al-balah"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete menu item?"
+msgstr "حذف الصنف؟"
+
+msgid "Delete this menu item?"
+msgstr "حذف هذا الصنف؟"
+
+msgid "Delete your account and associated data"
+msgstr "حذف حسابك والبيانات المرتبطة به"
+
+msgid "Deleted \"{object}\"."
+msgstr "تم حذف «{object}»."
+
+msgid "Deleted {name} \"{object}\"."
+msgstr "تم حذف {name} «{object}»."
+
+msgid "Deleted!"
+msgstr "تم الحذف!"
+
+msgid "Describe your craving and our AI finds the perfect match instantly."
+msgstr "صف ما تشتهيه وسيجد لك المساعد الذكي الخيار المثالي فوراً."
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Description (Arabic)"
+msgstr "الوصف (عربي)"
+
+msgid "Description (English)"
+msgstr "الوصف (إنجليزي)"
+
+msgid "Device info: browser type, operating system, and IP address"
+msgstr "معلومات الجهاز: نوع المتصفح ونظام التشغيل وعنوان IP"
+
+msgid "Discover restaurants near you on a live, interactive map."
+msgstr "اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية."
+
+msgid "Discover the Best"
+msgstr "اكتشف أفضل"
+
+msgid "Discover the Best Restaurants in Palestine"
+msgstr "اكتشف أفضل المطاعم في فلسطين"
+
+msgid "Don't have an account?"
+msgstr "ليس لديك حساب؟"
+
+msgid "Dura"
+msgstr "دura"
+
+msgid "Edit"
+msgstr "تعديل"
+
+msgid "Edit Menu Item"
+msgstr "تعديل الصنف"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Email Address"
+msgstr "البريد الإلكتروني"
+
+msgid "Email Us"
+msgstr "راسلنا"
+
+msgid "Email address"
+msgstr "البريد الإلكتروني"
+
+msgid "Email cannot be changed. Contact support if you need help."
+msgstr "لا يمكن تغيير البريد الإلكتروني. تواصل مع الدعم إذا احتجت مساعدة."
+
+msgid "English"
+msgstr "إنجليزي"
+
+msgid "English restaurant name is required."
+msgstr "اسم المطعم بالإنجليزية مطلوب."
+
+msgid ""
+"Enter GPS coordinates to show your restaurant on the map. You can copy them "
+"from Google Maps."
+msgstr ""
+"أدخل إحداثيات GPS لإظهار مطعمك على الخريطة. يمكنك نسخها من Google Maps."
+
+msgid "Enter a new password for"
+msgstr "أدخل كلمة مرور جديدة للمستخدم"
+
+msgid "Enter a new password or leave all password fields blank."
+msgstr "أدخل كلمة مرور جديدة أو اترك حقول كلمة المرور فارغة."
+
+msgid "Enter a username and password."
+msgstr "أدخل اسم المستخدم وكلمة المرور."
+
+msgid "Enter a valid email address."
+msgstr "يرجى إدخال بريد إلكتروني صالح."
+
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحاً."
+
+msgid "Enter an email address and password."
+msgstr "أدخل البريد الإلكتروني وكلمة المرور."
+
+msgid "Enter your current password to set a new one."
+msgstr "أدخل كلمة مرورك الحالية لتعيين كلمة جديدة."
+
+msgid "Everything You Need"
+msgstr "كل ما تحتاجه"
+
+msgid "Expensive"
+msgstr "مرتفع"
+
+msgid "Expensive (₪₪₪)"
+msgstr "مرتفع (₪₪₪)"
+
+msgid "Explore Restaurants"
+msgstr "استكشف المطاعم"
+
+msgid ""
+"Explore menus, reviews, ratings, and our AI Assistant — all in one place."
+msgstr "استكشف القوائم والتقييمات والتصنيفات والمساعد الذكي — في مكان واحد."
+
+msgid "Family"
+msgstr "عائلي"
+
+msgid "Featured Restaurants — click to fly there"
+msgstr "مطاعم مميزة — انقر للانتقال إليها"
+
+msgid "Features"
+msgstr "المميزات"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user"
+" options."
+msgstr ""
+"أولاً، أدخل اسم المستخدم وكلمة المرور. بعدها ستتمكن من تعديل المزيد من "
+"خيارات المستخدم."
+
+msgid ""
+"First, enter an email address and password. Then, you'll be able to edit "
+"more user options."
+msgstr ""
+"أولاً، أدخل البريد الإلكتروني وكلمة المرور. بعدها ستتمكن من تعديل المزيد من "
+"خيارات المستخدم."
+
+msgid "Food type"
+msgstr "نوع الأكل"
+
+msgid ""
+"For security, enter your current password, then enter your new password "
+"twice to confirm it."
+msgstr ""
+"لأسباب أمنية، أدخل كلمة مرورك الحالية ثم أدخل كلمة المرور الجديدة مرتين "
+"للتأكد من كتابتها بشكل صحيح."
+
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+msgid "Gallery"
+msgstr "معرض الصور"
+
+msgid "Gaza"
+msgstr "غزة"
+
+msgid "Gaza City"
+msgstr "مدينة غزة"
+
+msgid "General"
+msgstr "عام"
+
+msgid "General Inquiry"
+msgstr "استفسار عام"
+
+msgid "Get In Touch"
+msgstr "تواصل معنا"
+
+msgid "Get hyper-personalised suggestions."
+msgstr "احصل على اقتراحات مخصصة لك."
+
+msgid "Get started and find your next favourite restaurant in minutes."
+msgstr "ابدأ الآن واعثر على مطعمك المفضل خلال دقائق."
+
+msgid "Grills"
+msgstr "مشاوي"
+
+msgid "Grills & BBQ"
+msgstr "مشاوي وشواء"
+
+msgid "Groups"
+msgstr "المجموعات"
+
+msgid "Halhul"
+msgstr "حalhul"
+
+msgid "Handpicked"
+msgstr "مختاراتنا"
+
+msgid "Happy Users"
+msgstr "مستخدمون"
+
+msgid "Haris"
+msgstr "haris"
+
+msgid "Hebron"
+msgstr "الخليل"
+
+msgid ""
+"Hello! I'm Yumm's AI assistant. Ask me about any restaurant or dish in "
+"Palestine!"
+msgstr "مرحباً! أنا مساعد Yumm الذكي. اسألني عن أي مطعم أو أكلة في فلسطين!"
+
+msgid "Hide selected reviews from the public site"
+msgstr "إخفاء التقييمات من الموقع"
+
+msgid "High contrast"
+msgstr "تباين عالٍ"
+
+msgid "Highest-rated picks across Palestine"
+msgstr "الأعلى تقييماً في فلسطين"
+
+msgid "History"
+msgstr "السجل"
+
+msgid "Home"
+msgstr "الرئيسية"
+
+msgid "Honest reviews from a trusted Palestinian food community."
+msgstr "مراجعات صادقة من مجتمع فلسطيني موثوق لعشاق الطعام."
+
+msgid "Hours & pricing"
+msgstr "ساعات العمل والأسعار"
+
+msgid "How It Works"
+msgstr "كيف يعمل"
+
+msgid "Husan"
+msgstr "حوسan"
+
+msgid "Identity"
+msgstr "الهوية"
+
+msgid "Idhna"
+msgstr "إذna"
+
+msgid "Important dates"
+msgstr "تواريخ مهمة"
+
+msgid "Improve features and fix bugs"
+msgstr "تحسين الميزات وإصلاح الأخطاء"
+
+msgid "Increase font size"
+msgstr "تكبير الخط"
+
+msgid "Interactive Map"
+msgstr "خريطة تفاعلية"
+
+msgid "Interactive Map — Palestine"
+msgstr "خريطة تفاعلية — فلسطين"
+
+msgid "Invalid credentials."
+msgstr "بيانات الدخول غير صحيحة."
+
+msgid "Is active"
+msgstr "نشط"
+
+msgid "Is staff"
+msgstr "حالة الطاقم"
+
+msgid "Is superuser"
+msgstr "حالة المستخدم الفائق"
+
+msgid "Item Name"
+msgstr "اسم الصنف"
+
+msgid "Jabalia"
+msgstr "جabalia"
+
+msgid "Jenin"
+msgstr "جنin"
+
+msgid "Jericho"
+msgstr "أريحا"
+
+msgid "Jerusalem"
+msgstr "القدس"
+
+msgid ""
+"Join %(count)s food lovers discovering Palestine's best restaurants every "
+"day."
+msgstr ""
+"انضم إلى %(count)s عاشقاً للطعام يكتشفون أفضل المطاعم في فلسطين يومياً."
+
+msgid ""
+"Join 1000+ food lovers discovering Palestine's best restaurants every day."
+msgstr ""
+"انضم إلى أكثر من 1000 عاشق للطعام يكتشفون أفضل المطاعم في فلسطين يومياً."
+
+msgid "Join Yumm"
+msgstr "انضم إلى Yumm"
+
+msgid ""
+"Join one food lover discovering Palestine's best restaurants every day."
+msgstr "انضم إلى عاشق طعام يكتشف أفضل المطاعم في فلسطين يومياً."
+
+msgid "July 2026"
+msgstr "يوليو 2026"
+
+msgid "Kafr Aqab"
+msgstr "كفر عقب"
+
+msgid "Kafr Thulth"
+msgstr "kafr thulth"
+
+msgid "Kafr ad-Dik"
+msgstr "kafr ad-dik"
+
+msgid "Khan Yunis"
+msgstr "خان yunis"
+
+msgid "Khuza'a"
+msgstr "khuza'a"
+
+msgid "Knafeh"
+msgstr "كنافة"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Last login"
+msgstr "آخر تسجيل دخول"
+
+msgid "Last name"
+msgstr "اسم العائلة"
+
+msgid "Last updated:"
+msgstr "آخر تحديث:"
+
+msgid "Latitude"
+msgstr "خط العرض"
+
+msgid "Latitude must be between -90 and 90."
+msgstr "يجب أن يكون خط العرض بين -90 و 90."
+
+msgid "Leave a Review"
+msgstr "اكتب تقييماً"
+
+msgid "Leave blank if you don't want to change your password."
+msgstr "اتركه فارغاً إذا لا تريد تغيير كلمة المرور."
+
+msgid "Leave blank to keep current password"
+msgstr "اتركه فارغاً للإبقاء على كلمة المرور الحالية"
+
+msgid "Legal"
+msgstr "قانوني"
+
+msgid "Legal authorities — when required by law"
+msgstr "الجهات القانونية — عندما يقتضي القانون ذلك"
+
+msgid "Local First"
+msgstr "محلي أولاً"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Location data when you search for nearby restaurants"
+msgstr "بيانات الموقع عند البحث عن مطاعم قريبة"
+
+msgid "Location on Map"
+msgstr "الموقع على الخريطة"
+
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+msgid "Log in again"
+msgstr "تسجيل الدخول مجدداً"
+
+msgid "Log in to save to wishlist"
+msgstr "سجّل الدخول للحفظ في المفضلة"
+
+msgid "Log in to write a review."
+msgstr "سجل الدخول لتكتب تقييماً."
+
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+msgid "Logged out successfully."
+msgstr "تم تسجيل الخروج بنجاح."
+
+msgid "Login successful."
+msgstr "تم تسجيل الدخول بنجاح."
+
+msgid "Longitude"
+msgstr "خط الطول"
+
+msgid "Longitude must be between -180 and 180."
+msgstr "يجب أن يكون خط الطول بين -180 و 180."
+
+msgid "Maghazi"
+msgstr "maghazi"
+
+msgid "Main Dishes"
+msgstr "الأطباق الرئيسية"
+
+msgid "Main navigation"
+msgstr "التنقل الرئيسي"
+
+msgid "Manage your account details"
+msgstr "إدارة تفاصيل حسابك"
+
+msgid "Mansaf"
+msgstr "منسف"
+
+msgid "Mark selected reviews as resolved (clear report flag)"
+msgstr "تعليم التقييمات كمحلولة (إزالة بلاغ)"
+
+msgid "Media & Press"
+msgstr "الإعلام والصحافة"
+
+msgid "Mediterranean"
+msgstr "متوسطي"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Menu Items"
+msgstr "أصناف القائمة"
+
+msgid "Menu item deleted."
+msgstr "تم حذف الصنف."
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Message must be at least 10 characters."
+msgstr "يجب أن تكون الرسالة 10 أحرف على الأقل."
+
+msgid "Message sent! We'll get back to you within 24 hours."
+msgstr "تم إرسال رسالتك! سنتواصل معك خلال 24 ساعة."
+
+msgid "Moderate"
+msgstr "متوسط"
+
+msgid "Moderate (₪₪)"
+msgstr "متوسط (₪₪)"
+
+msgid "Moderation"
+msgstr "الإشراف"
+
+msgid "Musakhan"
+msgstr "مسخّن"
+
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+msgid "My Wishlist"
+msgstr "قائمتي المفضلة"
+
+msgid "N/A"
+msgstr "غ/م"
+
+msgid "Nablus"
+msgstr "نابلس"
+
+msgid "Nahalin"
+msgstr "نحalin"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Name (Arabic)"
+msgstr "الاسم (عربي)"
+
+msgid "Name (English)"
+msgstr "الاسم (إنجليزي)"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "New Reply"
+msgstr "رد جديد"
+
+msgid "New Review"
+msgstr "تقييم جديد"
+
+msgid "New password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "New password confirmation"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "No customer reviews yet."
+msgstr "لا توجد تقييمات من الزبائن بعد."
+
+msgid "No fields changed."
+msgstr "لم يتم تغيير أي حقول."
+
+msgid "No items in this category."
+msgstr "لا توجد أصناف في هذا التصنيف."
+
+msgid "No map locations available yet."
+msgstr "لا توجد مواقع على الخريطة بعد."
+
+msgid "No menu items available yet."
+msgstr "لا توجد أصناف في القائمة بعد."
+
+msgid "No menu items yet. Add your first dish."
+msgstr "لا توجد أصناف بعد. أضف أول طبق."
+
+msgid "No recent activity."
+msgstr "لا يوجد نشاط حديث."
+
+msgid "No restaurants available yet."
+msgstr "لا توجد مطاعم متاحة بعد."
+
+msgid "No restaurants match your search."
+msgstr "لا توجد مطاعم تطابق بحثك."
+
+msgid "No restaurants with map coordinates match your filters."
+msgstr "لا توجد مطاعم بإحداثيات على الخريطة تطابق فلاترك."
+
+msgid "No restaurants yet. Check back soon!"
+msgstr "لا توجد مطاعم بعد. عد قريباً!"
+
+msgid "No reviews yet"
+msgstr "لا توجد تقييمات بعد"
+
+msgid "No reviews yet."
+msgstr "لا توجد تقييمات بعد."
+
+msgid "No reviews yet. Be the first to share your experience!"
+msgstr "لا توجد تقييمات بعد. كن أول من يشارك تجربته!"
+
+msgid "No reviews yet. Be the first!"
+msgstr "لا توجد تقييمات بعد. كن أول من يقيّم!"
+
+msgid "No saved restaurants yet. Hit the ♥ on any card!"
+msgstr "لا توجد مطاعم محفوظة بعد. اضغط ♥ على أي بطاقة!"
+
+msgid "Nothing saved yet"
+msgstr "لا شيء محفوظ بعد"
+
+msgid "Nuseirat"
+msgstr "nuseirat"
+
+msgid "OK"
+msgstr "حسناً"
+
+msgid "Old password"
+msgstr "كلمة المرور القديمة"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Open Now"
+msgstr "مفتوح الآن"
+
+msgid "Open accessibility settings"
+msgstr "فتح إعدادات إمكانية الوصول"
+
+msgid "Open menu"
+msgstr "فتح القائمة"
+
+msgid "Opening Time"
+msgstr "وقت الفتح"
+
+msgid "Opt out of marketing emails at any time"
+msgstr "إلغاء الاشتراك في رسائل التسويق في أي وقت"
+
+msgid "Organic"
+msgstr "عضوي"
+
+msgid "Oriental"
+msgstr "أكل شرقي"
+
+msgid "Our Story"
+msgstr "قصتنا"
+
+msgid "Our Values"
+msgstr "قيمنا"
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
 msgid "Owner"
-msgstr "مالك"
+msgstr "صاحب مطعم"
+
+msgid "Owner reply"
+msgstr "رد صاحب المطعم"
+
+msgid "Owners cannot submit reviews."
+msgstr "لا يمكن لأصحاب المطاعم إرسال تقييمات."
+
+msgid "Ownership & status"
+msgstr "الملكية والحالة"
+
+msgid "Pagination"
+msgstr "التصفح"
+
+msgid "Palestine's #1 Food Platform"
+msgstr "منصة الطعام الأولى في فلسطين"
+
+msgid ""
+"Palestine's leading restaurant discovery and review platform. Find "
+"exceptional dining across every city."
+msgstr ""
+"منصة فلسطين الرائدة لاكتشاف المطاعم والتقييمات. اعثر على أفضل المطاعم في كل "
+"مدينة."
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Password change"
+msgstr "تغيير كلمة المرور"
+
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+msgid "Pending Approval"
+msgstr "بانتظار الموافقة"
+
+msgid "Pending Restaurants"
+msgstr "مطاعم قيد الانتظار"
+
+msgid "Pending approval"
+msgstr "بانتظار الموافقة"
+
+msgid "Permissions"
+msgstr "الصلاحيات"
+
+msgid "Personal Details"
+msgstr "البيانات الشخصية"
+
+msgid "Personal info"
+msgstr "المعلومات الشخصية"
+
+msgid "Personalise restaurant discovery and recommendations"
+msgstr "تخصيص اكتشاف المطاعم والاقتراحات"
+
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+msgid "Phone number is required for restaurant owners."
+msgstr "رقم الهاتف مطلوب لأصحاب المطاعم."
+
+msgid "Photo"
+msgstr "صورة"
+
+msgid "Platform"
+msgstr "المنصة"
+
+msgid "Platform Statistics"
+msgstr "إحصائيات المنصة"
+
+msgid "Platform statistics"
+msgstr "إحصائيات المنصة"
+
+msgid "Please correct the error below."
+msgstr "يرجى تصحيح الخطأ أدناه."
+
+msgid "Please correct the errors below."
+msgstr "يرجى تصحيح الأخطاء أدناه."
+
+msgid "Please correct the errors in your review."
+msgstr "يرجى تصحيح الأخطاء في تقييمك."
+
+msgid "Please enter a message."
+msgstr "يرجى كتابة رسالة."
+
+msgid "Please enter the item name in at least one language."
+msgstr "يرجى إدخال اسم الصنف بلغة واحدة على الأقل."
+
+msgid "Please enter your email."
+msgstr "يرجى إدخال بريدك الإلكتروني."
+
+msgid "Please enter your name."
+msgstr "يرجى إدخال اسمك."
+
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new"
+" password twice so we can verify you typed it in correctly."
+msgstr ""
+"لأسباب أمنية، أدخل كلمة مرورك الحالية ثم أدخل كلمة المرور الجديدة مرتين "
+"للتأكد من كتابتها بشكل صحيح."
+
+msgid "Please fix the errors below."
+msgstr "يرجى تصحيح الأخطاء أدناه."
+
+msgid "Please log in to save restaurants to your wishlist"
+msgstr "يرجى تسجيل الدخول لحفظ المطاعم في المفضلة"
+
+msgid "Please select a star rating."
+msgstr "يرجى اختيار تقييم بالنجوم."
+
+msgid "Please write at least 10 characters."
+msgstr "يرجى كتابة 10 أحرف على الأقل."
+
+msgid "Post false, misleading, or abusive reviews"
+msgstr "نشر تقييمات كاذبة أو مضللة أو مسيئة"
+
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Price (₪)"
+msgstr "السعر (₪)"
+
+msgid "Price range"
+msgstr "مستوى السعر"
+
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+msgid "Process"
+msgstr "الخطوات"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Profile / Logo"
+msgstr "الشعار / الصورة الشخصية"
+
+msgid "Profile and password updated successfully."
+msgstr "تم تحديث الملف الشخصي وكلمة المرور بنجاح."
+
+msgid "Profile update failed. Please correct the errors below."
+msgstr "فشل تحديث الملف الشخصي. يرجى تصحيح الأخطاء أدناه."
+
+msgid "Profile updated successfully."
+msgstr "تم تحديث الملف الشخصي بنجاح."
+
+msgid "Qabatiya"
+msgstr "qabatiya"
+
+msgid "Qalqilya"
+msgstr "قلqilya"
+
+msgid "Questions? Email"
+msgstr "لديك أسئلة؟ راسل"
+
+msgid "Questions? Reach out at"
+msgstr "لديك أسئلة؟ راسلنا على"
+
+msgid "Quick Access"
+msgstr "وصول سريع"
+
+msgid "Rafah"
+msgstr "رفح"
+
+msgid "Ramallah"
+msgstr "رام الله"
+
+msgid "Ramallah, Palestine 🇵🇸"
+msgstr "رام الله، فلسطين 🇵🇸"
+
+msgid "Ready to Explore?"
+msgstr "مستعد للاستكشاف؟"
+
+msgid "Real reviews from real diners. No paid placements, no fake stars."
+msgstr "تقييمات حقيقية من زبائن حقيقيين. لا إعلانات مدفوعة ولا نجوم مزيفة."
+
+msgid "Recent Actions"
+msgstr "آخر الإجراءات"
+
+msgid "Recent Reviews"
+msgstr "أحدث التقييمات"
+
+msgid "Register"
+msgstr "إنشاء حساب"
+
+msgid "Register in under a minute, for free."
+msgstr "سجّل خلال أقل من دقيقة — مجاناً."
+
+msgid "Registration failed. Please correct the errors below."
+msgstr "فشل التسجيل. يرجى تصحيح الأخطاء أدناه."
+
+msgid "Registration successful. Please log in."
+msgstr "تم التسجيل بنجاح. يرجى تسجيل الدخول."
+
+msgid "Regular User"
+msgstr "مستخدم عادي"
+
+msgid "Reject selected restaurant owners"
+msgstr "رفض أصحاب المطاعم المحددين"
+
+msgid "Reject selected restaurants"
+msgstr "رفض المطاعم المحددة"
+
+msgid "Rejected"
+msgstr "مرفوض"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Remove from Wishlist"
+msgstr "إزالة من المفضلة"
+
+msgid "Removed from wishlist"
+msgstr "تمت الإزالة من المفضلة"
+
+msgid "Repeat new password"
+msgstr "أعد إدخال كلمة المرور الجديدة"
+
+msgid "Reply to this review…"
+msgstr "الرد على هذا التقييم…"
+
+msgid "Required to change password"
+msgstr "مطلوب لتغيير كلمة المرور"
+
+msgid "Reset settings"
+msgstr "إعادة التعيين"
+
+msgid "Response Time"
+msgstr "وقت الرد"
+
+msgid "Restaurant Dashboard"
+msgstr "لوحة تحكم المطعم"
+
+msgid "Restaurant Info"
+msgstr "معلومات المطعم"
+
+msgid "Restaurant Information"
+msgstr "معلومات المطعم"
+
+msgid "Restaurant Name"
+msgstr "اسم المطعم"
+
+msgid "Restaurant Name (Arabic)"
+msgstr "اسم المطعم (عربي)"
+
+msgid "Restaurant Name (English)"
+msgstr "اسم المطعم (إنجليزي)"
+
+msgid "Restaurant Owner"
+msgstr "صاحب مطعم"
+
+msgid "Restaurant Owners"
+msgstr "أصحاب المطاعم"
+
+msgid "Restaurant Partnership"
+msgstr "شراكة مطعم"
+
+msgid "Restaurant Type"
+msgstr "نوع المطعم"
+
+msgid "Restaurant added to your wishlist ❤️"
+msgstr "تمت إضافة المطعم إلى المفضلة"
+
+msgid ""
+"Restaurant owners must be approved by an admin before they can operate on "
+"the platform."
+msgstr ""
+"يجب أن يوافق المدير على أصحاب المطاعم قبل أن يتمكنوا من العمل على المنصة."
+
+msgid "Restaurants"
+msgstr "المطاعم"
+
+msgid "Restaurants you've saved ❤️"
+msgstr "المطاعم التي حفظتها ❤️"
+
+msgid "Restaurants — when you interact with their listings or reviews"
+msgstr "المطاعم — عند تفاعلك مع صفحاتها أو تقييماتها"
+
+msgid "Restore selected reviews to the public site"
+msgstr "إظهار التقييمات على الموقع"
+
+msgid "Reviews"
+msgstr "التقييمات"
+
+msgid "Reviews & Ratings"
+msgstr "التقييمات والمراجعات"
+
+msgid ""
+"Reviews and other content you submit must be honest and based on your own "
+"experience. We may remove content that violates these terms."
+msgstr ""
+"يجب أن تكون التقييمات والمحتوى الذي تنشره صادقاً ومبنياً على تجربتك الشخصية."
+" قد نحذف المحتوى المخالف لهذه الشروط."
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Sa'ir"
+msgstr "sa'ir"
+
+msgid "Salfit"
+msgstr "salfit"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+msgid "Save Restaurant"
+msgstr "احفظ المطعم"
+
+msgid "Save and add another"
+msgstr "حفظ وإضافة آخر"
+
+msgid "Save and continue editing"
+msgstr "حفظ ومتابعة التعديل"
+
+msgid "Save and view"
+msgstr "حفظ وعرض"
+
+msgid "Save as new"
+msgstr "حفظ كجديد"
+
+msgid "Save your favourite restaurants for future visits."
+msgstr "احفظ مطاعمك المفضلة لزياراتك القادمة."
+
+msgid "Save your wishlist and account preferences"
+msgstr "حفظ قائمة المفضلة وتفضيلات حسابك"
+
+msgid "Scrape, spam, or disrupt the service"
+msgstr "استخراج البيانات أو إرسال رسائل مزعجة أو تعطيل الخدمة"
+
+msgid "Seafood"
+msgstr "مأكولات بحرية"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search a place..."
+msgstr "ابحث عن مكان..."
+
+msgid "Search restaurants"
+msgstr "ابحث عن مطاعم"
+
+msgid "Search restaurants..."
+msgstr "ابحث عن مطاعم..."
+
+msgid "Sebastia"
+msgstr "سبsطia"
+
+msgid "See Profile"
+msgstr "عرض الملف الشخصي"
+
+msgid "Select a city"
+msgstr "اختر المدينة"
+
+msgid "Select a type"
+msgstr "اختر النوع"
+
+msgid "Select city"
+msgstr "اختر المدينة"
+
+msgid "Send"
+msgstr "إرسال"
+
+msgid "Send Message"
+msgstr "إرسال الرسالة"
+
+msgid "Send important account and platform updates"
+msgstr "إرسال تحديثات مهمة للحساب والمنصة"
+
+msgid "Service providers — hosting and analytics, under strict agreements"
+msgstr "مزودي الخدمات — الاستضافة والتحليلات، بموجب اتفاقيات صارمة"
+
+msgid "Share your dining experience…"
+msgstr "شاركنا تجربتك في الطعام…"
+
+msgid "Share your experience with the community."
+msgstr "شارك تجربتك مع المجتمع."
+
+msgid "Short description of the dish"
+msgstr "وصف قصير للطبق"
+
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+msgid "Sign in to your Yumm account"
+msgstr "سجّل الدخول إلى حسابك في Yumm"
+
+msgid "Silwad"
+msgstr "سلواد"
+
+msgid "Since"
+msgstr "منذ"
+
+msgid "Status Change"
+msgstr "تغيير الحالة"
+
+msgid "Stop animations"
+msgstr "إيقاف الحركة"
+
+msgid "Street, building, area…"
+msgstr "الشارع، المبنى، المنطقة…"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "Submit Request"
+msgstr "إرسال الطلب"
+
+msgid "Submit Review"
+msgstr "إرسال التقييم"
+
+msgid "Surif"
+msgstr "surif"
+
+msgid "Sweets"
+msgstr "حلويات"
+
+msgid "Switch language"
+msgstr "تبديل اللغة"
+
+msgid "Tamoun"
+msgstr "tamoun"
+
+msgid "Tap the ♥ on any restaurant card to save it here"
+msgstr "اضغط ♥ على أي بطاقة مطعم لحفظه هنا"
+
+msgid "Tap to open in maps"
+msgstr "اضغط لفتح الخريطة"
+
+msgid "Tap ♥ on a restaurant to save it"
+msgstr "اضغط ♥ على أي مطعم لحفظه"
+
+msgid "Tarqumiyya"
+msgstr "ترqumiyya"
+
+msgid "Technical Support"
+msgstr "الدعم الفني"
+
+msgid "Tel al-Sultan"
+msgstr "tel al-sultan"
+
+msgid "Tell us how we can help..."
+msgstr "أخبرنا كيف يمكننا مساعدتك..."
+
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
+
+msgid "Text size"
+msgstr "حجم النص"
+
+msgid "Thank you for your review!"
+msgstr "شكراً لتقييمك!"
+
+msgid ""
+"The Yumm name, logo, design, and platform code are owned by Yumm. Restaurant"
+" names, photos, and menus remain the property of their respective owners."
+msgstr ""
+"اسم Yumm وشعاره وتصميمه وكود المنصة مملوكة لـ Yumm. أسماء المطاعم وصورها "
+"وقوائمها تبقى ملكاً لأصحابها."
+
+msgid "The two password fields didn't match."
+msgstr "حقلتا كلمة المرور غير متطابقتين."
+
+msgid "This account does not match the selected role."
+msgstr "هذا الحساب لا يطابق الدور المختار."
+
+msgid "This action cannot be undone."
+msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+msgid "This field is required."
+msgstr "هذا الحقل مطلوب."
+
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this"
+" admin site."
+msgstr "لا يوجد سجل تغييرات لهذا العنصر. ربما لم تتم إضافته عبر لوحة الإدارة."
+
+msgid "Timestamps"
+msgstr "الطوابع الزمنية"
+
+msgid "To exercise these rights, email"
+msgstr "لممارسة هذه الحقوق، راسل"
+
+msgid "Toggle dark mode"
+msgstr "تبديل الوضع الليلي"
+
+msgid "Top Rated"
+msgstr "الأعلى تقييماً"
+
+msgid "Top Restaurants"
+msgstr "أفضل المطاعم"
+
+msgid "Total Reviews"
+msgstr "إجمالي التقييمات"
+
+msgid "Total Users"
+msgstr "إجمالي المستخدمين"
+
+msgid "Traditional Palestinian"
+msgstr "مأكولات فلسطينية تقليدية"
+
+msgid "Tubas"
+msgstr "طubas"
+
+msgid "Tulkarm"
+msgstr "طulkarm"
+
+msgid "Update Your Review"
+msgstr "تحديث تقييمك"
+
+msgid "Usage data: pages visited, search queries, and wishlist activity"
+msgstr ""
+"بيانات الاستخدام: الصفحات التي تزورها وعمليات البحث ونشاط قائمة المفضلة"
+
+msgid "Use the platform for unlawful purposes"
+msgstr "استخدام المنصة لأغراض غير قانونية"
 
 msgid "User"
 msgstr "مستخدم"
 
+msgid "User permissions"
+msgstr "صلاحيات المستخدم"
+
+msgid "View"
+msgstr "عرض"
+
+msgid "View All"
+msgstr "عرض الكل"
+
+msgid "View Restaurant"
+msgstr "عرض المطعم"
+
+msgid "Want to list your restaurant? Email"
+msgstr "تريد إدراج مطعمك؟ راسل"
+
+msgid ""
+"We champion Palestinian restaurants, chefs, and food culture above all else."
+msgstr "نُقدّم المطاعم والطهاة والثقافة الغذائية الفلسطينية فوق كل شيء."
+
+msgid "We do not sell your personal data to third parties."
+msgstr "لا نبيع بياناتك الشخصية لأطراف ثالثة."
+
+msgid ""
+"We keep refining search, maps, and recommendations so discovery feels "
+"effortless."
+msgstr "نواصل تحسين البحث والخرائط والاقتراحات لتكون تجربة الاكتشاف سلسة."
+
+msgid ""
+"We may suspend or terminate accounts that violate these terms. You may "
+"delete your account at any time from your profile settings."
+msgstr ""
+"قد نعلّق أو ننهي الحسابات المخالفة لهذه الشروط. يمكنك حذف حسابك في أي وقت من"
+" إعدادات الملف الشخصي."
+
+msgid ""
+"We may update these terms from time to time. Continued use after changes "
+"constitutes acceptance of the updated terms."
+msgstr ""
+"قد نحدّث هذه الشروط من وقت لآخر. استمرارك في الاستخدام بعد التعديلات يعني "
+"موافقتك على الشروط المحدّثة."
+
+msgid "We reply within 24 hours, Sunday–Thursday."
+msgstr "نرد خلال 24 ساعة، من الأحد إلى الخميس."
+
+msgid ""
+"We respect your privacy. Yumm collects only what's needed to help you "
+"discover great restaurants — nothing more."
+msgstr ""
+"نحترم خصوصيتك. يجمع Yumm فقط ما يلزم لمساعدتك على اكتشاف مطاعم رائعة — لا "
+"أكثر."
+
+msgid "We share your data only with:"
+msgstr "نشارك بياناتك فقط مع:"
+
+msgid ""
+"We use TLS encryption for data in transit. Passwords are hashed and never "
+"stored in plain text."
+msgstr ""
+"نستخدم تشفير TLS للبيانات أثناء النقل. كلمات المرور مشفّرة ولا تُخزَّن كنص "
+"واضح."
+
+msgid "We'd Love to Hear From You"
+msgstr "يسعدنا سماعك"
+
+msgid "Welcome Back"
+msgstr "مرحباً بعودتك"
+
+msgid "Welcome back"
+msgstr "مرحباً بعودتك"
+
+msgid "Welcome back — Yumm Admin"
+msgstr "مرحباً بعودتك — لوحة تحكم Yumm"
+
+msgid "Welcome back, %(name)s"
+msgstr "مرحباً بعودتك، %(name)s"
+
+msgid "What are you craving today?"
+msgstr "ماذا تشتهي اليوم؟"
+
+msgid "When you use Yumm, we may collect:"
+msgstr "عند استخدامك لـ Yumm، قد نجمع:"
+
+msgid ""
+"Whether you're a restaurant owner, food lover, or just curious — reach out "
+"and our team will reply soon."
+msgstr ""
+"سواء كنت صاحب مطعم أو عاشق طعام أو فقط فضولياً — تواصل معنا وسيرد فريقنا "
+"قريباً."
+
+msgid "Wishlist"
+msgstr "قائمة المفضلة"
+
+msgid "Working Hours"
+msgstr "ساعات العمل"
+
+msgid "Write a Review"
+msgstr "اكتب تقييماً"
+
+msgid "Ya'bad"
+msgstr "ya'bad"
+
+msgid "Yatta"
+msgstr "يطa"
+
+msgid "Yes, delete"
+msgstr "نعم، احذف"
+
+msgid "You agree not to:"
+msgstr "توافق على عدم:"
+
+msgid ""
+"You are responsible for keeping your login credentials secure and for all "
+"activity under your account. Provide accurate information when registering."
+msgstr ""
+"أنت مسؤول عن حماية بيانات الدخول وعن كل نشاط يتم عبر حسابك. يرجى تقديم "
+"معلومات دقيقة عند التسجيل."
+
+msgid "You have the right to:"
+msgstr "لديك الحق في:"
+
+msgid "Your current password is incorrect."
+msgstr "كلمة المرور الحالية غير صحيحة."
+
+msgid "Your data helps us:"
+msgstr "تساعدنا بياناتك على:"
+
+msgid "Your name"
+msgstr "اسمك"
+
+msgid "Your password can't be a commonly used password."
+msgstr "لا يمكن أن تكون كلمة المرور شائعة الاستخدام."
+
+msgid "Your password can't be entirely numeric."
+msgstr "لا يمكن أن تكون كلمة المرور أرقاماً فقط."
+
+msgid "Your password can't be too similar to your other personal information."
+msgstr "لا يمكن أن تكون كلمة المرور مشابهة جداً لمعلوماتك الشخصية."
+
+msgid "Your password must contain at least 8 characters."
+msgstr "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل."
+
+msgid "Your password was changed."
+msgstr "تم تغيير كلمة مرورك بنجاح."
+
+msgid "Your reply"
+msgstr "ردك"
+
+msgid ""
+"Your request will be reviewed by our admin team. You'll be notified once "
+"your restaurant is approved."
+msgstr "سيراجع فريق الإدارة طلبك. سنُعلمك عند الموافقة على مطعمك."
+
+msgid ""
+"Your restaurant owner account is pending admin approval. You will be able to"
+" sign in once approved."
+msgstr ""
+"حساب صاحب المطعم بانتظار موافقة الإدارة. ستتمكن من تسجيل الدخول بعد "
+"الموافقة."
+
+msgid "Your review has been updated."
+msgstr "تم تحديث تقييمك."
+
+msgid "Yumm AI Assistant"
+msgstr "المساعد الذكي Yumm"
+
+msgid "Yumm Home"
+msgstr "الصفحة الرئيسية"
+
+msgid ""
+"Yumm helps people across Palestine discover great restaurants, read honest "
+"reviews, and save their favourite places — all in one platform."
+msgstr ""
+"يساعد Yumm الناس في فلسطين على اكتشاف مطاعم رائعة وقراءة تقييمات صادقة وحفظ "
+"أماكنهم المفضلة — في منصة واحدة."
+
+msgid ""
+"Yumm provides restaurant information and reviews as-is. We are not "
+"responsible for the quality of food, service, or availability at listed "
+"restaurants."
+msgstr ""
+"يوفر Yumm معلومات المطاعم والتقييمات كما هي. لسنا مسؤولين عن جودة الطعام أو "
+"الخدمة أو التوفر في المطاعم المدرجة."
+
+msgid ""
+"Yumm uses cookies to keep you logged in, remember language preferences, and "
+"analyse traffic. You can disable cookies in your browser, though some "
+"features may not work."
+msgstr ""
+"يستخدم Yumm ملفات تعريف الارتباط لإبقائك مسجّل الدخول وتذكّر اللغة وتحليل "
+"الزيارات. يمكنك تعطيلها من المتصفح، لكن بعض الميزات قد لا تعمل."
+
+msgid "account type"
+msgstr "نوع الحساب"
+
+msgid "address"
+msgstr "العنوان"
+
+msgid "address (Arabic)"
+msgstr "العنوان (عربي)"
+
+msgid "address (English)"
+msgstr "العنوان (إنجليزي)"
+
+msgid "ago"
+msgstr "منذ"
+
+msgid "and"
+msgstr "و"
+
+msgid "approved"
+msgstr "موافق عليه"
+
+msgid "caption (Arabic)"
+msgstr "التعليق (عربي)"
+
+msgid "caption (English)"
+msgstr "التعليق (إنجليزي)"
+
+msgid "category"
+msgstr "التصنيف"
+
+msgid "city"
+msgstr "المدينة"
+
+msgid "comment"
+msgstr "التعليق"
+
+msgid "comment replies"
+msgstr "ردود التعليقات"
+
+msgid "comment reply"
+msgstr "رد على تعليق"
+
+msgid "confirm new password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "created at"
+msgstr "تاريخ الإنشاء"
+
+msgid "current password"
+msgstr "كلمة المرور الحالية"
+
+msgid "date joined"
+msgstr "تاريخ الانضمام"
+
+msgid "description (Arabic)"
+msgstr "الوصف (عربي)"
+
+msgid "description (English)"
+msgstr "الوصف (إنجليزي)"
+
+msgid "display order"
+msgstr "ترتيب العرض"
+
 msgid "email address"
-msgstr "عنوان البريد الإلكتروني"
+msgstr "البريد الإلكتروني"
 
 msgid "first name"
 msgstr "الاسم الأول"
 
+msgid "full name"
+msgstr "الاسم الكامل"
+
+msgid "image"
+msgstr "الصورة"
+
+msgid "image type"
+msgstr "نوع الصورة"
+
+msgid "in Palestine"
+msgstr "في فلسطين"
+
+msgid "is active"
+msgstr "نشط"
+
+msgid "is available"
+msgstr "متوفر"
+
+msgid "is open"
+msgstr "مفتوح الآن"
+
+msgid "is primary"
+msgstr "صورة رئيسية"
+
+msgid "is read"
+msgstr "مقروء"
+
+msgid "is reported"
+msgstr "مُبلّغ عنه"
+
+msgid "is staff"
+msgstr "موظف"
+
+msgid "is superuser"
+msgstr "مدير النظام"
+
+msgid "is visible"
+msgstr "ظاهر"
+
+msgid "last login"
+msgstr "آخر تسجيل دخول"
+
 msgid "last name"
 msgstr "اسم العائلة"
 
+msgid "latitude"
+msgstr "خط العرض"
+
+msgid "longitude"
+msgstr "خط الطول"
+
+msgid "menu categories"
+msgstr "تصنيفات القائمة"
+
+msgid "menu category"
+msgstr "تصنيف قائمة"
+
+msgid "menu item"
+msgstr "صنف"
+
+msgid "menu items"
+msgstr "أصناف القائمة"
+
+msgid "name"
+msgstr "الاسم"
+
+msgid "name (Arabic)"
+msgstr "الاسم (عربي)"
+
+msgid "name (English)"
+msgstr "الاسم (إنجليزي)"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "new password"
+msgstr "كلمة المرور الجديدة"
+
+msgid "notification"
+msgstr "إشعار"
+
+msgid "notifications"
+msgstr "الإشعارات"
+
+msgid "or visit our"
+msgstr "أو زُر"
+
+msgid "out of 5 stars"
+msgstr "من 5 نجوم"
+
+msgid "owner"
+msgstr "المالك"
+
+msgid "password"
+msgstr "كلمة المرور"
+
+msgid "pending approval"
+msgstr "بانتظار الموافقة"
+
+msgid "price"
+msgstr "السعر"
+
+msgid "price range"
+msgstr "نطاق السعر"
+
+msgid "rating"
+msgstr "التقييم"
+
+msgid "read"
+msgstr "مقروء"
+
+msgid "recipient"
+msgstr "المستلم"
+
+msgid "reply text"
+msgstr "نص الرد"
+
+msgid "restaurant"
+msgstr "مطعم"
+
+msgid "restaurant categories"
+msgstr "تصنيفات المطاعم"
+
+msgid "restaurant category"
+msgstr "تصنيف مطعم"
+
+msgid "restaurant image"
+msgstr "صورة مطعم"
+
+msgid "restaurant images"
+msgstr "صور المطاعم"
+
+msgid "restaurants"
+msgstr "المطاعم"
+
+msgid "restaurants saved"
+msgstr "مطاعم محفوظة"
+
+msgid "review"
+msgstr "تقييم"
+
+msgid "review image"
+msgstr "صورة تقييم"
+
+msgid "review images"
+msgstr "صور التقييمات"
+
+msgid "reviews"
+msgstr "تقييمات"
+
 msgid "role"
 msgstr "الدور"
+
+msgid "saved at"
+msgstr "تاريخ الحفظ"
+
+msgid "stars"
+msgstr "نجوم"
+
+msgid "status"
+msgstr "الحالة"
+
+msgid "tag"
+msgstr "وسم"
+
+msgid "tags"
+msgstr "الوسوم"
+
+msgid "text (Arabic)"
+msgstr "النص (عربي)"
+
+msgid "text (English)"
+msgstr "النص (إنجليزي)"
+
+msgid "type"
+msgstr "النوع"
+
+msgid "unread"
+msgstr "غير مقروء"
+
+msgid "updated at"
+msgstr "تاريخ التحديث"
+
+msgid "uploaded at"
+msgstr "تاريخ الرفع"
 
 msgid "user"
 msgstr "مستخدم"
 
 msgid "users"
-msgstr "مستخدمون"
+msgstr "المستخدمون"
 
-# ---------------------------------------------------------------------------
-# accounts/forms.py
-# ---------------------------------------------------------------------------
+msgid "wishlist entries"
+msgstr "قائمة المفضلة"
 
-msgid "full name"
-msgstr "الاسم الكامل"
+msgid "wishlist entry"
+msgstr "عنصر مفضلة"
 
-msgid "Ahmad Al-Khalidi"
-msgstr "أحمد الخالدي"
+msgid "working hours (Arabic)"
+msgstr "ساعات العمل (عربي)"
 
-msgid "account type"
-msgstr "نوع الحساب"
+msgid "working hours (English)"
+msgstr "ساعات العمل (إنجليزي)"
 
-msgid "Regular User"
-msgstr "مستخدم عادي"
+msgid "© 2026 Yumm. Made with love for Palestine 🇵🇸"
+msgstr "© 2026 Yumm. صُنع بحب لفلسطين 🇵🇸"
 
-msgid "Restaurant Owner"
-msgstr "صاحب مطعم"
+msgid "%(count)d restaurant was approved."
+msgid_plural "%(count)d restaurants were approved."
+msgstr[0] "تمت الموافقة على مطعم واحد."
+msgstr[1] "تمت الموافقة على مطعم واحد."
+msgstr[2] "تمت الموافقة على %(count)d مطاعم."
+msgstr[3] "تمت الموافقة على %(count)d مطاعم."
+msgstr[4] "تمت الموافقة على %(count)d مطاعم."
+msgstr[5] "تمت الموافقة على %(count)d مطاعم."
 
-msgid "Any"
-msgstr "أي"
+msgid "%(count)d restaurant was rejected."
+msgid_plural "%(count)d restaurants were rejected."
+msgstr[0] "تم رفض مطعم واحد."
+msgstr[1] "تم رفض مطعم واحد."
+msgstr[2] "تم رفض %(count)d مطاعم."
+msgstr[3] "تم رفض %(count)d مطاعم."
+msgstr[4] "تم رفض %(count)d مطاعم."
+msgstr[5] "تم رفض %(count)d مطاعم."
 
-msgid "Admin role cannot be assigned during registration."
-msgstr "لا يمكن تعيين دور المدير أثناء التسجيل."
-
-msgid "This account does not match the selected role."
-msgstr "هذا الحساب لا يتطابق مع الدور المحدد."
-
-# ---------------------------------------------------------------------------
-# accounts/permissions.py + accounts/decorators.py
-# ---------------------------------------------------------------------------
-
-msgid "Admin access required."
-msgstr "مطلوب صلاحيات المدير."
-
-msgid "Owner access required."
-msgstr "مطلوب صلاحيات المالك."
-
-msgid "Admin or Owner access required."
-msgstr "مطلوب صلاحيات المدير أو المالك."
-
-msgid "You do not have permission to perform this action."
-msgstr "ليس لديك إذن لتنفيذ هذا الإجراء."
-
-# ---------------------------------------------------------------------------
-# accounts/views.py
-# ---------------------------------------------------------------------------
-
-msgid "Create Account"
-msgstr "إنشاء حساب"
-
-msgid "Registration successful. Please log in."
-msgstr "تم التسجيل بنجاح. يرجى تسجيل الدخول."
-
-msgid "Registration failed. Please correct the errors below."
-msgstr "فشل التسجيل. يرجى تصحيح الأخطاء أدناه."
-
-msgid "Sign In"
-msgstr "تسجيل الدخول"
-
-msgid "Login successful."
-msgstr "تم تسجيل الدخول بنجاح."
-
-msgid "Invalid credentials."
-msgstr "بيانات الاعتماد غير صحيحة."
-
-msgid "Logged out successfully."
-msgstr "تم تسجيل الخروج بنجاح."
-
-msgid "My Profile"
-msgstr "ملفي الشخصي"
-
-msgid "Profile updated successfully."
-msgstr "تم تحديث الملف الشخصي بنجاح."
-
-msgid "Profile update failed. Please correct the errors below."
-msgstr "فشل تحديث الملف الشخصي. يرجى تصحيح الأخطاء أدناه."
-
-msgid "Demo login is only available in DEBUG mode."
-msgstr "تسجيل الدخول التجريبي متاح فقط في وضع التصحيح."
-
-msgid "Invalid demo role."
-msgstr "دور تجريبي غير صالح."
-
-msgid "Logged in as demo %(role)s account."
-msgstr "تم تسجيل الدخول كحساب %(role)s التجريبي."
+msgid "Interactive map — %(count)s restaurant on the map"
+msgid_plural "Interactive map — %(count)s restaurants on the map"
+msgstr[0] "خريطة تفاعلية — مطعم واحد على الخريطة"
+msgstr[1] "خريطة تفاعلية — مطعم واحد على الخريطة"
+msgstr[2] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
+msgstr[3] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
+msgstr[4] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
+msgstr[5] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"

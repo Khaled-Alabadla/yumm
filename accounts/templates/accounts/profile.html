@@ -1,0 +1,258 @@
+{% extends "baseaccount.html" %}
+{% load static i18n %}
+{% block title %}{% trans "My Profile" %} — Yumm{% endblock %}
+{% block content %}
+
+<main class="max-w-xl mx-auto px-4 py-10">
+  <div class="text-center mb-7">
+    <h1 class="text-3xl font-extrabold tracking-tight" style="color: var(--text-primary)">
+      {% trans "My Profile" %}
+    </h1>
+    <p class="text-sm mt-1" style="color: var(--text-secondary)">
+      {% trans "Manage your account details" %}
+    </p>
+  </div>
+
+  <div
+    class="rounded-2xl p-7"
+    style="background: var(--card); border: 1px solid var(--border)"
+  >
+    {% include "accounts/includes/messages.html" %}
+
+    {% if form.non_field_errors %}
+    <div
+      class="rounded-xl px-4 py-3 text-sm mb-5 flex items-center gap-2"
+      style="
+        background: rgba(239, 68, 68, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        color: var(--danger);
+      "
+    >
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span>{% for error in form.non_field_errors %}{{ error }}{% endfor %}</span>
+    </div>
+    {% endif %}
+
+    <div
+      class="rounded-xl px-4 py-3 mb-6 flex flex-wrap items-center gap-2 text-sm"
+      style="background: var(--secondary-bg); border: 1px solid var(--border)"
+    >
+      {% if user.is_owner_role %}
+        <span class="font-medium" style="color: var(--text-primary)">
+          {% trans "Restaurant Owner" %}
+        </span>
+        <span
+          class="text-xs font-semibold px-2 py-0.5 rounded-full"
+          style="
+            {% if user.is_approved %}
+              background: rgba(34, 197, 94, 0.12); color: #16a34a;
+            {% else %}
+              background: rgba(245, 158, 11, 0.12); color: #d97706;
+            {% endif %}"
+        >
+          {% if user.is_approved %}{% trans "Approved" %}{% else %}{% trans "Pending Approval" %}{% endif %}
+        </span>
+      {% elif user.is_admin_role %}
+        <span class="font-medium" style="color: var(--text-primary)">
+          {% trans "Admin" %}
+        </span>
+      {% endif %}
+      <span class="text-xs" style="color: var(--text-secondary)">
+        {{ user.email }} · {% blocktrans with date=user.date_joined|date:"M Y" %}Member since {{ date }}{% endblocktrans %}
+      </span>
+    </div>
+
+    <form method="POST" class="flex flex-col gap-5">
+      {% csrf_token %}
+
+      <div>
+        <h2 class="text-sm font-semibold mb-3" style="color: var(--text-primary)">
+          {% trans "Personal Details" %}
+        </h2>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "Full Name" %}
+            </label>
+            <input
+              type="text"
+              name="full_name"
+              autocomplete="name"
+              value="{{ form.full_name.value|default:'' }}"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.full_name.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            />
+            {% include "accounts/includes/field_errors.html" with errors=form.full_name.errors %}
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "Email" %}
+            </label>
+            <div
+              class="w-full rounded-xl px-4 py-3 text-sm"
+              style="
+                background: var(--secondary-bg);
+                border: 1px solid var(--border);
+                color: var(--text-secondary);
+              "
+            >
+              {{ user.email }}
+            </div>
+            <p class="text-xs" style="color: var(--text-secondary)">
+              {% trans "Email cannot be changed. Contact support if you need help." %}
+            </p>
+          </div>
+
+          {% include "accounts/includes/phone_field.html" with required=user.is_owner_role %}
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "City" %}
+              {% if user.is_owner_role %}<span style="color: var(--danger)">*</span>{% endif %}
+            </label>
+            <select
+              name="city"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.city.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            >
+              {% for value, label in form.fields.city.choices %}
+              <option value="{{ value }}" {% if form.city.value == value %}selected{% endif %}>
+                {{ label }}
+              </option>
+              {% endfor %}
+            </select>
+            {% include "accounts/includes/field_errors.html" with errors=form.city.errors %}
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "Address" %}
+              {% if user.is_owner_role %}<span style="color: var(--danger)">*</span>{% endif %}
+            </label>
+            <input
+              type="text"
+              name="address"
+              autocomplete="street-address"
+              placeholder="{% trans 'Street, building, area…' %}"
+              value="{{ form.address.value|default:'' }}"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.address.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            />
+            {% include "accounts/includes/field_errors.html" with errors=form.address.errors %}
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="pt-2 border-t"
+        style="border-color: var(--border)"
+      >
+        <h2 class="text-sm font-semibold mb-1" style="color: var(--text-primary)">
+          {% trans "Change Password" %}
+        </h2>
+        <p class="text-xs mb-3" style="color: var(--text-secondary)">
+          {% trans "Leave blank if you don't want to change your password." %}
+        </p>
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "Current Password" %}
+            </label>
+            <input
+              type="password"
+              name="current_password"
+              id="currentPassword"
+              autocomplete="current-password"
+              placeholder="{% trans 'Enter current password' %}"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.current_password.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            />
+            {% include "accounts/includes/field_errors.html" with errors=form.current_password.errors %}
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "New Password" %}
+            </label>
+            <input
+              type="password"
+              name="new_password1"
+              id="newPassword1"
+              autocomplete="new-password"
+              placeholder="{% trans 'New password' %}"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.new_password1.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            />
+            {% include "accounts/includes/field_errors.html" with errors=form.new_password1.errors %}
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium" style="color: var(--text-secondary)">
+              {% trans "Confirm New Password" %}
+            </label>
+            <input
+              type="password"
+              name="new_password2"
+              id="newPassword2"
+              autocomplete="new-password"
+              placeholder="{% trans 'Confirm new password' %}"
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+              style="
+                background: var(--input-bg);
+                border: 1px solid {% if form.new_password2.errors %}var(--danger){% else %}var(--border){% endif %};
+                color: var(--text-primary);
+              "
+            />
+            {% include "accounts/includes/field_errors.html" with errors=form.new_password2.errors %}
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full text-white font-semibold py-3 rounded-xl text-sm"
+        style="background: var(--primary)"
+      >
+        {% trans "Save Changes" %}
+      </button>
+    </form>
+
+    <form method="POST" action="{% url 'accounts:logout' %}" class="mt-4">
+      {% csrf_token %}
+      <button
+        type="submit"
+        class="w-full font-semibold py-3 rounded-xl text-sm"
+        style="
+          background: var(--secondary-bg);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+        "
+      >
+        {% trans "Log Out" %}
+      </button>
+    </form>
+  </div>
+</main>
+
+{% endblock %}

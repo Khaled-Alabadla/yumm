@@ -1,0 +1,95 @@
+/**
+ * Form fields — loaded after Tailwind so borders are not reset away.
+ */
+
+body.yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):not(.hero-search__input),
+body.yumm-site select,
+body.yumm-site textarea,
+body.yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]),
+body.yumm-auth select,
+body.yumm-auth textarea,
+body.yumm-dashboard input.rd-input,
+body.yumm-dashboard select.rd-input,
+body.yumm-dashboard textarea.rd-input,
+body.yumm-dashboard .rd-reply-input,
+.yumm-input,
+select.yumm-input,
+textarea.yumm-input {
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: #d4c4be !important;
+  background-color: #ffffff !important;
+  outline: none !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):not(.hero-search__input):focus,
+body.yumm-site select:focus,
+body.yumm-site textarea:focus,
+body.yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):focus,
+body.yumm-auth select:focus,
+body.yumm-auth textarea:focus,
+body.yumm-dashboard input.rd-input:focus,
+body.yumm-dashboard select.rd-input:focus,
+body.yumm-dashboard textarea.rd-input:focus,
+body.yumm-dashboard .rd-reply-input:focus,
+.yumm-input:focus,
+select.yumm-input:focus,
+textarea.yumm-input:focus {
+  border-color: #c0392b !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15) !important;
+}
+
+.yumm-input.yumm-input--error,
+select.yumm-input.yumm-input--error,
+textarea.yumm-input.yumm-input--error {
+  border-color: #ef4444 !important;
+}
+
+html.dark body.yumm-site input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]):not(.hero-search__input),
+html.dark body.yumm-site select,
+html.dark body.yumm-site textarea,
+html.dark body.yumm-auth input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="file"]),
+html.dark body.yumm-auth select,
+html.dark body.yumm-auth textarea,
+html.dark body.yumm-dashboard input.rd-input,
+html.dark body.yumm-dashboard select.rd-input,
+html.dark body.yumm-dashboard textarea.rd-input,
+html.dark .yumm-input {
+  border-color: rgba(200, 120, 100, 0.35) !important;
+  background-color: var(--input-bg) !important;
+}
+
+html.dark body.yumm-site input:not(.hero-search__input):focus,
+html.dark body.yumm-auth input:focus,
+html.dark body.yumm-dashboard input.rd-input:focus,
+html.dark .yumm-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--input-focus) !important;
+}
+
+/* Hero search — override global white input styles (loads last) */
+.hero-search .hero-search__input,
+.hero-search .hero-search__input:focus {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+.hero-search .hero-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.58) !important;
+  opacity: 1 !important;
+}
+
+/* Restaurants list — search toolbar (separate rounded fields + gap) */
+.rp-search-toolbar input:focus,
+.rp-search-toolbar select:focus {
+  outline: none !important;
+}
+
+.rp-search-toolbar__btn,
+.rp-search-toolbar__btn:hover,
+.rp-search-toolbar__btn:focus {
+  box-shadow: none !important;
+}

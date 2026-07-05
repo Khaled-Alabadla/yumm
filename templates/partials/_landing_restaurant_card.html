@@ -1,0 +1,76 @@
+{% load i18n l10n restaurant_tags %}
+<article class="landing-card group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal"
+  {% if card_delay %}style="transition-delay:.{{ card_delay }}s"{% endif %}
+  data-restaurant-id="{{ restaurant.pk }}"
+  data-restaurant-name="{{ restaurant|localized_name }}"
+  data-restaurant-cuisine="{% if restaurant.category %}{{ restaurant.category|localized_category }}{% endif %}"
+  data-restaurant-city="{{ restaurant|city_label }}"
+  data-restaurant-rating="{% if restaurant.avg_rating %}{{ restaurant.avg_rating|floatformat:1 }}{% endif %}"
+  data-restaurant-url="{% url 'restaurants:detail' restaurant.pk %}">
+  <a href="{% url 'restaurants:detail' restaurant.pk %}" class="block relative overflow-hidden landing-card__media" aria-label="{{ restaurant|localized_name }}">
+    <img src="{{ restaurant|restaurant_cover }}" alt="{{ restaurant|localized_name }}" loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
+    {% if restaurant|restaurant_is_open %}
+    <span class="absolute top-3 start-3 z-10 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full">{% trans "Open" %}</span>
+    {% else %}
+    <span class="absolute top-3 start-3 z-10 px-2.5 py-1 bg-gray-600 text-white text-xs font-bold rounded-full">{% trans "Closed" %}</span>
+    {% endif %}
+    {% if user.is_authenticated and not user.is_owner_role %}
+    <form method="POST" action="{% url 'restaurants:wishlist-toggle' restaurant.pk %}" class="landing-wishlist-form absolute top-3 end-3 z-10" data-ajax="1" onclick="event.stopPropagation();">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}"/>
+      <button type="submit"
+        class="landing-wishlist-btn wish-btn w-8 h-8 !bg-white/95 rounded-full flex items-center justify-center shadow-md hover:!bg-white transition-colors{% if restaurant.pk in wishlist_ids %} is-active{% endif %}"
+        aria-label="{% trans 'Add to wishlist' %}"
+        aria-pressed="{% if restaurant.pk in wishlist_ids %}true{% else %}false{% endif %}">
+        <i data-lucide="heart" class="w-4 h-4 {% if restaurant.pk in wishlist_ids %}text-[#B5451B] fill-[#B5451B]{% else %}text-gray-500{% endif %}"></i>
+      </button>
+    </form>
+    {% else %}
+    <a href="{% url 'accounts:login' %}?next={{ request.get_full_path|urlencode }}"
+      class="landing-wishlist-btn wish-btn-guest absolute top-3 end-3 z-10 w-8 h-8 !bg-white/95 rounded-full flex items-center justify-center shadow-md hover:!bg-white transition-colors"
+      aria-label="{% trans 'Log in to save to wishlist' %}"
+      onclick="event.stopPropagation();">
+      <i data-lucide="heart" class="w-4 h-4 text-gray-500"></i>
+    </a>
+    {% endif %}
+  </a>
+  <div class="p-4">
+    <h3 class="font-display text-lg font-bold text-gray-900 dark:text-white mb-1">{{ restaurant|localized_name }}</h3>
+    {% if restaurant.category %}
+    <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">{{ restaurant.category|localized_category }}</p>
+    {% endif %}
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <div class="flex items-center gap-1 min-w-0 flex-wrap">
+        {% if restaurant.avg_rating %}
+        {% landing_stars restaurant.avg_rating %}
+        {% localize off %}
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ restaurant.avg_rating|floatformat:1 }}</span>
+        {% endlocalize %}
+        <span class="text-xs text-gray-400">({{ restaurant.visible_review_count }})</span>
+        {% else %}
+        <span class="text-xs text-gray-400">{% trans "No reviews yet" %}</span>
+        {% endif %}
+      </div>
+      <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 shrink-0">
+        <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i>
+        {{ restaurant|city_label }}
+      </span>
+    </div>
+    <div class="flex flex-wrap gap-1.5 mb-4">
+      {% with level=restaurant.price_range|default:2 %}
+      {% if level == 1 %}
+      <span class="landing-tag">{% trans "Budget" %}</span>
+      {% elif level == 3 %}
+      <span class="landing-tag">{% trans "Expensive" %}</span>
+      {% else %}
+      <span class="landing-tag">{% trans "Moderate" %}</span>
+      {% endif %}
+      {% endwith %}
+      {% for tag in restaurant.tags.all|slice:":3" %}
+      <span class="landing-tag landing-tag--accent">{{ tag|localized_tag }}</span>
+      {% endfor %}
+    </div>
+    <a href="{% url 'restaurants:detail' restaurant.pk %}" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors">{% trans "View Restaurant" %}</a>
+  </div>
+</article>

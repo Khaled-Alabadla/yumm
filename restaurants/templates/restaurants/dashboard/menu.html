@@ -1,0 +1,146 @@
+{% extends "restaurants/dashboard/base.html" %}
+{% load i18n restaurant_tags %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+{% endblock %}
+
+{% block dashboard_content %}
+<div class="rd-section-head">
+  <h2 class="rd-card-title rd-card-title--inline">{% trans "Menu Items" %}</h2>
+  <button type="button" class="rd-btn rd-btn--primary rd-btn--sm" onclick="openMenuModal('add')">
+    <i data-lucide="plus" class="w-4 h-4"></i>
+    {% trans "Add Item" %}
+  </button>
+</div>
+
+{% if menu_items %}
+<ul class="rd-menu-list" id="menu-items-list">
+  {% for item in menu_items %}
+  <li class="rd-menu-card" data-item-id="{{ item.pk }}">
+    <div class="rd-menu-image">
+      <img src="{{ item|menu_item_image }}" alt="{{ item|localized_name }}"/>
+    </div>
+    <div class="rd-menu-body">
+      <h3 class="rd-menu-name">{{ item|localized_name }}</h3>
+      <p class="rd-menu-desc">{{ item|localized_description|truncatewords:20 }}</p>
+      <p class="rd-menu-price">₪{{ item.price }}</p>
+    </div>
+    <div class="rd-menu-actions">
+      <button type="button" class="rd-icon-btn rd-icon-btn--soft" onclick="openMenuModal('edit-{{ item.pk }}')" aria-label="{% trans 'Edit' %}">
+        <i data-lucide="pencil" class="w-4 h-4"></i>
+      </button>
+      <button
+        type="button"
+        class="rd-icon-btn rd-icon-btn--danger rd-menu-delete-btn"
+        data-url="{% url 'restaurants:dashboard-menu-delete' item.pk %}"
+        data-name="{{ item|localized_name|escapejs }}"
+        data-item-id="{{ item.pk }}"
+        aria-label="{% trans 'Delete' %}"
+      >
+        <i data-lucide="trash-2" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<ul class="rd-menu-list hidden" id="menu-items-list"></ul>
+{% endif %}
+
+<section class="rd-card {% if menu_items %}hidden{% endif %}" id="menu-empty-state">
+  <p class="rd-empty">{% trans "No menu items yet. Add your first dish." %}</p>
+</section>
+
+<div id="menu-modal-add" class="rd-modal {% if not show_add_modal %}hidden{% endif %}" role="dialog" aria-modal="true" aria-labelledby="menu-modal-add-title">
+  <div class="rd-modal-backdrop" onclick="closeMenuModal('add')"></div>
+  <div class="rd-modal-panel">
+    <div class="rd-modal-header">
+      <h3 id="menu-modal-add-title" class="rd-modal-title">{% trans "Add Menu Item" %}</h3>
+      <button type="button" class="rd-icon-btn" onclick="closeMenuModal('add')" aria-label="{% trans 'Close' %}">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <form method="POST" action="{% url 'restaurants:dashboard-menu-add' %}" enctype="multipart/form-data" class="rd-form">
+      {% csrf_token %}
+      {% if item_form.non_field_errors %}
+      <div class="rd-form-error">{{ item_form.non_field_errors }}</div>
+      {% endif %}
+      {% include "restaurants/dashboard/_menu_item_fields.html" with form=item_form %}
+      <div class="rd-modal-actions">
+        <button type="button" class="rd-btn rd-btn--ghost" onclick="closeMenuModal('add')">{% trans "Cancel" %}</button>
+        <button type="submit" class="rd-btn rd-btn--primary">{% trans "Add Item" %}</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% for item in menu_items %}
+<div id="menu-modal-edit-{{ item.pk }}" class="rd-modal {% if show_edit_modal != item.pk %}hidden{% endif %}" role="dialog" aria-modal="true">
+  <div class="rd-modal-backdrop" onclick="closeMenuModal('edit-{{ item.pk }}')"></div>
+  <div class="rd-modal-panel">
+    <div class="rd-modal-header">
+      <h3 class="rd-modal-title">{% trans "Edit Menu Item" %}</h3>
+      <button type="button" class="rd-icon-btn" onclick="closeMenuModal('edit-{{ item.pk }}')" aria-label="{% trans 'Close' %}">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <form method="POST" action="{% url 'restaurants:dashboard-menu-edit' item.pk %}" enctype="multipart/form-data" class="rd-form">
+      {% csrf_token %}
+      {% include "restaurants/dashboard/_menu_item_fields.html" with form=edit_forms|get_item:item.pk %}
+      <div class="rd-modal-actions">
+        <button type="button" class="rd-btn rd-btn--ghost" onclick="closeMenuModal('edit-{{ item.pk }}')">{% trans "Cancel" %}</button>
+        <button type="submit" class="rd-btn rd-btn--primary">{% trans "Save Changes" %}</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endfor %}
+
+<meta name="csrf-token" content="{{ csrf_token }}" />
+{{ menu_swal_i18n|json_script:"rd-menu-i18n" }}
+<div
+  id="rd-menu-page-config"
+  class="hidden"
+  aria-hidden="true"
+  data-delete-title="{% filter escapejs %}{% trans 'Delete menu item?' %}{% endfilter %}"
+  data-delete-text="{% filter escapejs %}{% trans 'This action cannot be undone.' %}{% endfilter %}"
+  data-confirm-delete="{% filter escapejs %}{% trans 'Yes, delete' %}{% endfilter %}"
+  data-cancel="{% filter escapejs %}{% trans 'Cancel' %}{% endfilter %}"
+  data-deleted="{% filter escapejs %}{% trans 'Deleted!' %}{% endfilter %}"
+  data-delete-failed="{% filter escapejs %}{% trans 'Could not delete this item.' %}{% endfilter %}"
+  data-ok="{% filter escapejs %}{% trans 'OK' %}{% endfilter %}"
+></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  window.RD_PAGE = {
+    dir: "{% if page_is_rtl %}rtl{% else %}ltr{% endif %}",
+    lang: "{{ LANGUAGE_CODE|default:'en' }}",
+  };
+  (function () {
+    var i18nNode = document.getElementById("rd-menu-i18n");
+    if (i18nNode && i18nNode.textContent) {
+      try {
+        window.RD_MENU_I18N = JSON.parse(i18nNode.textContent);
+        return;
+      } catch (error) {
+        /* fall through to data-attribute backup */
+      }
+    }
+    var cfg = document.getElementById("rd-menu-page-config");
+    if (!cfg) return;
+    window.RD_MENU_I18N = {
+      deleteTitle: cfg.dataset.deleteTitle,
+      deleteText: cfg.dataset.deleteText,
+      confirmDelete: cfg.dataset.confirmDelete,
+      cancel: cfg.dataset.cancel,
+      deleted: cfg.dataset.deleted,
+      deleteFailed: cfg.dataset.deleteFailed,
+      ok: cfg.dataset.ok,
+    };
+  })();
+</script>
+{% endblock %}

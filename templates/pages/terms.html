@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Terms of Service" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page" tabindex="-1">
+  <header class="yumm-page-hero">
+    <div class="yumm-page-hero__inner">
+      <p class="yumm-page-eyebrow">{% trans "Legal" %}</p>
+      <h1 class="yumm-page-title">{% trans "Terms of Service" %}</h1>
+      <p class="yumm-page-meta">{% trans "Last updated:" %} {{ last_updated }}</p>
+    </div>
+  </header>
+
+  <div class="yumm-page-body yumm-page-body--wide">
+    <div class="yumm-legal-layout">
+      <nav class="yumm-legal-nav" aria-label="{% trans 'Contents' %}">
+        <a href="#acceptance">{% trans "1. Acceptance" %}</a>
+        <a href="#account">{% trans "2. Your Account" %}</a>
+        <a href="#use">{% trans "3. Acceptable Use" %}</a>
+        <a href="#content">{% trans "4. User Content" %}</a>
+        <a href="#ip">{% trans "5. Intellectual Property" %}</a>
+        <a href="#liability">{% trans "6. Liability" %}</a>
+        <a href="#termination">{% trans "7. Termination" %}</a>
+        <a href="#changes">{% trans "8. Changes" %}</a>
+        <a href="#contact">{% trans "9. Contact" %}</a>
+      </nav>
+
+      <div class="yumm-prose">
+        <div class="yumm-callout">
+          {% trans "By using Yumm, you agree to these terms. Please read them carefully — they govern your use of our platform." %}
+        </div>
+
+        <section id="acceptance" class="yumm-page-section">
+          <h2>{% trans "1. Acceptance" %}</h2>
+          <p>{% trans "By accessing or using Yumm, you agree to be bound by these Terms of Service and our Privacy Policy." %}</p>
+        </section>
+
+        <section id="account" class="yumm-page-section">
+          <h2>{% trans "2. Your Account" %}</h2>
+          <p>{% trans "You are responsible for keeping your login credentials secure and for all activity under your account. Provide accurate information when registering." %}</p>
+        </section>
+
+        <section id="use" class="yumm-page-section">
+          <h2>{% trans "3. Acceptable Use" %}</h2>
+          <p>{% trans "You agree not to:" %}</p>
+          <ul>
+            <li>{% trans "Post false, misleading, or abusive reviews" %}</li>
+            <li>{% trans "Attempt to access accounts or data that are not yours" %}</li>
+            <li>{% trans "Use the platform for unlawful purposes" %}</li>
+            <li>{% trans "Scrape, spam, or disrupt the service" %}</li>
+          </ul>
+        </section>
+
+        <section id="content" class="yumm-page-section">
+          <h2>{% trans "4. User Content" %}</h2>
+          <p>{% trans "Reviews and other content you submit must be honest and based on your own experience. We may remove content that violates these terms." %}</p>
+        </section>
+
+        <section id="ip" class="yumm-page-section">
+          <h2>{% trans "5. Intellectual Property" %}</h2>
+          <p>{% trans "The Yumm name, logo, design, and platform code are owned by Yumm. Restaurant names, photos, and menus remain the property of their respective owners." %}</p>
+        </section>
+
+        <section id="liability" class="yumm-page-section">
+          <h2>{% trans "6. Liability" %}</h2>
+          <p>{% trans "Yumm provides restaurant information and reviews as-is. We are not responsible for the quality of food, service, or availability at listed restaurants." %}</p>
+        </section>
+
+        <section id="termination" class="yumm-page-section">
+          <h2>{% trans "7. Termination" %}</h2>
+          <p>{% trans "We may suspend or terminate accounts that violate these terms. You may delete your account at any time from your profile settings." %}</p>
+        </section>
+
+        <section id="changes" class="yumm-page-section">
+          <h2>{% trans "8. Changes" %}</h2>
+          <p>{% trans "We may update these terms from time to time. Continued use after changes constitutes acceptance of the updated terms." %}</p>
+        </section>
+
+        <section id="contact" class="yumm-page-section">
+          <h2>{% trans "9. Contact" %}</h2>
+          <p>{% trans "Questions? Email" %} <a href="mailto:legal@yumm.ps">legal@yumm.ps</a> {% trans "or visit our" %} <a href="{% url 'contact' %}">{% trans "Contact page" %}</a>.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

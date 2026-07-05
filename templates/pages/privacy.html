@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Privacy Policy" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page" tabindex="-1">
+  <header class="yumm-page-hero">
+    <div class="yumm-page-hero__inner">
+      <p class="yumm-page-eyebrow">{% trans "Legal" %}</p>
+      <h1 class="yumm-page-title">{% trans "Privacy Policy" %}</h1>
+      <p class="yumm-page-meta">{% trans "Last updated:" %} {{ last_updated }}</p>
+    </div>
+  </header>
+
+  <div class="yumm-page-body yumm-page-body--wide">
+    <div class="yumm-legal-layout">
+      <nav class="yumm-legal-nav" aria-label="{% trans 'Contents' %}">
+        <a href="#collection">{% trans "1. Data We Collect" %}</a>
+        <a href="#use">{% trans "2. How We Use It" %}</a>
+        <a href="#sharing">{% trans "3. Sharing" %}</a>
+        <a href="#cookies">{% trans "4. Cookies" %}</a>
+        <a href="#rights">{% trans "5. Your Rights" %}</a>
+        <a href="#security">{% trans "6. Security" %}</a>
+        <a href="#contact">{% trans "7. Contact" %}</a>
+      </nav>
+
+      <div class="yumm-prose">
+        <div class="yumm-callout">
+          {% trans "We respect your privacy. Yumm collects only what's needed to help you discover great restaurants — nothing more." %}
+        </div>
+
+        <section id="collection" class="yumm-page-section">
+          <h2>{% trans "1. Data We Collect" %}</h2>
+          <p>{% trans "When you use Yumm, we may collect:" %}</p>
+          <ul>
+            <li>{% trans "Account info: name, email address, and password (hashed)" %}</li>
+            <li>{% trans "Location data when you search for nearby restaurants" %}</li>
+            <li>{% trans "Usage data: pages visited, search queries, and wishlist activity" %}</li>
+            <li>{% trans "Device info: browser type, operating system, and IP address" %}</li>
+          </ul>
+        </section>
+
+        <section id="use" class="yumm-page-section">
+          <h2>{% trans "2. How We Use It" %}</h2>
+          <p>{% trans "Your data helps us:" %}</p>
+          <ul>
+            <li>{% trans "Personalise restaurant discovery and recommendations" %}</li>
+            <li>{% trans "Save your wishlist and account preferences" %}</li>
+            <li>{% trans "Send important account and platform updates" %}</li>
+            <li>{% trans "Improve features and fix bugs" %}</li>
+          </ul>
+          <p>{% trans "We do not sell your personal data to third parties." %}</p>
+        </section>
+
+        <section id="sharing" class="yumm-page-section">
+          <h2>{% trans "3. Sharing Your Information" %}</h2>
+          <p>{% trans "We share your data only with:" %}</p>
+          <ul>
+            <li>{% trans "Restaurants — when you interact with their listings or reviews" %}</li>
+            <li>{% trans "Service providers — hosting and analytics, under strict agreements" %}</li>
+            <li>{% trans "Legal authorities — when required by law" %}</li>
+          </ul>
+        </section>
+
+        <section id="cookies" class="yumm-page-section">
+          <h2>{% trans "4. Cookies" %}</h2>
+          <p>{% trans "Yumm uses cookies to keep you logged in, remember language preferences, and analyse traffic. You can disable cookies in your browser, though some features may not work." %}</p>
+        </section>
+
+        <section id="rights" class="yumm-page-section">
+          <h2>{% trans "5. Your Rights" %}</h2>
+          <p>{% trans "You have the right to:" %}</p>
+          <ul>
+            <li>{% trans "Access the personal data we hold about you" %}</li>
+            <li>{% trans "Correct inaccurate information" %}</li>
+            <li>{% trans "Delete your account and associated data" %}</li>
+            <li>{% trans "Opt out of marketing emails at any time" %}</li>
+          </ul>
+          <p>{% trans "To exercise these rights, email" %} <a href="mailto:privacy@yumm.ps">privacy@yumm.ps</a>.</p>
+        </section>
+
+        <section id="security" class="yumm-page-section">
+          <h2>{% trans "6. Security" %}</h2>
+          <p>{% trans "We use TLS encryption for data in transit. Passwords are hashed and never stored in plain text." %}</p>
+        </section>
+
+        <section id="contact" class="yumm-page-section">
+          <h2>{% trans "7. Contact Us" %}</h2>
+          <p>{% trans "Questions? Reach out at" %} <a href="mailto:privacy@yumm.ps">privacy@yumm.ps</a> {% trans "or visit our" %} <a href="{% url 'contact' %}">{% trans "Contact page" %}</a>.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

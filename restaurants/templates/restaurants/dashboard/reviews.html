@@ -1,0 +1,62 @@
+{% extends "restaurants/dashboard/base.html" %}
+{% load i18n restaurant_tags %}
+
+{% block dashboard_content %}
+<section class="rd-card">
+  <h2 class="rd-card-title">{% trans "Customer Reviews" %}</h2>
+
+  {% if reviews %}
+  <ul class="rd-customer-reviews">
+    {% for review in reviews %}
+    <li class="rd-customer-review">
+      <div class="rd-customer-head">
+        <div class="rd-customer-user">
+          <span class="rd-avatar" aria-hidden="true">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </span>
+          <span class="rd-customer-name">{{ review.user|user_display_name }}</span>
+        </div>
+        <time class="rd-customer-date" datetime="{{ review.created_at|date:'c' }}">
+          {{ review.created_at|date:"F j, Y" }}
+        </time>
+      </div>
+
+      <div class="rd-review-rating">
+        {% star_rating review.rating %}
+        <span class="rd-rating-num">{{ review.rating }}</span>
+      </div>
+
+      <p class="rd-customer-comment">{{ review.comment }}</p>
+
+      {% for reply in review.replies.all %}
+      {% if reply.user_id == request.user.id %}
+      <div class="rd-owner-reply">
+        <strong>{% trans "Your reply" %}:</strong> {{ reply.reply_text }}
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      <form method="POST" action="{% url 'restaurants:dashboard-review-reply' review.pk %}" class="rd-reply-form">
+        {% csrf_token %}
+        {{ reply_forms|get_item:review.pk }}
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="rd-empty">{% trans "No customer reviews yet." %}</p>
+  {% endif %}
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.querySelectorAll(".rd-reply-form input[name='reply_text']").forEach(function (input) {
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && input.value.trim()) {
+        input.closest("form").submit();
+      }
+    });
+  });
+</script>
+{% endblock %}

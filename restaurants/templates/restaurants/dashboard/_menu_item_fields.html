@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<div class="rd-form-stack">
+  {% trans "Item Name" as item_name_heading %}
+  {% include "restaurants/dashboard/_bilingual_pair.html" with heading=item_name_heading en_field=form.name_en ar_field=form.name_ar en_errors=form.name_en.errors.0 ar_errors=form.name_ar.errors.0 %}
+
+  {% trans "Description" as description_heading %}
+  {% include "restaurants/dashboard/_bilingual_pair.html" with heading=description_heading en_field=form.description_en ar_field=form.description_ar en_errors=form.description_en.errors.0 ar_errors=form.description_ar.errors.0 %}
+
+  <div class="rd-form-row">
+    <div class="rd-field">
+      <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+      {{ form.price }}
+      {% if form.price.errors %}<span class="rd-field-error">{{ form.price.errors.0 }}</span>{% endif %}
+    </div>
+
+    <div class="rd-field">
+      <label for="{{ form.image.id_for_label }}">{% trans "Photo" %}</label>
+      <div class="rd-file-field">
+        {{ form.image }}
+      </div>
+      {% if form.image.errors %}<span class="rd-field-error">{{ form.image.errors.0 }}</span>{% endif %}
+    </div>
+  </div>
+</div>

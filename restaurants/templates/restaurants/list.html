@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static i18n l10n restaurant_tags %}
+
+{% block title %}{% trans "Restaurants" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=18"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="rp-page" tabindex="-1">
+  <div class="rp-container">
+
+    <header class="rp-list-header">
+      {% if user.is_authenticated and not user.is_owner_role %}
+      <h1 class="rp-display-title">{% blocktrans with name=user.first_name %}Welcome back, {{ name }}{% endblocktrans %}</h1>
+      {% else %}
+      <h1 class="rp-display-title">{% trans "Restaurants" %}</h1>
+      {% endif %}
+      <p class="rp-list-subtitle">{% trans "What are you craving today?" %}</p>
+    </header>
+
+    <form method="get" class="rp-filter-panel" role="search" id="rp-filter-form">
+      <div class="rp-search-toolbar">
+        <div class="rp-search-toolbar__field">
+          <i data-lucide="search" class="rp-search-icon" aria-hidden="true"></i>
+          <input type="search" name="q" value="{{ search_q }}" class="rp-search-input"
+            placeholder="{% trans 'Search restaurants...' %}"
+            aria-label="{% trans 'Search restaurants' %}"/>
+        </div>
+
+        <div class="rp-search-toolbar__city">
+          <select name="city" id="rp-city" class="rp-select rp-select--toolbar" aria-label="{% trans 'Select city' %}">
+            <option value="">{% trans "All cities" %}</option>
+            {% for code, label in city_choices %}
+            <option value="{{ code }}"{% if active_city == code %} selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit" class="rp-btn rp-btn--primary rp-search-toolbar__btn">
+          <i data-lucide="search" class="rp-btn-icon" aria-hidden="true"></i>
+          {% trans "Search" %}
+        </button>
+      </div>
+
+      <div class="rp-filter-row rp-filter-row--cuisine">
+        <span class="rp-filter-label">{% trans "Food type" %}</span>
+        <div class="rp-chips rp-chips--radio" role="radiogroup" aria-label="{% trans 'Food type' %}">
+          <label class="rp-chip">
+            <input type="radio" name="category" value=""{% if not active_category %} checked{% endif %}/>
+            <span>{% trans "All" %}</span>
+          </label>
+          {% for cat in filter_categories %}
+          <label class="rp-chip">
+            <input type="radio" name="category" value="{{ cat.pk }}"{% if active_category == cat.pk|stringformat:'s' %} checked{% endif %}/>
+            <span>{{ cat|localized_category }}</span>
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+    </form>
+
+    <section class="rp-map-section" aria-label="{% trans 'Interactive Map' %}">
+      <div id="rp-list-map" class="rp-map rp-map--list"></div>
+      <p class="rp-map-caption">
+        {% if map_restaurant_count %}
+        {% blocktrans count counter=map_restaurant_count %}
+        Interactive map — {{ counter }} restaurant on the map
+        {% plural %}
+        Interactive map — {{ counter }} restaurants on the map
+        {% endblocktrans %}
+        {% else %}
+        {% trans "No restaurants with map coordinates match your filters." %}
+        {% endif %}
+      </p>
+    </section>
+
+    <section class="rp-list-main" aria-labelledby="rp-list-heading">
+      <h2 id="rp-list-heading" class="rp-section-title">
+        {% trans "Restaurants" %} ({{ restaurant_count }})
+      </h2>
+
+      {% if restaurants %}
+      <div class="rp-grid rp-grid--full">
+        {% for restaurant in restaurants %}
+        {% include "restaurants/_restaurant_card.html" %}
+        {% endfor %}
+      </div>
+
+      {% if page_obj.has_other_pages %}
+      <nav class="rp-pagination" aria-label="{% trans 'Pagination' %}">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if search_q %}&q={{ search_q|urlencode }}{% endif %}{% if active_city %}&city={{ active_city }}{% endif %}{% if active_category %}&category={{ active_category }}{% endif %}" class="rp-btn rp-btn--ghost">{% trans "Previous" %}</a>
+        {% endif %}
+        <span class="rp-pagination-info">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if search_q %}&q={{ search_q|urlencode }}{% endif %}{% if active_city %}&city={{ active_city }}{% endif %}{% if active_category %}&category={{ active_category }}{% endif %}" class="rp-btn rp-btn--ghost">{% trans "Next" %}</a>
+        {% endif %}
+      </nav>
+      {% endif %}
+
+      {% else %}
+      <div class="rp-empty">
+        <i data-lucide="utensils-crossed" class="w-10 h-10"></i>
+        <p>{% trans "No restaurants match your search." %}</p>
+        <a href="{% url 'restaurants:list' %}" class="rp-btn rp-btn--primary">{% trans "Clear filters" %}</a>
+      </div>
+      {% endif %}
+    </section>
+
+    <section class="rp-top-rated-section" aria-labelledby="rp-top-rated-heading">
+      <h2 id="rp-top-rated-heading" class="rp-section-title">{% trans "Top Rated" %}</h2>
+      {% if top_rated %}
+      <ol class="rp-top-rated-grid">
+        {% for restaurant in top_rated %}
+        <li class="rp-top-rated-card">
+          <span class="rp-top-rank">{{ forloop.counter }}</span>
+          <a href="{% url 'restaurants:detail' restaurant.pk %}" class="rp-top-rated-link">
+            <img src="{{ restaurant|restaurant_cover }}" alt="" class="rp-top-rated-thumb" loading="lazy"/>
+            <span class="rp-top-rated-info">
+              <span class="rp-top-rated-name">{{ restaurant|localized_name }}</span>
+              <span class="rp-top-rated-meta">{{ restaurant|city_label }}{% if restaurant.category %} · {{ restaurant.category|localized_category }}{% endif %}</span>
+            </span>
+          </a>
+          <div class="rp-top-rated-score">
+            {% if restaurant.avg_rating %}
+            {% public_stars restaurant.avg_rating size="xs" %}
+            {% localize off %}
+            <span class="rp-top-rated-num">{{ restaurant.avg_rating|floatformat:1 }}</span>
+            {% endlocalize %}
+            {% if restaurant.visible_review_count %}
+            <span class="rp-top-rated-count">({{ restaurant.visible_review_count }})</span>
+            {% endif %}
+            {% else %}
+            <span class="rp-top-rated-new">{% trans "New" %}</span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="rp-empty-inline">{% trans "No restaurants available yet." %}</p>
+      {% endif %}
+    </section>
+
+  </div>
+</main>
+
+{{ map_restaurants|json_script:"rp-map-data" }}
+{{ map_i18n|json_script:"rp-map-i18n" }}
+{% endblock %}
+
+{% block pre_main_js %}
+<script src="{% static 'restaurants/js/public.js' %}?v=8"></script>
+{% endblock %}

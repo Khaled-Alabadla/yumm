@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n restaurant_tags %}
 
-{% block title %}Yumm — Discover the Best Restaurants in Palestine{% endblock %}
+{% block title %}Yumm — {% trans "Discover the Best Restaurants in Palestine" %}{% endblock %}
 {% block content %}
 
 <main id="main" tabindex="-1" class="flex-1">
@@ -9,49 +9,50 @@
 <!-- ════════════════════════════════════════
 HERO
 ════════════════════════════════════════ -->
-<section class="hero-bg flex items-center" aria-labelledby="hero-h1">
-  <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full py-28 lg:py-36">
+<section class="hero-bg flex items-center relative z-0" aria-labelledby="hero-h1">
+  <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full py-28 lg:py-36">
 
     <div class="inline-flex items-center gap-2 anim-shimmer text-white text-[11px] font-bold px-4 py-2 rounded-full mb-7 select-none tracking-wide uppercase">
       <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
       </svg>
-      <span data-i18n="hero-badge">Palestine's #1 Food Platform</span>
+      <span>{% trans "Palestine's #1 Food Platform" %}</span>
     </div>
 
     <h1 id="hero-h1" class="font-display text-white font-black leading-[1.06] text-5xl sm:text-6xl lg:text-[72px] max-w-[580px] mb-6">
-      <span data-i18n="hero-h1-line1">Discover the Best</span>
-      <span class="text-[#B5451B]" data-i18n="hero-h1-span"> Restaurants</span><br/>
-      <span data-i18n="hero-h1-line2">in Palestine</span>
+      <span>{% trans "Discover the Best" %}</span>
+      <span class="text-[#B5451B]">{% trans "Restaurants" %}</span><br/>
+      <span>{% trans "in Palestine" %}</span>
     </h1>
 
-    <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light" data-i18n="hero-desc">
-      Explore menus, reviews, ratings and AI-powered assistant — all in one place.
-    </p>
+    <p class="text-gray-300 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed font-light">{% trans "Explore menus, reviews, ratings, and our AI Assistant — all in one place." %}</p>
 
-    <div class="flex max-w-[520px] bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 gap-2 mb-8" role="search">
-      <label for="hero-q" class="sr-only">Search restaurants, cuisines, cities</label>
-      <div class="relative flex-1">
-        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" aria-hidden="true"></i>
-        <input id="hero-q" type="search" data-i18n-placeholder="hero-search-ph" placeholder="Search restaurants, cuisines, cities..."
-          class="w-full bg-transparent pl-10 pr-4 py-3 text-white placeholder-gray-400 text-sm focus:outline-none"/>
+    <form class="hero-search mb-8" role="search" action="{% url 'restaurants:list' %}" method="get" id="hero-search-form">
+      <label for="hero-q" class="sr-only">{% trans "Search restaurants" %}</label>
+      <div class="hero-search__field">
+        <i data-lucide="search" class="hero-search__icon" aria-hidden="true"></i>
+        <input id="hero-q" name="q" type="search" class="hero-search__input" autocomplete="off"
+          placeholder="{% trans 'Search restaurants...' %}"
+          aria-label="{% trans 'Search restaurants' %}"/>
       </div>
-      <button class="px-5 py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors shrink-0" data-i18n="hero-search-btn">
-        Search
-      </button>
-    </div>
+      <button type="submit" class="hero-search__btn">{% trans "Search" %}</button>
+    </form>
 
     <div class="flex flex-wrap gap-3">
-      <a href="#restaurants"
+      <a href="{% url 'restaurants:list' %}"
         class="inline-flex items-center gap-2 px-7 py-3.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white font-semibold rounded-2xl transition-colors text-sm sm:text-base shadow-[0_8px_28px_rgba(181,69,27,.45)]">
         <i data-lucide="utensils" class="w-4 h-4" aria-hidden="true"></i>
-        <span data-i18n="hero-cta1">Explore Restaurants</span>
+        <span>{% trans "Explore Restaurants" %}</span>
+        {% if LANGUAGE_BIDI %}
+        <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+        {% else %}
         <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+        {% endif %}
       </a>
       <a href="#ai"
         class="inline-flex items-center gap-2 px-7 py-3.5 bg-white/15 hover:bg-white/25 text-white font-semibold rounded-2xl border border-white/20 backdrop-blur-sm transition-colors text-sm sm:text-base">
         <i data-lucide="bot" class="w-4 h-4" aria-hidden="true"></i>
-        <span data-i18n="hero-cta2">Ask AI Assistant</span>
+        <span>{% trans "Ask AI Assistant" %}</span>
       </a>
     </div>
   </div>
@@ -60,36 +61,36 @@ HERO
 <!-- ════════════════════════════════════════
 STATS BAR
 ════════════════════════════════════════ -->
-<section class="bg-white dark:bg-[#1E1E1E] border-b border-[#E8E8E8] dark:border-[#2A2A2A]" aria-label="Platform statistics">
+<section class="relative z-10 bg-white dark:bg-[#1E1E1E] border-b border-[#E8E8E8] dark:border-[#2A2A2A]" aria-label="{% trans 'Platform statistics' %}">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-[#E8E8E8] dark:divide-[#2A2A2A]">
       <div class="flex flex-col items-center py-9 px-4 text-center reveal">
         <i data-lucide="utensils" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="100">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.restaurants }}">0</span>
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5" data-i18n="stat-restaurants">Restaurants</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Restaurants" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.08s">
         <i data-lucide="message-square" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-[#B5451B]">
-          <span class="counter" data-target="1000">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.reviews }}">0</span>
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5" data-i18n="stat-reviews">Reviews</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Reviews" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.16s">
         <i data-lucide="users" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="1000">0</span><span class="text-3xl">+</span>
+          <span class="counter" data-target="{{ stats.users }}">0</span>
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5" data-i18n="stat-users">Happy Users</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Happy Users" %}</p>
       </div>
       <div class="flex flex-col items-center py-9 px-4 text-center reveal" style="transition-delay:.24s">
         <i data-lucide="award" class="w-6 h-6 text-[#B5451B] mb-3" aria-hidden="true"></i>
         <p class="text-4xl font-display font-black text-gray-900 dark:text-white">
-          <span class="counter" data-target="100">0</span>
+          <span class="counter" data-target="{{ stats.top_rated }}">0</span>
         </p>
-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5" data-i18n="stat-rated">Top Rated</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{% trans "Top Rated" %}</p>
       </div>
     </div>
   </div>
@@ -101,44 +102,42 @@ FEATURES
 <section class="py-24 bg-[#F7F7F7] dark:bg-[#141414]" aria-labelledby="feat-h2">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="text-center mb-14 reveal">
-      <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3" data-i18n="feat-label">Features</p>
-      <h2 id="feat-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-i18n="feat-h2">Everything You Need</h2>
-      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md mx-auto leading-relaxed" data-i18n="feat-desc">
-        A complete platform for discovering, reviewing, and reserving the best dining in Palestine.
-      </p>
+      <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3">{% trans "Features" %}</p>
+      <h2 id="feat-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">{% trans "Everything You Need" %}</h2>
+      <p class="text-gray-500 dark:text-gray-400 text-lg max-w-md mx-auto leading-relaxed">{% trans "A complete platform for discovering, reviewing, and reserving the best dining in Palestine." %}</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <article onclick="openModal('ai')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer">
+
+      <article class="bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 transition-colors duration-300 reveal">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="bot" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat1-title">AI Assistant</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat1-desc">Describe your craving and our AI finds the perfect match instantly.</p>
-        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat1-link">Try it <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "AI Assistant" %}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{% trans "Describe your craving and our AI finds the perfect match instantly." %}</p>
       </article>
-      <article onclick="openModal('map')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.06s">
+
+      <article class="bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 transition-colors duration-300 reveal" style="transition-delay:.06s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="map-pin" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat2-title">Interactive Map</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat2-desc">Discover restaurants near you on a live, interactive map.</p>
-        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat2-link">Open Map <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Interactive Map" %}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{% trans "Discover restaurants near you on a live, interactive map." %}</p>
       </article>
-      <article onclick="openModal('reviews')" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.12s">
+
+      <article class="bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 transition-colors duration-300 reveal" style="transition-delay:.12s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="star" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat3-title">Reviews &amp; Ratings</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat3-desc">Honest reviews from a trusted Palestinian food community.</p>
-        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat3-link">Read Reviews <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Reviews & Ratings" %}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{% trans "Honest reviews from a trusted Palestinian food community." %}</p>
       </article>
-      <article onclick="openModal('wishlist');renderWishlist()" class="group bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(181,69,27,.12)] hover:border-[#B5451B]/40 transition-all duration-300 reveal cursor-pointer" style="transition-delay:.18s">
+
+      <article class="bg-white dark:bg-[#1E1E1E] border border-[#E8E8E8] dark:border-[#2A2A2A] rounded-2xl p-7 transition-colors duration-300 reveal" style="transition-delay:.18s">
         <div class="w-12 h-12 bg-[#B5451B]/10 dark:bg-[#B5451B]/20 rounded-2xl flex items-center justify-center mb-5" aria-hidden="true">
           <i data-lucide="heart" class="w-5 h-5 text-[#B5451B]"></i>
         </div>
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2" data-i18n="feat4-title">Wishlist</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed" data-i18n="feat4-desc">Save your favourite restaurants for future visits.</p>
-        <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-[#B5451B]" data-i18n="feat4-link">View Saved <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{% trans "Wishlist" %}</h3>
+        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{% trans "Save your favourite restaurants for future visits." %}</p>
       </article>
     </div>
   </div>
@@ -150,30 +149,30 @@ HOW IT WORKS
 <section class="py-24 bg-white dark:bg-[#1E1E1E]" aria-labelledby="how-h2">
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="text-center mb-16 reveal">
-      <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3" data-i18n="how-label">Process</p>
-      <h2 id="how-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4" data-i18n="how-h2">How It Works</h2>
-      <p class="text-gray-500 dark:text-gray-400 text-lg" data-i18n="how-desc">Get started and find your next favourite restaurant in minutes.</p>
+      <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-3">{% trans "Process" %}</p>
+      <h2 id="how-h2" class="font-display text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4">{% trans "How It Works" %}</h2>
+      <p class="text-gray-500 dark:text-gray-400 text-lg">{% trans "Get started and find your next favourite restaurant in minutes." %}</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
       <div class="text-center px-2 reveal">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">01</div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5" data-i18n="step1-title">Create Account</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="step1-desc">Register in under a minute, for free.</p>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Create Account" %}</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Register in under a minute, for free." %}</p>
       </div>
       <div class="text-center px-2 reveal" style="transition-delay:.08s">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">02</div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5" data-i18n="step2-title">Explore Restaurants</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="step2-desc">Browse hundreds of curated options.</p>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Explore Restaurants" %}</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Browse hundreds of curated options." %}</p>
       </div>
       <div class="text-center px-2 reveal" style="transition-delay:.16s">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">03</div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5" data-i18n="step3-title">Ask AI Assistant</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="step3-desc">Get hyper-personalised suggestions.</p>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Ask AI Assistant" %}</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Get hyper-personalised suggestions." %}</p>
       </div>
       <div class="text-center px-2 reveal" style="transition-delay:.24s">
         <div class="w-[52px] h-[52px] rounded-[14px] bg-[#B5451B] flex items-center justify-center font-display font-black text-white text-base mx-auto mb-4 shadow-[0_8px_20px_rgba(181,69,27,.35)]">04</div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5" data-i18n="step4-title">Leave a Review</h3>
-        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="step4-desc">Share your experience with the community.</p>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-1.5">{% trans "Leave a Review" %}</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{% trans "Share your experience with the community." %}</p>
       </div>
     </div>
   </div>
@@ -186,124 +185,24 @@ TOP RESTAURANTS
   <div class="max-w-7xl mx-auto px-5 sm:px-8">
     <div class="flex items-end justify-between mb-10 reveal">
       <div>
-        <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-2" data-i18n="rest-label">Handpicked</p>
-        <h2 id="rest-h2" class="font-display text-4xl font-black text-gray-900 dark:text-white" data-i18n="rest-h2">Top Restaurants</h2>
-        <p class="text-gray-500 dark:text-gray-400 mt-1" data-i18n="rest-desc">Highest-rated picks across Palestine</p>
+        <p class="text-[11px] font-bold tracking-[.18em] text-[#B5451B] uppercase mb-2">{% trans "Handpicked" %}</p>
+        <h2 id="rest-h2" class="font-display text-4xl font-black text-gray-900 dark:text-white">{% trans "Top Restaurants" %}</h2>
+        <p class="text-gray-500 dark:text-gray-400 mt-1">{% trans "Highest-rated picks across Palestine" %}</p>
       </div>
-      <a href="#" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#B5451B] hover:opacity-75 transition-opacity">
-        <span data-i18n="rest-view-all">View All</span> <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+      <a href="{% url 'restaurants:list' %}" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[#B5451B] hover:opacity-75 transition-opacity">
+        <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
       </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Card: Al-Kanaan -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Al-Kanaan restaurant">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80"
-            alt="Al-Kanaan restaurant" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-          <span class="absolute top-3 left-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full" data-i18n="badge-open">Open</span>
-          <button class="wish-btn absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="Add Al-Kanaan to wishlist" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Al-Kanaan</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-traditional">Traditional Palestinian</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.8 out of 5 stars">
-              <span class="text-amber-400">★★★★★</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.8</span>
-              <span class="text-xs text-gray-400 ml-0.5">(234)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> Ramallah
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Mansaf</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Musakhan</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full" data-i18n="tag-family">Family</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors" data-i18n="card-view-btn">View Restaurant</a>
-        </div>
-      </article>
-      <!-- Card: Gaza Grill House -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.1s">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Gaza Grill House restaurant">
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80"
-            alt="Gaza Grill House" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-          <span class="absolute top-3 left-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full" data-i18n="badge-open">Open</span>
-          <button class="wish-btn absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="Add Gaza Grill House to wishlist" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Gaza Grill House</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-grill">Grills &amp; BBQ</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.6 out of 5 stars">
-              <span class="text-amber-400">★★★★½</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.6</span>
-              <span class="text-xs text-gray-400 ml-0.5">(189)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> Gaza
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Grills</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">BBQ</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Seafood</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors" data-i18n="card-view-btn">View Restaurant</a>
-        </div>
-      </article>
-      <!-- Card: Jerusalem Garden Cafe -->
-      <article class="group bg-white dark:bg-[#1E1E1E] rounded-3xl overflow-hidden border border-[#E8E8E8] dark:border-[#2A2A2A] hover:border-[#B5451B]/30 hover:shadow-[0_16px_48px_rgba(0,0,0,.12)] transition-all duration-300 reveal" style="transition-delay:.2s">
-        <a href="#" class="block relative overflow-hidden" style="aspect-ratio:4/3" aria-label="Jerusalem Garden Cafe">
-          <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600&q=80"
-            alt="Jerusalem Garden Cafe" loading="lazy"
-            class="w-full h-full object-cover group-hover:scale-[1.06] transition-transform duration-500"/>
-          <span class="absolute top-3 left-3 px-2.5 py-1 bg-green-500 text-white text-xs font-bold rounded-full" data-i18n="badge-open">Open</span>
-          <button class="wish-btn absolute top-3 right-3 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow hover:bg-white transition-colors"
-            aria-label="Add Jerusalem Garden Cafe to wishlist" aria-pressed="false">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/70 to-transparent">
-            <h3 class="font-display text-white font-bold text-xl">Jerusalem Garden Cafe</h3>
-          </div>
-        </a>
-        <div class="p-4">
-          <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2" data-i18n="cuisine-cafe">Cafe &amp; Breakfast</p>
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center gap-0.5" aria-label="4.9 out of 5 stars">
-              <span class="text-amber-400">★★★★★</span>
-              <span class="text-sm font-semibold text-gray-900 dark:text-white ml-1">4.9</span>
-              <span class="text-xs text-gray-400 ml-0.5">(412)</span>
-            </div>
-            <span class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-              <i data-lucide="map-pin" class="w-3 h-3" aria-hidden="true"></i> Jerusalem
-            </span>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Cafe</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Breakfast</span>
-            <span class="px-2.5 py-0.5 bg-[#B5451B]/10 text-[#B5451B] text-xs font-medium rounded-full">Organic</span>
-          </div>
-          <a href="#" class="block w-full text-center py-2.5 bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold rounded-xl transition-colors" data-i18n="card-view-btn">View Restaurant</a>
-        </div>
-      </article>
+      {% for restaurant in top_restaurants %}
+      {% include "partials/_landing_restaurant_card.html" with restaurant=restaurant card_delay=forloop.counter0 %}
+      {% empty %}
+      <p class="col-span-full text-center text-gray-500 dark:text-gray-400 py-12">{% trans "No restaurants yet. Check back soon!" %}</p>
+      {% endfor %}
     </div>
     <div class="text-center mt-8 sm:hidden">
-      <a href="#" class="inline-flex items-center gap-1 text-[#B5451B] font-semibold text-sm">
-        <span data-i18n="rest-view-all">View All</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      <a href="{% url 'restaurants:list' %}" class="inline-flex items-center gap-1 text-[#B5451B] font-semibold text-sm">
+        <span>{% trans "View All" %}</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
       </a>
     </div>
   </div>
@@ -314,215 +213,43 @@ CTA
 ════════════════════════════════════════ -->
 <section class="cta-bg py-24 text-center relative" aria-labelledby="cta-h2">
   <div class="relative z-10 max-w-xl mx-auto px-5">
-    <h2 id="cta-h2" class="font-display text-4xl sm:text-5xl font-black text-white mb-4 reveal" data-i18n="cta-h2">Ready to Explore?</h2>
-    <p class="text-gray-300 text-lg mb-8 leading-relaxed reveal" data-i18n="cta-desc">
-      Join 1000+ food lovers discovering Palestine's best restaurants every day.
-    </p>
+    <h2 id="cta-h2" class="font-display text-4xl sm:text-5xl font-black text-white mb-4 reveal">{% trans "Ready to Explore?" %}</h2>
+    <p class="text-gray-300 text-lg mb-8 leading-relaxed reveal">{{ cta_subtitle }}</p>
     <a href="{% url 'accounts:register' %}"
       class="inline-flex items-center gap-2 px-9 py-4 bg-[#B5451B] hover:bg-[#9A3A16] text-white font-bold rounded-2xl transition-colors text-lg shadow-[0_12px_36px_rgba(181,69,27,.5)] reveal"
-      data-i18n="cta-btn">
-      Create Account
-    </a>
+     >{% trans "Create Account" %}</a>
   </div>
 </section>
-
-<!-- ════════════════════════════════════════
-ACCESSIBILITY WIDGET
-════════════════════════════════════════ -->
-<button onclick="openA11y()"
-  class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-[#B5451B] hover:bg-[#9A3A16] text-white rounded-full shadow-[0_8px_28px_rgba(181,69,27,.5)] flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#B5451B]/40"
-  aria-label="Open accessibility menu" aria-haspopup="dialog">
-  <i data-lucide="accessibility" class="w-6 h-6"></i>
-</button>
-
-<div id="a11y-widget" role="dialog" aria-modal="true" aria-label="Accessibility Adjustments"
-  onclick="if(event.target===this)closeA11y()">
-
-  <div id="a11y-panel-inner" class="w-full max-w-[380px] h-full bg-white flex flex-col overflow-hidden shadow-2xl">
-
-    <div class="bg-[#B5451B] text-white px-5 py-4 flex items-center justify-between shrink-0">
-      <div class="flex items-center gap-3">
-        <button onclick="closeA11y()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors" aria-label="Close accessibility panel">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-        <!-- ✅ ID added for JS translation -->
-        <h2 id="a11y-panel-title" class="font-semibold text-[15px]" data-i18n="a11y-title">Accessibility Adjustments</h2>
-      </div>
-      <div class="relative">
-        <button onclick="toggleLangDrop()" class="flex items-center gap-1.5 text-sm font-medium bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-full transition-colors" aria-haspopup="listbox">
-          <span id="lang-flag">🇺🇸</span>
-          <span id="lang-name">ENGLISH (US)</span>
-          <i data-lucide="chevron-down" class="w-3 h-3"></i>
-        </button>
-        <ul id="lang-drop" class="hidden absolute right-0 top-10 w-48 bg-white text-gray-800 rounded-2xl shadow-2xl p-1 z-50 max-h-60 overflow-y-auto" role="listbox">
-          <li role="option" onclick="setLang('🇺🇸','ENGLISH (US)','en',false)" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇺🇸 English (US)</li>
-          <li role="option" onclick="setLang('🇸🇦','ARABIC','ar',true)"        class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 cursor-pointer text-sm">🇸🇦 Arabic</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="px-4 pt-4 flex flex-col gap-2 shrink-0">
-      <!-- ✅ ID added -->
-      <button id="a11y-reset-btn" onclick="resetAllA11y()" class="w-full flex items-center justify-center gap-2 py-3 rounded-2xl border-2 border-[#E8E8E8] hover:border-[#B5451B] text-sm font-semibold text-[#B5451B] transition-colors" data-i18n="a11y-reset">
-        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Settings
-      </button>
-    </div>
-
-    <div class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-      <!-- Content Adjustments -->
-      <div class="bg-[#F7F7F7] rounded-2xl p-4">
-        <!-- ✅ ID added -->
-        <h3 id="a11y-content-label" class="text-sm font-semibold text-gray-700 mb-3" data-i18n="a11y-content">Content Adjustments</h3>
-        <div class="bg-white rounded-xl p-3 mb-3">
-          <!-- ✅ ID added -->
-          <div class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2"><i data-lucide="move" class="w-4 h-4"></i> <span id="a11y-scale-label" data-i18n="a11y-scale">Content Scaling</span></div>
-          <div class="stepper">
-            <button onclick="changeScale(-10)" aria-label="Decrease content scale">−</button>
-            <span id="scale-val" data-i18n="a11y-scale">Default</span>
-            <button onclick="changeScale(10)" aria-label="Increase content scale">+</button>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-2 mb-3">
-          <button onclick="toggleClass('readable-font')"    class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="a-large-small" class="w-5 h-5"></i> <span id="a11y-readable-label" data-i18n="a11y-readable">Readable Font</span></button>
-          <button onclick="toggleClass('highlight-titles')" class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="underline" class="w-5 h-5"></i> <span data-i18n="a11y-htitles">Highlight Titles</span></button>
-          <button onclick="toggleClass('highlight-links')"  class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="link-2" class="w-5 h-5"></i> <span data-i18n="a11y-hlinks">Highlight Links</span></button>
-          <button onclick="setTextAlign('center')"          class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="align-center" class="w-5 h-5"></i> <span data-i18n="a11y-center">Align Center</span></button>
-          <button onclick="setTextAlign('left')"            class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="align-left" class="w-5 h-5"></i> <span data-i18n="a11y-left">Align Left</span></button>
-          <button onclick="setTextAlign('right')"           class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="align-right" class="w-5 h-5"></i> <span data-i18n="a11y-right">Align Right</span></button>
-        </div>
-        <div class="bg-white rounded-xl p-3 mb-3">
-          <div class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2"><i data-lucide="a-large-small" class="w-4 h-4"></i> <span id="a11y-font-label" data-i18n="a11y-font" data-i18n="a11y-font">Adjust Font Sizing</span></div>
-          <div class="stepper">
-            <button onclick="changeFont(-2)" aria-label="Decrease font size">−</button>
-            <span id="font-val" data-i18n="a11y-font">Default</span>
-            <button onclick="changeFont(2)" aria-label="Increase font size">+</button>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl p-3 mb-3">
-          <div class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2"><i data-lucide="between-horizontal-start" class="w-4 h-4"></i> <span id="a11y-lineh-label" data-i18n="a11y-lineh" data-i18n="a11y-lineh">Adjust Line Height</span></div>
-          <div class="stepper">
-            <button onclick="changeLineH(-0.2)" aria-label="Decrease line height">−</button>
-            <span id="lineh-val" data-i18n="a11y-lineh">Default</span>
-            <button onclick="changeLineH(0.2)" aria-label="Increase line height">+</button>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl p-3">
-          <div class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2"><i data-lucide="move-horizontal" class="w-4 h-4"></i> <span id="a11y-letters-label" data-i18n="a11y-letters" data-i18n="a11y-letters">Adjust Letter Spacing</span></div>
-          <div class="stepper">
-            <button onclick="changeLetterS(-0.05)" aria-label="Decrease letter spacing">−</button>
-            <span id="letters-val" data-i18n="a11y-letters">Default</span>
-            <button onclick="changeLetterS(0.05)" aria-label="Increase letter spacing">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Color Adjustments -->
-      <div class="bg-[#F7F7F7] rounded-2xl p-4">
-        <h3 id="a11y-colors-label" class="text-sm font-semibold text-gray-700 mb-3" data-i18n="a11y-colors">Color Adjustments</h3>
-        <div class="grid grid-cols-2 gap-2 mb-3">
-          <button onclick="setColorMode('dark')"           class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="moon" class="w-5 h-5"></i> <span data-i18n="a11y-dark">Dark Contrast</span></button>
-          <button onclick="setColorMode('light')"          class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="sun" class="w-5 h-5"></i> <span data-i18n="a11y-light">Light Contrast</span></button>
-          <button onclick="toggleClass('hc-mode')"         class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="circle-half-stroke" class="w-5 h-5"></i> <span data-i18n="a11y-hc">High Contrast</span></button>
-          <button onclick="toggleClass('high-sat')"        class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="droplets" class="w-5 h-5"></i> <span data-i18n="a11y-highsat">High Saturation</span></button>
-          <button onclick="toggleClass('monochrome')"      class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="droplet" class="w-5 h-5"></i> <span data-i18n="a11y-mono">Monochrome</span></button>
-          <button onclick="toggleClass('low-sat')"         class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="droplet" class="w-5 h-5 opacity-40"></i> <span data-i18n="a11y-lowsat">Low Saturation</span></button>
-        </div>
-        <div class="bg-white rounded-xl p-3 mb-3">
-          <p id="a11y-textcol-label" class="text-xs font-semibold text-gray-600 mb-2" data-i18n="a11y-textcol">Adjust Text Colors</p>
-          <div class="flex gap-2 flex-wrap">
-            <button class="cdot" style="background:#2563eb" onclick="setTextColor('#2563eb')" aria-label="Blue text"></button>
-            <button class="cdot" style="background:#7c3aed" onclick="setTextColor('#7c3aed')" aria-label="Purple text"></button>
-            <button class="cdot" style="background:#dc2626" onclick="setTextColor('#dc2626')" aria-label="Red text"></button>
-            <button class="cdot" style="background:#d97706" onclick="setTextColor('#d97706')" aria-label="Orange text"></button>
-            <button class="cdot" style="background:#0d9488" onclick="setTextColor('#0d9488')" aria-label="Teal text"></button>
-            <button class="cdot" style="background:#16a34a" onclick="setTextColor('#16a34a')" aria-label="Green text"></button>
-            <button class="cdot" style="background:#fff;border-color:#ccc" onclick="setTextColor('#fff')" aria-label="White text"></button>
-            <button class="cdot" style="background:#111" onclick="setTextColor('#111')" aria-label="Black text"></button>
-            <button onclick="setTextColor(null)" class="text-xs text-gray-400 hover:text-gray-600 transition-colors px-1" data-i18n="a11y-cancel">Cancel</button>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl p-3 mb-3">
-          <p id="a11y-titlecol-label" class="text-xs font-semibold text-gray-600 mb-2" data-i18n="a11y-titlecol">Adjust Title Colors</p>
-          <div class="flex gap-2 flex-wrap">
-            <button class="cdot" style="background:#2563eb" onclick="setTitleColor('#2563eb')" aria-label="Blue titles"></button>
-            <button class="cdot" style="background:#7c3aed" onclick="setTitleColor('#7c3aed')" aria-label="Purple titles"></button>
-            <button class="cdot" style="background:#dc2626" onclick="setTitleColor('#dc2626')" aria-label="Red titles"></button>
-            <button class="cdot" style="background:#d97706" onclick="setTitleColor('#d97706')" aria-label="Orange titles"></button>
-            <button class="cdot" style="background:#0d9488" onclick="setTitleColor('#0d9488')" aria-label="Teal titles"></button>
-            <button class="cdot" style="background:#16a34a" onclick="setTitleColor('#16a34a')" aria-label="Green titles"></button>
-            <button class="cdot" style="background:#fff;border-color:#ccc" onclick="setTitleColor('#fff')" aria-label="White titles"></button>
-            <button class="cdot" style="background:#111" onclick="setTitleColor('#111')" aria-label="Black titles"></button>
-            <button onclick="setTitleColor(null)" class="text-xs text-gray-400 hover:text-gray-600 transition-colors px-1" data-i18n="a11y-cancel">Cancel</button>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl p-3">
-          <p id="a11y-bgcol-label" class="text-xs font-semibold text-gray-600 mb-2" data-i18n="a11y-bgcol">Adjust Background Colors</p>
-          <div class="flex gap-2 flex-wrap">
-            <button class="cdot" style="background:#2563eb" onclick="setBgColor('#2563eb')" aria-label="Blue background"></button>
-            <button class="cdot" style="background:#7c3aed" onclick="setBgColor('#7c3aed')" aria-label="Purple background"></button>
-            <button class="cdot" style="background:#dc2626" onclick="setBgColor('#dc2626')" aria-label="Red background"></button>
-            <button class="cdot" style="background:#d97706" onclick="setBgColor('#d97706')" aria-label="Orange background"></button>
-            <button class="cdot" style="background:#0d9488" onclick="setBgColor('#0d9488')" aria-label="Teal background"></button>
-            <button class="cdot" style="background:#16a34a" onclick="setBgColor('#16a34a')" aria-label="Green background"></button>
-            <button class="cdot" style="background:#fff;border-color:#ccc" onclick="setBgColor('#fff')" aria-label="White background"></button>
-            <button class="cdot" style="background:#111" onclick="setBgColor('#111')" aria-label="Black background"></button>
-            <button onclick="setBgColor(null)" class="text-xs text-gray-400 hover:text-gray-600 transition-colors px-1" data-i18n="a11y-cancel">Cancel</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Orientation Adjustments -->
-      <div class="bg-[#F7F7F7] rounded-2xl p-4">
-        <h3 id="a11y-orient-label" class="text-sm font-semibold text-gray-700 mb-3" data-i18n="a11y-orient">Orientation Adjustments</h3>
-        <div class="grid grid-cols-2 gap-2 mb-3">
-          <button onclick="toggleClass('hide-images')"     class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="image-off" class="w-5 h-5"></i> <span data-i18n="a11y-hideimg">Hide Images</span></button>
-          <button onclick="toggleClass('stop-anim')"       class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="zap-off" class="w-5 h-5"></i> <span data-i18n="a11y-stopanim">Stop Animations</span></button>
-          <button onclick="toggleClass('highlight-focus')" class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="focus" class="w-5 h-5"></i> <span data-i18n="a11y-hlfocus">Highlight Focus</span></button>
-          <button class="a11y-opt flex flex-col items-center gap-1 p-3 rounded-xl bg-white hover:border-[#B5451B] border-2 border-transparent transition-colors text-xs font-semibold text-gray-600"><i data-lucide="volume-x" class="w-5 h-5"></i> <span data-i18n="a11y-mute">Mute Sounds</span></button>
-        </div>
-        <div class="bg-white rounded-xl p-3">
-
-      </div>
-    </div>
-
-    <div class="bg-[#B5451B] text-white text-center text-xs py-3 shrink-0 font-semibold tracking-wide">
-      <!-- ✅ ID added -->
-      <span id="a11y-footer-label" data-i18n="a11y-footer">Web Accessibility by Yumm ♿</span>
-    </div>
-  </div>
-</div>
-
 
 <!-- ════════════════════════════════════════
      FEATURE MODALS
 ════════════════════════════════════════ -->
 
 <!-- ── 1. AI ASSISTANT MODAL ── -->
-<div id="modal-ai" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="AI Assistant">
+<div id="modal-ai" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="{% trans 'AI Assistant' %}">
   <div class="modal-box" style="max-width:600px">
     <div class="modal-header">
       <div class="flex items-center gap-3">
         <i data-lucide="bot" class="w-5 h-5 text-white"></i>
-        <h3 class="font-semibold text-[15px]">Yumm AI Assistant</h3>
+        <h3 class="font-semibold text-[15px]">{% trans "Yumm AI Assistant" %}</h3>
       </div>
-      <button class="modal-close-btn" onclick="closeModal('ai')" aria-label="Close">✕</button>
+      <button class="modal-close-btn" onclick="closeModal('ai')" aria-label="{% trans 'Close' %}">✕</button>
     </div>
     <div class="modal-body flex flex-col" style="height:460px;padding:0">
       <div id="ai-chat" class="flex-1 overflow-y-auto p-4 flex flex-col">
         <div class="flex justify-start mb-3">
           <div class="max-w-[82%] px-4 py-2.5 rounded-2xl rounded-bl-sm text-sm leading-relaxed bg-gray-100 text-gray-800">
-            👋 مرحباً! أنا مساعد Yumm الذكي. اسألني عن أي مطعم أو أكلة في فلسطين!<br>
-            <span class="text-gray-400 text-xs">Hello! Ask me anything about restaurants in Palestine 🍽️</span>
+            👋 {% trans "Hello! I'm Yumm's AI assistant. Ask me about any restaurant or dish in Palestine!" %}
           </div>
         </div>
       </div>
       <div class="border-t border-gray-200 p-3 flex gap-2 shrink-0">
         <input id="ai-input" type="text"
-          placeholder="اسأل عن مطعم... / Ask about a restaurant..."
+          placeholder="{% trans 'Ask about a restaurant...' %}"
           class="flex-1 border-2 border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-[#B5451B] transition-colors"/>
         <button onclick="sendAIMessage()"
           class="bg-[#B5451B] hover:bg-[#9A3A16] text-white font-semibold text-sm px-4 py-2 rounded-xl transition-colors">
-          Send ↑
+          {% trans "Send" %} ↑
         </button>
       </div>
     </div>
@@ -532,36 +259,39 @@ ACCESSIBILITY WIDGET
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <!-- ── 2. INTERACTIVE MAP MODAL ── -->
-<div id="modal-map" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Interactive Map">
+<div id="modal-map" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="{% trans 'Interactive Map' %}">
   <div class="modal-box" style="max-width:720px">
     <div class="modal-header">
       <div class="flex items-center gap-3">
         <i data-lucide="map-pin" class="w-5 h-5 text-white"></i>
-        <h3 class="font-semibold text-[15px]">Interactive Map — Palestine</h3>
+        <h3 class="font-semibold text-[15px]">{% trans "Interactive Map — Palestine" %}</h3>
       </div>
-      <button class="modal-close-btn" onclick="closeModal('map')" aria-label="Close">✕</button>
+      <button class="modal-close-btn" onclick="closeModal('map')" aria-label="{% trans 'Close' %}">✕</button>
     </div>
     <div class="modal-body p-0 flex flex-col" style="height:520px">
       <div class="flex gap-2 p-3 border-b border-gray-100 shrink-0">
         <div class="relative flex-1">
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input id="map-search-input" type="text" placeholder="ابحث عن مكان... / Search a place..."
+          <input id="map-search-input" type="text" placeholder="{% trans 'Search a place...' %}"
             class="w-full pl-9 pr-4 py-2 text-sm border-2 border-gray-200 rounded-xl outline-none focus:border-[#B5451B] transition-colors"/>
         </div>
         <button onclick="searchMapLocation()"
           class="bg-[#B5451B] hover:bg-[#9A3A16] text-white text-sm font-semibold px-4 rounded-xl transition-colors">
-          Search
+          {% trans "Search" %}
         </button>
       </div>
       <div id="leaflet-map" class="flex-1" style="min-height:380px;z-index:0"></div>
       <div class="p-3 border-t border-gray-100 flex flex-wrap gap-2 shrink-0">
-        <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 Featured Restaurants — click to fly there</span>
-        <button onclick="flyToRestaurant(31.9038, 35.2034, 'Al-Kanaan 🍽️', 'Traditional Palestinian · Ramallah')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Al-Kanaan · Ramallah</button>
-        <button onclick="flyToRestaurant(31.5017, 34.4667, 'Gaza Grill House 🔥', 'Grills & BBQ · Gaza')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Gaza Grill House · Gaza</button>
-        <button onclick="flyToRestaurant(31.7683, 35.2137, 'Jerusalem Garden Cafe ☕', 'Cafe & Breakfast · Jerusalem')"
-          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">Jerusalem Garden Cafe · Jerusalem</button>
+        <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 {% trans "Featured Restaurants — click to fly there" %}</span>
+        {% for marker in map_featured %}
+        <button type="button"
+          onclick="flyToRestaurant({{ marker.lat }}, {{ marker.lng }}, '{{ marker.name|escapejs }}', '{{ marker.desc|escapejs }}')"
+          class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
+          {{ marker.name }} · {{ marker.city }}
+        </button>
+        {% empty %}
+        <p class="text-xs text-gray-400">{% trans "No map locations available yet." %}</p>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -573,75 +303,46 @@ ACCESSIBILITY WIDGET
     <div class="modal-header">
       <div class="flex items-center gap-3">
         <i data-lucide="star" class="w-5 h-5 text-white"></i>
-        <h3 class="font-semibold text-[15px]">Reviews &amp; Ratings</h3>
+        <h3 class="font-semibold text-[15px]">{% trans "Reviews & Ratings" %}</h3>
       </div>
-      <button class="modal-close-btn" onclick="closeModal('reviews')" aria-label="Close">✕</button>
+      <button class="modal-close-btn" onclick="closeModal('reviews')" aria-label="{% trans 'Close' %}">✕</button>
     </div>
     <div class="modal-body flex flex-col gap-4">
+      {% for group in review_highlights %}
       <div class="border border-gray-200 rounded-2xl p-4">
         <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Al-Kanaan</p><p class="text-xs text-gray-400">Traditional Palestinian · Ramallah</p></div>
-          <span class="text-amber-400 font-bold">★ 4.8</span>
+          <div>
+            <p class="font-bold text-gray-900">{{ group.restaurant|localized_name }}</p>
+            <p class="text-xs text-gray-400">
+              {% if group.restaurant.category %}{{ group.restaurant.category|localized_category }} · {% endif %}{{ group.restaurant|city_label }}
+            </p>
+          </div>
+          {% if group.restaurant.avg_rating %}
+          <span class="text-amber-400 font-bold">★ {{ group.restaurant.avg_rating|floatformat:1 }}</span>
+          {% endif %}
         </div>
         <div class="space-y-2">
+          {% for review in group.reviews %}
           <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"أفضل منسف في رام الله! الأكل كان رائعاً والخدمة ممتازة."</p>
-            <p class="text-xs text-gray-400">— Ahmad K. · ★★★★★</p>
+            <p class="text-sm text-gray-700 mb-1">"{{ review.comment }}"</p>
+            <p class="text-xs text-gray-400">— {{ review.user|user_display_name }} · {% for i in "12345" %}{% if forloop.counter <= review.rating %}★{% else %}☆{% endif %}{% endfor %}</p>
           </div>
-          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"Amazing musakhan, will definitely come back!"</p>
-            <p class="text-xs text-gray-400">— Sara M. · ★★★★★</p>
-          </div>
+          {% endfor %}
         </div>
       </div>
-      <div class="border border-gray-200 rounded-2xl p-4">
-        <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Jerusalem Garden Cafe</p><p class="text-xs text-gray-400">Cafe & Breakfast · Jerusalem</p></div>
-          <span class="text-amber-400 font-bold">★ 4.9</span>
-        </div>
-        <div class="space-y-2">
-          <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-            <p class="text-sm text-gray-700 mb-1">"أجمل فطور في القدس، الأجواء رائعة وهادئة."</p>
-            <p class="text-xs text-gray-400">— Lina H. · ★★★★★</p>
-          </div>
-        </div>
-      </div>
-      <div class="border border-gray-200 rounded-2xl p-4">
-        <div class="flex justify-between items-start mb-2">
-          <div><p class="font-bold text-gray-900">Gaza Grill House</p><p class="text-xs text-gray-400">Grills & BBQ · Gaza</p></div>
-          <span class="text-amber-400 font-bold">★ 4.6</span>
-        </div>
-        <div class="bg-gray-50 rounded-xl px-3 py-2.5">
-          <p class="text-sm text-gray-700 mb-1">"مشاوي على النار الحقيقية، طعم لا يُنسى!"</p>
-          <p class="text-xs text-gray-400">— Khalid R. · ★★★★★</p>
-        </div>
-      </div>
+      {% empty %}
+      <p class="text-center text-gray-400 py-8 text-sm">{% trans "No reviews yet. Be the first to share your experience!" %}</p>
+      {% endfor %}
     </div>
   </div>
 </div>
 
-<!-- ── 4. WISHLIST MODAL ── -->
-<div id="modal-wishlist" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Wishlist">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div class="flex items-center gap-3">
-        <i data-lucide="heart" class="w-5 h-5 text-white"></i>
-        <h3 class="font-semibold text-[15px]">My Wishlist</h3>
-      </div>
-      <button class="modal-close-btn" onclick="closeModal('wishlist')" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body">
-      <p class="text-xs text-gray-400 mb-4">Restaurants you've saved ❤️</p>
-      <div id="wishlist-items" class="flex flex-col gap-3"></div>
-      <div class="mt-4 p-3 bg-[#B5451B]/10 rounded-2xl text-center">
-        <p class="text-xs text-[#B5451B] font-medium">💡 Tap the ♥ on any restaurant card to save it here</p>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- ── 4. WISHLIST MODAL ── moved to base.html for all pages -->
 
 </main>
 {% endblock %}
-{% block extra_js %}
-<script src="{% static 'js/main.js' %}"></script>
+
+{% block pre_main_js %}
+{{ landing_i18n|json_script:"landing-i18n" }}
+{{ map_restaurants|json_script:"landing-map-restaurants" }}
 {% endblock %}

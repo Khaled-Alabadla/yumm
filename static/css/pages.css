@@ -1,0 +1,332 @@
+/* Static pages — About, Contact, Privacy, Terms */
+
+.yumm-page {
+  flex: 1;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.yumm-page-hero {
+  background: linear-gradient(135deg, rgba(181, 69, 27, 0.12), transparent 55%),
+    var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.25rem 2.5rem;
+}
+
+.yumm-page-hero__inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.yumm-page-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b5451b;
+  margin: 0 0 0.75rem;
+}
+
+.yumm-page-title {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+  color: var(--text-primary);
+}
+
+.yumm-page-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 38rem;
+}
+
+.yumm-page-meta {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 0;
+}
+
+.yumm-page-body {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.yumm-page-body--wide {
+  max-width: 72rem;
+}
+
+.yumm-page-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.yumm-page-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .yumm-page-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .yumm-page-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .yumm-page-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+    gap: 1.5rem;
+    align-items: start;
+  }
+}
+
+.yumm-stat {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+}
+
+.yumm-stat__value {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #b5451b;
+  margin: 0;
+}
+
+.yumm-stat__label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0.35rem 0 0;
+}
+
+.yumm-value-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.yumm-value-row__icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: rgba(181, 69, 27, 0.1);
+  color: #b5451b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.yumm-value-row__title {
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--text-primary);
+}
+
+.yumm-value-row__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.yumm-info-card {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1.15rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+}
+
+.yumm-info-card__title {
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: var(--text-primary);
+}
+
+.yumm-info-card__text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.yumm-info-card__text a {
+  color: #b5451b;
+  text-decoration: none;
+}
+
+.yumm-info-card__text a:hover {
+  text-decoration: underline;
+}
+
+.yumm-page-section {
+  margin-bottom: 2rem;
+}
+
+.yumm-page-section__title {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+}
+
+.yumm-prose {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.yumm-prose h2 {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem;
+  scroll-margin-top: 6rem;
+}
+
+.yumm-prose p {
+  margin: 0 0 0.85rem;
+}
+
+.yumm-prose ul {
+  margin: 0 0 0.85rem;
+  padding-inline-start: 1.25rem;
+}
+
+.yumm-prose li {
+  margin-bottom: 0.35rem;
+}
+
+.yumm-prose a {
+  color: #b5451b;
+  text-decoration: none;
+}
+
+.yumm-prose a:hover {
+  text-decoration: underline;
+}
+
+.yumm-callout {
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid #b5451b;
+  border-radius: 0.75rem;
+  padding: 1rem 1.15rem;
+  background: var(--secondary-bg);
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.yumm-form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.yumm-field label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.yumm-field .yumm-input,
+.yumm-field select,
+.yumm-field textarea {
+  width: 100%;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.yumm-field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.yumm-field-error {
+  font-size: 0.75rem;
+  color: var(--danger);
+  margin-top: 0.25rem;
+}
+
+.yumm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  border-radius: 0.85rem;
+  background: #b5451b;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.yumm-btn-primary:hover {
+  background: #9a3a16;
+}
+
+.yumm-legal-layout {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .yumm-legal-layout {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.yumm-legal-nav {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .yumm-legal-nav {
+    display: block;
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+.yumm-legal-nav a {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.35rem 0 0.35rem 0.75rem;
+  border-inline-start: 2px solid var(--border);
+  margin-bottom: 0.15rem;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.yumm-legal-nav a:hover {
+  color: #b5451b;
+  border-color: #b5451b;
+}
