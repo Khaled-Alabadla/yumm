@@ -1,143 +1,164 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}
-AI Assistant — Yumm
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %} AI Assistant —
+Yumm {% endblock %} {% block content %}
 
 <main
   class="min-h-[calc(100vh-64px)] flex flex-col"
   style="background: var(--background)"
 >
-
-  <div class="border-b" style="background: var(--card); border-color: var(--border)">
+  <div
+    class="border-b"
+    style="background: var(--card); border-color: var(--border)"
+  >
     <div class="max-w-3xl mx-auto px-5 py-6 text-center">
-
-      <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3"
-        style="background: rgba(181,69,27,.1)">
-        <i data-lucide="bot" class="w-7 h-7" style="color:#B5451B"></i>
+      <div
+        class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3"
+        style="background: rgba(181, 69, 27, 0.1)"
+      >
+        <i data-lucide="bot" class="w-7 h-7" style="color: #b5451b"></i>
       </div>
 
-      <h1 class="text-2xl font-black" style="color:var(--text-primary)">
+      <h1 class="text-2xl font-black" style="color: var(--text-primary)">
         AI Food Assistant
       </h1>
 
-      <p class="text-sm mt-1" style="color:var(--text-secondary)">
+      <p class="text-sm mt-1" style="color: var(--text-secondary)">
         Describe what you're looking for — I'll handle the rest
       </p>
 
       <div class="flex flex-wrap justify-center gap-2 mt-4">
-
-        <button onclick="sendSuggestion('Seafood under 70₪')"
+        <button
+          onclick="sendSuggestion('Seafood under 70₪')"
           class="px-3 py-1.5 rounded-full text-xs font-medium"
-          style="background:rgba(181,69,27,.1);color:#B5451B;border:1px solid rgba(181,69,27,.2)">
+          style="
+            background: rgba(181, 69, 27, 0.1);
+            color: #b5451b;
+            border: 1px solid rgba(181, 69, 27, 0.2);
+          "
+        >
           Seafood under 70₪
         </button>
 
-        <button onclick="sendSuggestion('Family-friendly in Gaza')"
+        <button
+          onclick="sendSuggestion('Family-friendly in Gaza')"
           class="px-3 py-1.5 rounded-full text-xs font-medium"
-          style="background:rgba(181,69,27,.1);color:#B5451B;border:1px solid rgba(181,69,27,.2)">
+          style="
+            background: rgba(181, 69, 27, 0.1);
+            color: #b5451b;
+            border: 1px solid rgba(181, 69, 27, 0.2);
+          "
+        >
           Family-friendly in Gaza
         </button>
 
-        <button onclick="sendSuggestion('Best kunafa in Nablus')"
+        <button
+          onclick="sendSuggestion('Best kunafa in Nablus')"
           class="px-3 py-1.5 rounded-full text-xs font-medium"
-          style="background:rgba(181,69,27,.1);color:#B5451B;border:1px solid rgba(181,69,27,.2)">
+          style="
+            background: rgba(181, 69, 27, 0.1);
+            color: #b5451b;
+            border: 1px solid rgba(181, 69, 27, 0.2);
+          "
+        >
           Best kunafa in Nablus
         </button>
 
-        <button onclick="sendSuggestion('Romantic dinner in Ramallah')"
+        <button
+          onclick="sendSuggestion('Romantic dinner in Ramallah')"
           class="px-3 py-1.5 rounded-full text-xs font-medium"
-          style="background:rgba(181,69,27,.1);color:#B5451B;border:1px solid rgba(181,69,27,.2)">
+          style="
+            background: rgba(181, 69, 27, 0.1);
+            color: #b5451b;
+            border: 1px solid rgba(181, 69, 27, 0.2);
+          "
+        >
           Romantic dinner in Ramallah
         </button>
-
       </div>
-
     </div>
   </div>
-
 
   <div
     id="chatMessages"
     class="flex-1 max-w-3xl w-full mx-auto px-4 py-6 flex flex-col gap-4"
   >
-
     {% if not previous_messages %}
 
     <div class="flex gap-3 items-start" id="welcomeMsg">
-
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-1"
-        style="background:rgba(181,69,27,.15)">
-        <i data-lucide="bot" class="w-4 h-4" style="color:#B5451B"></i>
+      <div
+        class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-1"
+        style="background: rgba(181, 69, 27, 0.15)"
+      >
+        <i data-lucide="bot" class="w-4 h-4" style="color: #b5451b"></i>
       </div>
 
-      <div class="rounded-2xl rounded-tl-sm px-4 py-3 max-w-xl text-sm"
-        style="background:var(--card);border:1px solid var(--border);color:var(--text-primary)">
-
-        Marhaba! I'm Yumm AI.<br>
+      <div
+        class="rounded-2xl rounded-tl-sm px-4 py-3 max-w-xl text-sm"
+        style="
+          background: var(--card);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+        "
+      >
+        Marhaba! I'm Yumm AI.<br />
         Tell me what you're craving — cuisine, budget, city, vibe.
 
-        <br><br>
+        <br /><br />
 
-        <span style="color:var(--text-secondary);font-size:11px">
+        <span style="color: var(--text-secondary); font-size: 11px">
           I specialize in restaurants in Palestine only.
         </span>
-
       </div>
-
     </div>
 
     {% endif %}
-
   </div>
 
-
-  <div class="sticky bottom-0 border-t"
-    style="background:var(--card);border-color:var(--border)">
-
+  <div
+    class="sticky bottom-0 border-t"
+    style="background: var(--card); border-color: var(--border)"
+  >
     <div class="max-w-3xl mx-auto px-4 py-3 flex gap-3 items-end">
-
       <textarea
         id="chatInput"
         rows="1"
         placeholder="Describe your preferences..."
         class="flex-1 resize-none rounded-2xl px-4 py-3 text-sm outline-none"
-        style="background:var(--input-bg);border:1px solid var(--border);color:var(--text-primary);max-height:120px"
+        style="
+          background: var(--input-bg);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+          max-height: 120px;
+        "
         oninput="autoResize(this)"
-        onkeydown="if(event.key==='Enter' && !event.shiftKey){event.preventDefault();sendMessage();}"
+        onkeydown="
+          if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+          }
+        "
       ></textarea>
 
       <button
         id="sendBtn"
         onclick="sendMessage()"
         class="w-11 h-11 rounded-xl flex items-center justify-center"
-        style="background:#B5451B"
+        style="background: #b5451b"
       >
         <i data-lucide="send" class="w-4 h-4 text-white"></i>
       </button>
-
     </div>
-
   </div>
-
 </main>
-
 
 <div
   id="chatConfig"
   data-url="{% url 'ai_bot:chat' %}"
-  style="display:none">
-</div>
+  data-session-id="{{ session_id|default:'' }}"
+  style="display: none"
+></div>
 
-
-{{ previous_messages|json_script:"previousMessages" }}
-
+{{ previous_messages|json_script:"previousMessages" }} 
 {% endblock %}
-
-
 {% block extra_js %}
 <script src="{% static 'js/chat.js' %}"></script>
 {% endblock %}
