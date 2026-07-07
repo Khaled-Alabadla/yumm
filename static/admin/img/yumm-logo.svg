@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Yumm">
-  <rect width="40" height="40" rx="10" fill="#BE3127"/>
-  <g transform="translate(20 20) scale(0.72) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+  <rect width="40" height="40" rx="10" fill="#B5451B"/>
+  <g transform="translate(20 20) scale(0.72) translate(-12 -12)" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round">
+    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
     <path d="M7 2v20"/>
-    <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+    <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3z"/>
   </g>
 </svg>

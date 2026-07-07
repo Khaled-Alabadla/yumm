@@ -15,6 +15,7 @@ from .forms import (
     ReviewReplyForm,
     get_or_create_default_menu_category,
 )
+from .geo import get_restaurant_map_defaults
 from .mixins import RestaurantOwnerMixin
 from .models import MenuItem
 from .utils import get_review_stats
@@ -69,6 +70,10 @@ class DashboardInfoView(RestaurantOwnerMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.setdefault("form", self.get_form())
+        lat, lng, zoom = get_restaurant_map_defaults(self.restaurant)
+        context["map_lat"] = lat
+        context["map_lng"] = lng
+        context["map_zoom"] = zoom
         return context
 
 

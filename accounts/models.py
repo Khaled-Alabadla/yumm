@@ -106,3 +106,38 @@ class CustomUser(AbstractUser):
     @property
     def is_pending_owner(self) -> bool:
         return self.is_owner_role and not self.is_approved
+
+
+class ContactMessage(models.Model):
+    """Inbound message from the public contact form."""
+
+    class Subject(models.TextChoices):
+        RESTAURANT_PARTNERSHIP = "Restaurant Partnership", _("Restaurant Partnership")
+        TECHNICAL_SUPPORT = "Technical Support", _("Technical Support")
+        MEDIA_PRESS = "Media & Press", _("Media & Press")
+        GENERAL_INQUIRY = "General Inquiry", _("General Inquiry")
+
+    name = models.CharField(_("full name"), max_length=100)
+    email = models.EmailField(_("email address"))
+    subject = models.CharField(
+        _("subject"),
+        max_length=50,
+        choices=Subject.choices,
+        db_index=True,
+    )
+    message = models.TextField(_("message"), max_length=1000)
+    is_read = models.BooleanField(
+        _("read"),
+        default=False,
+        db_index=True,
+        help_text=_("Mark when the message has been reviewed."),
+    )
+    created_at = models.DateTimeField(_("received at"), auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name = _("contact message")
+        verbose_name_plural = _("contact messages")
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return f"{self.name} — {self.get_subject_display()}"

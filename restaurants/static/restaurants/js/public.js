@@ -146,8 +146,11 @@
 
   function initStarInput() {
     const wrap = document.querySelector('.rp-star-input');
-    const hidden = document.getElementById('review-rating-input');
-    if (!wrap || !hidden) return;
+    const form = document.getElementById('rp-review-form');
+    if (!wrap || !form) return;
+
+    const hidden = form.querySelector('[name="rating"]');
+    if (!hidden) return;
 
     const valEl = wrap.querySelector('.rp-star-input__val');
 
@@ -159,33 +162,36 @@
         icon.className = v <= n ? 'fa-solid fa-star' : 'fa-regular fa-star';
       });
       if (valEl) valEl.textContent = n;
-      hidden.value = n;
+      hidden.value = n > 0 ? String(n) : '';
     }
 
-    paint(parseInt(wrap.dataset.rating, 10) || 0);
+    const initial = parseInt(wrap.dataset.rating, 10) || parseInt(hidden.value, 10) || 0;
+    paint(initial);
 
     wrap.querySelectorAll('.rp-star-input__btn').forEach((btn) => {
       btn.addEventListener('click', () => paint(parseInt(btn.dataset.value, 10)));
     });
 
-    const form = document.getElementById('rp-review-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        const displayVal = parseInt(valEl?.textContent || '0', 10) || 0;
-        if (displayVal >= 1) {
-          hidden.value = String(displayVal);
+    form.addEventListener('submit', (e) => {
+      const displayVal = parseInt(valEl?.textContent || '0', 10) || 0;
+      if (displayVal >= 1) {
+        hidden.value = String(displayVal);
+      }
+      if (parseInt(hidden.value, 10) < 1) {
+        e.preventDefault();
+        let err = form.querySelector('.rp-review-rating-error');
+        if (!err) {
+          err = document.createElement('p');
+          err.className = 'rp-form-errors rp-review-rating-error';
+          wrap.after(err);
         }
-        if (parseInt(hidden.value, 10) < 1) {
-          e.preventDefault();
-          let err = form.querySelector('.rp-review-rating-error');
-          if (!err) {
-            err = document.createElement('p');
-            err.className = 'rp-form-errors rp-review-rating-error';
-            form.querySelector('.rp-star-input')?.after(err);
-          }
-          err.textContent = form.dataset.ratingError || 'Please select a star rating.';
-        }
-      });
+        err.textContent = form.dataset.ratingError || 'Please select a star rating.';
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    if (window.location.search.includes('tab=reviews') && document.querySelector('.rp-messages .fa-circle-exclamation, .rp-messages .fa-circle-check')) {
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 

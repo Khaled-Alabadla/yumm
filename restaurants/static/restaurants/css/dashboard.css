@@ -58,14 +58,13 @@
   text-decoration: none;
 }
 
-.rd-logo-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.75rem;
-  background: var(--rd-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.yumm-logo-mark {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.rd-logo-icon-img {
   box-shadow: 0 4px 12px rgba(181, 69, 27, 0.35);
 }
 
@@ -469,6 +468,82 @@
 
 .rd-reply-form {
   margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.rd-reply-form .rd-reply-input {
+  flex: 1 1 14rem;
+}
+
+.rd-reply-submit {
+  flex: 0 0 auto;
+}
+
+.rd-location-map {
+  width: 100%;
+  height: 380px;
+  min-height: 320px;
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+  background: #e8e0dc;
+  position: relative;
+  z-index: 0;
+}
+
+/* Tailwind preflight breaks Leaflet tiles (img { max-width: 100% }). */
+.rd-location-map.leaflet-container,
+.rd-location-map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: inherit;
+}
+
+.rd-location-map.leaflet-container img,
+.rd-location-map .leaflet-tile-pane img,
+.rd-location-map .leaflet-marker-icon,
+.rd-location-map .leaflet-marker-shadow {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.rd-location-map .leaflet-control-zoom a {
+  color: #1c1412;
+  background: #fff;
+}
+
+html.dark .rd-location-map {
+  background: #1e1e1e;
+  border-color: #2a2a2a;
+}
+
+html.dark .rd-location-map .leaflet-control-zoom a {
+  color: #f5f5f5;
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+}
+
+.rd-location-marker {
+  width: 28px;
+  height: 28px;
+  margin-left: -14px !important;
+  margin-top: -28px !important;
+  background: #b5451b;
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 12px rgba(181, 69, 27, 0.45);
+}
+
+.rd-location-coords {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.35rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .rd-reply-input,

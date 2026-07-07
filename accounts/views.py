@@ -408,6 +408,7 @@ def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            form.save()
             messages.success(
                 request,
                 _("Message sent! We'll get back to you within 24 hours."),

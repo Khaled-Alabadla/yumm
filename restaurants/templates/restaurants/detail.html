@@ -169,9 +169,10 @@
                 </button>
                 {% endfor %}
                 <span class="rp-star-input__val">{{ review_form.rating.value|default:0 }}</span>
+                {{ review_form.rating }}
               </div>
-              {{ review_form.rating }}
               {{ review_form.comment }}
+              <p class="rp-review-hint">{% trans "Minimum 10 characters." %}</p>
               {% if review_form.errors %}
               <div class="rp-form-errors">
                 {% for field in review_form %}{% for error in field.errors %}<p>{{ error }}</p>{% endfor %}{% endfor %}
@@ -240,5 +241,5 @@
 
 {% block pre_main_js %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="{% static 'restaurants/js/public.js' %}?v=8"></script>
+<script src="{% static 'restaurants/js/public.js' %}?v=9"></script>
 {% endblock %}

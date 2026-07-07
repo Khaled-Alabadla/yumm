@@ -39,6 +39,9 @@
       <form method="POST" action="{% url 'restaurants:dashboard-review-reply' review.pk %}" class="rd-reply-form">
         {% csrf_token %}
         {{ reply_forms|get_item:review.pk }}
+        <button type="submit" class="rd-btn rd-btn--ghost rd-reply-submit">
+          {% trans "Post Reply" %}
+        </button>
       </form>
     </li>
     {% endfor %}

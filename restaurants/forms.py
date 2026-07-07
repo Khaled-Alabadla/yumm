@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from reviews.models import CommentReply
 
+from .geo import is_valid_palestine_coords
 from .models import MenuCategory, MenuItem, Restaurant, RestaurantCategory
 from .utils import (
     format_working_hours,
@@ -76,20 +77,8 @@ class RestaurantInfoForm(forms.ModelForm):
             "description_ar": forms.Textarea(
                 attrs={"class": _RD_TEXTAREA, "rows": 4, "placeholder": _("نبذة عن مطعمك")},
             ),
-            "latitude": forms.NumberInput(
-                attrs={
-                    "class": _RD_INPUT,
-                    "step": "0.000001",
-                    "placeholder": "31.903800",
-                },
-            ),
-            "longitude": forms.NumberInput(
-                attrs={
-                    "class": _RD_INPUT,
-                    "step": "0.000001",
-                    "placeholder": "35.203400",
-                },
-            ),
+            "latitude": forms.HiddenInput(attrs={"id": "rd-latitude-input"}),
+            "longitude": forms.HiddenInput(attrs={"id": "rd-longitude-input"}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -118,6 +107,8 @@ class RestaurantInfoForm(forms.ModelForm):
         self.fields["description_ar"].label = _("Description (Arabic)")
         self.fields["latitude"].label = _("Latitude")
         self.fields["longitude"].label = _("Longitude")
+        self.fields["latitude"].required = False
+        self.fields["longitude"].required = False
 
     def clean_latitude(self):
         latitude = self.cleaned_data.get("latitude")
@@ -130,6 +121,26 @@ class RestaurantInfoForm(forms.ModelForm):
         if longitude is not None and (longitude < -180 or longitude > 180):
             raise forms.ValidationError(_("Longitude must be between -180 and 180."))
         return longitude
+
+    def clean(self):
+        cleaned_data = super().clean()
+        latitude = cleaned_data.get("latitude")
+        longitude = cleaned_data.get("longitude")
+
+        if latitude is None and longitude is None:
+            return cleaned_data
+
+        if latitude is None or longitude is None:
+            raise forms.ValidationError(
+                _("Please pick a complete location on the map."),
+            )
+
+        if not is_valid_palestine_coords(latitude, longitude):
+            raise forms.ValidationError(
+                _("Location must be within Palestine (West Bank and Gaza)."),
+            )
+
+        return cleaned_data
 
     def save(self, commit=True):
         restaurant = super().save(commit=False)

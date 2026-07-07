@@ -12,6 +12,12 @@ msgstr ""
 msgid " to write a review."
 msgstr " لتكتب تقييماً."
 
+msgid "%(count)d message(s) marked as read."
+msgstr "تم تعليم %(count)d رسالة كمقروءة."
+
+msgid "%(count)d message(s) marked as unread."
+msgstr "تم تعليم %(count)d رسالة كغير مقروءة."
+
 msgid "%(count)d owner account(s) approved."
 msgstr "تمت الموافقة على %(count)d حساب صاحب مطعم."
 
@@ -97,6 +103,9 @@ msgstr "من نحن"
 
 msgid "Abu Dis"
 msgstr "أبو ديس"
+
+msgid "Access Denied"
+msgstr "الوصول مرفوض"
 
 msgid "Access the personal data we hold about you"
 msgstr "الاطلاع على بياناتك الشخصية لدينا"
@@ -263,6 +272,9 @@ msgstr "azzun"
 msgid "BBQ"
 msgstr "شواء"
 
+msgid "Back to Home"
+msgstr "العودة للرئيسية"
+
 msgid "Back to restaurants"
 msgstr "العودة للمطاعم"
 
@@ -316,6 +328,9 @@ msgstr "بيرزيت"
 
 msgid "Breakfast"
 msgstr "فطور"
+
+msgid "Browse Restaurants"
+msgstr "تصفّح المطاعم"
 
 msgid "Browse hundreds of curated options."
 msgstr "تصفّح مئات الخيارات المختارة."
@@ -387,6 +402,9 @@ msgstr "المدينة مطلوبة لأصحاب المطاعم."
 
 msgid "Clear filters"
 msgstr "مسح الفلاتر"
+
+msgid "Click on the map to set your restaurant location."
+msgstr "اضغط على الخريطة لتحديد موقع مطعمك."
 
 msgid "Close"
 msgstr "إغلاق"
@@ -665,6 +683,9 @@ msgstr "احصل على اقتراحات مخصصة لك."
 msgid "Get started and find your next favourite restaurant in minutes."
 msgstr "ابدأ الآن واعثر على مطعمك المفضل خلال دقائق."
 
+msgid "Go Back"
+msgstr "رجوع"
+
 msgid "Grills"
 msgstr "مشاوي"
 
@@ -850,6 +871,9 @@ msgstr "الموقع"
 msgid "Location data when you search for nearby restaurants"
 msgstr "بيانات الموقع عند البحث عن مطاعم قريبة"
 
+msgid "Location must be within Palestine (West Bank and Gaza)."
+msgstr "يجب أن يكون الموقع داخل فلسطين (الضفة وغزة)."
+
 msgid "Location on Map"
 msgstr "الموقع على الخريطة"
 
@@ -895,6 +919,12 @@ msgstr "إدارة تفاصيل حسابك"
 msgid "Mansaf"
 msgstr "منسف"
 
+msgid "Mark selected messages as read"
+msgstr "تعليم الرسائل المحددة كمقروءة"
+
+msgid "Mark selected messages as unread"
+msgstr "تعليم الرسائل المحددة كغير مقروءة"
+
 msgid "Mark selected reviews as resolved (clear report flag)"
 msgstr "تعليم التقييمات كمحلولة (إزالة بلاغ)"
 
@@ -921,6 +951,9 @@ msgstr "يجب أن تكون الرسالة 10 أحرف على الأقل."
 
 msgid "Message sent! We'll get back to you within 24 hours."
 msgstr "تم إرسال رسالتك! سنتواصل معك خلال 24 ساعة."
+
+msgid "Minimum 10 characters."
+msgstr "10 أحرف على الأقل."
 
 msgid "Moderate"
 msgstr "متوسط"
@@ -1084,6 +1117,9 @@ msgstr "لا يمكن لأصحاب المطاعم إرسال تقييمات."
 msgid "Ownership & status"
 msgstr "الملكية والحالة"
 
+msgid "Page Not Found"
+msgstr "الصفحة غير موجودة"
+
 msgid "Pagination"
 msgstr "التصفح"
 
@@ -1179,11 +1215,17 @@ msgstr "يرجى تصحيح الأخطاء أدناه."
 msgid "Please log in to save restaurants to your wishlist"
 msgstr "يرجى تسجيل الدخول لحفظ المطاعم في المفضلة"
 
+msgid "Please pick a complete location on the map."
+msgstr "يرجى اختيار موقع كامل على الخريطة."
+
 msgid "Please select a star rating."
 msgstr "يرجى اختيار تقييم بالنجوم."
 
 msgid "Please write at least 10 characters."
 msgstr "يرجى كتابة 10 أحرف على الأقل."
+
+msgid "Post Reply"
+msgstr "نشر الرد"
 
 msgid "Post false, misleading, or abusive reviews"
 msgstr "نشر تقييمات كاذبة أو مضللة أو مسيئة"
@@ -1241,6 +1283,9 @@ msgstr "رام الله"
 
 msgid "Ramallah, Palestine 🇵🇸"
 msgstr "رام الله، فلسطين 🇵🇸"
+
+msgid "Read"
+msgstr "مقروءة"
 
 msgid "Ready to Explore?"
 msgstr "مستعد للاستكشاف؟"
@@ -1334,6 +1379,9 @@ msgstr "نوع المطعم"
 
 msgid "Restaurant added to your wishlist ❤️"
 msgstr "تمت إضافة المطعم إلى المفضلة"
+
+msgid "Restaurant location map"
+msgstr "خريطة موقع المطعم"
 
 msgid ""
 "Restaurant owners must be approved by an admin before they can operate on "
@@ -1467,6 +1515,14 @@ msgstr "سلواد"
 
 msgid "Since"
 msgstr "منذ"
+
+msgid ""
+"Sorry, we couldn't find the page you're looking for. It may have moved or no"
+" longer exists."
+msgstr "عذراً، لم نجد الصفحة التي تبحث عنها. ربما نُقلت أو لم تعد موجودة."
+
+msgid "Status"
+msgstr "الحالة"
 
 msgid "Status Change"
 msgstr "تغيير الحالة"
@@ -1712,6 +1768,13 @@ msgstr ""
 "أنت مسؤول عن حماية بيانات الدخول وعن كل نشاط يتم عبر حسابك. يرجى تقديم "
 "معلومات دقيقة عند التسجيل."
 
+msgid ""
+"You don't have permission to view this page. Sign in with the right account "
+"or return to a public area of Yumm."
+msgstr ""
+"ليس لديك صلاحية لعرض هذه الصفحة. سجّل الدخول بالحساب المناسب أو عد إلى منطقة"
+" عامة في Yumm."
+
 msgid "You have the right to:"
 msgstr "لديك الحق في:"
 
@@ -1830,6 +1893,12 @@ msgstr "رد على تعليق"
 
 msgid "confirm new password"
 msgstr "تأكيد كلمة المرور الجديدة"
+
+msgid "contact message"
+msgstr "رسالة تواصل"
+
+msgid "contact messages"
+msgstr "رسائل التواصل"
 
 msgid "created at"
 msgstr "تاريخ الإنشاء"
@@ -1965,6 +2034,9 @@ msgstr "التقييم"
 
 msgid "read"
 msgstr "مقروء"
+
+msgid "received at"
+msgstr "تاريخ الاستلام"
 
 msgid "recipient"
 msgstr "المستلم"

@@ -59,6 +59,7 @@ MIDDLEWARE = [
     "accounts.middleware.OwnerDashboardRedirectMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "config.middleware.CustomErrorPageMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -184,8 +185,9 @@ JAZZMIN_SETTINGS = {
     "site_title": "Yumm Admin",
     "site_header": "Yumm",
     "site_brand": "Yumm",
-    "site_logo": "admin/img/yumm-logo.svg",
-    "site_icon": "admin/img/yumm-logo.svg",
+    "site_logo": "img/yumm-logo.svg",
+    "site_icon": "img/yumm-logo.svg",
+    "login_logo": "img/yumm-logo.svg",
     "site_logo_classes": "yumm-brand-logo",
     "welcome_sign": _("Welcome back — Yumm Admin"),
     "copyright": "Yumm Palestine",
@@ -231,6 +233,7 @@ JAZZMIN_SETTINGS = {
     "icons": {
         "accounts": "fas fa-users-cog",
         "accounts.CustomUser": "fas fa-user",
+        "accounts.ContactMessage": "fas fa-envelope",
         "restaurants": "fas fa-store",
         "restaurants.Restaurant": "fas fa-utensils",
         "restaurants.RestaurantCategory": "fas fa-list",

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Access Denied" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=2"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page yumm-error-page" tabindex="-1">
+  <div class="yumm-error-page__inner">
+    {% include "includes/yumm_logo_icon.html" with size=48 shadow=True %}
+    <p class="yumm-error-page__code" aria-hidden="true">403</p>
+    <h1 class="yumm-error-page__title">{% trans "Access Denied" %}</h1>
+    <p class="yumm-error-page__lead">
+      {% trans "You don't have permission to view this page. Sign in with the right account or return to a public area of Yumm." %}
+    </p>
+    <div class="yumm-error-page__actions">
+      <a href="{% url 'index' %}" class="yumm-btn-primary yumm-error-page__btn">
+        <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Back to Home" %}
+      </a>
+      {% if not user.is_authenticated %}
+      <a href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}" class="yumm-btn-outline yumm-error-page__btn">
+        <i data-lucide="log-in" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Sign In" %}
+      </a>
+      {% else %}
+      <a href="{% url 'restaurants:list' %}" class="yumm-btn-outline yumm-error-page__btn">
+        <i data-lucide="utensils" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Browse Restaurants" %}
+      </a>
+      {% endif %}
+      <button type="button" class="yumm-btn-ghost yumm-error-page__btn" onclick="history.back()">
+        <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Go Back" %}
+      </button>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>if (typeof lucide !== "undefined") lucide.createIcons();</script>
+{% endblock %}

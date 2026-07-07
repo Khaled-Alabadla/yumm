@@ -1,5 +1,6 @@
 """Public restaurant browsing views."""
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg, Count
@@ -10,10 +11,12 @@ from django.utils import translation
 from django.utils.translation import gettext as _
 from django.views import View
 from django.views.generic import DetailView, ListView
+from urllib.parse import urlencode
 
 from reviews.forms import ReviewForm
 from reviews.models import Review, Wishlist
 
+from .geo import get_all_city_choices
 from .models import Restaurant
 from .querysets import (
     FEATURED_CITY_CODES,
@@ -63,10 +66,7 @@ class RestaurantListView(ListView):
                     (code, label) for code, label in Restaurant.City.choices
                     if code in FEATURED_CITY_CODES
                 ],
-                "city_choices": [
-                    (code, label) for code, label in Restaurant.City.choices
-                    if code in FEATURED_CITY_CODES
-                ],
+                "city_choices": get_all_city_choices(),
                 "filter_categories": get_filter_categories(),
                 "top_rated": get_top_rated_restaurants(limit=4),
                 "restaurant_count": self.filtered_queryset.count(),
@@ -216,6 +216,14 @@ class WishlistToggleView(LoginRequiredMixin, View):
 
 class ReviewSubmitView(LoginRequiredMixin, View):
     """Create or update the current user's review on a restaurant."""
+
+    def get_login_url(self):
+        pk = self.kwargs["pk"]
+        next_url = f"{reverse('restaurants:detail', args=[pk])}?tab=reviews"
+        return f"{settings.LOGIN_URL}?{urlencode({'next': next_url})}"
+
+    def get(self, request, pk):
+        return redirect(f"{reverse('restaurants:detail', args=[pk])}?tab=reviews")
 
     def post(self, request, pk):
         if request.user.is_owner_role:
