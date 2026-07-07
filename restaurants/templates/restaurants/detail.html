@@ -221,15 +221,19 @@
 
         {% if restaurant.latitude and restaurant.longitude %}
         <section class="rp-detail-map" aria-label="{% trans 'Location' %}">
+          {% localize off %}
           <div id="rp-detail-map" class="rp-map rp-map--detail"
             data-lat="{{ restaurant.latitude }}"
             data-lng="{{ restaurant.longitude }}"
             data-name="{{ restaurant|localized_name }}"></div>
+          {% endlocalize %}
           <div class="rp-detail-map__label">
             <strong>{{ restaurant|localized_address }}</strong>
+            {% localize off %}
             <a href="https://www.google.com/maps?q={{ restaurant.latitude }},{{ restaurant.longitude }}" target="_blank" rel="noopener">
               {% trans "Tap to open in maps" %}
             </a>
+            {% endlocalize %}
           </div>
         </section>
         {% endif %}

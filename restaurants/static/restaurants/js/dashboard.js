@@ -261,8 +261,13 @@ function initLocationPicker() {
     );
   }
 
-  var startLat = parseFloat(mapEl.dataset.lat);
-  var startLng = parseFloat(mapEl.dataset.lng);
+  function parseCoord(value) {
+    if (value === null || value === undefined || value === "") return NaN;
+    return parseFloat(String(value).trim().replace(",", "."));
+  }
+
+  var startLat = parseCoord(mapEl.dataset.lat);
+  var startLng = parseCoord(mapEl.dataset.lng);
   var zoom = parseInt(mapEl.dataset.zoom, 10) || 14;
   if (!isValidPalestineCoords(startLat, startLng)) {
     startLat = 31.9038;
@@ -329,8 +334,8 @@ function initLocationPicker() {
     }
   }
 
-  var savedLat = parseFloat(latInput.value);
-  var savedLng = parseFloat(lngInput.value);
+  var savedLat = parseCoord(latInput.value);
+  var savedLng = parseCoord(lngInput.value);
   if (isValidPalestineCoords(savedLat, savedLng)) {
     placeMarker(savedLat, savedLng, true);
   } else {

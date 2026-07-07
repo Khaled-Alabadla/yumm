@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n restaurant_tags %}
+{% load static i18n l10n restaurant_tags %}
 
 {% block title %}Yumm — {% trans "Discover the Best Restaurants in Palestine" %}{% endblock %}
 {% block content %}
@@ -291,7 +291,7 @@ CTA
         <span class="text-xs font-semibold text-gray-400 w-full mb-1">📍 {% trans "Featured Restaurants — click to fly there" %}</span>
         {% for marker in map_featured %}
         <button type="button"
-          onclick="flyToRestaurant({{ marker.lat }}, {{ marker.lng }}, '{{ marker.name|escapejs }}', '{{ marker.desc|escapejs }}')"
+          onclick="flyToRestaurant({% localize off %}{{ marker.lat }}, {{ marker.lng }}{% endlocalize %}, '{{ marker.name|escapejs }}', '{{ marker.desc|escapejs }}')"
           class="px-3 py-1 bg-[#B5451B]/10 hover:bg-[#B5451B]/20 text-[#B5451B] text-xs font-medium rounded-full transition-colors">
           {{ marker.name }} · {{ marker.city }}
         </button>

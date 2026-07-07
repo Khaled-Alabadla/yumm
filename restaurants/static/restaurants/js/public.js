@@ -8,6 +8,11 @@
   const MAP_CENTER = [31.9, 35.25];
   const MAP_DEFAULT_ZOOM = 8;
 
+  function parseCoord(value) {
+    if (value === null || value === undefined || value === '') return NaN;
+    return parseFloat(String(value).trim().replace(',', '.'));
+  }
+
   function getMapData() {
     const el = document.getElementById('rp-map-data');
     if (!el) return [];
@@ -82,8 +87,8 @@
     const layerGroup = L.layerGroup().addTo(map);
 
     markers.forEach((m) => {
-      const lat = parseFloat(m.lat);
-      const lng = parseFloat(m.lng);
+      const lat = parseCoord(m.lat);
+      const lng = parseCoord(m.lng);
       if (Number.isNaN(lat) || Number.isNaN(lng)) return;
       makeMarker(lat, lng, map, layerGroup, m, i18n);
     });
@@ -120,8 +125,8 @@
     const container = document.getElementById('rp-detail-map');
     if (!container || typeof L === 'undefined') return;
 
-    const lat = parseFloat(container.dataset.lat);
-    const lng = parseFloat(container.dataset.lng);
+    const lat = parseCoord(container.dataset.lat);
+    const lng = parseCoord(container.dataset.lng);
     const name = container.dataset.name || '';
     if (Number.isNaN(lat) || Number.isNaN(lng)) return;
 
