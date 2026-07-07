@@ -1,0 +1,9 @@
+{% load static i18n %}
+<img
+  src="{% static 'img/yumm-logo.svg' %}?v=1"
+  alt="{% if alt %}{{ alt }}{% else %}{% trans 'Yumm' %}{% endif %}"
+  width="{{ size|default:36 }}"
+  height="{{ size|default:36 }}"
+  class="yumm-logo-mark{% if extra_class %} {{ extra_class }}{% endif %}"
+  {% if shadow %}style="box-shadow: 0 4px 12px rgba(181, 69, 27, 0.4);"{% endif %}
+/>

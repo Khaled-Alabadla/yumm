@@ -41,13 +41,14 @@
     <div class="login-logo">
         <a href="{% url 'admin:index' %}" class="yumm-login-logo-link">
             {% if jazzmin_settings.login_logo_dark %}
-                <img class="yumm-login-logo logo-light" src="{% static jazzmin_settings.login_logo %}?v=2" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
-                <img class="yumm-login-logo logo-dark" src="{% static jazzmin_settings.login_logo_dark %}?v=2" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
+                <img class="yumm-login-logo logo-light" src="{% static jazzmin_settings.login_logo %}?v=3" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
+                <img class="yumm-login-logo logo-dark" src="{% static jazzmin_settings.login_logo_dark %}?v=3" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
             {% elif jazzmin_settings.login_logo %}
-                <img class="yumm-login-logo" src="{% static jazzmin_settings.login_logo %}?v=2" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
-            {% else %}
-                <span class="yumm-login-brand">{{ jazzmin_settings.site_header }}</span>
+                <img class="yumm-login-logo" src="{% static jazzmin_settings.login_logo %}?v=3" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
+            {% elif jazzmin_settings.site_logo %}
+                <img class="yumm-login-logo" src="{% static jazzmin_settings.site_logo %}?v=3" alt="{{ jazzmin_settings.site_header }}" width="36" height="36">
             {% endif %}
+            <span class="yumm-login-brand">{{ jazzmin_settings.site_header }}</span>
         </a>
     </div>
 

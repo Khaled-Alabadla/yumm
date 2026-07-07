@@ -1,5 +1,9 @@
 {% extends "restaurants/dashboard/base.html" %}
-{% load i18n %}
+{% load static i18n l10n %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+{% endblock %}
 
 {% block dashboard_content %}
 <section class="rd-card">
@@ -30,20 +34,22 @@
 
       <div class="rd-hours-section">
         <h3 class="rd-hours-heading">{% trans "Location on Map" %}</h3>
-        <p class="rd-field-hint">{% trans "Enter GPS coordinates to show your restaurant on the map. You can copy them from Google Maps." %}</p>
-        <div class="rd-form-row">
-          <div class="rd-field">
-            <label for="{{ form.latitude.id_for_label }}">{{ form.latitude.label }}</label>
-            {{ form.latitude }}
-            {% if form.latitude.errors %}<span class="rd-field-error">{{ form.latitude.errors.0 }}</span>{% endif %}
-          </div>
-
-          <div class="rd-field">
-            <label for="{{ form.longitude.id_for_label }}">{{ form.longitude.label }}</label>
-            {{ form.longitude }}
-            {% if form.longitude.errors %}<span class="rd-field-error">{{ form.longitude.errors.0 }}</span>{% endif %}
-          </div>
-        </div>
+        <p class="rd-field-hint">{% trans "Click on the map to set your restaurant location." %}</p>
+        {% localize off %}
+        <div
+          id="rd-location-map"
+          class="rd-location-map"
+          data-lat="{{ map_lat }}"
+          data-lng="{{ map_lng }}"
+          data-zoom="{{ map_zoom }}"
+          aria-label="{% trans 'Restaurant location map' %}"
+        ></div>
+        <p id="rd-location-coords" class="rd-location-coords" aria-live="polite"></p>
+        {{ form.latitude }}
+        {{ form.longitude }}
+        {% endlocalize %}
+        {% if form.latitude.errors %}<span class="rd-field-error">{{ form.latitude.errors.0 }}</span>{% endif %}
+        {% if form.longitude.errors %}<span class="rd-field-error">{{ form.longitude.errors.0 }}</span>{% endif %}
       </div>
 
       <div class="rd-hours-section">
@@ -71,4 +77,9 @@
     </div>
   </form>
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{% static 'js/yumm-map.js' %}?v=1"></script>
 {% endblock %}

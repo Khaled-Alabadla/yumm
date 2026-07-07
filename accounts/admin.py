@@ -5,7 +5,10 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from .models import CustomUser
+from config.admin_filters import RecentCreatedFilter
+from config.admin_mixins import SiteOwnerPermissionMixin
+
+from .models import ContactMessage, CustomUser
 
 
 @admin.action(description=_("Approve selected restaurant owners"))
@@ -137,3 +140,83 @@ class CustomUserAdmin(UserAdmin):
 
     def has_delete_permission(self, request, obj=None) -> bool:
         return request.user.is_superuser
+
+
+@admin.action(description=_("Mark selected messages as read"))
+def mark_messages_read(modeladmin, request, queryset):
+    updated = queryset.update(is_read=True)
+    modeladmin.message_user(
+        request,
+        _("%(count)d message(s) marked as read.") % {"count": updated},
+    )
+
+
+@admin.action(description=_("Mark selected messages as unread"))
+def mark_messages_unread(modeladmin, request, queryset):
+    updated = queryset.update(is_read=False)
+    modeladmin.message_user(
+        request,
+        _("%(count)d message(s) marked as unread.") % {"count": updated},
+    )
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
+    """Messages submitted via the public contact form."""
+
+    list_display = ("name", "email", "subject", "read_status", "created_at")
+    list_filter = ("subject", "is_read", RecentCreatedFilter)
+    search_fields = ("name", "email", "message")
+    readonly_fields = ("name", "email", "subject", "message", "created_at")
+    list_editable = ()
+    actions = (mark_messages_read, mark_messages_unread)
+
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "name",
+                    "email",
+                    "subject",
+                    "message",
+                    "is_read",
+                    "created_at",
+                ),
+            },
+        ),
+    )
+
+    @admin.display(description=_("Status"), ordering="is_read")
+    def read_status(self, obj):
+        if obj.is_read:
+            return format_html(
+                '<span style="color:#28a745;font-weight:600;">{}</span>',
+                _("Read"),
+            )
+        return format_html(
+            '<span style="color:#B5451B;font-weight:600;">{}</span>',
+            _("New"),
+        )
+
+    def has_module_permission(self, request) -> bool:
+        return request.user.is_staff
+
+    def has_view_permission(self, request, obj=None) -> bool:
+        return request.user.is_staff
+
+    def has_change_permission(self, request, obj=None) -> bool:
+        return request.user.is_staff
+
+    def has_add_permission(self, request) -> bool:
+        return False
+
+    def changeform_view(self, request, object_id=None, form_url="", extra_context=None):
+        response = super().changeform_view(
+            request, object_id, form_url, extra_context
+        )
+        if object_id and request.method == "GET":
+            ContactMessage.objects.filter(pk=object_id, is_read=False).update(
+                is_read=True
+            )
+        return response

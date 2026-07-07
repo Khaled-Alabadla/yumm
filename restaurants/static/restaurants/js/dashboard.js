@@ -233,4 +233,128 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteMenuItem(button);
     });
   });
+
+  initLocationPicker();
 });
+
+function initLocationPicker() {
+  var mapEl = document.getElementById("rd-location-map");
+  var latInput = document.getElementById("rd-latitude-input");
+  var lngInput = document.getElementById("rd-longitude-input");
+  var coordsEl = document.getElementById("rd-location-coords");
+
+  if (!mapEl || !latInput || !lngInput || typeof L === "undefined") return;
+
+  var PAL_LAT_MIN = 31.0;
+  var PAL_LAT_MAX = 33.5;
+  var PAL_LNG_MIN = 34.0;
+  var PAL_LNG_MAX = 35.9;
+
+  function isValidPalestineCoords(lat, lng) {
+    return (
+      Number.isFinite(lat) &&
+      Number.isFinite(lng) &&
+      lat >= PAL_LAT_MIN &&
+      lat <= PAL_LAT_MAX &&
+      lng >= PAL_LNG_MIN &&
+      lng <= PAL_LNG_MAX
+    );
+  }
+
+  function parseCoord(value) {
+    if (value === null || value === undefined || value === "") return NaN;
+    return parseFloat(String(value).trim().replace(",", "."));
+  }
+
+  var startLat = parseCoord(mapEl.dataset.lat);
+  var startLng = parseCoord(mapEl.dataset.lng);
+  var zoom = parseInt(mapEl.dataset.zoom, 10) || 14;
+  if (!isValidPalestineCoords(startLat, startLng)) {
+    startLat = 31.9038;
+    startLng = 35.2034;
+    zoom = 10;
+  }
+
+  var map = L.map(mapEl, {
+    scrollWheelZoom: true,
+    zoomControl: true,
+  }).setView([startLat, startLng], zoom);
+
+  if (window.YummMap && window.YummMap.addBaseTileLayer) {
+    window.YummMap.addBaseTileLayer(map);
+  } else {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap",
+    }).addTo(map);
+  }
+
+  var markerIcon = L.divIcon({
+    className: "rd-location-marker-wrap",
+    html: '<span class="rd-location-marker" aria-hidden="true"></span>',
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+  });
+
+  var marker = null;
+
+  function updateCoords(lat, lng) {
+    latInput.value = lat.toFixed(6);
+    lngInput.value = lng.toFixed(6);
+    if (coordsEl) {
+      coordsEl.textContent = lat.toFixed(6) + ", " + lng.toFixed(6);
+    }
+  }
+
+  function clearCoords() {
+    latInput.value = "";
+    lngInput.value = "";
+    if (coordsEl) coordsEl.textContent = "";
+  }
+
+  function placeMarker(lat, lng, shouldPan) {
+    if (!isValidPalestineCoords(lat, lng)) return;
+
+    if (marker) {
+      marker.setLatLng([lat, lng]);
+    } else {
+      marker = L.marker([lat, lng], {
+        draggable: true,
+        icon: markerIcon,
+        autoPan: true,
+      }).addTo(map);
+      marker.on("dragend", function () {
+        var pos = marker.getLatLng();
+        updateCoords(pos.lat, pos.lng);
+      });
+    }
+    updateCoords(lat, lng);
+    if (shouldPan) {
+      map.setView([lat, lng], Math.max(map.getZoom(), 14), { animate: true });
+    }
+  }
+
+  var savedLat = parseCoord(latInput.value);
+  var savedLng = parseCoord(lngInput.value);
+  if (isValidPalestineCoords(savedLat, savedLng)) {
+    placeMarker(savedLat, savedLng, true);
+  } else {
+    clearCoords();
+    if (latInput.value || lngInput.value) {
+      latInput.value = "";
+      lngInput.value = "";
+    }
+  }
+
+  map.on("click", function (event) {
+    placeMarker(event.latlng.lat, event.latlng.lng, false);
+  });
+
+  function refreshMapSize() {
+    map.invalidateSize({ pan: false });
+  }
+
+  setTimeout(refreshMapSize, 100);
+  setTimeout(refreshMapSize, 400);
+  window.addEventListener("resize", refreshMapSize);
+}

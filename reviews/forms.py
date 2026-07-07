@@ -18,6 +18,7 @@ class ReviewForm(forms.ModelForm):
                 attrs={
                     "class": "rp-review-textarea",
                     "rows": 4,
+                    "minlength": "10",
                     "placeholder": _("Share your dining experience…"),
                 },
             ),
@@ -27,7 +28,7 @@ class ReviewForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields["rating"].required = True
         self.fields["comment"].required = True
-        self.fields["rating"].widget.attrs.setdefault("value", "0")
+        self.fields["rating"].widget.attrs.setdefault("value", "")
 
     def clean_rating(self):
         rating = self.cleaned_data.get("rating")

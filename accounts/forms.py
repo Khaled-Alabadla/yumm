@@ -16,7 +16,7 @@ from django.core.validators import RegexValidator
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 
-from .models import CustomUser
+from .models import ContactMessage, CustomUser
 
 phone_validator = RegexValidator(
     regex=r"^[\d\s+\-()]{7,20}$",
@@ -443,31 +443,25 @@ class UserProfileForm(forms.ModelForm):
         return user
 
 
-class ContactForm(forms.Form):
-    SUBJECT_CHOICES = [
-        ("Restaurant Partnership", _("Restaurant Partnership")),
-        ("Technical Support", _("Technical Support")),
-        ("Media & Press", _("Media & Press")),
-        ("General Inquiry", _("General Inquiry")),
-    ]
+class ContactForm(forms.ModelForm):
+    """Public contact page — saves to ContactMessage."""
 
-    name = forms.CharField(
-        max_length=100,
-        error_messages={"required": _("Please enter your name.")},
-    )
-    email = forms.EmailField(
-        error_messages={
-            "required": _("Please enter your email."),
-            "invalid": _("Enter a valid email address."),
+    class Meta:
+        model = ContactMessage
+        fields = ("name", "email", "subject", "message")
+        error_messages = {
+            "name": {"required": _("Please enter your name.")},
+            "email": {
+                "required": _("Please enter your email."),
+                "invalid": _("Enter a valid email address."),
+            },
+            "message": {
+                "required": _("Please enter a message."),
+                "min_length": _("Message must be at least 10 characters."),
+            },
         }
-    )
-    subject = forms.ChoiceField(choices=SUBJECT_CHOICES)
-    message = forms.CharField(
-        widget=forms.Textarea,
-        min_length=10,
-        max_length=1000,
-        error_messages={
-            "required": _("Please enter a message."),
-            "min_length": _("Message must be at least 10 characters."),
-        }
-    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["message"].widget = forms.Textarea()
+        self.fields["message"].min_length = 10

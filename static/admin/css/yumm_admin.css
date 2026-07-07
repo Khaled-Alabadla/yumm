@@ -120,12 +120,13 @@ body.yumm-rtl {
 
 .yumm-brand-logo,
 #jazzy-logo .brand-image.yumm-brand-logo,
-.sidebar-brand .brand-image {
+.sidebar-brand .brand-image,
+.main-header .brand-image.yumm-brand-logo {
   width: 32px !important;
   height: 32px !important;
   min-width: 32px !important;
   min-height: 32px !important;
-  border-radius: 8px !important;
+  border-radius: 10px !important;
   opacity: 1 !important;
   box-shadow: none !important;
   object-fit: contain;
@@ -1236,9 +1237,10 @@ body.yumm-rtl .yumm-login-page {
 }
 
 .yumm-login-logo-link {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
+  gap: 0.625rem;
   text-decoration: none !important;
   width: auto !important;
   height: auto !important;
@@ -1253,8 +1255,8 @@ body.login-page.yumm-login-page .login-box .login-logo a img {
   max-width: 36px !important;
   max-height: 36px !important;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(190, 49, 39, 0.18);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(181, 69, 27, 0.35);
 }
 
 .yumm-login-brand {

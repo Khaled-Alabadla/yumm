@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Page Not Found" %} — Yumm{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/pages.css' %}?v=2"/>
+{% endblock %}
+
+{% block content %}
+<main id="main" class="yumm-page yumm-error-page" tabindex="-1">
+  <div class="yumm-error-page__inner">
+    <p class="yumm-error-page__code" aria-hidden="true">404</p>
+    <h1 class="yumm-error-page__title">{% trans "Page Not Found" %}</h1>
+    <p class="yumm-error-page__lead">
+      {% trans "Sorry, we couldn't find the page you're looking for. It may have moved or no longer exists." %}
+    </p>
+    <div class="yumm-error-page__actions">
+      <a href="{% url 'index' %}" class="yumm-btn-primary yumm-error-page__btn">
+        <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Back to Home" %}
+      </a>
+      <a href="{% url 'restaurants:list' %}" class="yumm-btn-outline yumm-error-page__btn">
+        <i data-lucide="utensils" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Browse Restaurants" %}
+      </a>
+      <button type="button" class="yumm-btn-ghost yumm-error-page__btn" onclick="history.back()">
+        <i data-lucide="arrow-left" class="w-4 h-4" aria-hidden="true"></i>
+        {% trans "Go Back" %}
+      </button>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>if (typeof lucide !== "undefined") lucide.createIcons();</script>
+{% endblock %}

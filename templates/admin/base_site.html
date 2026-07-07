@@ -12,7 +12,7 @@
   document.documentElement.setAttribute("data-bs-theme", "light");
   document.documentElement.setAttribute("dir", "{{ LANGUAGE_BIDI|yesno:'rtl,ltr' }}");
   {% if LANGUAGE_BIDI %}document.documentElement.classList.add("yumm-rtl");{% endif %}
-  window.YUMM_BRAND_LOGO = "{% static 'admin/img/yumm-brand.svg' %}?v=2";
+  window.YUMM_BRAND_LOGO = "{% static jazzmin_settings.site_logo %}?v=3";
 </script>
 {{ block.super }}
 {% endblock %}
@@ -24,7 +24,7 @@
     <aside class="app-sidebar bg-body-secondary shadow {{ jazzmin_ui.sidebar_classes }}" id="jazzy-sidebar" data-bs-theme="dark">
         <div class="sidebar-brand">
             <a href="{% url 'admin:index' %}" class="brand-link {{ jazzmin_ui.brand_classes }}" id="jazzy-logo">
-                <img src="{% static 'admin/img/yumm-brand.svg' %}?v=2" alt="{{ jazzmin_settings.site_header }}" class="yumm-brand-logo brand-image" width="32" height="32">
+                <img src="{% static jazzmin_settings.site_logo %}?v=3" alt="{{ jazzmin_settings.site_header }}" class="yumm-brand-logo brand-image" width="32" height="32">
                 <span class="brand-text fw-light">{{ jazzmin_settings.site_brand }}</span>
             </a>
         </div>
