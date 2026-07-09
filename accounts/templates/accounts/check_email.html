@@ -1,7 +1,7 @@
 {% extends "baseaccount.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Request under review" %} | Yumm{% endblock %}
+{% block title %}{% trans "Verify your email" %} | Yumm{% endblock %}
 
 {% block content %}
 <main class="flex items-center justify-center min-h-[calc(100vh-56px)] px-4 py-12">
@@ -20,10 +20,10 @@
         class="text-2xl sm:text-[1.75rem] font-extrabold tracking-tight mb-2"
         style="color: var(--text-primary)"
       >
-        {% trans "Your request is under review" %}
+        {% trans "Verify your email" %}
       </h1>
       <p class="text-sm" style="color: var(--text-secondary)">
-        {% trans "Restaurant registration" %}
+        {% trans "One step left to activate your account" %}
       </p>
     </div>
 
@@ -31,11 +31,20 @@
       class="rounded-2xl p-7 sm:p-8 text-center"
       style="background: var(--card); border: 1px solid var(--border); box-shadow: 0 8px 30px rgba(181, 69, 27, 0.06);"
     >
+      {% include "accounts/includes/messages.html" %}
+
       <p
-        class="text-[15px] leading-relaxed mb-7"
+        class="text-[15px] leading-relaxed mb-5"
         style="color: var(--text-secondary)"
       >
-        {% trans "Thank you for registering your restaurant on Yumm. Our team is reviewing your request. You will receive an email once it has been approved, after which you may sign in." %}
+        {% trans "We have sent a confirmation link to your email address. Please open the message and confirm your email to activate your account, then return to sign in." %}
+      </p>
+
+      <p
+        class="text-sm leading-relaxed mb-7 pb-7"
+        style="color: var(--text-secondary); border-bottom: 1px solid var(--border);"
+      >
+        {% trans "Did not receive the email? Please check your spam or junk folder." %}
       </p>
 
       <a

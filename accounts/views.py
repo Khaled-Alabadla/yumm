@@ -50,17 +50,6 @@ _ROLE_CHOICES = [
 ]
 
 
-def get_landing_i18n():
-    return {
-        "traditionalPalestinian": gettext("Traditional Palestinian"),
-        "cafeBreakfast": gettext("Cafe & Breakfast"),
-        "grillsBbq": gettext("Grills & BBQ"),
-        "ramallah": gettext("Ramallah"),
-        "gaza": gettext("Gaza"),
-        "jerusalem": gettext("Jerusalem"),
-    }
-
-
 def get_cta_subtitle(user_count: int) -> str:
     if user_count == 1:
         return gettext(
@@ -136,7 +125,6 @@ def index(request):
         request,
         "index.html",
         {
-            "landing_i18n": get_landing_i18n(),
             "stats": stats,
             "cta_subtitle": get_cta_subtitle(stats["users"]),
             "top_restaurants": top_restaurants,
@@ -163,7 +151,7 @@ class RegisterView(CreateView):
     def get_success_url(self):
         if self.object.role == CustomUser.Role.OWNER:
             return reverse_lazy("accounts:pending")
-        return reverse_lazy("accounts:login")
+        return reverse_lazy("accounts:check_email")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -174,10 +162,19 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(
-            self.request,
-            _("Registration successful. Please log in."),
-        )
+        if self.object.role == CustomUser.Role.USER:
+            from .emails import send_user_verification_email
+
+            send_user_verification_email(self.object, self.request)
+            messages.success(
+                self.request,
+                _("Account created. Please confirm your email to continue."),
+            )
+        else:
+            messages.success(
+                self.request,
+                _("Registration successful. Your request is pending approval."),
+            )
         return response
 
     def form_invalid(self, form):
@@ -438,3 +435,55 @@ def terms(request):
 
 class PendingView(TemplateView):
     template_name = "accounts/pending.html"
+
+
+class CheckEmailView(TemplateView):
+    """Shown after regular-user registration — ask them to confirm email."""
+
+    template_name = "accounts/check_email.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(reverse_lazy("index"))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = _("Check your email")
+        return context
+
+
+class VerifyEmailView(View):
+    """Activate a regular user account from the emailed confirmation link."""
+
+    def get(self, request, uidb64, token):
+        from django.contrib.auth.tokens import default_token_generator
+        from django.utils.encoding import force_str
+        from django.utils.http import urlsafe_base64_decode
+
+        user = None
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            user = None
+
+        if (
+            user is not None
+            and user.role == CustomUser.Role.USER
+            and default_token_generator.check_token(user, token)
+        ):
+            if not user.is_active:
+                user.is_active = True
+                user.save(update_fields=["is_active"])
+            messages.success(
+                request,
+                _("Email confirmed successfully. You may now sign in."),
+            )
+            return redirect("accounts:login")
+
+        messages.error(
+            request,
+            _("This confirmation link is invalid or has expired."),
+        )
+        return redirect("accounts:login")

@@ -23,12 +23,29 @@ from .models import (
 
 @admin.action(description=_("Approve selected restaurants"))
 def approve_restaurants(modeladmin, request, queryset):
+    from accounts.emails import send_owner_approved_email
+
     updated = 0
+    emailed = 0
+    skipped_no_owner = 0
+    failed = 0
     for restaurant in queryset.select_related("owner"):
         restaurant.status = Restaurant.Status.ACTIVE
         restaurant.is_open = True
+        # Skip signal email — we send explicitly below with admin feedback.
+        restaurant._skip_approval_email = True
         restaurant.save(update_fields=["status", "is_open", "updated_at"])
         updated += 1
+
+        owner = restaurant.owner
+        if not owner or not owner.email:
+            skipped_no_owner += 1
+            continue
+        if send_owner_approved_email(owner, restaurant):
+            emailed += 1
+        else:
+            failed += 1
+
     modeladmin.message_user(
         request,
         ngettext(
@@ -38,6 +55,30 @@ def approve_restaurants(modeladmin, request, queryset):
         )
         % {"count": updated},
     )
+    if emailed:
+        modeladmin.message_user(
+            request,
+            _("Approval email sent to %(count)d owner(s).") % {"count": emailed},
+        )
+    if skipped_no_owner:
+        modeladmin.message_user(
+            request,
+            _(
+                "%(count)d restaurant(s) have no owner email — no notification sent."
+            )
+            % {"count": skipped_no_owner},
+            level=30,
+        )
+    if failed:
+        modeladmin.message_user(
+            request,
+            _(
+                "Failed to send approval email for %(count)d restaurant(s). "
+                "Check email settings / server logs."
+            )
+            % {"count": failed},
+            level=40,
+        )
 
 
 @admin.action(description=_("Reject selected restaurants"))
@@ -185,6 +226,74 @@ class RestaurantAdmin(SiteOwnerPermissionMixin, admin.ModelAdmin):
 
     def has_module_permission(self, request) -> bool:
         return request.user.is_staff
+
+    def save_model(self, request, obj, form, change):
+        """Send approval email when status becomes Active in the admin form."""
+        from accounts.emails import send_owner_approved_email
+        from accounts.models import CustomUser
+
+        previous_status = None
+        if change and obj.pk:
+            previous_status = (
+                Restaurant.objects.filter(pk=obj.pk)
+                .values_list("status", flat=True)
+                .first()
+            )
+
+        # Avoid double-send from the post_save signal.
+        obj._skip_approval_email = True
+        super().save_model(request, obj, form, change)
+
+        became_active = (
+            obj.status == Restaurant.Status.ACTIVE
+            and previous_status != Restaurant.Status.ACTIVE
+        )
+        if not became_active:
+            return
+
+        owner = obj.owner
+        if owner is None and obj.owner_id:
+            owner = CustomUser.objects.filter(pk=obj.owner_id).first()
+
+        if not owner or not owner.email:
+            self.message_user(
+                request,
+                _(
+                    "Restaurant is now active, but no owner email was found — "
+                    "approval notification was not sent."
+                ),
+                level=30,
+            )
+            return
+
+        try:
+            ok = send_owner_approved_email(owner, obj)
+        except Exception as exc:
+            self.message_user(
+                request,
+                _(
+                    "Restaurant is active, but the approval email to %(email)s failed: %(error)s"
+                )
+                % {"email": owner.email, "error": str(exc)},
+                level=40,
+            )
+            return
+
+        if ok:
+            self.message_user(
+                request,
+                _("Approval email sent to %(email)s.") % {"email": owner.email},
+            )
+        else:
+            self.message_user(
+                request,
+                _(
+                    "Restaurant is active, but the approval email to %(email)s failed. "
+                    "Check email settings / server logs."
+                )
+                % {"email": owner.email},
+                level=40,
+            )
 
 
 # ---------------------------------------------------------------------------

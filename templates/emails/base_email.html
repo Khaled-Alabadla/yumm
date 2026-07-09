@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="{{ email_lang|default:'en' }}" dir="{{ email_dir|default:'ltr' }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>{{ email_title }}</title>
+  <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!--<![endif]-->
+</head>
+<body style="margin:0;padding:0;background:#f6f3f0;-webkit-text-size-adjust:100%;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+    {{ email_preheader|default:email_title }}
+  </div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f6f3f0;width:100%;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;width:100%;background:#ffffff;border-radius:20px;overflow:hidden;border:1px solid #efe6e1;">
+          {# Brand header #}
+          <tr>
+            <td align="center" style="background:#B5451B;padding:36px 32px;">
+              <div style="font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};font-size:32px;font-weight:800;letter-spacing:0.06em;color:#ffffff;line-height:1.2;">
+                Yumm
+              </div>
+              <div style="margin-top:10px;font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};font-size:14px;font-weight:500;color:rgba(255,255,255,0.92);line-height:1.5;">
+                {% if email_lang == 'ar' %}منصة اكتشاف المطاعم في فلسطين{% else %}Palestine&rsquo;s restaurant discovery platform{% endif %}
+              </div>
+            </td>
+          </tr>
+
+          {# Body #}
+          <tr>
+            <td dir="{{ email_dir|default:'ltr' }}" style="padding:40px 36px 28px;font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};color:#1f2937;font-size:16px;line-height:1.85;text-align:{% if email_lang == 'ar' %}right{% else %}left{% endif %};direction:{{ email_dir|default:'ltr' }};">
+              {% block content %}{% endblock %}
+            </td>
+          </tr>
+
+          {# Footer #}
+          <tr>
+            <td align="center" style="padding:22px 32px 32px;border-top:1px solid #f0e8e4;font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};color:#9ca3af;font-size:12px;line-height:1.7;">
+              {% if email_lang == 'ar' %}
+                Yumm &middot; صُنع بحب لفلسطين
+              {% else %}
+                Yumm &middot; Made with love for Palestine
+              {% endif %}
+              <br />
+              <a href="{{ site_url }}" style="color:#B5451B;text-decoration:none;font-weight:600;">{{ site_url }}</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

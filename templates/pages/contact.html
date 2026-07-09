@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Contact" %} — Yumm{% endblock %}
+{% block title %}{% trans "Contact" %} | Yumm{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
@@ -13,7 +13,7 @@
     <div class="yumm-page-hero__inner">
       <p class="yumm-page-eyebrow">{% trans "Get In Touch" %}</p>
       <h1 class="yumm-page-title">{% trans "We'd Love to Hear From You" %}</h1>
-      <p class="yumm-page-lead">{% trans "Whether you're a restaurant owner, food lover, or just curious — reach out and our team will reply soon." %}</p>
+      <p class="yumm-page-lead">{% trans "Whether you're a restaurant owner, food lover, or just curious, reach out and our team will reply soon." %}</p>
     </div>
   </header>
 
@@ -30,7 +30,10 @@
         </div>
         {% endif %}
 
-        <form method="post" action="{% url 'contact' %}" class="yumm-form-stack" novalidate>
+        <form method="post" action="{% url 'contact' %}" class="yumm-form-stack" novalidate
+          data-error-name-required="{% trans 'Name is required.' %}"
+          data-error-email-invalid="{% trans 'Please enter a valid email.' %}"
+          data-error-message-short="{% trans 'Message must be at least 10 characters.' %}">
           {% csrf_token %}
           <div class="yumm-field">
             <label for="id_name">{% trans "Full Name" %}</label>

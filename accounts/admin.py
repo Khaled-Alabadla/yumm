@@ -23,6 +23,7 @@ def approve_owners(modeladmin, request, queryset):
         is_active=True,
     )
     for owner in CustomUser.objects.filter(pk__in=owner_ids):
+        # Activating restaurants triggers the approval email via signal.
         sync_restaurants_for_owner(owner)
     modeladmin.message_user(
         request,

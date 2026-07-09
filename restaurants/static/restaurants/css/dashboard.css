@@ -132,7 +132,7 @@
   transition: border-color 0.2s, color 0.2s;
 }
 
-.rd-icon-btn:hover {
+.rd-icon-btn:not(.rd-icon-btn--danger):hover {
   border-color: var(--rd-primary);
   color: var(--rd-primary);
 }
@@ -142,12 +142,27 @@
 }
 
 .rd-icon-btn--danger {
-  color: var(--danger);
+  color: #dc2626;
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.28);
 }
 
 .rd-icon-btn--danger:hover {
-  border-color: var(--danger);
-  color: var(--danger);
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.14);
+}
+
+.dark .rd-icon-btn--danger {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.dark .rd-icon-btn--danger:hover {
+  color: #fecaca;
+  border-color: #f87171;
+  background: rgba(239, 68, 68, 0.28);
 }
 
 .rd-lang-btn {
@@ -838,6 +853,47 @@ input.rd-file::file-selector-button:hover {
   border-radius: 1rem !important;
   padding: 1.5rem 1.35rem 1.35rem !important;
   font-family: inherit !important;
+  background: var(--card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 18px 48px rgba(28, 20, 18, 0.18) !important;
+}
+
+html.dark .rd-swal-popup {
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.55) !important;
+}
+
+html.dark .swal2-container.swal2-backdrop-show {
+  background: rgba(0, 0, 0, 0.68) !important;
+}
+
+.rd-swal-popup .swal2-icon {
+  margin: 0.75rem auto 0.5rem !important;
+  transform: scale(0.92);
+}
+
+.rd-swal-popup .swal2-icon.swal2-warning {
+  border-color: #f59e0b !important;
+  color: #f59e0b !important;
+}
+
+html.dark .rd-swal-popup .swal2-icon.swal2-warning {
+  border-color: #fbbf24 !important;
+  color: #fbbf24 !important;
+}
+
+.rd-swal-popup .swal2-icon.swal2-success [class^="swal2-success-line"],
+.rd-swal-popup .swal2-icon.swal2-success .swal2-success-ring {
+  border-color: var(--success) !important;
+}
+
+.rd-swal-popup .swal2-icon.swal2-error [class^="swal2-x-mark-line"] {
+  background-color: var(--danger) !important;
+}
+
+.rd-swal-text,
+.rd-swal-popup .swal2-html-container {
+  color: var(--text-primary) !important;
 }
 
 .rd-swal-popup--ltr {
@@ -915,10 +971,25 @@ input.rd-file::file-selector-button:hover {
   color: #fff !important;
 }
 
+.rd-swal-confirm:hover {
+  background: var(--rd-primary-hover) !important;
+}
+
 .rd-swal-cancel {
   background: var(--secondary-bg) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
+}
+
+html.dark .rd-swal-cancel {
+  background: #2a2422 !important;
+  color: var(--text-primary) !important;
+  border-color: rgba(200, 120, 100, 0.22) !important;
+}
+
+html.dark .rd-swal-cancel:hover {
+  background: #342c29 !important;
+  border-color: rgba(200, 120, 100, 0.32) !important;
 }
 
 /* ── Modal ── */

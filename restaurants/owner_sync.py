@@ -36,10 +36,13 @@ def sync_restaurants_for_owner(owner: CustomUser) -> None:
         return
 
     if owner.is_approved and owner.is_active:
-        Restaurant.objects.filter(owner=owner).update(
+        for restaurant in Restaurant.objects.filter(owner=owner).exclude(
             status=Restaurant.Status.ACTIVE,
-            is_open=True,
-        )
+        ):
+            restaurant.status = Restaurant.Status.ACTIVE
+            restaurant.is_open = True
+            # Individual save so signals can sync + email the owner.
+            restaurant.save(update_fields=["status", "is_open", "updated_at"])
     elif not owner.is_approved or not owner.is_active:
         Restaurant.objects.filter(owner=owner).exclude(
             status=Restaurant.Status.REJECTED,
