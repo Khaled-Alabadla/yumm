@@ -57,160 +57,6 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-/* ─────────────────────────────
-   Translations
-───────────────────────────── */
-const translations = {
-    en: {
-        // Navbar
-        'nav-home':          'Home',
-        'nav-restaurants':   'Restaurants',
-        'nav-ai':            'AI Assistant',
-        'nav-login':         'Login',
-        'nav-register':      'Register',
-        // Hero
-        'hero-badge':        "Palestine's #1 Food Platform",
-        'hero-h1-line1':     'Discover the Best',
-        'hero-h1-span':      'Restaurants',
-        'hero-h1-line2':     'in Palestine',
-        'hero-desc':         'Explore menus, reviews, ratings, and our AI Assistant — all in one place.',
-        'hero-search-ph':    'Search restaurants...',
-        'hero-search-btn':   'Search',
-        'hero-cta1':         'Explore Restaurants',
-        'hero-cta2':         'Ask AI Assistant',
-        // Stats
-        'stat-restaurants':  'Restaurants',
-        'stat-reviews':      'Reviews',
-        'stat-users':        'Happy Users',
-        'stat-rated':        'Top Rated',
-        // Features
-        'feat-label':        'Features',
-        'feat-h2':           'Everything You Need',
-        'feat-desc':         "A complete platform for discovering, reviewing, and reserving the best dining in Palestine.",
-        'feat1-title':       'AI Assistant',
-        'feat1-desc':        'Describe your craving and our AI finds the perfect match instantly.',
-        'feat2-title':       'Interactive Map',
-        'feat2-desc':        'Discover restaurants near you on a live, interactive map.',
-        'feat3-title':       'Reviews & Ratings',
-        'feat3-desc':        'Honest reviews from a trusted Palestinian food community.',
-        'feat4-title':       'Wishlist',
-        'feat4-desc':        'Save your favourite restaurants for future visits.',
-        // How it works
-        'how-label':         'Process',
-        'how-h2':            'How It Works',
-        'how-desc':          'Get started and find your next favourite restaurant in minutes.',
-        'step1-title':       'Create Account',
-        'step1-desc':        'Register in under a minute, for free.',
-        'step2-title':       'Explore Restaurants',
-        'step2-desc':        'Browse hundreds of curated options.',
-        'step3-title':       'Ask AI Assistant',
-        'step3-desc':        'Get hyper-personalised suggestions.',
-        'step4-title':       'Reserve or Order',
-        'step4-desc':        'Book a table or request delivery.',
-        'step5-title':       'Leave a Review',
-        'step5-desc':        'Share your experience with the community.',
-        // Restaurants section
-        'rest-label':        'Handpicked',
-        'rest-h2':           'Top Restaurants',
-        'rest-desc':         "Highest-rated picks across Palestine",
-        'rest-view-all':     'View All',
-        'card-view-btn':     'View Restaurant',
-        // CTA
-        'cta-h2':            'Ready to Explore?',
-        'cta-desc':          "Join 1000+ food lovers discovering Palestine's best restaurants every day.",
-        'cta-btn':           'Create Free Account',
-        // Footer
-        'footer-desc':       "Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.",
-        'footer-platform':   'Platform',
-        'footer-company':    'Company',
-        'footer-about':      'About Us',
-        'footer-contact':    'Contact',
-        'footer-privacy':    'Privacy Policy',
-        'footer-terms':      'Terms of Service',
-        'footer-copy':       '© 2024 Yumm. Made with love for Palestine 🇵🇸',
-    },
-    ar: {
-        'nav-home':          'الرئيسية',
-        'nav-restaurants':   'المطاعم',
-        'nav-ai':            'مساعد الذكاء الاصطناعي',
-        'nav-login':         'تسجيل الدخول',
-        'nav-register':      'إنشاء حساب',
-        'hero-badge':        'منصة الطعام الأولى في فلسطين',
-        'hero-h1-line1':     'اكتشف أفضل',
-        'hero-h1-span':      'المطاعم',
-        'hero-h1-line2':     'في فلسطين',
-        'hero-desc':         'استكشف القوائم والتقييمات ومساعد الذكاء الاصطناعي — كل شيء في مكان واحد.',
-        'hero-search-ph':    'ابحث عن مطاعم...',
-        'hero-search-btn':   'بحث',
-        'hero-cta1':         'استكشف المطاعم',
-        'hero-cta2':         'اسأل المساعد الذكي',
-        'stat-restaurants':  'مطعم',
-        'stat-reviews':      'تقييم',
-        'stat-users':        'مستخدم سعيد',
-        'stat-rated':        'الأعلى تقييماً',
-        'feat-label':        'المميزات',
-        'feat-h2':           'كل ما تحتاجه',
-        'feat-desc':         'منصة متكاملة لاكتشاف أفضل المطاعم الفلسطينية ومراجعتها وحجزها.',
-        'feat1-title':       'المساعد الذكي',
-        'feat1-desc':        'صف ما تشتهيه وسيجد ذكاؤنا الاصطناعي التطابق المثالي على الفور.',
-        'feat2-title':       'خريطة تفاعلية',
-        'feat2-desc':        'اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية.',
-        'feat3-title':       'مراجعات وتقييمات',
-        'feat3-desc':        'مراجعات صادقة من مجتمع طعام فلسطيني موثوق.',
-        'feat4-title':       'قائمة المفضلة',
-        'feat4-desc':        'احفظ مطاعمك المفضلة لزيارات مستقبلية.',
-        'how-label':         'كيف يعمل',
-        'how-h2':            'كيف يعمل التطبيق',
-        'how-desc':          'ابدأ واعثر على مطعمك المفضل القادم في دقائق.',
-        'step1-title':       'إنشاء حساب',
-        'step1-desc':        'سجّل في أقل من دقيقة، مجاناً.',
-        'step2-title':       'استكشف المطاعم',
-        'step2-desc':        'تصفح مئات الخيارات المنتقاة.',
-        'step3-title':       'اسأل المساعد الذكي',
-        'step3-desc':        'احصل على اقتراحات مخصصة لك.',
-        'step4-title':       'احجز أو اطلب',
-        'step4-desc':        'احجز طاولة أو اطلب التوصيل.',
-        'step5-title':       'اترك تقييماً',
-        'step5-desc':        'شارك تجربتك مع المجتمع.',
-        'rest-label':        'مختارة بعناية',
-        'rest-h2':           'أفضل المطاعم',
-        'rest-desc':         'أعلى التقييمات في جميع أنحاء فلسطين',
-        'rest-view-all':     'عرض الكل',
-        'card-view-btn':     'عرض المطعم',
-        'cta-h2':            'مستعد للاستكشاف؟',
-        'cta-desc':          'انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم.',
-        'cta-btn':           'إنشاء حساب مجاني',
-        'footer-desc':       'منصة فلسطين الرائدة لاكتشاف المطاعم وتقييمها. اعثر على أرقى تجارب الطعام في كل مدينة.',
-        'footer-platform':   'المنصة',
-        'footer-company':    'الشركة',
-        'footer-about':      'من نحن',
-        'footer-contact':    'تواصل معنا',
-        'footer-privacy':    'سياسة الخصوصية',
-        'footer-terms':      'شروط الخدمة',
-        'footer-copy':       '© 2024 Yumm. صُنع بحب لفلسطين 🇵🇸',
-    },
-};
-
-/* ─────────────────────────────
-   Apply translations to page
-───────────────────────────── */
-function applyTranslations(code) {
-  const t = translations[code] || translations['en'];
-
-  // data-i18n على النصوص العادية
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (!t[key]) return;
-    el.textContent = t[key];
-  });
-
-  // data-i18n-placeholder على الـ inputs
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key]) el.placeholder = t[key];
-  });
-}
-
 function submitSiteLanguage(code) {
     const form = document.getElementById('lang-form');
     if (!form) return false;
@@ -221,16 +67,12 @@ function submitSiteLanguage(code) {
 }
 
 /* ─────────────────────────────
-   Language toggle 
+   Language toggle (Django set_language)
 ───────────────────────────── */
-let currentLang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
-
 function toggleLang() {
-    submitSiteLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    const lang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
+    submitSiteLanguage(lang === 'ar' ? 'en' : 'ar');
 }
-
-
-applyTranslations(currentLang);
 
 /* ─────────────────────────────
    Accessibility Widget — open / close
@@ -257,23 +99,14 @@ function toggleLangDrop() {
   document.getElementById('lang-drop').classList.toggle('hidden');
 }
 
-function setLang(flag, name, code, rtl) {
+function setLang(flag, name, code) {
     document.getElementById('lang-flag').textContent = flag;
     document.getElementById('lang-name').textContent = name;
     document.getElementById('lang-drop').classList.add('hidden');
 
     if (code === 'ar' || code === 'en') {
         submitSiteLanguage(code);
-        return;
     }
-
-    html.lang    = code;
-    html.dir     = rtl ? 'rtl' : 'ltr';
-    currentLang  = code;
-    const btn = document.getElementById('lang-btn');
-    if (btn) btn.textContent = code === 'ar' ? 'EN' : 'ع';
-
-    applyTranslations(code);
 }
 
 document.addEventListener('click', e => {
@@ -352,13 +185,14 @@ let lh = 0;
 function changeLineH(d) {
   lh = Math.round((lh + d) * 10) / 10;
   lh = Math.max(-0.4, Math.min(1.2, lh));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
+  const linehVal = document.getElementById('lineh-val');
+  if (!linehVal) return;
   if (lh === 0) {
     document.body.style.lineHeight = '';
-    document.getElementById('lineh-val').textContent = def;
+    linehVal.textContent = defaultFontLabel();
   } else {
     document.body.style.lineHeight = (1.5 + lh).toFixed(1);
-    document.getElementById('lineh-val').textContent = (1.5 + lh).toFixed(1);
+    linehVal.textContent = (1.5 + lh).toFixed(1);
   }
 }
 
@@ -370,13 +204,14 @@ let ls = 0;
 function changeLetterS(d) {
   ls = Math.round((ls + d) * 100) / 100;
   ls = Math.max(-0.1, Math.min(0.3, ls));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
+  const lettersVal = document.getElementById('letters-val');
+  if (!lettersVal) return;
   if (ls === 0) {
     document.body.style.letterSpacing = '';
-    document.getElementById('letters-val').textContent = def;
+    lettersVal.textContent = defaultFontLabel();
   } else {
     document.body.style.letterSpacing = ls + 'em';
-    document.getElementById('letters-val').textContent = ls + 'em';
+    lettersVal.textContent = ls + 'em';
   }
 }
 
@@ -387,9 +222,12 @@ let scaleVal = 100;
 
 function changeScale(d) {
   scaleVal = Math.max(70, Math.min(150, scaleVal + d));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
-  document.getElementById('main').style.zoom = scaleVal === 100 ? '' : (scaleVal / 100);
-  document.getElementById('scale-val').textContent = scaleVal === 100 ? def : scaleVal + '%';
+  const main = document.getElementById('main');
+  const scaleValEl = document.getElementById('scale-val');
+  if (main) main.style.zoom = scaleVal === 100 ? '' : (scaleVal / 100);
+  if (scaleValEl) {
+    scaleValEl.textContent = scaleVal === 100 ? defaultFontLabel() : scaleVal + '%';
+  }
 }
 
 /* ─────────────────────────────
@@ -416,18 +254,18 @@ function resetAllA11y() {
     document.getElementById('main')?.style && (document.getElementById('main').style.zoom = '');
     document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
 
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
   fs = 16; html.style.fontSize = '16px';
   lh = 0;  ls = 0;  scaleVal = 100;
 
+    const def = defaultFontLabel();
     const fontVal = document.getElementById('font-val');
-    if (fontVal) fontVal.textContent = defaultFontLabel();
+    if (fontVal) fontVal.textContent = def;
     const linehVal = document.getElementById('lineh-val');
-    if (linehVal) linehVal.textContent = 'Default';
+    if (linehVal) linehVal.textContent = def;
     const lettersVal = document.getElementById('letters-val');
-    if (lettersVal) lettersVal.textContent = 'Default';
+    if (lettersVal) lettersVal.textContent = def;
     const scaleValEl = document.getElementById('scale-val');
-    if (scaleValEl) scaleValEl.textContent = 'Default';
+    if (scaleValEl) scaleValEl.textContent = def;
 
   document.querySelectorAll('.a11y-opt').forEach(b =>
     b.classList.remove('border-[#B5451B]', 'text-[#B5451B]')
@@ -636,16 +474,6 @@ document.addEventListener('keydown', e => {
 /* ─────────────────────────────
    Wishlist data + render
 ───────────────────────────── */
-function getLandingI18n() {
-  const el = document.getElementById('landing-i18n');
-  if (!el) return {};
-  try {
-    return JSON.parse(el.textContent);
-  } catch {
-    return {};
-  }
-}
-
 function getLandingWishlist() {
   const el = document.getElementById('landing-wishlist');
   if (!el) return [];
@@ -824,9 +652,10 @@ function buildMap() {
   });
 
   const restaurants = getMapRestaurants();
+  const viewLabel = document.getElementById('map-search-input')?.dataset.viewLabel || 'View';
   restaurants.forEach(r => {
     const popup = r.url
-      ? `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span><br><a href="${r.url}" style="color:#B5451B;font-size:12px;font-weight:600">View →</a>`
+      ? `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span><br><a href="${r.url}" style="color:#B5451B;font-size:12px;font-weight:600">${viewLabel} →</a>`
       : `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span>`;
     L.marker([r.lat, r.lng], { icon: redIcon })
       .addTo(yummMap)
@@ -851,22 +680,25 @@ function flyToRestaurant(lat, lng, name, desc) {
 }
 
 async function searchMapLocation() {
-  const query = document.getElementById('map-search-input')?.value.trim();
+  const input = document.getElementById('map-search-input');
+  const query = input?.value.trim();
   if (!query || !yummMap) return;
+  const notFound = input.dataset.notFound || 'Location not found. Try a different search.';
+  const searchFailed = input.dataset.searchFailed || 'Search failed. Please try again.';
   try {
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
       { headers: { 'Accept-Language': window.YummMap.mapSearchLanguage() } },
     );
     const data = await res.json();
-    if (!data.length) { alert('Location not found. Try a different search.'); return; }
+    if (!data.length) { alert(notFound); return; }
     const { lat, lon, display_name } = data[0];
     if (searchMarker) yummMap.removeLayer(searchMarker);
     searchMarker = L.marker([lat, lon]).addTo(yummMap)
       .bindPopup(`<b>🔍 ${query}</b><br><span style="color:#666;font-size:11px">${display_name.substring(0, 60)}...</span>`)
       .openPopup();
     yummMap.flyTo([lat, lon], 13, { duration: 1.2 });
-  } catch { alert('Search failed. Please try again.'); }
+  } catch { alert(searchFailed); }
 }
 
 document.getElementById('map-search-input')?.addEventListener('keydown', e => {
@@ -905,17 +737,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initWishlistAjax();
   updateWishlistFabBadge();
 
-  const form = document.querySelector('form[action="/contact/"]');
-  if (!form) return;
+  const form = document.querySelector('.yumm-form-stack[method="post"]');
+  if (!form || !form.dataset.errorNameRequired) return;
   form.addEventListener('submit', e => {
     const name    = form.querySelector('[name="name"]');
     const email   = form.querySelector('[name="email"]');
     const message = form.querySelector('[name="message"]');
     clearErrors();
     let valid = true;
-    if (!name.value.trim()) { showError(name, 'Name is required.'); valid = false; }
-    if (!email.value.trim() || !email.value.includes('@')) { showError(email, 'Please enter a valid email.'); valid = false; }
-    if (!message.value.trim() || message.value.trim().length < 10) { showError(message, 'Message must be at least 10 characters.'); valid = false; }
+    if (!name.value.trim()) {
+      showError(name, form.dataset.errorNameRequired);
+      valid = false;
+    }
+    if (!email.value.trim() || !email.value.includes('@')) {
+      showError(email, form.dataset.errorEmailInvalid);
+      valid = false;
+    }
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      showError(message, form.dataset.errorMessageShort);
+      valid = false;
+    }
     if (!valid) e.preventDefault();
   });
   function showError(field, msg) {

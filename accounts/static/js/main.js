@@ -32,170 +32,30 @@ function toggleTheme() { applyTheme(!html.classList.contains('dark')); }
 /* ─────────────────────────────
    Live Clock
 ───────────────────────────── */
+function getClockLocale() {
+  const lang = document.documentElement.lang || 'en';
+  return lang.startsWith('ar') ? 'ar-PS' : 'en-US';
+}
+
 function updateClock() {
   const now = new Date();
   const t = document.getElementById('clock-time');
   const d = document.getElementById('clock-date');
-  if (!t) return;
-  t.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  d.textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+  if (!t || !d) return;
+  const locale = getClockLocale();
+  t.textContent = now.toLocaleTimeString(locale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  d.textContent = now.toLocaleDateString(locale, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  });
 }
 updateClock();
 setInterval(updateClock, 1000);
-
-/* ─────────────────────────────
-   Translations
-───────────────────────────── */
-const translations = {
-    en: {
-        // Navbar
-        'nav-home':          'Home',
-        'nav-restaurants':   'Restaurants',
-        'nav-ai':            'AI Assistant',
-        'nav-login':         'Login',
-        'nav-register':      'Register',
-        // Hero
-        'hero-badge':        "Palestine's #1 Food Platform",
-        'hero-h1-line1':     'Discover the Best',
-        'hero-h1-span':      'Restaurants',
-        'hero-h1-line2':     'in Palestine',
-        'hero-desc':         'Explore menus, reviews, ratings, and our AI Assistant — all in one place.',
-        'hero-search-ph':    'Search restaurants...',
-        'hero-search-btn':   'Search',
-        'hero-cta1':         'Explore Restaurants',
-        'hero-cta2':         'Ask AI Assistant',
-        // Stats
-        'stat-restaurants':  'Restaurants',
-        'stat-reviews':      'Reviews',
-        'stat-users':        'Happy Users',
-        'stat-rated':        'Top Rated',
-        // Features
-        'feat-label':        'Features',
-        'feat-h2':           'Everything You Need',
-        'feat-desc':         "A complete platform for discovering, reviewing, and reserving the best dining in Palestine.",
-        'feat1-title':       'AI Assistant',
-        'feat1-desc':        'Describe your craving and our AI finds the perfect match instantly.',
-        'feat2-title':       'Interactive Map',
-        'feat2-desc':        'Discover restaurants near you on a live, interactive map.',
-        'feat3-title':       'Reviews & Ratings',
-        'feat3-desc':        'Honest reviews from a trusted Palestinian food community.',
-        'feat4-title':       'Wishlist',
-        'feat4-desc':        'Save your favourite restaurants for future visits.',
-        // How it works
-        'how-label':         'Process',
-        'how-h2':            'How It Works',
-        'how-desc':          'Get started and find your next favourite restaurant in minutes.',
-        'step1-title':       'Create Account',
-        'step1-desc':        'Register in under a minute, for free.',
-        'step2-title':       'Explore Restaurants',
-        'step2-desc':        'Browse hundreds of curated options.',
-        'step3-title':       'Ask AI Assistant',
-        'step3-desc':        'Get hyper-personalised suggestions.',
-        'step4-title':       'Reserve or Order',
-        'step4-desc':        'Book a table or request delivery.',
-        'step5-title':       'Leave a Review',
-        'step5-desc':        'Share your experience with the community.',
-        // Restaurants section
-        'rest-label':        'Handpicked',
-        'rest-h2':           'Top Restaurants',
-        'rest-desc':         "Highest-rated picks across Palestine",
-        'rest-view-all':     'View All',
-        'card-view-btn':     'View Restaurant',
-        // CTA
-        'cta-h2':            'Ready to Explore?',
-        'cta-desc':          "Join 1000+ food lovers discovering Palestine's best restaurants every day.",
-        'cta-btn':           'Create Free Account',
-        // Footer
-        'footer-desc':       "Palestine's leading restaurant discovery and review platform. Find exceptional dining across every city.",
-        'footer-platform':   'Platform',
-        'footer-company':    'Company',
-        'footer-about':      'About Us',
-        'footer-contact':    'Contact',
-        'footer-privacy':    'Privacy Policy',
-        'footer-terms':      'Terms of Service',
-        'footer-copy':       '© 2024 Yumm. Made with love for Palestine 🇵🇸',
-    },
-    ar: {
-        'nav-home':          'الرئيسية',
-        'nav-restaurants':   'المطاعم',
-        'nav-ai':            'مساعد الذكاء الاصطناعي',
-        'nav-login':         'تسجيل الدخول',
-        'nav-register':      'إنشاء حساب',
-        'hero-badge':        'منصة الطعام الأولى في فلسطين',
-        'hero-h1-line1':     'اكتشف أفضل',
-        'hero-h1-span':      'المطاعم',
-        'hero-h1-line2':     'في فلسطين',
-        'hero-desc':         'استكشف القوائم والتقييمات ومساعد الذكاء الاصطناعي — كل شيء في مكان واحد.',
-        'hero-search-ph':    'ابحث عن مطاعم...',
-        'hero-search-btn':   'بحث',
-        'hero-cta1':         'استكشف المطاعم',
-        'hero-cta2':         'اسأل المساعد الذكي',
-        'stat-restaurants':  'مطعم',
-        'stat-reviews':      'تقييم',
-        'stat-users':        'مستخدم سعيد',
-        'stat-rated':        'الأعلى تقييماً',
-        'feat-label':        'المميزات',
-        'feat-h2':           'كل ما تحتاجه',
-        'feat-desc':         'منصة متكاملة لاكتشاف أفضل المطاعم الفلسطينية ومراجعتها وحجزها.',
-        'feat1-title':       'المساعد الذكي',
-        'feat1-desc':        'صف ما تشتهيه وسيجد ذكاؤنا الاصطناعي التطابق المثالي على الفور.',
-        'feat2-title':       'خريطة تفاعلية',
-        'feat2-desc':        'اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية.',
-        'feat3-title':       'مراجعات وتقييمات',
-        'feat3-desc':        'مراجعات صادقة من مجتمع طعام فلسطيني موثوق.',
-        'feat4-title':       'قائمة المفضلة',
-        'feat4-desc':        'احفظ مطاعمك المفضلة لزيارات مستقبلية.',
-        'how-label':         'كيف يعمل',
-        'how-h2':            'كيف يعمل التطبيق',
-        'how-desc':          'ابدأ واعثر على مطعمك المفضل القادم في دقائق.',
-        'step1-title':       'إنشاء حساب',
-        'step1-desc':        'سجّل في أقل من دقيقة، مجاناً.',
-        'step2-title':       'استكشف المطاعم',
-        'step2-desc':        'تصفح مئات الخيارات المنتقاة.',
-        'step3-title':       'اسأل المساعد الذكي',
-        'step3-desc':        'احصل على اقتراحات مخصصة لك.',
-        'step4-title':       'احجز أو اطلب',
-        'step4-desc':        'احجز طاولة أو اطلب التوصيل.',
-        'step5-title':       'اترك تقييماً',
-        'step5-desc':        'شارك تجربتك مع المجتمع.',
-        'rest-label':        'مختارة بعناية',
-        'rest-h2':           'أفضل المطاعم',
-        'rest-desc':         'أعلى التقييمات في جميع أنحاء فلسطين',
-        'rest-view-all':     'عرض الكل',
-        'card-view-btn':     'عرض المطعم',
-        'cta-h2':            'مستعد للاستكشاف؟',
-        'cta-desc':          'انضم إلى أكثر من 1000 محب للطعام يكتشفون أفضل مطاعم فلسطين كل يوم.',
-        'cta-btn':           'إنشاء حساب مجاني',
-        'footer-desc':       'منصة فلسطين الرائدة لاكتشاف المطاعم وتقييمها. اعثر على أرقى تجارب الطعام في كل مدينة.',
-        'footer-platform':   'المنصة',
-        'footer-company':    'الشركة',
-        'footer-about':      'من نحن',
-        'footer-contact':    'تواصل معنا',
-        'footer-privacy':    'سياسة الخصوصية',
-        'footer-terms':      'شروط الخدمة',
-        'footer-copy':       '© 2024 Yumm. صُنع بحب لفلسطين 🇵🇸',
-    },
-};
-
-/* ─────────────────────────────
-   Apply translations to page
-───────────────────────────── */
-function applyTranslations(code) {
-  const t = translations[code] || translations['en'];
-
-  // data-i18n على النصوص العادية
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (!t[key]) return;
-    el.textContent = t[key];
-  });
-
-  // data-i18n-placeholder على الـ inputs
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (t[key]) el.placeholder = t[key];
-  });
-}
 
 function submitSiteLanguage(code) {
     const form = document.getElementById('lang-form');
@@ -207,16 +67,12 @@ function submitSiteLanguage(code) {
 }
 
 /* ─────────────────────────────
-   Language toggle 
+   Language toggle (Django set_language)
 ───────────────────────────── */
-let currentLang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
-
 function toggleLang() {
-    submitSiteLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    const lang = document.documentElement.lang?.startsWith('ar') ? 'ar' : 'en';
+    submitSiteLanguage(lang === 'ar' ? 'en' : 'ar');
 }
-
-
-applyTranslations(currentLang);
 
 /* ─────────────────────────────
    Accessibility Widget — open / close
@@ -243,23 +99,14 @@ function toggleLangDrop() {
   document.getElementById('lang-drop').classList.toggle('hidden');
 }
 
-function setLang(flag, name, code, rtl) {
+function setLang(flag, name, code) {
     document.getElementById('lang-flag').textContent = flag;
     document.getElementById('lang-name').textContent = name;
     document.getElementById('lang-drop').classList.add('hidden');
 
     if (code === 'ar' || code === 'en') {
         submitSiteLanguage(code);
-        return;
     }
-
-    html.lang    = code;
-    html.dir     = rtl ? 'rtl' : 'ltr';
-    currentLang  = code;
-    const btn = document.getElementById('lang-btn');
-    if (btn) btn.textContent = code === 'ar' ? 'EN' : 'ع';
-
-    applyTranslations(code);
 }
 
 document.addEventListener('click', e => {
@@ -338,13 +185,14 @@ let lh = 0;
 function changeLineH(d) {
   lh = Math.round((lh + d) * 10) / 10;
   lh = Math.max(-0.4, Math.min(1.2, lh));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
+  const linehVal = document.getElementById('lineh-val');
+  if (!linehVal) return;
   if (lh === 0) {
     document.body.style.lineHeight = '';
-    document.getElementById('lineh-val').textContent = def;
+    linehVal.textContent = defaultFontLabel();
   } else {
     document.body.style.lineHeight = (1.5 + lh).toFixed(1);
-    document.getElementById('lineh-val').textContent = (1.5 + lh).toFixed(1);
+    linehVal.textContent = (1.5 + lh).toFixed(1);
   }
 }
 
@@ -356,13 +204,14 @@ let ls = 0;
 function changeLetterS(d) {
   ls = Math.round((ls + d) * 100) / 100;
   ls = Math.max(-0.1, Math.min(0.3, ls));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
+  const lettersVal = document.getElementById('letters-val');
+  if (!lettersVal) return;
   if (ls === 0) {
     document.body.style.letterSpacing = '';
-    document.getElementById('letters-val').textContent = def;
+    lettersVal.textContent = defaultFontLabel();
   } else {
     document.body.style.letterSpacing = ls + 'em';
-    document.getElementById('letters-val').textContent = ls + 'em';
+    lettersVal.textContent = ls + 'em';
   }
 }
 
@@ -373,9 +222,12 @@ let scaleVal = 100;
 
 function changeScale(d) {
   scaleVal = Math.max(70, Math.min(150, scaleVal + d));
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
-  document.getElementById('main').style.zoom = scaleVal === 100 ? '' : (scaleVal / 100);
-  document.getElementById('scale-val').textContent = scaleVal === 100 ? def : scaleVal + '%';
+  const main = document.getElementById('main');
+  const scaleValEl = document.getElementById('scale-val');
+  if (main) main.style.zoom = scaleVal === 100 ? '' : (scaleVal / 100);
+  if (scaleValEl) {
+    scaleValEl.textContent = scaleVal === 100 ? defaultFontLabel() : scaleVal + '%';
+  }
 }
 
 /* ─────────────────────────────
@@ -402,18 +254,18 @@ function resetAllA11y() {
     document.getElementById('main')?.style && (document.getElementById('main').style.zoom = '');
     document.querySelectorAll('p,h1,h2,h3,li,a').forEach(el => el.style.textAlign = '');
 
-  const def = translations[currentLang]?.['a11y-default'] || 'Default';
   fs = 16; html.style.fontSize = '16px';
   lh = 0;  ls = 0;  scaleVal = 100;
 
+    const def = defaultFontLabel();
     const fontVal = document.getElementById('font-val');
-    if (fontVal) fontVal.textContent = defaultFontLabel();
+    if (fontVal) fontVal.textContent = def;
     const linehVal = document.getElementById('lineh-val');
-    if (linehVal) linehVal.textContent = 'Default';
+    if (linehVal) linehVal.textContent = def;
     const lettersVal = document.getElementById('letters-val');
-    if (lettersVal) lettersVal.textContent = 'Default';
+    if (lettersVal) lettersVal.textContent = def;
     const scaleValEl = document.getElementById('scale-val');
-    if (scaleValEl) scaleValEl.textContent = 'Default';
+    if (scaleValEl) scaleValEl.textContent = def;
 
   document.querySelectorAll('.a11y-opt').forEach(b =>
     b.classList.remove('border-[#B5451B]', 'text-[#B5451B]')
@@ -423,18 +275,140 @@ function resetAllA11y() {
 }
 
 /* ─────────────────────────────
-   Wishlist heart buttons
+   Toast notifications
 ───────────────────────────── */
-document.querySelectorAll('.wish-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const icon = btn.querySelector('[data-lucide="heart"]');
-    const on   = btn.getAttribute('aria-pressed') === 'true';
-    icon.classList.toggle('text-[#B5451B]', !on);
-    icon.classList.toggle('fill-[#B5451B]', !on);
-    icon.classList.toggle('text-gray-400',   on);
-    btn.setAttribute('aria-pressed', String(!on));
+function getWishlistI18n() {
+  const el = document.getElementById('wishlist-i18n');
+  if (!el) return {};
+  try {
+    return JSON.parse(el.textContent);
+  } catch {
+    return {};
+  }
+}
+
+function showYummToast(message, type = 'success') {
+  const root = document.getElementById('yumm-toast-root');
+  if (!root || !message) return;
+  const text = String(message).replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, '').trim();
+  const toast = document.createElement('div');
+  toast.className = `yumm-toast yumm-toast--${type}`;
+  toast.innerHTML = `<span class="yumm-toast__text">${text}</span>`;
+  root.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('is-visible'));
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+    setTimeout(() => toast.remove(), 280);
+  }, 2800);
+}
+window.showYummToast = showYummToast;
+
+/* ─────────────────────────────
+   Wishlist AJAX (landing + public cards + detail)
+───────────────────────────── */
+function updateWishlistFabBadge() {
+  const badge = document.querySelector('.yumm-fab-wishlist__badge');
+  const fab = document.querySelector('.yumm-fab-wishlist');
+  if (!fab) return;
+  const count = getWishlist().length;
+  if (badge) {
+    badge.textContent = String(count);
+    badge.hidden = count === 0;
+  } else if (count > 0) {
+    const el = document.createElement('span');
+    el.className = 'yumm-fab-wishlist__badge';
+    el.textContent = String(count);
+    fab.appendChild(el);
+  }
+}
+
+function updateWishlistCacheFromForm(form, added) {
+  const source = form.closest('[data-restaurant-id]') || form;
+  const id = parseInt(source.dataset.restaurantId, 10);
+  if (!id) return;
+  let list = [...getWishlist()];
+  if (added) {
+    if (!list.some((item) => item.id === id)) {
+      list.unshift({
+        id,
+        name: source.dataset.restaurantName || '',
+        cuisine: source.dataset.restaurantCuisine || '',
+        city: source.dataset.restaurantCity || '',
+        rating: source.dataset.restaurantRating || '',
+        url: source.dataset.restaurantUrl || '',
+      });
+    }
+  } else {
+    list = list.filter((item) => item.id !== id);
+  }
+  wishlistCache = list;
+  updateWishlistFabBadge();
+}
+
+function syncWishlistButtonState(btn, added) {
+  if (!btn) return;
+  btn.classList.toggle('is-active', added);
+  btn.setAttribute('aria-pressed', added ? 'true' : 'false');
+  const icon = btn.querySelector('[data-lucide="heart"]');
+  if (icon) {
+    icon.classList.toggle('text-[#B5451B]', added);
+    icon.classList.toggle('fill-[#B5451B]', added);
+    icon.classList.toggle('text-gray-400', !added);
+  }
+  const label = btn.querySelector('.rp-wishlist-btn__label');
+  const form = btn.closest('form');
+  if (label && form) {
+    label.textContent = added
+      ? (form.dataset.labelRemove || 'Remove from Wishlist')
+      : (form.dataset.labelAdd || 'Add to Wishlist');
+  }
+}
+
+function initWishlistAjax() {
+  document.querySelectorAll('.landing-wishlist-form[data-ajax="1"], .rp-wishlist-form[data-ajax="1"]').forEach((form) => {
+    if (form.dataset.wishlistBound) return;
+    form.dataset.wishlistBound = '1';
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const btn = form.querySelector('.wish-btn, .rp-wishlist-btn, .rp-action-btn');
+      const csrf = form.querySelector('[name=csrfmiddlewaretoken]');
+      const i = getWishlistI18n();
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrf ? csrf.value : '',
+          },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (!data.success) {
+          showYummToast(data.message || i.loginRequired || 'Action failed', 'info');
+          return;
+        }
+        syncWishlistButtonState(btn, data.added);
+        updateWishlistCacheFromForm(form, data.added);
+        if (document.getElementById('modal-wishlist')?.classList.contains('modal-open')) {
+          renderWishlist();
+        }
+        showYummToast(
+          data.message || (data.added ? i.added : i.removed) || 'Saved',
+          data.added ? 'success' : 'removed',
+        );
+      } catch {
+        form.submit();
+      }
+    });
+  });
+}
+window.initWishlistAjax = initWishlistAjax;
+
+document.querySelectorAll('.wish-btn-guest, .rp-wishlist-btn--guest').forEach((link) => {
+  link.addEventListener('click', () => {
+    const i = getWishlistI18n();
+    showYummToast(i.loginRequired || 'Please log in to save restaurants', 'info');
   });
 });
 
@@ -471,6 +445,10 @@ function openModal(id) {
   document.getElementById('modal-' + id).classList.add('modal-open');
   document.body.style.overflow = 'hidden';
   if (id === 'map') setTimeout(initMap, 150);
+  if (id === 'wishlist') {
+    renderWishlist();
+    if (window.lucide) lucide.createIcons();
+  }
 }
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('modal-open');
@@ -496,34 +474,66 @@ document.addEventListener('keydown', e => {
 /* ─────────────────────────────
    Wishlist data + render
 ───────────────────────────── */
-const wishlist = [
-  { name: 'Al-Kanaan',             cuisine: 'Traditional Palestinian', city: 'Ramallah',  rating: '4.8' },
-  { name: 'Jerusalem Garden Cafe', cuisine: 'Cafe & Breakfast',        city: 'Jerusalem', rating: '4.9' },
-];
+function getLandingWishlist() {
+  const el = document.getElementById('landing-wishlist');
+  if (!el) return [];
+  try {
+    const data = JSON.parse(el.textContent);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
+
+let wishlistCache = null;
+function getWishlist() {
+  if (wishlistCache === null) wishlistCache = getLandingWishlist();
+  return wishlistCache;
+}
 
 function renderWishlist() {
   const container = document.getElementById('wishlist-items');
   if (!container) return;
-  if (!wishlist.length) {
-    container.innerHTML = `<p class="text-gray-400 text-center py-8 text-sm">No saved restaurants yet. Hit the ♥ on any card!</p>`;
+  const i = getWishlistI18n();
+  const list = getWishlist();
+  const countEl = document.getElementById('wishlist-count');
+
+  if (countEl) {
+    if (list.length) {
+      countEl.textContent = list.length === 1
+        ? (i.savedOne || '1 restaurant saved')
+        : `${list.length} ${i.savedMany || 'restaurants saved'}`;
+      countEl.hidden = false;
+    } else {
+      countEl.hidden = true;
+      countEl.textContent = '';
+    }
+  }
+
+  if (!list.length) {
+    container.innerHTML = `
+      <div class="wishlist-empty">
+        <span class="wishlist-empty__icon" aria-hidden="true"><i data-lucide="heart"></i></span>
+        <p class="wishlist-empty__title">${i.wishlistEmpty || 'Nothing saved yet'}</p>
+        <p class="wishlist-empty__hint">${i.wishlistHint || 'Tap ♥ on a restaurant to save it'}</p>
+      </div>`;
+    if (window.lucide) lucide.createIcons();
     return;
   }
-  container.innerHTML = wishlist.map((r, i) => `
-    <div class="flex items-center justify-between bg-gray-50 rounded-2xl px-4 py-3">
-      <div>
-        <p class="font-semibold text-sm text-gray-900">${r.name}</p>
-        <p class="text-xs text-gray-400 mt-0.5">${r.cuisine} · ${r.city}</p>
+
+  container.innerHTML = list.map((r) => `
+    <a href="${r.url || '#'}" class="wishlist-item">
+      <div class="wishlist-item__body">
+        <span class="wishlist-item__name">${r.name}</span>
+        <span class="wishlist-item__meta">${[r.cuisine, r.city].filter(Boolean).join(' · ')}</span>
       </div>
-      <div class="flex items-center gap-3">
-        <span class="text-amber-400 font-bold text-sm">★ ${r.rating}</span>
-        <button onclick="removeWishlist(${i})" class="text-xs text-red-400 hover:text-red-600 font-semibold transition-colors">Remove</button>
-      </div>
-    </div>
+      ${r.rating ? `<span class="wishlist-item__rating">★ ${r.rating}</span>` : ''}
+    </a>
   `).join('');
 }
 
 function removeWishlist(index) {
-  wishlist.splice(index, 1);
+  getWishlist().splice(index, 1);
   renderWishlist();
 }
 
@@ -609,11 +619,16 @@ document.getElementById('ai-input')?.addEventListener('keydown', e => {
 let yummMap = null;
 let searchMarker = null;
 
-const restaurants = [
-  { lat: 31.9038, lng: 35.2034, name: 'Al-Kanaan 🍽️',           desc: 'Traditional Palestinian · Ramallah ★ 4.8' },
-  { lat: 31.5017, lng: 34.4667, name: 'Gaza Grill House 🔥',      desc: 'Grills & BBQ · Gaza ★ 4.6'              },
-  { lat: 31.7683, lng: 35.2137, name: 'Jerusalem Garden Cafe ☕', desc: 'Cafe & Breakfast · Jerusalem ★ 4.9'     },
-];
+function getMapRestaurants() {
+  const el = document.getElementById('landing-map-restaurants');
+  if (!el) return [];
+  try {
+    const data = JSON.parse(el.textContent);
+    return Array.isArray(data) ? data : [];
+  } catch {
+    return [];
+  }
+}
 
 function initMap() {
   if (yummMap) { yummMap.invalidateSize(); return; }
@@ -636,11 +651,21 @@ function buildMap() {
     iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -36], className: '',
   });
 
+  const restaurants = getMapRestaurants();
+  const viewLabel = document.getElementById('map-search-input')?.dataset.viewLabel || 'View';
   restaurants.forEach(r => {
+    const popup = r.url
+      ? `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span><br><a href="${r.url}" style="color:#B5451B;font-size:12px;font-weight:600">${viewLabel} →</a>`
+      : `<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc || ''}</span>`;
     L.marker([r.lat, r.lng], { icon: redIcon })
       .addTo(yummMap)
-      .bindPopup(`<b>${r.name}</b><br><span style="color:#666;font-size:12px">${r.desc}</span>`, { maxWidth: 200 });
+      .bindPopup(popup, { maxWidth: 220 });
   });
+
+  if (restaurants.length) {
+    const bounds = L.latLngBounds(restaurants.map(r => [r.lat, r.lng]));
+    yummMap.fitBounds(bounds.pad(0.15));
+  }
 }
 
 function flyToRestaurant(lat, lng, name, desc) {
@@ -655,22 +680,25 @@ function flyToRestaurant(lat, lng, name, desc) {
 }
 
 async function searchMapLocation() {
-  const query = document.getElementById('map-search-input')?.value.trim();
+  const input = document.getElementById('map-search-input');
+  const query = input?.value.trim();
   if (!query || !yummMap) return;
+  const notFound = input.dataset.notFound || 'Location not found. Try a different search.';
+  const searchFailed = input.dataset.searchFailed || 'Search failed. Please try again.';
   try {
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1`,
       { headers: { 'Accept-Language': window.YummMap.mapSearchLanguage() } },
     );
     const data = await res.json();
-    if (!data.length) { alert('Location not found. Try a different search.'); return; }
+    if (!data.length) { alert(notFound); return; }
     const { lat, lon, display_name } = data[0];
     if (searchMarker) yummMap.removeLayer(searchMarker);
     searchMarker = L.marker([lat, lon]).addTo(yummMap)
       .bindPopup(`<b>🔍 ${query}</b><br><span style="color:#666;font-size:11px">${display_name.substring(0, 60)}...</span>`)
       .openPopup();
     yummMap.flyTo([lat, lon], 13, { duration: 1.2 });
-  } catch { alert('Search failed. Please try again.'); }
+  } catch { alert(searchFailed); }
 }
 
 document.getElementById('map-search-input')?.addEventListener('keydown', e => {
@@ -706,17 +734,29 @@ document.addEventListener('click', function(e) {
    Contact form validation
 ───────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form[action="/contact/"]');
-  if (!form) return;
+  initWishlistAjax();
+  updateWishlistFabBadge();
+
+  const form = document.querySelector('.yumm-form-stack[method="post"]');
+  if (!form || !form.dataset.errorNameRequired) return;
   form.addEventListener('submit', e => {
     const name    = form.querySelector('[name="name"]');
     const email   = form.querySelector('[name="email"]');
     const message = form.querySelector('[name="message"]');
     clearErrors();
     let valid = true;
-    if (!name.value.trim()) { showError(name, 'Name is required.'); valid = false; }
-    if (!email.value.trim() || !email.value.includes('@')) { showError(email, 'Please enter a valid email.'); valid = false; }
-    if (!message.value.trim() || message.value.trim().length < 10) { showError(message, 'Message must be at least 10 characters.'); valid = false; }
+    if (!name.value.trim()) {
+      showError(name, form.dataset.errorNameRequired);
+      valid = false;
+    }
+    if (!email.value.trim() || !email.value.includes('@')) {
+      showError(email, form.dataset.errorEmailInvalid);
+      valid = false;
+    }
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      showError(message, form.dataset.errorMessageShort);
+      valid = false;
+    }
     if (!valid) e.preventDefault();
   });
   function showError(field, msg) {

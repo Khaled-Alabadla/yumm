@@ -133,6 +133,12 @@ class UserRegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         _style_phone_field(self)
+        self.fields["email"].error_messages = {
+            "unique": _(
+                "An account with this email already exists. "
+                "Please sign in or use a different email."
+            ),
+        }
 
     def clean_role(self) -> str:
         role = self.cleaned_data.get("role")
@@ -141,6 +147,38 @@ class UserRegistrationForm(UserCreationForm):
                 _("Admin role cannot be assigned during registration.")
             )
         return role
+
+    def clean_email(self) -> str:
+        """
+        Block duplicate emails, but allow re-registration over an inactive
+        unverified regular-user account (same email, new password/details).
+        """
+        email = (self.cleaned_data.get("email") or "").strip()
+        if not email:
+            return email
+
+        existing = CustomUser.objects.filter(email__iexact=email).first()
+        if not existing:
+            return email
+
+        can_reuse = (
+            not existing.is_active
+            and existing.role == CustomUser.Role.USER
+            and not existing.is_staff
+            and not existing.is_superuser
+        )
+        if can_reuse:
+            # Update the existing row instead of inserting a duplicate.
+            self.instance = existing
+            return existing.email
+
+        raise forms.ValidationError(
+            _(
+                "An account with this email already exists. "
+                "Please sign in or use a different email."
+            ),
+            code="email_exists",
+        )
 
     def clean(self) -> dict:
         cleaned_data = super().clean()
@@ -179,6 +217,7 @@ class UserRegistrationForm(UserCreationForm):
         role = self.cleaned_data.get("role", CustomUser.Role.USER)
         user.role = role
         user.phone = self.cleaned_data.get("phone", "")
+        user.email = self.cleaned_data["email"]
 
         if role == CustomUser.Role.OWNER:
             name_en = self.cleaned_data["restaurant_name_en"]
@@ -192,6 +231,11 @@ class UserRegistrationForm(UserCreationForm):
 
         if commit:
             with transaction.atomic():
+                # Regular users must confirm email before they can sign in.
+                if role == CustomUser.Role.USER:
+                    user.is_active = False
+                # Always set password (covers re-registration over an inactive account).
+                user.set_password(self.cleaned_data["password1"])
                 user.save()
                 if user.is_owner_role:
                     self._create_pending_restaurant(
@@ -257,6 +301,24 @@ class UserLoginForm(AuthenticationForm):
 
     def clean(self) -> dict:
         """Run parent auth then enforce role match when a role is selected."""
+        email = (self.data.get("username") or "").strip()
+        password = self.data.get("password") or ""
+        if email and password:
+            inactive_user = CustomUser.objects.filter(email__iexact=email).first()
+            if (
+                inactive_user
+                and not inactive_user.is_active
+                and inactive_user.role == CustomUser.Role.USER
+                and inactive_user.check_password(password)
+            ):
+                raise forms.ValidationError(
+                    _(
+                        "Please confirm your email address before signing in. "
+                        "Check your inbox for the verification link."
+                    ),
+                    code="email_not_verified",
+                )
+
         cleaned_data = super().clean()
         user = self.get_user()
         selected_role = cleaned_data.get("role", "")

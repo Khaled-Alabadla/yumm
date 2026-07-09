@@ -189,7 +189,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": "img/yumm-logo.svg",
     "login_logo": "img/yumm-logo.svg",
     "site_logo_classes": "yumm-brand-logo",
-    "welcome_sign": _("Welcome back — Yumm Admin"),
+    "welcome_sign": _("Welcome back, Yumm Admin"),
     "copyright": "Yumm Palestine",
 
     # Custom assets — full Yumm styling (CSS + light-mode / RTL JS)
@@ -305,6 +305,32 @@ LOGIN_REDIRECT_URL = "/"
 
 # Where Django's LogoutView redirects after logging out.
 LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+
+# ---------------------------------------------------------------------------
+# Email — Gmail SMTP by default (works locally and on AWS; no domain needed)
+# Set EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend to print
+# messages to the terminal instead of sending.
+# ---------------------------------------------------------------------------
+
+EMAIL_BACKEND = os.getenv(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.smtp.EmailBackend",
+)
+EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True").lower() == "true"
+EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "False").lower() == "true"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "kh.es.abadla@gmail.com")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "hfkr ovka gihf znpv")
+DEFAULT_FROM_EMAIL = os.getenv(
+    "DEFAULT_FROM_EMAIL",
+    "Yumm <noreply@gmail.com>",
+)
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+# Absolute site origin for links inside emails (no trailing slash).
+SITE_URL = os.getenv("SITE_URL", "http://127.0.0.1:8000").rstrip("/")
 
 
 # ---------------------------------------------------------------------------

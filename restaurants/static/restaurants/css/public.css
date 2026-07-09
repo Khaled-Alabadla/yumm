@@ -58,6 +58,9 @@ html.dark .rp-page {
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  overflow: visible;
+  position: relative;
+  z-index: 6;
 }
 
 html.dark .rp-filter-panel {
@@ -80,6 +83,9 @@ html.dark .rp-filter-panel {
   align-items: stretch;
   flex-wrap: wrap;
   gap: 0.5rem;
+  overflow: visible;
+  position: relative;
+  z-index: 2;
 }
 
 .rp-search-toolbar__field {
@@ -105,38 +111,176 @@ html.dark .rp-search-toolbar__field .rp-search-input {
 }
 
 .rp-search-toolbar__city {
-  flex: 0 0 clamp(8.5rem, 18vw, 11rem);
+  flex: 0 0 clamp(9rem, 20vw, 12rem);
   display: flex;
   align-items: stretch;
+  position: relative;
+  z-index: 8;
 }
 
-.rp-select--toolbar {
+/* Custom city picker — brand colors (native <select> option highlight can't be themed) */
+.rp-city-picker {
+  position: relative;
   width: 100%;
   min-width: 0;
+  z-index: 8;
+}
+
+.rp-city-picker__native {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rp-city-picker__trigger {
+  width: 100%;
   min-height: var(--rp-toolbar-height);
-  border: 1px solid #e8e8e8 !important;
-  border-radius: var(--rp-toolbar-radius) !important;
-  background-color: #fff !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: left 0.65rem center;
-  background-size: 1rem;
-  padding-block: 0.75rem !important;
-  padding-inline: 2rem 0.85rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border: 1.5px solid #e8e8e8;
+  border-radius: var(--rp-toolbar-radius);
+  background: #fff;
+  padding-block: 0.75rem;
+  padding-inline: 0.85rem 0.7rem;
   font-size: 0.875rem;
   font-weight: 600;
+  color: #1f2937;
   cursor: pointer;
-  box-shadow: none !important;
+  text-align: start;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
 }
 
-html[dir="ltr"] .rp-select--toolbar {
-  background-position: right 0.65rem center;
-  padding-inline: 0.85rem 2rem !important;
+.rp-city-picker__trigger:hover {
+  border-color: #d4a090;
 }
 
-html.dark .rp-select--toolbar {
-  background-color: #141414 !important;
-  border-color: #333 !important;
+.rp-city-picker.is-open .rp-city-picker__trigger,
+.rp-city-picker__trigger:focus,
+.rp-city-picker__trigger:focus-visible {
+  outline: none;
+  border-color: #b5451b;
+  box-shadow: 0 0 0 3px rgba(181, 69, 27, 0.18);
+  color: #b5451b;
+}
+
+.rp-city-picker__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rp-city-picker__chevron {
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B5451B' stroke-width='2.25'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.15s ease;
+}
+
+.rp-city-picker.is-open .rp-city-picker__chevron {
+  transform: rotate(180deg);
+}
+
+.rp-city-picker__menu {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(100% + 0.35rem);
+  z-index: 100;
+  max-height: min(18rem, 55vh);
+  overflow-y: auto;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  border: 1.5px solid #b5451b;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(181, 69, 27, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.rp-city-picker__menu[hidden] {
+  display: none !important;
+}
+
+.rp-city-picker.is-open .rp-city-picker__menu {
+  display: block;
+}
+
+.rp-city-picker__option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.rp-city-picker__option:hover,
+.rp-city-picker__option:focus {
+  background: rgba(181, 69, 27, 0.1);
+  color: #b5451b;
+  outline: none;
+}
+
+.rp-city-picker__option.is-selected {
+  background: #b5451b;
+  color: #fff;
+  font-weight: 600;
+}
+
+.rp-city-picker__option.is-selected:hover {
+  background: #9a3a16;
+  color: #fff;
+}
+
+html.dark .rp-city-picker__trigger {
+  background: #141414;
+  border-color: #333;
+  color: #e5e7eb;
+}
+
+html.dark .rp-city-picker.is-open .rp-city-picker__trigger,
+html.dark .rp-city-picker__trigger:focus,
+html.dark .rp-city-picker__trigger:focus-visible {
+  border-color: #b5451b;
+  box-shadow: 0 0 0 3px rgba(181, 69, 27, 0.28);
+  color: #f0a890;
+}
+
+html.dark .rp-city-picker__menu {
+  background: #1a1a1a;
+  border-color: #b5451b;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+html.dark .rp-city-picker__option {
+  color: #e5e7eb;
+}
+
+html.dark .rp-city-picker__option:hover {
+  background: rgba(181, 69, 27, 0.22);
+  color: #f0a890;
+}
+
+html.dark .rp-city-picker__option.is-selected {
+  background: #b5451b;
+  color: #fff;
 }
 
 .rp-search-toolbar__btn {
@@ -240,10 +384,10 @@ html.dark .rp-search-bar {
   width: 100%;
   min-width: 10rem;
   appearance: none;
-  border: 1px solid #e8e8e8 !important;
+  border: 1.5px solid #e8e8e8 !important;
   border-radius: 0.75rem !important;
   background-color: #fafafa;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23B5451B' stroke-width='2.25'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.65rem center;
   background-size: 1rem;
@@ -254,6 +398,25 @@ html.dark .rp-search-bar {
   color: inherit;
   cursor: pointer;
   min-height: 2.75rem;
+  accent-color: #b5451b;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rp-select:hover {
+  border-color: #d4a090 !important;
+}
+
+.rp-select:focus,
+.rp-select:focus-visible {
+  outline: none !important;
+  border-color: #b5451b !important;
+  box-shadow: 0 0 0 3px rgba(181, 69, 27, 0.18) !important;
+}
+
+.rp-select option:checked,
+.rp-select option:hover {
+  background: #b5451b linear-gradient(0deg, #b5451b 0%, #b5451b 100%);
+  color: #fff;
 }
 
 html[dir="rtl"] .rp-select {
@@ -264,6 +427,12 @@ html[dir="rtl"] .rp-select {
 html.dark .rp-select {
   background-color: #141414 !important;
   border-color: #333 !important;
+}
+
+html.dark .rp-select:focus,
+html.dark .rp-select:focus-visible {
+  border-color: #b5451b !important;
+  box-shadow: 0 0 0 3px rgba(181, 69, 27, 0.28) !important;
 }
 
 .rp-search-submit {
@@ -1731,7 +1900,7 @@ body.yumm-site .rp-review-textarea {
 
 /* Toolbar — keep rounded corners on each control */
 .rp-search-toolbar .rp-search-input,
-.rp-search-toolbar .rp-select--toolbar,
+.rp-search-toolbar .rp-city-picker__trigger,
 .rp-search-toolbar .rp-search-toolbar__btn.rp-btn {
   border-radius: 0.75rem !important;
 }

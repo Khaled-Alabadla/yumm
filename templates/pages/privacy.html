@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
-{% block title %}{% trans "Privacy Policy" %} — Yumm{% endblock %}
+{% block title %}{% trans "Privacy Policy" %} | Yumm{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/pages.css' %}?v=1"/>
@@ -31,7 +31,7 @@
 
       <div class="yumm-prose">
         <div class="yumm-callout">
-          {% trans "We respect your privacy. Yumm collects only what's needed to help you discover great restaurants — nothing more." %}
+          {% trans "We respect your privacy. Yumm collects only what's needed to help you discover great restaurants, nothing more." %}
         </div>
 
         <section id="collection" class="yumm-page-section">
@@ -61,9 +61,9 @@
           <h2>{% trans "3. Sharing Your Information" %}</h2>
           <p>{% trans "We share your data only with:" %}</p>
           <ul>
-            <li>{% trans "Restaurants — when you interact with their listings or reviews" %}</li>
-            <li>{% trans "Service providers — hosting and analytics, under strict agreements" %}</li>
-            <li>{% trans "Legal authorities — when required by law" %}</li>
+            <li>{% trans "Restaurants, when you interact with their listings or reviews" %}</li>
+            <li>{% trans "Service providers for hosting and analytics, under strict agreements" %}</li>
+            <li>{% trans "Legal authorities when required by law" %}</li>
           </ul>
         </section>
 

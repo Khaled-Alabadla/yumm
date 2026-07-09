@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static i18n l10n restaurant_tags %}
 
-{% block title %}{{ restaurant|localized_name }} — Yumm{% endblock %}
+{% block title %}{{ restaurant|localized_name }} | Yumm{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -245,5 +245,5 @@
 
 {% block pre_main_js %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="{% static 'restaurants/js/public.js' %}?v=9"></script>
+<script src="{% static 'restaurants/js/public.js' %}?v=11"></script>
 {% endblock %}

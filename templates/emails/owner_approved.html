@@ -1,0 +1,50 @@
+{% extends "emails/base_email.html" %}
+
+{% block content %}
+  <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B5451B;">
+    {% if email_lang == 'ar' %}موافقة المطعم{% else %}Restaurant approval{% endif %}
+  </p>
+
+  <p style="margin:0 0 18px;font-size:24px;font-weight:800;color:#111827;line-height:1.4;">
+    {% if email_lang == 'ar' %}
+      تهانينا{% if restaurant_name %}، {{ restaurant_name }}{% endif %}
+    {% else %}
+      Congratulations{% if restaurant_name %}, {{ restaurant_name }}{% endif %}
+    {% endif %}
+  </p>
+
+  <p style="margin:0 0 14px;color:#374151;font-size:16px;font-weight:400;">
+    {% if email_lang == 'ar' %}
+      يسعدنا إبلاغكم بأن طلب تسجيل مطعمكم على منصة Yumm قد تمت الموافقة عليه.
+    {% else %}
+      We are pleased to inform you that your restaurant registration on Yumm has been approved.
+    {% endif %}
+  </p>
+
+  <p style="margin:0 0 28px;color:#374151;font-size:16px;font-weight:400;">
+    {% if email_lang == 'ar' %}
+      يمكنكم الآن تسجيل الدخول إلى المنصة لإكمال بيانات المطعم والقائمة واستقبال التقييمات.
+    {% else %}
+      You may now sign in to complete your restaurant profile and menu, and begin receiving reviews.
+    {% endif %}
+  </p>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td align="center" style="padding:4px 0 28px;">
+        <a href="{{ login_url }}"
+           style="display:inline-block;background:#B5451B;color:#ffffff;text-decoration:none;font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};font-weight:700;font-size:16px;padding:15px 34px;border-radius:12px;">
+          {% if email_lang == 'ar' %}تسجيل الدخول إلى المنصة{% else %}Sign in to Yumm{% endif %}
+        </a>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin:0;font-size:14px;color:#6b7280;">
+    {% if email_lang == 'ar' %}
+      أهلاً بكم في مجتمع الطعام الفلسطيني على Yumm.
+    {% else %}
+      Welcome to Palestine&rsquo;s food community on Yumm.
+    {% endif %}
+  </p>
+{% endblock %}

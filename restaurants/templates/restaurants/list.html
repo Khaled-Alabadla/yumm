@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static i18n l10n restaurant_tags %}
 
-{% block title %}{% trans "Restaurants" %} — Yumm{% endblock %}
+{% block title %}{% trans "Restaurants" %} | Yumm{% endblock %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=18"/>
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=21"/>
 {% endblock %}
 
 {% block content %}
@@ -32,12 +32,45 @@
         </div>
 
         <div class="rp-search-toolbar__city">
-          <select name="city" id="rp-city" class="rp-select rp-select--toolbar" aria-label="{% trans 'Select city' %}">
-            <option value="">{% trans "All cities" %}</option>
-            {% for code, label in city_choices %}
-            <option value="{{ code }}"{% if active_city == code %} selected{% endif %}>{{ label }}</option>
-            {% endfor %}
-          </select>
+          <div class="rp-city-picker" data-rp-city-picker>
+            <select name="city" id="rp-city" class="rp-city-picker__native" aria-label="{% trans 'Select city' %}" tabindex="-1">
+              <option value="">{% trans "All cities" %}</option>
+              {% for code, label in city_choices %}
+              <option value="{{ code }}"{% if active_city == code %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <button
+              type="button"
+              class="rp-city-picker__trigger"
+              id="rp-city-trigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-controls="rp-city-menu"
+              aria-label="{% trans 'Select city' %}"
+            >
+              <span class="rp-city-picker__value" data-rp-city-value>
+                {% if active_city %}
+                  {% for code, label in city_choices %}{% if active_city == code %}{{ label }}{% endif %}{% endfor %}
+                {% else %}
+                  {% trans "All cities" %}
+                {% endif %}
+              </span>
+              <span class="rp-city-picker__chevron" aria-hidden="true"></span>
+            </button>
+            <ul class="rp-city-picker__menu" id="rp-city-menu" role="listbox" hidden>
+              <li role="option" class="rp-city-picker__option{% if not active_city %} is-selected{% endif %}" data-value="" {% if not active_city %}aria-selected="true"{% else %}aria-selected="false"{% endif %}>
+                {% trans "All cities" %}
+              </li>
+              {% for code, label in city_choices %}
+              <li
+                role="option"
+                class="rp-city-picker__option{% if active_city == code %} is-selected{% endif %}"
+                data-value="{{ code }}"
+                {% if active_city == code %}aria-selected="true"{% else %}aria-selected="false"{% endif %}
+              >{{ label }}</li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
 
         <button type="submit" class="rp-btn rp-btn--primary rp-search-toolbar__btn">
@@ -68,9 +101,9 @@
       <p class="rp-map-caption">
         {% if map_restaurant_count %}
         {% blocktrans count counter=map_restaurant_count %}
-        Interactive map — {{ counter }} restaurant on the map
+        Interactive map: {{ counter }} restaurant on the map
         {% plural %}
-        Interactive map — {{ counter }} restaurants on the map
+        Interactive map: {{ counter }} restaurants on the map
         {% endblocktrans %}
         {% else %}
         {% trans "No restaurants with map coordinates match your filters." %}
@@ -105,7 +138,7 @@
       {% else %}
       <div class="rp-empty">
         <i data-lucide="utensils-crossed" class="w-10 h-10"></i>
-        <p>{% trans "No restaurants match your search." %}</p>
+        <p style="margin-bottom: 20px;">{% trans "No restaurants match your search." %}</p>
         <a href="{% url 'restaurants:list' %}" class="rp-btn rp-btn--primary">{% trans "Clear filters" %}</a>
       </div>
       {% endif %}
@@ -154,5 +187,5 @@
 {% endblock %}
 
 {% block pre_main_js %}
-<script src="{% static 'restaurants/js/public.js' %}?v=9"></script>
+<script src="{% static 'restaurants/js/public.js' %}?v=11"></script>
 {% endblock %}

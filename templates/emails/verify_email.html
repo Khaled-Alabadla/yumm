@@ -1,0 +1,49 @@
+{% extends "emails/base_email.html" %}
+
+{% block content %}
+  <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B5451B;">
+    {% if email_lang == 'ar' %}تأكيد الحساب{% else %}Account verification{% endif %}
+  </p>
+
+  <p style="margin:0 0 18px;font-size:24px;font-weight:800;color:#111827;line-height:1.4;">
+    {% if email_lang == 'ar' %}مرحباً {{ user_name }}،{% else %}Hello {{ user_name }},{% endif %}
+  </p>
+
+  <p style="margin:0 0 14px;color:#374151;font-size:16px;font-weight:400;">
+    {% if email_lang == 'ar' %}
+      شكراً لتسجيلك في منصة Yumm.
+    {% else %}
+      Thank you for registering on Yumm.
+    {% endif %}
+  </p>
+
+  <p style="margin:0 0 28px;color:#374151;font-size:16px;font-weight:400;">
+    {% if email_lang == 'ar' %}
+      يرجى تأكيد بريدك الإلكتروني لتفعيل حسابك والبدء في اكتشاف أفضل المطاعم في فلسطين.
+    {% else %}
+      Please confirm your email address to activate your account and start discovering the best restaurants in Palestine.
+    {% endif %}
+  </p>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <td align="center" style="padding:4px 0 28px;">
+        <a href="{{ verify_url }}"
+           style="display:inline-block;background:#B5451B;color:#ffffff;text-decoration:none;font-family:{% if email_lang == 'ar' %}'Tajawal',Tahoma,Arial,sans-serif{% else %}'Inter',Segoe UI,Arial,sans-serif{% endif %};font-weight:700;font-size:16px;padding:15px 34px;border-radius:12px;letter-spacing:0.01em;">
+          {% if email_lang == 'ar' %}تأكيد البريد الإلكتروني{% else %}Confirm email address{% endif %}
+        </a>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin:0 0 8px;font-size:13px;color:#6b7280;font-weight:500;">
+    {% if email_lang == 'ar' %}
+      إذا لم يعمل الزر، يرجى نسخ الرابط التالي ولصقه في المتصفح:
+    {% else %}
+      If the button does not work, copy and paste this link into your browser:
+    {% endif %}
+  </p>
+  <p style="margin:0;font-size:12px;line-height:1.6;word-break:break-all;">
+    <a href="{{ verify_url }}" style="color:#B5451B;text-decoration:underline;">{{ verify_url }}</a>
+  </p>
+{% endblock %}

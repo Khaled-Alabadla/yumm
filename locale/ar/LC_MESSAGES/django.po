@@ -24,6 +24,12 @@ msgstr "تمت الموافقة على %(count)d حساب صاحب مطعم."
 msgid "%(count)d owner account(s) rejected."
 msgstr "تم رفض %(count)d حساب صاحب مطعم."
 
+msgid "%(count)d restaurant(s) have no owner email — no notification sent."
+msgstr "%(count)d مطعم/مطاعم بدون بريد لصاحب المطعم — لم يُرسل إشعار."
+
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "يوجد حساب بهذا %(field_label)s مسبقاً."
+
 msgid "%(time)s ago"
 msgstr "منذ %(time)s"
 
@@ -89,11 +95,16 @@ msgid ""
 "dining in Palestine."
 msgstr "منصة متكاملة لاكتشاف أفضل المطاعم في فلسطين وتقييمها وحجزها."
 
+msgid "A user with that email already exists."
+msgstr ""
+"يوجد حساب بهذا البريد الإلكتروني مسبقاً. يرجى تسجيل الدخول أو استخدام بريد "
+"آخر."
+
 msgid "AI Assistant"
 msgstr "المساعد الذكي"
 
 msgid "Abasan"
-msgstr "abasan"
+msgstr "عبسان"
 
 msgid "About"
 msgstr "نبذة"
@@ -116,6 +127,9 @@ msgstr "إعدادات إمكانية الوصول"
 msgid "Account"
 msgstr "الحساب"
 
+msgid "Account created. Please confirm your email to continue."
+msgstr "تم إنشاء الحساب. يرجى تأكيد بريدك الإلكتروني للمتابعة."
+
 msgid "Account info: name, email address, and password (hashed)"
 msgstr "معلومات الحساب: الاسم والبريد الإلكتروني وكلمة المرور (مشفّرة)"
 
@@ -135,7 +149,7 @@ msgid "Active Restaurants"
 msgstr "المطاعم النشطة"
 
 msgid "Ad-Dhahriya"
-msgstr "الظahriya"
+msgstr "الظاهرية"
 
 msgid "Add"
 msgstr "إضافة"
@@ -209,17 +223,33 @@ msgstr "كل المدن"
 msgid "All rights reserved."
 msgstr "جميع الحقوق محفوظة."
 
+msgid "Almost there"
+msgstr "خطوة أخيرة"
+
 msgid "Already have an account?"
 msgstr "لديك حساب بالفعل؟"
 
 msgid "Always Improving"
 msgstr "نتحسّن باستمرار"
 
+msgid ""
+"An account with this email already exists. Please sign in or use a different"
+" email."
+msgstr ""
+"يوجد حساب بهذا البريد الإلكتروني مسبقاً. يرجى تسجيل الدخول أو استخدام بريد "
+"آخر."
+
 msgid "Anabta"
-msgstr "anabta"
+msgstr "عنبتا"
 
 msgid "Any"
 msgstr "أي"
+
+msgid "Approval email sent to %(count)d owner(s)."
+msgstr "تم إرسال إيميل الموافقة إلى %(count)d من أصحاب المطاعم."
+
+msgid "Approval email sent to %(email)s."
+msgstr "تم إرسال إيميل الموافقة إلى %(email)s."
 
 msgid "Approval status"
 msgstr "حالة الموافقة"
@@ -227,14 +257,11 @@ msgstr "حالة الموافقة"
 msgid "Approve selected restaurant owners"
 msgstr "الموافقة على أصحاب المطاعم المحددين"
 
-msgid "Approve selected restaurants"
-msgstr "الموافقة على المطاعم المحددة"
-
 msgid "Approved"
 msgstr "موافق عليه"
 
 msgid "Aqraba"
-msgstr "aqraba"
+msgstr "عقربا"
 
 msgid "Arabic"
 msgstr "عربي"
@@ -243,7 +270,7 @@ msgid "Arabic restaurant name is required."
 msgstr "اسم المطعم بالعربية مطلوب."
 
 msgid "Arraba"
-msgstr "arraba"
+msgstr "عرابة"
 
 msgid "Ask AI Assistant"
 msgstr "اسأل المساعد الذكي"
@@ -267,7 +294,7 @@ msgid "Avg. Rating"
 msgstr "متوسط التقييم"
 
 msgid "Azzun"
-msgstr "azzun"
+msgstr "عزّون"
 
 msgid "BBQ"
 msgstr "شواء"
@@ -275,50 +302,56 @@ msgstr "شواء"
 msgid "Back to Home"
 msgstr "العودة للرئيسية"
 
+msgid "Back to Login"
+msgstr "العودة لتسجيل الدخول"
+
 msgid "Back to restaurants"
 msgstr "العودة للمطاعم"
 
+msgid "Back to sign in"
+msgstr "العودة لتسجيل الدخول"
+
 msgid "Bani Suheila"
-msgstr "bani suheila"
+msgstr "بني سهيلا"
 
 msgid "Based In"
 msgstr "مقرنا"
 
 msgid "Beit Fajjar"
-msgstr "بيت فajjar"
+msgstr "بيت فجّار"
 
 msgid "Beit Furik"
-msgstr "بيت furik"
+msgstr "بيت فوريك"
 
 msgid "Beit Hanina"
 msgstr "بيت حنينا"
 
 msgid "Beit Hanoun"
-msgstr "بيت hanoun"
+msgstr "بيت حانون"
 
 msgid "Beit Iba"
-msgstr "بيت iba"
+msgstr "بيت إيبا"
 
 msgid "Beit Jala"
-msgstr "بيت جala"
+msgstr "بيت جالا"
 
 msgid "Beit Lahiya"
-msgstr "بيت lahiya"
+msgstr "بيت لاهيا"
 
 msgid "Beit Rima"
-msgstr "بيت رима"
+msgstr "بيت ريما"
 
 msgid "Beit Sahour"
-msgstr "بيت سahour"
+msgstr "بيت ساحور"
 
 msgid "Beit Sira"
-msgstr "بيت سيرة"
+msgstr "بيت سيرا"
 
 msgid "Beit Ummar"
-msgstr "بيت ummar"
+msgstr "بيت أمر"
 
 msgid "Beita"
-msgstr "beita"
+msgstr "بيتا"
 
 msgid "Bethlehem"
 msgstr "بيت لحم"
@@ -345,10 +378,10 @@ msgid "Built for Palestine's Food Lovers"
 msgstr "صُنع لعشّاق الطعام في فلسطين"
 
 msgid "Bureij"
-msgstr "bureij"
+msgstr "البريج"
 
 msgid "Burqin"
-msgstr "burqin"
+msgstr "برقين"
 
 msgid ""
 "By accessing or using Yumm, you agree to be bound by these Terms of Service "
@@ -358,10 +391,10 @@ msgstr ""
 "الخصوصية."
 
 msgid ""
-"By using Yumm, you agree to these terms. Please read them carefully — they "
+"By using Yumm, you agree to these terms. Please read them carefully. They "
 "govern your use of our platform."
 msgstr ""
-"باستخدامك Yumm، فإنك توافق على هذه الشروط. يرجى قراءتها بعناية — فهي تحكم "
+"باستخدامك Yumm، فإنك توافق على هذه الشروط. يرجى قراءتها بعناية. فهي تحكم "
 "استخدامك للمنصة."
 
 msgid "Cafe"
@@ -390,6 +423,9 @@ msgstr "تم تغيير {fields} لـ {name} «{object}»."
 
 msgid "Changed {fields}."
 msgstr "تم تغيير {fields}."
+
+msgid "Check your email"
+msgstr "تحقق من بريدك الإلكتروني"
 
 msgid "Cities"
 msgstr "مدن"
@@ -430,6 +466,9 @@ msgstr "تأكيد كلمة المرور الجديدة"
 msgid "Confirm Password"
 msgstr "تأكيد كلمة المرور"
 
+msgid "Confirm your Yumm email"
+msgstr "تأكيد بريدك الإلكتروني على Yumm"
+
 msgid "Contact"
 msgstr "تواصل معنا"
 
@@ -454,8 +493,8 @@ msgstr "صورة الغلاف"
 msgid "Create Account"
 msgstr "إنشاء حساب"
 
-msgid "Create your account today — it's free"
-msgstr "أنشئ حسابك اليوم — مجاناً"
+msgid "Create your account today. It's free."
+msgstr "أنشئ حسابك اليوم. مجاناً."
 
 msgid "Cuisine"
 msgstr "المطبخ"
@@ -494,7 +533,7 @@ msgid "Deir Dibwan"
 msgstr "دير دبوان"
 
 msgid "Deir al-Balah"
-msgstr "deir al-balah"
+msgstr "دير البلح"
 
 msgid "Delete"
 msgstr "حذف"
@@ -532,6 +571,9 @@ msgstr "الوصف (إنجليزي)"
 msgid "Device info: browser type, operating system, and IP address"
 msgstr "معلومات الجهاز: نوع المتصفح ونظام التشغيل وعنوان IP"
 
+msgid "Did not receive the email? Please check your spam or junk folder."
+msgstr "لم تصلك الرسالة؟ يرجى التحقق من مجلد الرسائل غير المرغوب فيها (Spam)."
+
 msgid "Discover restaurants near you on a live, interactive map."
 msgstr "اكتشف المطاعم القريبة منك على خريطة حية وتفاعلية."
 
@@ -545,7 +587,7 @@ msgid "Don't have an account?"
 msgstr "ليس لديك حساب؟"
 
 msgid "Dura"
-msgstr "دura"
+msgstr "دورا"
 
 msgid "Edit"
 msgstr "تعديل"
@@ -567,6 +609,12 @@ msgstr "البريد الإلكتروني"
 
 msgid "Email cannot be changed. Contact support if you need help."
 msgstr "لا يمكن تغيير البريد الإلكتروني. تواصل مع الدعم إذا احتجت مساعدة."
+
+msgid "Email confirmed successfully. You may now sign in."
+msgstr "تم تأكيد البريد الإلكتروني بنجاح. يمكنكم الآن تسجيل الدخول."
+
+msgid "Email confirmed! You can sign in now."
+msgstr "تم تأكيد البريد الإلكتروني بنجاح. يمكنكم الآن تسجيل الدخول."
 
 msgid "English"
 msgstr "إنجليزي"
@@ -614,14 +662,21 @@ msgid "Explore Restaurants"
 msgstr "استكشف المطاعم"
 
 msgid ""
-"Explore menus, reviews, ratings, and our AI Assistant — all in one place."
-msgstr "استكشف القوائم والتقييمات والتصنيفات والمساعد الذكي — في مكان واحد."
+"Explore menus, reviews, ratings, and our AI Assistant, all in one place."
+msgstr "استكشف القوائم والتقييمات والمساعد الذكي، كل ذلك في مكان واحد."
+
+msgid ""
+"Failed to send approval email for %(count)d restaurant(s). Check email "
+"settings / server logs."
+msgstr ""
+"فشل إرسال إيميل الموافقة لـ %(count)d مطعم/مطاعم. تحقق من إعدادات الإيميل / "
+"سجلات السيرفر."
 
 msgid "Family"
 msgstr "عائلي"
 
-msgid "Featured Restaurants — click to fly there"
-msgstr "مطاعم مميزة — انقر للانتقال إليها"
+msgid "Featured restaurants. Click to fly there"
+msgstr "مطاعم مميزة. انقر للانتقال إليها"
 
 msgid "Features"
 msgstr "المميزات"
@@ -696,7 +751,7 @@ msgid "Groups"
 msgstr "المجموعات"
 
 msgid "Halhul"
-msgstr "حalhul"
+msgstr "حلحول"
 
 msgid "Handpicked"
 msgstr "مختاراتنا"
@@ -705,7 +760,7 @@ msgid "Happy Users"
 msgstr "مستخدمون"
 
 msgid "Haris"
-msgstr "haris"
+msgstr "حارس"
 
 msgid "Hebron"
 msgstr "الخليل"
@@ -740,13 +795,13 @@ msgid "How It Works"
 msgstr "كيف يعمل"
 
 msgid "Husan"
-msgstr "حوسan"
+msgstr "حوسان"
 
 msgid "Identity"
 msgstr "الهوية"
 
 msgid "Idhna"
-msgstr "إذna"
+msgstr "إذنا"
 
 msgid "Important dates"
 msgstr "تواريخ مهمة"
@@ -760,8 +815,8 @@ msgstr "تكبير الخط"
 msgid "Interactive Map"
 msgstr "خريطة تفاعلية"
 
-msgid "Interactive Map — Palestine"
-msgstr "خريطة تفاعلية — فلسطين"
+msgid "Interactive Map, Palestine"
+msgstr "خريطة تفاعلية، فلسطين"
 
 msgid "Invalid credentials."
 msgstr "بيانات الدخول غير صحيحة."
@@ -779,10 +834,10 @@ msgid "Item Name"
 msgstr "اسم الصنف"
 
 msgid "Jabalia"
-msgstr "جabalia"
+msgstr "جباليا"
 
 msgid "Jenin"
-msgstr "جنin"
+msgstr "جنين"
 
 msgid "Jericho"
 msgstr "أريحا"
@@ -815,16 +870,16 @@ msgid "Kafr Aqab"
 msgstr "كفر عقب"
 
 msgid "Kafr Thulth"
-msgstr "kafr thulth"
+msgstr "كفر ثلث"
 
 msgid "Kafr ad-Dik"
-msgstr "kafr ad-dik"
+msgstr "كفر الديك"
 
 msgid "Khan Yunis"
-msgstr "خان yunis"
+msgstr "خان يونس"
 
 msgid "Khuza'a"
-msgstr "khuza'a"
+msgstr "خزاعة"
 
 msgid "Knafeh"
 msgstr "كنافة"
@@ -859,8 +914,8 @@ msgstr "اتركه فارغاً للإبقاء على كلمة المرور ال
 msgid "Legal"
 msgstr "قانوني"
 
-msgid "Legal authorities — when required by law"
-msgstr "الجهات القانونية — عندما يقتضي القانون ذلك"
+msgid "Legal authorities when required by law"
+msgstr "الجهات القانونية عندما يقتضي القانون ذلك"
 
 msgid "Local First"
 msgstr "محلي أولاً"
@@ -873,6 +928,9 @@ msgstr "بيانات الموقع عند البحث عن مطاعم قريبة"
 
 msgid "Location must be within Palestine (West Bank and Gaza)."
 msgstr "يجب أن يكون الموقع داخل فلسطين (الضفة وغزة)."
+
+msgid "Location not found. Try a different search."
+msgstr "لم يتم العثور على الموقع. جرّب بحثاً مختلفاً."
 
 msgid "Location on Map"
 msgstr "الموقع على الخريطة"
@@ -905,7 +963,7 @@ msgid "Longitude must be between -180 and 180."
 msgstr "يجب أن يكون خط الطول بين -180 و 180."
 
 msgid "Maghazi"
-msgstr "maghazi"
+msgstr "المغازي"
 
 msgid "Main Dishes"
 msgstr "الأطباق الرئيسية"
@@ -980,7 +1038,7 @@ msgid "Nablus"
 msgstr "نابلس"
 
 msgid "Nahalin"
-msgstr "نحalin"
+msgstr "نحالين"
 
 msgid "Name"
 msgstr "الاسم"
@@ -990,6 +1048,9 @@ msgstr "الاسم (عربي)"
 
 msgid "Name (English)"
 msgstr "الاسم (إنجليزي)"
+
+msgid "Name is required."
+msgstr "الاسم مطلوب."
 
 msgid "New"
 msgstr "جديد"
@@ -1064,13 +1125,16 @@ msgid "Nothing saved yet"
 msgstr "لا شيء محفوظ بعد"
 
 msgid "Nuseirat"
-msgstr "nuseirat"
+msgstr "النصيرات"
 
 msgid "OK"
 msgstr "حسناً"
 
 msgid "Old password"
 msgstr "كلمة المرور القديمة"
+
+msgid "One step left to activate your account"
+msgstr "تبقّى خطوة واحدة لتفعيل حسابكم"
 
 msgid "Open"
 msgstr "مفتوح"
@@ -1181,6 +1245,20 @@ msgstr "إحصائيات المنصة"
 msgid "Platform statistics"
 msgstr "إحصائيات المنصة"
 
+msgid ""
+"Please confirm your email address before signing in. Check your inbox for "
+"the verification link."
+msgstr ""
+"يرجى تأكيد بريدكم الإلكتروني قبل تسجيل الدخول. تحققوا من صندوق الوارد لرابط "
+"التفعيل."
+
+msgid ""
+"Please confirm your email before signing in. Check your inbox for the "
+"verification link."
+msgstr ""
+"يرجى تأكيد بريدكم الإلكتروني قبل تسجيل الدخول. تحققوا من صندوق الوارد لرابط "
+"التفعيل."
+
 msgid "Please correct the error below."
 msgstr "يرجى تصحيح الخطأ أدناه."
 
@@ -1192,6 +1270,9 @@ msgstr "يرجى تصحيح الأخطاء في تقييمك."
 
 msgid "Please enter a message."
 msgstr "يرجى كتابة رسالة."
+
+msgid "Please enter a valid email."
+msgstr "يرجى إدخال بريد إلكتروني صالح."
 
 msgid "Please enter the item name in at least one language."
 msgstr "يرجى إدخال اسم الصنف بلغة واحدة على الأقل."
@@ -1261,10 +1342,10 @@ msgid "Profile updated successfully."
 msgstr "تم تحديث الملف الشخصي بنجاح."
 
 msgid "Qabatiya"
-msgstr "qabatiya"
+msgstr "قباطية"
 
 msgid "Qalqilya"
-msgstr "قلqilya"
+msgstr "قلقيلية"
 
 msgid "Questions? Email"
 msgstr "لديك أسئلة؟ راسل"
@@ -1303,13 +1384,16 @@ msgid "Register"
 msgstr "إنشاء حساب"
 
 msgid "Register in under a minute, for free."
-msgstr "سجّل خلال أقل من دقيقة — مجاناً."
+msgstr "سجّل خلال أقل من دقيقة، مجاناً."
 
 msgid "Registration failed. Please correct the errors below."
 msgstr "فشل التسجيل. يرجى تصحيح الأخطاء أدناه."
 
 msgid "Registration successful. Please log in."
 msgstr "تم التسجيل بنجاح. يرجى تسجيل الدخول."
+
+msgid "Registration successful. Your request is pending approval."
+msgstr "تم التسجيل بنجاح. طلبك قيد المراجعة."
 
 msgid "Regular User"
 msgstr "مستخدم عادي"
@@ -1337,6 +1421,15 @@ msgstr "أعد إدخال كلمة المرور الجديدة"
 
 msgid "Reply to this review…"
 msgstr "الرد على هذا التقييم…"
+
+msgid "Request Pending"
+msgstr "الطلب قيد المراجعة"
+
+msgid "Request Submitted"
+msgstr "تم إرسال الطلب"
+
+msgid "Request under review"
+msgstr "الطلب قيد المراجعة"
 
 msgid "Required to change password"
 msgstr "مطلوب لتغيير كلمة المرور"
@@ -1380,6 +1473,24 @@ msgstr "نوع المطعم"
 msgid "Restaurant added to your wishlist ❤️"
 msgstr "تمت إضافة المطعم إلى المفضلة"
 
+msgid ""
+"Restaurant is active, but the approval email to %(email)s failed. Check "
+"email settings / server logs."
+msgstr ""
+"المطعم نشط، لكن فشل إرسال إيميل الموافقة إلى %(email)s. تحقق من إعدادات "
+"الإيميل / سجلات السيرفر."
+
+msgid ""
+"Restaurant is active, but the approval email to %(email)s failed: %(error)s"
+msgstr "المطعم نشط، لكن فشل إرسال إيميل الموافقة إلى %(email)s: %(error)s"
+
+msgid ""
+"Restaurant is now active, but no owner email was found — approval "
+"notification was not sent."
+msgstr ""
+"المطعم أصبح نشطاً، لكن لم يُعثر على بريد لصاحب المطعم — لم يُرسل إشعار "
+"الموافقة."
+
 msgid "Restaurant location map"
 msgstr "خريطة موقع المطعم"
 
@@ -1389,14 +1500,17 @@ msgid ""
 msgstr ""
 "يجب أن يوافق المدير على أصحاب المطاعم قبل أن يتمكنوا من العمل على المنصة."
 
+msgid "Restaurant registration"
+msgstr "تسجيل المطعم"
+
 msgid "Restaurants"
 msgstr "المطاعم"
 
 msgid "Restaurants you've saved ❤️"
 msgstr "المطاعم التي حفظتها ❤️"
 
-msgid "Restaurants — when you interact with their listings or reviews"
-msgstr "المطاعم — عند تفاعلك مع صفحاتها أو تقييماتها"
+msgid "Restaurants, when you interact with their listings or reviews"
+msgstr "المطاعم، عند تفاعلك مع صفحاتها أو تقييماتها"
 
 msgid "Restore selected reviews to the public site"
 msgstr "إظهار التقييمات على الموقع"
@@ -1418,10 +1532,10 @@ msgid "Role"
 msgstr "الدور"
 
 msgid "Sa'ir"
-msgstr "sa'ir"
+msgstr "سعير"
 
 msgid "Salfit"
-msgstr "salfit"
+msgstr "سلفيت"
 
 msgid "Save"
 msgstr "حفظ"
@@ -1462,6 +1576,9 @@ msgstr "بحث"
 msgid "Search a place..."
 msgstr "ابحث عن مكان..."
 
+msgid "Search failed. Please try again."
+msgstr "فشل البحث. يرجى المحاولة مرة أخرى."
+
 msgid "Search restaurants"
 msgstr "ابحث عن مطاعم"
 
@@ -1469,7 +1586,7 @@ msgid "Search restaurants..."
 msgstr "ابحث عن مطاعم..."
 
 msgid "Sebastia"
-msgstr "سبsطia"
+msgstr "سبسطية"
 
 msgid "See Profile"
 msgstr "عرض الملف الشخصي"
@@ -1492,8 +1609,8 @@ msgstr "إرسال الرسالة"
 msgid "Send important account and platform updates"
 msgstr "إرسال تحديثات مهمة للحساب والمنصة"
 
-msgid "Service providers — hosting and analytics, under strict agreements"
-msgstr "مزودي الخدمات — الاستضافة والتحليلات، بموجب اتفاقيات صارمة"
+msgid "Service providers for hosting and analytics, under strict agreements"
+msgstr "مزودو الخدمات للاستضافة والتحليلات، بموجب اتفاقيات صارمة"
 
 msgid "Share your dining experience…"
 msgstr "شاركنا تجربتك في الطعام…"
@@ -1543,7 +1660,7 @@ msgid "Submit Review"
 msgstr "إرسال التقييم"
 
 msgid "Surif"
-msgstr "surif"
+msgstr "صوريف"
 
 msgid "Sweets"
 msgstr "حلويات"
@@ -1552,7 +1669,7 @@ msgid "Switch language"
 msgstr "تبديل اللغة"
 
 msgid "Tamoun"
-msgstr "tamoun"
+msgstr "طمون"
 
 msgid "Tap the ♥ on any restaurant card to save it here"
 msgstr "اضغط ♥ على أي بطاقة مطعم لحفظه هنا"
@@ -1564,13 +1681,13 @@ msgid "Tap ♥ on a restaurant to save it"
 msgstr "اضغط ♥ على أي مطعم لحفظه"
 
 msgid "Tarqumiyya"
-msgstr "ترqumiyya"
+msgstr "ترقوميا"
 
 msgid "Technical Support"
 msgstr "الدعم الفني"
 
 msgid "Tel al-Sultan"
-msgstr "tel al-sultan"
+msgstr "تل السلطان"
 
 msgid "Tell us how we can help..."
 msgstr "أخبرنا كيف يمكننا مساعدتك..."
@@ -1580,6 +1697,14 @@ msgstr "شروط الخدمة"
 
 msgid "Text size"
 msgstr "حجم النص"
+
+msgid ""
+"Thank you for registering your restaurant on Yumm. Our team is reviewing "
+"your request. You will receive an email once it has been approved, after "
+"which you may sign in."
+msgstr ""
+"شكراً لتسجيل مطعمكم على منصة Yumm. يقوم فريقنا بمراجعة الطلب حالياً. ستصلكم "
+"رسالة بريد إلكتروني عند الموافقة، ويمكنكم بعدها تسجيل الدخول."
 
 msgid "Thank you for your review!"
 msgstr "شكراً لتقييمك!"
@@ -1599,6 +1724,9 @@ msgstr "هذا الحساب لا يطابق الدور المختار."
 
 msgid "This action cannot be undone."
 msgstr "لا يمكن التراجع عن هذا الإجراء."
+
+msgid "This confirmation link is invalid or has expired."
+msgstr "رابط التأكيد غير صالح أو منتهي الصلاحية."
 
 msgid "This field is required."
 msgstr "هذا الحقل مطلوب."
@@ -1633,10 +1761,10 @@ msgid "Traditional Palestinian"
 msgstr "مأكولات فلسطينية تقليدية"
 
 msgid "Tubas"
-msgstr "طubas"
+msgstr "طوباس"
 
 msgid "Tulkarm"
-msgstr "طulkarm"
+msgstr "طولكرم"
 
 msgid "Update Your Review"
 msgstr "تحديث تقييمك"
@@ -1653,6 +1781,14 @@ msgstr "مستخدم"
 
 msgid "User permissions"
 msgstr "صلاحيات المستخدم"
+
+msgid "User with this Email address already exists."
+msgstr ""
+"يوجد حساب بهذا البريد الإلكتروني مسبقاً. يرجى تسجيل الدخول أو استخدام بريد "
+"آخر."
+
+msgid "Verify your email"
+msgstr "تأكيد البريد الإلكتروني"
 
 msgid "View"
 msgstr "عرض"
@@ -1672,6 +1808,14 @@ msgstr "نُقدّم المطاعم والطهاة والثقافة الغذائ
 
 msgid "We do not sell your personal data to third parties."
 msgstr "لا نبيع بياناتك الشخصية لأطراف ثالثة."
+
+msgid ""
+"We have sent a confirmation link to your email address. Please open the "
+"message and confirm your email to activate your account, then return to sign"
+" in."
+msgstr ""
+"لقد أرسلنا رابط تأكيد إلى بريدك الإلكتروني. يرجى فتح الرسالة وتأكيد البريد "
+"لتفعيل حسابك، ثم العودة لتسجيل الدخول."
 
 msgid ""
 "We keep refining search, maps, and recommendations so discovery feels "
@@ -1697,10 +1841,15 @@ msgstr "نرد خلال 24 ساعة، من الأحد إلى الخميس."
 
 msgid ""
 "We respect your privacy. Yumm collects only what's needed to help you "
-"discover great restaurants — nothing more."
+"discover great restaurants, nothing more."
 msgstr ""
-"نحترم خصوصيتك. يجمع Yumm فقط ما يلزم لمساعدتك على اكتشاف مطاعم رائعة — لا "
+"نحترم خصوصيتك. يجمع Yumm فقط ما يلزم لمساعدتك على اكتشاف مطاعم رائعة، لا "
 "أكثر."
+
+msgid ""
+"We sent you a confirmation link. Open it to activate your account, then come"
+" back and sign in."
+msgstr "أرسلنا لك رابط تأكيد. افتحه لتفعيل حسابك، ثم عد وسجّل الدخول."
 
 msgid "We share your data only with:"
 msgstr "نشارك بياناتك فقط مع:"
@@ -1721,11 +1870,11 @@ msgstr "مرحباً بعودتك"
 msgid "Welcome back"
 msgstr "مرحباً بعودتك"
 
-msgid "Welcome back — Yumm Admin"
-msgstr "مرحباً بعودتك — لوحة تحكم Yumm"
-
 msgid "Welcome back, %(name)s"
 msgstr "مرحباً بعودتك، %(name)s"
+
+msgid "Welcome back, Yumm Admin"
+msgstr "مرحباً بعودتك، لوحة تحكم Yumm"
 
 msgid "What are you craving today?"
 msgstr "ماذا تشتهي اليوم؟"
@@ -1734,10 +1883,10 @@ msgid "When you use Yumm, we may collect:"
 msgstr "عند استخدامك لـ Yumm، قد نجمع:"
 
 msgid ""
-"Whether you're a restaurant owner, food lover, or just curious — reach out "
+"Whether you're a restaurant owner, food lover, or just curious, reach out "
 "and our team will reply soon."
 msgstr ""
-"سواء كنت صاحب مطعم أو عاشق طعام أو فقط فضولياً — تواصل معنا وسيرد فريقنا "
+"سواء كنت صاحب مطعم أو عاشق طعام أو فقط فضولياً، تواصل معنا وسيرد فريقنا "
 "قريباً."
 
 msgid "Wishlist"
@@ -1750,10 +1899,10 @@ msgid "Write a Review"
 msgstr "اكتب تقييماً"
 
 msgid "Ya'bad"
-msgstr "ya'bad"
+msgstr "يعبد"
 
 msgid "Yatta"
-msgstr "يطa"
+msgstr "يطّا"
 
 msgid "Yes, delete"
 msgstr "نعم، احذف"
@@ -1805,6 +1954,9 @@ msgstr "تم تغيير كلمة مرورك بنجاح."
 msgid "Your reply"
 msgstr "ردك"
 
+msgid "Your request is under review"
+msgstr "طلبكم قيد المراجعة"
+
 msgid ""
 "Your request will be reviewed by our admin team. You'll be notified once "
 "your restaurant is approved."
@@ -1817,6 +1969,19 @@ msgstr ""
 "حساب صاحب المطعم بانتظار موافقة الإدارة. ستتمكن من تسجيل الدخول بعد "
 "الموافقة."
 
+msgid ""
+"Your restaurant registration is under review. We'll email you once it's "
+"approved so you can sign in."
+msgstr ""
+"تسجيل مطعمك قيد المراجعة. سنرسل لك بريداً إلكترونياً عند الموافقة لتتمكن من "
+"تسجيل الدخول."
+
+msgid "Your restaurant was approved"
+msgstr "تمت الموافقة على مطعمكم"
+
+msgid "Your restaurant was approved — welcome to Yumm"
+msgstr "تمت الموافقة على مطعمكم — أهلاً بكم في Yumm"
+
 msgid "Your review has been updated."
 msgstr "تم تحديث تقييمك."
 
@@ -1828,10 +1993,10 @@ msgstr "الصفحة الرئيسية"
 
 msgid ""
 "Yumm helps people across Palestine discover great restaurants, read honest "
-"reviews, and save their favourite places — all in one platform."
+"reviews, and save their favourite places in one platform."
 msgstr ""
 "يساعد Yumm الناس في فلسطين على اكتشاف مطاعم رائعة وقراءة تقييمات صادقة وحفظ "
-"أماكنهم المفضلة — في منصة واحدة."
+"أماكنهم المفضلة في منصة واحدة."
 
 msgid ""
 "Yumm provides restaurant information and reviews as-is. We are not "
@@ -2116,6 +2281,11 @@ msgstr "تاريخ الرفع"
 msgid "user"
 msgstr "مستخدم"
 
+msgid "user with this email address already exists."
+msgstr ""
+"يوجد حساب بهذا البريد الإلكتروني مسبقاً. يرجى تسجيل الدخول أو استخدام بريد "
+"آخر."
+
 msgid "users"
 msgstr "المستخدمون"
 
@@ -2152,11 +2322,11 @@ msgstr[3] "تم رفض %(count)d مطاعم."
 msgstr[4] "تم رفض %(count)d مطاعم."
 msgstr[5] "تم رفض %(count)d مطاعم."
 
-msgid "Interactive map — %(count)s restaurant on the map"
-msgid_plural "Interactive map — %(count)s restaurants on the map"
-msgstr[0] "خريطة تفاعلية — مطعم واحد على الخريطة"
-msgstr[1] "خريطة تفاعلية — مطعم واحد على الخريطة"
-msgstr[2] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
-msgstr[3] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
-msgstr[4] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
-msgstr[5] "خريطة تفاعلية — %(count)s مطاعم على الخريطة"
+msgid "Interactive map: %(count)s restaurant on the map"
+msgid_plural "Interactive map: %(count)s restaurants on the map"
+msgstr[0] "خريطة تفاعلية: مطعم واحد على الخريطة"
+msgstr[1] "خريطة تفاعلية: مطعم واحد على الخريطة"
+msgstr[2] "خريطة تفاعلية: %(count)s مطاعم على الخريطة"
+msgstr[3] "خريطة تفاعلية: %(count)s مطاعم على الخريطة"
+msgstr[4] "خريطة تفاعلية: %(count)s مطاعم على الخريطة"
+msgstr[5] "خريطة تفاعلية: %(count)s مطاعم على الخريطة"
