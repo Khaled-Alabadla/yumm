@@ -1,6 +1,9 @@
 {% extends "baseaccount.html" %}
 {% load static i18n %}
 {% block title %}{% trans "Register" %} | Yumm{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=22" />
+{% endblock %}
 {% block content %}
 
 <main
@@ -242,6 +245,15 @@
 
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium" style="color: var(--text-secondary)">
+            {% trans "City" %} <span style="color: var(--danger)">*</span>
+          </label>
+          {% trans "Select a city" as select_city_label %}
+          {% include "includes/city_picker.html" with picker_id="reg-city" choices=form.fields.city.choices selected=form.city.value|default:"" placeholder=select_city_label full_width=True has_error=form.city.errors required=True %}
+          {% include "accounts/includes/field_errors.html" with errors=form.city.errors %}
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium" style="color: var(--text-secondary)">
             {% trans "Email" %}
           </label>
           <input
@@ -376,6 +388,7 @@
 
 {% endblock %}
 {% block extra_js %}
+<script src="{% static 'js/city-picker.js' %}"></script>
 <script src="{% static 'js/auth.js' %}"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

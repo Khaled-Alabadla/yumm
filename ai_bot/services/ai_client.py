@@ -1,10 +1,18 @@
+import os
 import time
 import logging
+
 from together import Together
+from django.utils.translation import gettext as _
 
 logger = logging.getLogger("ai_bot")
 
 TOGETHER_MODEL = "openai/gpt-oss-20b"
+
+
+def is_ai_available() -> bool:
+    """True when Together API key is configured."""
+    return bool(os.environ.get("TOGETHER_API_KEY", "").strip())
 
 
 def call_ai(
@@ -14,9 +22,9 @@ def call_ai(
     max_tokens: int = 700,
     temperature: float = 0.6,
 ) -> str:
-    """
-    Call Together AI and return response text safely.
-    """
+    """Call Together AI and return response text. Returns empty string on failure."""
+    if not is_ai_available():
+        return ""
 
     try:
         client = Together()
@@ -37,17 +45,11 @@ def call_ai(
         )
 
         elapsed = round(time.time() - start, 2)
-
         reply = response.choices[0].message.content.strip()
 
         logger.info(f"[AI] response_time={elapsed}s")
-
         return reply
 
     except Exception as e:
         logger.error(f"[AI ERROR] {str(e)}")
-
-        return (
-            "Sorry, I couldn't process your request right now. "
-            "Please try again in a moment."
-        )
+        return ""

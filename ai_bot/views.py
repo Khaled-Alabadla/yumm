@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext as _
 from .services import get_ai_response
 from .models import ChatSession, ChatMessage
 
@@ -83,7 +84,7 @@ class AIChatView(View):
 
             return JsonResponse(
                 {
-                    "reply": "Sorry, something went wrong. Please try again.",
+                    "reply": _("Sorry, something went wrong. Please try again."),
                     "restaurants": [],
                     "error": str(e),
                 },

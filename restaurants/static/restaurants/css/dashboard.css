@@ -739,6 +739,19 @@ input.rd-file::file-selector-button:hover {
   color: var(--text-primary);
 }
 
+.rd-required {
+  color: var(--danger);
+}
+
+.rd-city-field {
+  position: relative;
+  z-index: 12;
+}
+
+.rd-city-field .rp-city-picker--block {
+  width: 100%;
+}
+
 .rd-field-error,
 .rd-form-error {
   font-size: 0.8125rem;

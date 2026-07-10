@@ -1,0 +1,47 @@
+{% load i18n %}
+<div
+  class="rp-city-picker{% if full_width %} rp-city-picker--block{% endif %}{% if has_error %} has-error{% endif %}"
+  data-rp-city-picker
+  data-auto-submit="{% if auto_submit %}true{% else %}false{% endif %}"
+>
+  <select
+    name="{{ field_name|default:'city' }}"
+    id="{{ picker_id }}-native"
+    class="rp-city-picker__native"
+    aria-label="{{ aria_label|default:_('Select city') }}"
+    tabindex="-1"
+    {% if required %}required{% endif %}
+  >
+    {% for value, label in choices %}
+    <option value="{{ value }}"{% if selected == value %} selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <button
+    type="button"
+    class="rp-city-picker__trigger"
+    id="{{ picker_id }}-trigger"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="{{ picker_id }}-menu"
+    aria-label="{{ aria_label|default:_('Select city') }}"
+  >
+    <span class="rp-city-picker__value" data-rp-city-value>
+      {% if selected %}
+        {% for value, label in choices %}{% if selected == value %}{{ label }}{% endif %}{% endfor %}
+      {% else %}
+        {{ placeholder }}
+      {% endif %}
+    </span>
+    <span class="rp-city-picker__chevron" aria-hidden="true"></span>
+  </button>
+  <ul class="rp-city-picker__menu" id="{{ picker_id }}-menu" role="listbox" hidden>
+    {% for value, label in choices %}
+    <li
+      role="option"
+      class="rp-city-picker__option{% if selected == value %} is-selected{% endif %}"
+      data-value="{{ value }}"
+      {% if selected == value %}aria-selected="true"{% else %}aria-selected="false"{% endif %}
+    >{{ label }}</li>
+    {% endfor %}
+  </ul>
+</div>

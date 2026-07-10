@@ -1,5 +1,7 @@
-{% extends "base.html" %} {% load static %} {% block title %} AI Assistant |
-Yumm {% endblock %} {% block content %}
+{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "AI Assistant" %} | Yumm{% endblock %}
+{% block content %}
 
 <main
   class="min-h-[calc(100vh-64px)] flex flex-col"
@@ -18,60 +20,51 @@ Yumm {% endblock %} {% block content %}
       </div>
 
       <h1 class="text-2xl font-black" style="color: var(--text-primary)">
-        AI Food Assistant
+        {% trans "AI Food Assistant" %}
       </h1>
 
       <p class="text-sm mt-1" style="color: var(--text-secondary)">
-        Describe what you're looking for. I'll handle the rest
+        {% trans "Describe what you're looking for. I'll handle the rest" %}
       </p>
 
-      <div class="flex flex-wrap justify-center gap-2 mt-4">
+      <div class="flex flex-wrap justify-center gap-2 mt-4" id="chatSuggestions">
         <button
-          onclick="sendSuggestion('Seafood under 70₪')"
-          class="px-3 py-1.5 rounded-full text-xs font-medium"
+          type="button"
+          class="chat-suggestion px-3 py-1.5 rounded-full text-xs font-medium"
+          data-suggestion="{% trans 'Seafood under 70₪' %}"
           style="
             background: rgba(181, 69, 27, 0.1);
             color: #b5451b;
             border: 1px solid rgba(181, 69, 27, 0.2);
           "
         >
-          Seafood under 70₪
+          {% trans "Seafood under 70₪" %}
         </button>
 
         <button
-          onclick="sendSuggestion('Family-friendly in Gaza')"
-          class="px-3 py-1.5 rounded-full text-xs font-medium"
+          type="button"
+          class="chat-suggestion px-3 py-1.5 rounded-full text-xs font-medium"
+          data-suggestion="{% trans 'Family-friendly in Gaza' %}"
           style="
             background: rgba(181, 69, 27, 0.1);
             color: #b5451b;
             border: 1px solid rgba(181, 69, 27, 0.2);
           "
         >
-          Family-friendly in Gaza
+          {% trans "Family-friendly in Gaza" %}
         </button>
 
         <button
-          onclick="sendSuggestion('Best kunafa in Nablus')"
-          class="px-3 py-1.5 rounded-full text-xs font-medium"
+          type="button"
+          class="chat-suggestion px-3 py-1.5 rounded-full text-xs font-medium"
+          data-suggestion="{% trans 'Best kunafa in Nablus' %}"
           style="
             background: rgba(181, 69, 27, 0.1);
             color: #b5451b;
             border: 1px solid rgba(181, 69, 27, 0.2);
           "
         >
-          Best kunafa in Nablus
-        </button>
-
-        <button
-          onclick="sendSuggestion('Romantic dinner in Ramallah')"
-          class="px-3 py-1.5 rounded-full text-xs font-medium"
-          style="
-            background: rgba(181, 69, 27, 0.1);
-            color: #b5451b;
-            border: 1px solid rgba(181, 69, 27, 0.2);
-          "
-        >
-          Romantic dinner in Ramallah
+          {% trans "Best kunafa in Nablus" %}
         </button>
       </div>
     </div>
@@ -99,13 +92,15 @@ Yumm {% endblock %} {% block content %}
           color: var(--text-primary);
         "
       >
+        {% blocktrans trimmed %}
         Marhaba! I'm Yumm AI.<br />
         Tell me what you're craving: cuisine, budget, city, vibe.
+        {% endblocktrans %}
 
         <br /><br />
 
         <span style="color: var(--text-secondary); font-size: 11px">
-          I specialize in restaurants in Palestine only.
+          {% trans "I specialize in restaurants in Palestine only." %}
         </span>
       </div>
     </div>
@@ -121,7 +116,7 @@ Yumm {% endblock %} {% block content %}
       <textarea
         id="chatInput"
         rows="1"
-        placeholder="Describe your preferences..."
+        placeholder="{% trans 'Describe your preferences...' %}"
         class="flex-1 resize-none rounded-2xl px-4 py-3 text-sm outline-none"
         style="
           background: var(--input-bg);
@@ -143,6 +138,7 @@ Yumm {% endblock %} {% block content %}
         onclick="sendMessage()"
         class="w-11 h-11 rounded-xl flex items-center justify-center"
         style="background: #b5451b"
+        aria-label="{% trans 'Send' %}"
       >
         <i data-lucide="send" class="w-4 h-4 text-white"></i>
       </button>
@@ -154,10 +150,13 @@ Yumm {% endblock %} {% block content %}
   id="chatConfig"
   data-url="{% url 'ai_bot:chat' %}"
   data-session-id="{{ session_id|default:'' }}"
+  data-error-reply="{% trans 'Sorry, I could not process that.' %}"
+  data-error-network="{% trans 'Sorry, something went wrong. Please try again.' %}"
+  data-uncertain-prefix="{% trans "I'm not entirely sure I understood — here's my best answer:" %}"
   style="display: none"
 ></div>
 
-{{ previous_messages|json_script:"previousMessages" }} 
+{{ previous_messages|json_script:"previousMessages" }}
 {% endblock %}
 {% block extra_js %}
 <script src="{% static 'js/chat.js' %}"></script>
