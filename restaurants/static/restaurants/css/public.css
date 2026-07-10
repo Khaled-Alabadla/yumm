@@ -283,6 +283,15 @@ html.dark .rp-city-picker__option.is-selected {
   color: #fff;
 }
 
+.rp-city-picker--block {
+  width: 100%;
+}
+
+.rp-city-picker.has-error .rp-city-picker__trigger {
+  border-color: #ef4444 !important;
+  box-shadow: none;
+}
+
 .rp-search-toolbar__btn {
   flex: 0 0 auto;
   border-radius: var(--rp-toolbar-radius) !important;

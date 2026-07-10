@@ -3,6 +3,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=22"/>
 {% endblock %}
 
 {% block dashboard_content %}
@@ -24,6 +25,13 @@
         <label for="{{ form.restaurant_type.id_for_label }}">{{ form.restaurant_type.label }}</label>
         {{ form.restaurant_type }}
         {% if form.restaurant_type.errors %}<span class="rd-field-error">{{ form.restaurant_type.errors.0 }}</span>{% endif %}
+      </div>
+
+      <div class="rd-field rd-city-field">
+        <label>{% trans "City" %} <span class="rd-required">*</span></label>
+        {% trans "Select a city" as select_city_label %}
+        {% include "includes/city_picker.html" with picker_id="rd-city" choices=form.fields.city.choices selected=form.city.value|default:"" placeholder=select_city_label full_width=True has_error=form.city.errors required=True %}
+        {% if form.city.errors %}<span class="rd-field-error">{{ form.city.errors.0 }}</span>{% endif %}
       </div>
 
       {% trans "Address" as address_heading %}
@@ -81,5 +89,6 @@
 
 {% block extra_js %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{% static 'js/city-picker.js' %}"></script>
 <script src="{% static 'js/yumm-map.js' %}?v=1"></script>
 {% endblock %}

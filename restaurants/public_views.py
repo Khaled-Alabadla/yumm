@@ -66,7 +66,7 @@ class RestaurantListView(ListView):
                     (code, label) for code, label in Restaurant.City.choices
                     if code in FEATURED_CITY_CODES
                 ],
-                "city_choices": get_all_city_choices(),
+                "city_choices": [("", _("All cities"))] + get_all_city_choices(),
                 "filter_categories": get_filter_categories(),
                 "top_rated": get_top_rated_restaurants(limit=4),
                 "restaurant_count": self.filtered_queryset.count(),

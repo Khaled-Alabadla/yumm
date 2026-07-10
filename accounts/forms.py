@@ -140,6 +140,15 @@ class UserRegistrationForm(UserCreationForm):
             ),
         }
 
+        from restaurants.geo import get_all_city_choices
+
+        self.fields["city"] = forms.ChoiceField(
+            label=_("City"),
+            choices=[("", _("Select a city"))] + get_all_city_choices(),
+            required=False,
+            widget=forms.Select(attrs={"class": "yumm-input"}),
+        )
+
     def clean_role(self) -> str:
         role = self.cleaned_data.get("role")
         if role == CustomUser.Role.ADMIN:
@@ -197,6 +206,7 @@ class UserRegistrationForm(UserCreationForm):
         if role == CustomUser.Role.OWNER:
             name_en = (cleaned_data.get("restaurant_name_en") or "").strip()
             name_ar = (cleaned_data.get("restaurant_name_ar") or "").strip()
+            city = (cleaned_data.get("city") or "").strip()
             if not name_en:
                 self.add_error(
                     "restaurant_name_en",
@@ -207,8 +217,14 @@ class UserRegistrationForm(UserCreationForm):
                     "restaurant_name_ar",
                     _("Arabic restaurant name is required."),
                 )
+            if not city:
+                self.add_error(
+                    "city",
+                    _("City is required for restaurant owners."),
+                )
             cleaned_data["restaurant_name_en"] = name_en
             cleaned_data["restaurant_name_ar"] = name_ar
+            cleaned_data["city"] = city
 
         return cleaned_data
 
@@ -223,6 +239,7 @@ class UserRegistrationForm(UserCreationForm):
             name_en = self.cleaned_data["restaurant_name_en"]
             user.first_name = name_en[:150]
             user.last_name = ""
+            user.city = self.cleaned_data.get("city", "")
         else:
             full_name = self.cleaned_data.get("full_name", "").strip()
             parts = full_name.split(" ", 1)
@@ -242,6 +259,7 @@ class UserRegistrationForm(UserCreationForm):
                         user,
                         name_en=self.cleaned_data["restaurant_name_en"],
                         name_ar=self.cleaned_data["restaurant_name_ar"],
+                        city=self.cleaned_data["city"],
                     )
         return user
 
@@ -251,6 +269,7 @@ class UserRegistrationForm(UserCreationForm):
         *,
         name_en: str,
         name_ar: str,
+        city: str,
     ) -> None:
         """Create a pending restaurant listing linked to a new owner account."""
         from restaurants.models import Restaurant
@@ -264,7 +283,7 @@ class UserRegistrationForm(UserCreationForm):
             name_ar=name_ar,
             address_en=_("Pending verification"),
             address_ar=_("بانتظار التحقق"),
-            city=Restaurant.City.RAMALLAH,
+            city=city,
             status=Restaurant.Status.PENDING,
             is_open=False,
         )

@@ -1,6 +1,12 @@
 const chatEl = document.getElementById('chatMessages');
 const inputEl = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
+const chatConfigEl = document.getElementById('chatConfig');
+const chatI18n = {
+    errorReply: chatConfigEl?.dataset.errorReply || 'Sorry, I could not process that.',
+    errorNetwork: chatConfigEl?.dataset.errorNetwork || 'Sorry, something went wrong. Please try again.',
+    uncertainPrefix: chatConfigEl?.dataset.uncertainPrefix || "I'm not entirely sure I understood — here's my best answer:",
+};
 let history = [];
 let isLoading = false;
 let sessionId = null;
@@ -12,8 +18,19 @@ function autoResize(el) {
 }
 
 function sendSuggestion(text) {
+    if (!inputEl || !text) return;
     inputEl.value = text;
-    sendMessage();
+    autoResize(inputEl);
+    inputEl.focus();
+}
+
+function bindSuggestionChips() {
+    document.querySelectorAll('.chat-suggestion').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const text = btn.dataset.suggestion || btn.textContent.trim();
+            sendSuggestion(text);
+        });
+    });
 }
 
 
@@ -73,6 +90,7 @@ function initChat() {
 }
 
 initChat();
+bindSuggestionChips();
 
 function appendUser(text, doScroll = true) {
     document.getElementById('welcomeMsg')?.remove();
@@ -99,8 +117,8 @@ function appendAI(text, doScroll = true) {
             style="background:rgba(181,69,27,0.15)">
             <i data-lucide="bot" class="w-4 h-4" style="color:#B5451B"></i>
         </div>
-        <div class="rounded-2xl rounded-tl-sm px-4 py-3 max-w-xl text-sm leading-relaxed"
-            style="background:var(--card);border:1px solid var(--border);color:var(--text-primary)"></div>`;
+        <div class="rounded-2xl rounded-tl-sm px-4 py-3 max-w-xl text-[13.5px] leading-[1.7]"
+            style="background:var(--card);border:1px solid var(--border);color:var(--text-primary);white-space:pre-line"></div>`;
     el.querySelector('div:last-child').textContent = text;
     chatEl.appendChild(el);
     reloadIcons();
@@ -166,7 +184,7 @@ async function sendMessage() {
     showTyping();
 
     try {
-        const res = await fetch('/ai/chat/', {
+        const res = await fetch(chatConfigEl?.dataset.url || '/ai/chat/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -181,12 +199,12 @@ async function sendMessage() {
         });
 
         const data = await res.json();
-        const reply = data.reply || 'Sorry, I could not process that.';
+        const reply = data.reply || chatI18n.errorReply;
 
         removeTyping();
 
         const prefix = (data.confidence && data.confidence < 0.6)
-            ? "I'm not entirely sure I understood — here's my best answer:\n\n"
+            ? chatI18n.uncertainPrefix + '\n\n'
             : '';
         appendAI(prefix + reply);
 
@@ -201,7 +219,7 @@ async function sendMessage() {
 
     } catch {
         removeTyping();
-        appendAI('Sorry, something went wrong. Please try again.');
+        appendAI(chatI18n.errorNetwork);
     }
 
     isLoading = false;

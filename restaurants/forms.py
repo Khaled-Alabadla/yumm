@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from reviews.models import CommentReply
 
-from .geo import is_valid_palestine_coords
+from .geo import get_all_city_choices, is_valid_palestine_coords
 from .models import MenuCategory, MenuItem, Restaurant, RestaurantCategory
 from .utils import (
     format_working_hours,
@@ -51,6 +51,7 @@ class RestaurantInfoForm(forms.ModelForm):
         fields = (
             "name_en",
             "name_ar",
+            "city",
             "address_en",
             "address_ar",
             "description_en",
@@ -101,6 +102,13 @@ class RestaurantInfoForm(forms.ModelForm):
 
         self.fields["name_en"].label = _("Name (English)")
         self.fields["name_ar"].label = _("Name (Arabic)")
+        self.fields["city"] = forms.ChoiceField(
+            label=_("City"),
+            choices=[("", _("Select a city"))] + get_all_city_choices(),
+            required=True,
+        )
+        if self.instance and self.instance.pk and self.instance.city:
+            self.fields["city"].initial = self.instance.city
         self.fields["address_en"].label = _("Address (English)")
         self.fields["address_ar"].label = _("Address (Arabic)")
         self.fields["description_en"].label = _("Description (English)")

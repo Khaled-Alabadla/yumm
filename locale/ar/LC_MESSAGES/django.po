@@ -103,6 +103,9 @@ msgstr ""
 msgid "AI Assistant"
 msgstr "المساعد الذكي"
 
+msgid "AI Food Assistant"
+msgstr "مساعد الطعام الذكي"
+
 msgid "Abasan"
 msgstr "عبسان"
 
@@ -353,6 +356,9 @@ msgstr "بيت أمر"
 msgid "Beita"
 msgstr "بيتا"
 
+msgid "Best kunafa in Nablus"
+msgstr "أفضل كنافة في نابلس"
+
 msgid "Bethlehem"
 msgstr "بيت لحم"
 
@@ -556,8 +562,14 @@ msgstr "تم حذف {name} «{object}»."
 msgid "Deleted!"
 msgstr "تم الحذف!"
 
+msgid "Describe what you're looking for. I'll handle the rest"
+msgstr "صف ما تبحث عنه. سأتولى الباقي"
+
 msgid "Describe your craving and our AI finds the perfect match instantly."
 msgstr "صف ما تشتهيه وسيجد لك المساعد الذكي الخيار المثالي فوراً."
+
+msgid "Describe your preferences..."
+msgstr "صف تفضيلاتك..."
 
 msgid "Description"
 msgstr "الوصف"
@@ -675,6 +687,9 @@ msgstr ""
 msgid "Family"
 msgstr "عائلي"
 
+msgid "Family-friendly in Gaza"
+msgstr "مطعم مناسب للعائلة في غزة"
+
 msgid "Featured restaurants. Click to fly there"
 msgstr "مطاعم مميزة. انقر للانتقال إليها"
 
@@ -766,9 +781,22 @@ msgid "Hebron"
 msgstr "الخليل"
 
 msgid ""
+"Hello! I'm Yumm AI. Tell me what you're craving — cuisine, city, budget, or "
+"occasion — and I'll find the best matches from our database!"
+msgstr ""
+"مرحباً! أنا مساعد Yumm الذكي. أخبرني بما تشتهيه — نوع الأكل، المدينة، "
+"الميزانية، أو المناسبة — وأجد لك أفضل المطاعم من قاعدة بياناتنا!"
+
+msgid ""
 "Hello! I'm Yumm's AI assistant. Ask me about any restaurant or dish in "
 "Palestine!"
 msgstr "مرحباً! أنا مساعد Yumm الذكي. اسألني عن أي مطعم أو أكلة في فلسطين!"
+
+msgid "Here are the details of the restaurants you asked about:"
+msgstr "إليك تفاصيل المطاعم التي سألت عنها:"
+
+msgid "Here are the restaurants that match your request from our database:"
+msgstr "إليك المطاعم التي تطابق طلبك من قاعدة بياناتنا:"
 
 msgid "Hide selected reviews from the public site"
 msgstr "إخفاء التقييمات من الموقع"
@@ -796,6 +824,15 @@ msgstr "كيف يعمل"
 
 msgid "Husan"
 msgstr "حوسان"
+
+msgid "I couldn't find any restaurants matching your request in our database."
+msgstr "لم أجد مطاعم تطابق طلبك في قاعدة البيانات."
+
+msgid "I specialize in restaurants in Palestine only."
+msgstr "أتخصص في مطاعم فلسطين فقط."
+
+msgid "I'm not entirely sure I understood — here's my best answer:"
+msgstr "لست متأكداً تماماً من فهمي — إليك أفضل إجابة لدي:"
 
 msgid "Identity"
 msgstr "الهوية"
@@ -976,6 +1013,13 @@ msgstr "إدارة تفاصيل حسابك"
 
 msgid "Mansaf"
 msgstr "منسف"
+
+msgid ""
+"Marhaba! I'm Yumm AI.<br /> Tell me what you're craving: cuisine, budget, "
+"city, vibe."
+msgstr ""
+"مرحباً! أنا مساعد Yumm الذكي.<br /> أخبرني بما تشتهيه: نوع الطعام، "
+"الميزانية، المدينة، والأجواء."
 
 msgid "Mark selected messages as read"
 msgstr "تعليم الرسائل المحددة كمقروءة"
@@ -1531,6 +1575,9 @@ msgstr ""
 msgid "Role"
 msgstr "الدور"
 
+msgid "Romantic dinner in Ramallah"
+msgstr "عشاء رومانسي في رام الله"
+
 msgid "Sa'ir"
 msgstr "سعير"
 
@@ -1569,6 +1616,9 @@ msgstr "استخراج البيانات أو إرسال رسائل مزعجة أ
 
 msgid "Seafood"
 msgstr "مأكولات بحرية"
+
+msgid "Seafood under 70₪"
+msgstr "مأكولات بحرية بأقل من 70₪"
 
 msgid "Search"
 msgstr "بحث"
@@ -1632,6 +1682,20 @@ msgstr "سلواد"
 
 msgid "Since"
 msgstr "منذ"
+
+msgid "Sorry, I could not process that."
+msgstr "عذراً، لم أتمكن من معالجة ذلك."
+
+msgid ""
+"Sorry, I couldn't process your request right now. Please try again in a "
+"moment."
+msgstr "عذراً، لم أتمكن من معالجة طلبك الآن. يرجى المحاولة بعد قليل."
+
+msgid "Sorry, I don't have the answer to this question."
+msgstr "عذراً، لا أملك الإجابة عن هذا السؤال."
+
+msgid "Sorry, something went wrong. Please try again."
+msgstr "عذراً، حدث خطأ ما. يرجى المحاولة مرة أخرى."
 
 msgid ""
 "Sorry, we couldn't find the page you're looking for. It may have moved or no"

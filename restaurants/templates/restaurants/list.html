@@ -6,7 +6,7 @@
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=21"/>
+<link rel="stylesheet" href="{% static 'restaurants/css/public.css' %}?v=22"/>
 {% endblock %}
 
 {% block content %}
@@ -32,45 +32,8 @@
         </div>
 
         <div class="rp-search-toolbar__city">
-          <div class="rp-city-picker" data-rp-city-picker>
-            <select name="city" id="rp-city" class="rp-city-picker__native" aria-label="{% trans 'Select city' %}" tabindex="-1">
-              <option value="">{% trans "All cities" %}</option>
-              {% for code, label in city_choices %}
-              <option value="{{ code }}"{% if active_city == code %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
-            <button
-              type="button"
-              class="rp-city-picker__trigger"
-              id="rp-city-trigger"
-              aria-haspopup="listbox"
-              aria-expanded="false"
-              aria-controls="rp-city-menu"
-              aria-label="{% trans 'Select city' %}"
-            >
-              <span class="rp-city-picker__value" data-rp-city-value>
-                {% if active_city %}
-                  {% for code, label in city_choices %}{% if active_city == code %}{{ label }}{% endif %}{% endfor %}
-                {% else %}
-                  {% trans "All cities" %}
-                {% endif %}
-              </span>
-              <span class="rp-city-picker__chevron" aria-hidden="true"></span>
-            </button>
-            <ul class="rp-city-picker__menu" id="rp-city-menu" role="listbox" hidden>
-              <li role="option" class="rp-city-picker__option{% if not active_city %} is-selected{% endif %}" data-value="" {% if not active_city %}aria-selected="true"{% else %}aria-selected="false"{% endif %}>
-                {% trans "All cities" %}
-              </li>
-              {% for code, label in city_choices %}
-              <li
-                role="option"
-                class="rp-city-picker__option{% if active_city == code %} is-selected{% endif %}"
-                data-value="{{ code }}"
-                {% if active_city == code %}aria-selected="true"{% else %}aria-selected="false"{% endif %}
-              >{{ label }}</li>
-              {% endfor %}
-            </ul>
-          </div>
+          {% trans "All cities" as all_cities_label %}
+          {% include "includes/city_picker.html" with picker_id="rp-city" choices=city_choices selected=active_city|default:"" placeholder=all_cities_label auto_submit=True %}
         </div>
 
         <button type="submit" class="rp-btn rp-btn--primary rp-search-toolbar__btn">
@@ -187,5 +150,6 @@
 {% endblock %}
 
 {% block pre_main_js %}
-<script src="{% static 'restaurants/js/public.js' %}?v=11"></script>
+<script src="{% static 'js/city-picker.js' %}"></script>
+<script src="{% static 'restaurants/js/public.js' %}?v=12"></script>
 {% endblock %}
