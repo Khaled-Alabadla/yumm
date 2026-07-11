@@ -37,10 +37,18 @@ def annotate_public_stats(queryset: QuerySet) -> QuerySet:
 
 def get_active_restaurants() -> QuerySet:
     """Base queryset for customer-facing restaurant listings."""
+    menu_items_with_images = MenuItem.objects.exclude(image="").order_by(
+        "order",
+        "name_en",
+    )
     return (
         Restaurant.objects.filter(status=Restaurant.Status.ACTIVE)
         .select_related("category")
-        .prefetch_related("tags", "images")
+        .prefetch_related(
+            "tags",
+            "images",
+            Prefetch("menu_items", queryset=menu_items_with_images),
+        )
     )
 
 

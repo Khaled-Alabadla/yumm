@@ -372,7 +372,13 @@ class RestaurantImage(models.Model):
         ]
 
     def save(self, *args, **kwargs):
-        # Enforce the one-primary-per-restaurant invariant before saving.
+        if not self.is_primary:
+            has_primary = RestaurantImage.objects.filter(
+                restaurant_id=self.restaurant_id,
+                is_primary=True,
+            ).exclude(pk=self.pk).exists()
+            if not has_primary:
+                self.is_primary = True
         if self.is_primary:
             RestaurantImage.objects.filter(
                 restaurant_id=self.restaurant_id,

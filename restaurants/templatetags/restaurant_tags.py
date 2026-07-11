@@ -71,12 +71,9 @@ def localized_tag(tag):
 @register.filter
 def menu_item_image(item):
     """Owner upload wins; otherwise use authentic local dish photo."""
-    if item.image and item.image.name:
-        try:
-            if item.image.storage.exists(item.image.name):
-                return item.image.url
-        except OSError:
-            pass
+    url = _uploaded_image_url(item.image)
+    if url:
+        return url
     return get_dish_image_url(item.name_en)
 
 
@@ -113,17 +110,60 @@ def _is_valid_uploaded_image(image_field) -> bool:
         if not image_field.storage.exists(image_field.name):
             return False
         with image_field.open("rb") as handle:
-            return handle.read(3) == JPEG_MAGIC
+            header = handle.read(12)
+        if header[:3] == JPEG_MAGIC:
+            return True
+        if header[:4] == b"\x89PNG":
+            return True
+        if header[:4] == b"RIFF" and header[8:12] == b"WEBP":
+            return True
+        return header[:6] in (b"GIF87a", b"GIF89a")
     except OSError:
         return False
 
 
+def _uploaded_image_url(image_field) -> str | None:
+    if _is_valid_uploaded_image(image_field):
+        return image_field.url
+    return None
+
+
+def _restaurant_uploaded_cover_url(restaurant) -> str | None:
+    images = list(restaurant.images.all())
+    for img in images:
+        if img.is_primary:
+            url = _uploaded_image_url(img.image)
+            if url:
+                return url
+    for img in images:
+        if img.image_type == "cover":
+            url = _uploaded_image_url(img.image)
+            if url:
+                return url
+    for img in images:
+        url = _uploaded_image_url(img.image)
+        if url:
+            return url
+    return None
+
+
+def _first_menu_item_upload_url(restaurant) -> str | None:
+    for item in restaurant.menu_items.all():
+        url = _uploaded_image_url(item.image)
+        if url:
+            return url
+    return None
+
+
 @register.filter
 def restaurant_cover(restaurant):
-    """Return cover image URL — unique local restaurant photo per listing."""
-    primary = restaurant.primary_image
-    if primary and primary.image and _is_valid_uploaded_image(primary.image):
-        return primary.image.url
+    """Return cover image URL — uploaded photo first, static fallback last."""
+    url = _restaurant_uploaded_cover_url(restaurant)
+    if url:
+        return url
+    url = _first_menu_item_upload_url(restaurant)
+    if url:
+        return url
     cat_name = restaurant.category.name_en if restaurant.category else ""
     return get_restaurant_cover_url(restaurant.name_en or "", cat_name)
 
