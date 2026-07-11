@@ -1,0 +1,2511 @@
+Wrote E:\Yumm\locale\ar\LC_MESSAGES\django.po (734 entries)
+Wrote E:\Yumm\locale\ar\LC_MESSAGES\django.mo
+Wrote E:\Yumm\locale\ar\LC_MESSAGES\django.po (734 entries)
+Wrote E:\Yumm\locale\ar\LC_MESSAGES\django.mo
+[
+{
+    "model": "sessions.session",
+    "pk": "1wwlnbcx9ovn7tn4n002z4p4j8tptefp",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd80t:CVvniqVAlf0Kw00kgwYn0ZNlk0OJdRncxmh0afU0ysw",
+        "expire_date": "2026-07-10T14:58:39.501Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2et8oknuqzjbfwcoy8l8hkgqydsact1t",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd7y9:G6PZwI27Vvu0C7ir61Hs1nerdV-sAzUeQqAAGd76RVA",
+        "expire_date": "2026-07-10T14:55:49.110Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "37o074tmuwfe1fv5749t1xzxfg887x3g",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8zo:EW3r5xFQowfASqIE_ywDR5rtP2LSwJdzYOQQaw61xxk",
+        "expire_date": "2026-07-10T16:01:36.940Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "43jkscz4ulta4w7cctplh4ftseaa8axd",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd7pw:IOnXlxT4FYupEaHFMnLdeDwyv3BD7PZ5hKNkLuj4uls",
+        "expire_date": "2026-07-10T14:47:20.000Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "5e8mbqzypv5jd7k4gaiw9luzvz46vj7p",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8zV:hZk7uEXVtH8lOELuEQerRL7v2g65Ogf_Bwcft64l_GE",
+        "expire_date": "2026-07-10T16:01:17.373Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6d9vixpuf3v9lkeoi2vha5i38pj9r4d1",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd7qA:0dwIBs9alzkVaHWfCF5413GHyzeW6z_Bq6rTh82l-lw",
+        "expire_date": "2026-07-10T14:47:34.818Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "8fcxd1gbupb5pxwe3y2zuj401jdjc08q",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8ka:3aEQUIEp_v8XhWkbA948i4DN3HpFIvZjIzdOXnx_eaw",
+        "expire_date": "2026-07-10T15:45:52.968Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "9827gapo53gyrig3npuc9qv68ghfoeq7",
+    "fields": {
+        "session_data": ".eJxVjDkKwzAQAP-ydRDa6EDrMn3eYHZ1RE6CBD4qk78Hg4uknRlmh5G3tY7bkudxSjBAgMsvE46v3A6RntweXcXe1nkSdSTqtIu695Tft7P9G1ReKgzAAY331gkVLVkKOe0pcHBkUDISmYjRY9LFSsxcyFLEKxXmYAipwOcL3qU38Q:1weg7j:bvcxDCgvMH0BALHHdtuAArwXqo4aOvEgdwEs6B5ukzI",
+        "expire_date": "2026-07-14T21:36:07.564Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "a7hzqfw2jh5hv1frnp9dyxx1lx4g0k6d",
+    "fields": {
+        "session_data": ".eJxVjDkKwzAQAP-ydRDa6EDrMn3eYHZ1RE6CBD4qk78Hg4uknRlmh5G3tY7bkudxSjBAgMsvE46v3A6RntweXcXe1nkSdSTqtIu695Tft7P9G1ReKgzAAY331gkVLVkKOe0pcHBkUDISmYjRY9LFSsxcyFLEKxXmYAipwOcL3qU38Q:1weg7E:O7ynCZ6UkGcqNjL4q2oOQ_28v8Rh3rEgz4N-8WTu6g8",
+        "expire_date": "2026-07-14T21:35:36.561Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b5knd3jwkmvf3degweyial7rwea9ilql",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd95m:6V4gLK7uEObXgKN6-IyGm9e01phD0BD6H10c122edBE",
+        "expire_date": "2026-07-10T16:07:46.501Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b89fx5wje4djxzyh4g0jt6i5fmups0d7",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP-yZ0OAIgs9eu8bGnZZpGrapLQn499Nkx70OjOZN4xp3-q4N1nHKUMPxsDlF1Lip8yHyY803xfFy7ytE6kjUadtaliyvG5n-zeoqVXoQYsrGKKEKJyZLFKJxXtEJxoNxRRRiw_aYjCGC4tE8s5fO-uJbUfw-QIT9jgm:1wgg9r:ZaZ1rpAJ1B44aiiUPZMimRnDL2nbnslLH-rkb5jAurA",
+        "expire_date": "2026-07-20T10:02:35.553Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "bcsp068yprwpfpnt28h6yfluy7t3fjo0",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP-yZ0OAIgs9eu8bGnZZpGrapLQn499Nkx70OjOZN4xp3-q4N1nHKUMPxsDlF1Lip8yHyY803xfFy7ytE6kjUadtaliyvG5n-zeoqVXoQYsrGKKEKJyZLFKJxXtEJxoNxRRRiw_aYjCGC4tE8s5fO-uJbUfw-QIT9jgm:1wfgaR:jCXDGGHNxw2KVY30ihxUoZEutWGfSVDUBjzYki88A8c",
+        "expire_date": "2026-07-17T16:17:55.225Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "covmnn3yqv1ldkf5n2imp3e0tx1npo82",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd93w:7KpT839IT7lqpsLY4mZOdVuJlVQ0rap9O27xDqO06d4",
+        "expire_date": "2026-07-10T16:05:52.629Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "dnhs9n6dg9s7lkkh5x1hj4gde6c688cu",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd95b:uqymsM0NXGJ-HnKTqZhL5f42S1q62oxA2z86E5WyWbI",
+        "expire_date": "2026-07-10T16:07:35.931Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fg2uik0rekisoi4du82ers6y4qlp4207",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8iC:rOYu9PrjJYqaf84ZPBHSSi70-qePtuPFBHcCrVF0M60",
+        "expire_date": "2026-07-10T15:43:24.235Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fkgizrpjjbxen4rykvhv4gs3fhoozncu",
+    "fields": {
+        "session_data": ".eJxVjDkKwzAQAP-ydRDa6EDrMn3eYHZ1RE6CBD4qk78Hg4uknRlmh5G3tY7bkudxSjBAgMsvE46v3A6RntweXcXe1nkSdSTqtIu695Tft7P9G1ReKgzAAY331gkVLVkKOe0pcHBkUDISmYjRY9LFSsxcyFLEKxXmYAipwOcL3qU38Q:1weg6q:HQ68TBUwd6N1ADZ2CuGduWeIEWXLCb_V4LTCCNELZFU",
+        "expire_date": "2026-07-14T21:35:12.401Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hldyq2yu0my7r7esaw6p2t6kbew3vl74",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd7xo:CZHaxH6ICLUnDGdBShBS3C4Ns6QJUQuk5AEClOMfFnc",
+        "expire_date": "2026-07-10T14:55:28.025Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "hptucs4oc4njqcmoxxys4dzvjxfeh4da",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd87e:iZr14XIBKVgMjDJheQyFKs-zPaZejrB0bsmPnnhoCbs",
+        "expire_date": "2026-07-10T15:05:38.328Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ji5qpkgzlobqblagu46ny0l6ywsiyfix",
+    "fields": {
+        "session_data": ".eJxVjDkKwzAQAP-ydRDa6EDrMn3eYHZ1RE6CBD4qk78Hg4uknRlmh5G3tY7bkudxSjBAgMsvE46v3A6RntweXcXe1nkSdSTqtIu695Tft7P9G1ReKgzAAY331gkVLVkKOe0pcHBkUDISmYjRY9LFSsxcyFLEKxXmYAipwOcL3qU38Q:1weg70:wOIUKpXwh1IAAe45UK8BudSg7xCjLtgxtk7GpVrnzm8",
+        "expire_date": "2026-07-14T21:35:22.422Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "l3b6fly52p2xr1o1oa3pgovfzv16wrvq",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd7qQ:nIezX0E8nOTW6tch1omZqtZD9knt0Y6943ljCrvViZA",
+        "expire_date": "2026-07-10T14:47:50.830Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "l6ped5olrm4oayxw8iq9zfa70ndm0pe0",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd87e:iZr14XIBKVgMjDJheQyFKs-zPaZejrB0bsmPnnhoCbs",
+        "expire_date": "2026-07-10T15:05:38.136Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ocy0yojp6qv9afx8wcwflg8jfc37tqlj",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP-yZ0OAIgs9eu8bGnZZpGrapLQn499Nkx70OjOZN4xp3-q4N1nHKUMPxsDlF1Lip8yHyY803xfFy7ytE6kjUadtaliyvG5n-zeoqVXoQYsrGKKEKJyZLFKJxXtEJxoNxRRRiw_aYjCGC4tE8s5fO-uJbUfw-QIT9jgm:1wfgY3:SGNuG9Yhd9swQexlEru9x42-QfObXJXR3PGcQ6wYNcE",
+        "expire_date": "2026-07-17T16:15:27.361Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "ofex19e5njo36mpzi523oq75acharq2b",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd80t:CVvniqVAlf0Kw00kgwYn0ZNlk0OJdRncxmh0afU0ysw",
+        "expire_date": "2026-07-10T14:58:39.864Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "p6d7zn1dc3upy7dr2vtrgzqqlu33irr7",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd80P:lkAnPI9rREYkP2iCRrvI4SE7OcApQDa-YNJINdghCbQ",
+        "expire_date": "2026-07-10T14:58:09.522Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uxny9oe0umi638454yxuics7vw3rnkbp",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8Yk:N10gnmGo5jrLr6lbcEMc6b3EmaJV1sVMbOdPnDyPOzI",
+        "expire_date": "2026-07-10T15:33:38.691Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uyzi0yfqouznub10mbxjtsbujyvzqzsk",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8hq:JZ499y2OWdsykA72M1o0FNoPi6MvECiYbpXzwTvanAg",
+        "expire_date": "2026-07-10T15:43:02.598Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "v3sgs4owmnfe8rxndney2uhpzsem9lmw",
+    "fields": {
+        "session_data": ".eJxVjDkOwjAQAP_iGlk-szYlfd5grXdtHECJlKNC_B1ZSgHtzGjeIuGxt3RsZU0Ti6uw4vLLMtKzzF3wA-f7ImmZ93XKsifytJscFy6v29n-DRpurW-z09kBsLUE7NDDoEkD-1KVgVzJ2FpCcNEGUhi9isFXgx6IHQ3Vi88X2Wc3tA:1wfDr5:I6Ls9Gaby-M3ckD627N8Is7BBWd4IfG-U5WL6--2f0U",
+        "expire_date": "2026-07-16T09:37:11.791Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "wmzxubnqgz93szo0cyqdieg4r01zgugx",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4rAeeGO7P2GyokdWkCJ1MeE-HdUqQOsd6d7w8DbOg7bovMwCXRwgdMvS5yfWnchD673ZnKr6zwlsyfmsIvpm-jrdrR_g5GXETrwWiSxRx_OisVhZBLKHCkJS5FAhYsGx4jJResDowuWMBKFq7VZ4fMFC004Sw:1wd8hR:ytSZen-O3_kSPyze7RKsEHWP_gR5frzmu7OXnV5MV2o",
+        "expire_date": "2026-07-10T15:42:37.748Z"
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$C0HmI1nNJL11O23Rq07Bw2$7WuUNZI07mZZQTjxGehUBGD7NB6nial+iEsdO7MklVM=",
+        "last_login": "2026-06-26T16:07:46.368Z",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-26T12:57:48.144Z",
+        "email": "khaled@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "admin",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$SCeUQWKmobOnQB91xSUu3s$kPeuQN2Rbrt9uIXl8P1S2H9zSoxG+nT/ex0t2BEVcGI=",
+        "last_login": "2026-06-26T13:01:50.262Z",
+        "is_superuser": false,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-26T13:00:10.464Z",
+        "email": "moh@gmail.com",
+        "first_name": "Mohammed",
+        "last_name": "Ahmed",
+        "role": "admin",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": [
+            [
+                "add_customuser",
+                "accounts",
+                "customuser"
+            ],
+            [
+                "change_customuser",
+                "accounts",
+                "customuser"
+            ],
+            [
+                "delete_customuser",
+                "accounts",
+                "customuser"
+            ],
+            [
+                "view_customuser",
+                "accounts",
+                "customuser"
+            ],
+            [
+                "add_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "change_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "view_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "add_group",
+                "auth",
+                "group"
+            ],
+            [
+                "change_group",
+                "auth",
+                "group"
+            ],
+            [
+                "delete_group",
+                "auth",
+                "group"
+            ],
+            [
+                "view_group",
+                "auth",
+                "group"
+            ],
+            [
+                "add_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "change_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "delete_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "view_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "add_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "change_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "delete_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "view_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "add_menucategory",
+                "restaurants",
+                "menucategory"
+            ],
+            [
+                "change_menucategory",
+                "restaurants",
+                "menucategory"
+            ],
+            [
+                "delete_menucategory",
+                "restaurants",
+                "menucategory"
+            ],
+            [
+                "view_menucategory",
+                "restaurants",
+                "menucategory"
+            ],
+            [
+                "add_menuitem",
+                "restaurants",
+                "menuitem"
+            ],
+            [
+                "change_menuitem",
+                "restaurants",
+                "menuitem"
+            ],
+            [
+                "delete_menuitem",
+                "restaurants",
+                "menuitem"
+            ],
+            [
+                "view_menuitem",
+                "restaurants",
+                "menuitem"
+            ],
+            [
+                "add_restaurant",
+                "restaurants",
+                "restaurant"
+            ],
+            [
+                "change_restaurant",
+                "restaurants",
+                "restaurant"
+            ],
+            [
+                "delete_restaurant",
+                "restaurants",
+                "restaurant"
+            ],
+            [
+                "view_restaurant",
+                "restaurants",
+                "restaurant"
+            ],
+            [
+                "add_restaurantcategory",
+                "restaurants",
+                "restaurantcategory"
+            ],
+            [
+                "change_restaurantcategory",
+                "restaurants",
+                "restaurantcategory"
+            ],
+            [
+                "delete_restaurantcategory",
+                "restaurants",
+                "restaurantcategory"
+            ],
+            [
+                "view_restaurantcategory",
+                "restaurants",
+                "restaurantcategory"
+            ],
+            [
+                "add_restaurantimage",
+                "restaurants",
+                "restaurantimage"
+            ],
+            [
+                "change_restaurantimage",
+                "restaurants",
+                "restaurantimage"
+            ],
+            [
+                "delete_restaurantimage",
+                "restaurants",
+                "restaurantimage"
+            ],
+            [
+                "view_restaurantimage",
+                "restaurants",
+                "restaurantimage"
+            ],
+            [
+                "add_tag",
+                "restaurants",
+                "tag"
+            ],
+            [
+                "change_tag",
+                "restaurants",
+                "tag"
+            ],
+            [
+                "delete_tag",
+                "restaurants",
+                "tag"
+            ],
+            [
+                "view_tag",
+                "restaurants",
+                "tag"
+            ],
+            [
+                "add_commentreply",
+                "reviews",
+                "commentreply"
+            ],
+            [
+                "change_commentreply",
+                "reviews",
+                "commentreply"
+            ],
+            [
+                "delete_commentreply",
+                "reviews",
+                "commentreply"
+            ],
+            [
+                "view_commentreply",
+                "reviews",
+                "commentreply"
+            ],
+            [
+                "add_notification",
+                "reviews",
+                "notification"
+            ],
+            [
+                "change_notification",
+                "reviews",
+                "notification"
+            ],
+            [
+                "delete_notification",
+                "reviews",
+                "notification"
+            ],
+            [
+                "view_notification",
+                "reviews",
+                "notification"
+            ],
+            [
+                "add_review",
+                "reviews",
+                "review"
+            ],
+            [
+                "change_review",
+                "reviews",
+                "review"
+            ],
+            [
+                "delete_review",
+                "reviews",
+                "review"
+            ],
+            [
+                "view_review",
+                "reviews",
+                "review"
+            ],
+            [
+                "add_reviewimage",
+                "reviews",
+                "reviewimage"
+            ],
+            [
+                "change_reviewimage",
+                "reviews",
+                "reviewimage"
+            ],
+            [
+                "delete_reviewimage",
+                "reviews",
+                "reviewimage"
+            ],
+            [
+                "view_reviewimage",
+                "reviews",
+                "reviewimage"
+            ],
+            [
+                "add_wishlist",
+                "reviews",
+                "wishlist"
+            ],
+            [
+                "change_wishlist",
+                "reviews",
+                "wishlist"
+            ],
+            [
+                "delete_wishlist",
+                "reviews",
+                "wishlist"
+            ],
+            [
+                "view_wishlist",
+                "reviews",
+                "wishlist"
+            ],
+            [
+                "add_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "change_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "delete_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "view_session",
+                "sessions",
+                "session"
+            ]
+        ]
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$nCGscZyCnbLCPZq9Pznbsi$m8WOPQw0ptjD0ZaBDJbKrvl1oiME0t7PnhB/J6r1MfQ=",
+        "last_login": "2026-07-10T13:12:40.169Z",
+        "is_superuser": true,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-28T14:29:23.744Z",
+        "email": "k@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "admin",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$eXBkbfs3zlMf7wlRGcAyHX$MfPH2n4TgS4Z1Uy0vfbUUgnD2jaXtNh6IT9vujHYeB0=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-29T16:08:31.989Z",
+        "email": "xusohuse@mailinator.com",
+        "first_name": "Rhea",
+        "last_name": "Jones",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$IlNJyEvEcj48zgeepYeF9w$257mOWWyE/UaJjgOUOJZvkNZWJJXobKJFLLlzyqwS34=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-29T16:12:50.608Z",
+        "email": "zohyla@mailinator.com",
+        "first_name": "Frances",
+        "last_name": "Morales",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$ZQkSHCaqYYnWuEQ39nKX9A$YL+62VUjVyAxNRojOjwVCxF+3Khvy2i2Ecs+ALg/+hA=",
+        "last_login": "2026-06-29T16:59:22.644Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-29T16:14:29.982Z",
+        "email": "khaleddd@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "user",
+        "is_approved": true,
+        "phone": "+970592431799",
+        "city": "jerusalem",
+        "address": "Gaza",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$quCn0cotMwg4NR6QLgzHYE$UYDnPNExMYq/RHC7aKXYm2ikQKoi3cQm378dE5LAdc0=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-30T21:10:51.344Z",
+        "email": "sanabel@gmail.com",
+        "first_name": "„ÿ⁄„",
+        "last_name": "”‰«»·",
+        "role": "owner",
+        "is_approved": false,
+        "phone": "0598471425",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$949oFxfxHjHzkXuVZuIwED$kvS1DXTNEULrqwqCkaExTXLuJIN+Y/l1TEHR5s+L6cc=",
+        "last_login": "2026-07-10T13:16:59.307Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-30T21:14:12.767Z",
+        "email": "sanabel2@gmail.com",
+        "first_name": "”‰«»·",
+        "last_name": "",
+        "role": "owner",
+        "is_approved": true,
+        "phone": "0592431798",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$OPUTjNJQXZRn8OCTr7QqPT$3m7TTyD0doJ+y9iYOiMvLYqZD+E1Qqx4eMsvwXRZZwc=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-30T22:00:29.562Z",
+        "email": "dyvyrap@mailinator.com",
+        "first_name": "Illana",
+        "last_name": "Cooke",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-03T15:36:32.176Z",
+        "email": "demo.reviewer@yumm.ps",
+        "first_name": "Demo",
+        "last_name": "Reviewer",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$9NmjOACkfQbywkA8SNi7B9$/r9eVgWZpobRF3/yrOub7E8N/t1ovyujt35CGbvvq0o=",
+        "last_login": "2026-07-07T07:33:08.377Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-03T16:15:08.001Z",
+        "email": "kh.es.abadla@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$Fm4T1vyRO5uigcR2H9RGxc$Te5m2uslKfiXLi1yHlq/+KwllQWCTIPZsrPR0TdwLs4=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-07-04T14:55:59.673Z",
+        "email": "juby@mailinator.com",
+        "first_name": "Cairo",
+        "last_name": "Chang",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$sKIzfnrsJJQLSQ1V5jIaBd$g8Eu17g+6d2wtLCLOFH/WDXdiOgj3flo5TYLhdbZVOU=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-07T08:40:27.758Z",
+        "email": "kh.es.abfadla@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "admin",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$zh1OnlvNPwuWiBYzAYVm58$6PZdLeDqN7Dm/rwruhxoBC+EfRMxLg/srzNFL2S2DVU=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-07T14:17:06.739Z",
+        "email": "dimogazuwu@mailinator.com",
+        "first_name": "Akeem Erickson",
+        "last_name": "",
+        "role": "owner",
+        "is_approved": false,
+        "phone": "+1 (266) 102-9519",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$0wdgDtNu9zb2T0w4bI5bzN$zGZJZLZ4xACsK3HjThBlUeA2HSvFuKk7XCI5rpySIlY=",
+        "last_login": "2026-07-09T11:26:14.659Z",
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T11:25:23.322Z",
+        "email": "khaledalabadla6666@gmail.com",
+        "first_name": "Khaled",
+        "last_name": "Esam",
+        "role": "user",
+        "is_approved": true,
+        "phone": "",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$73x4QjUsICJfIpUXYjSZBm$8HqbCxwIBgU1vHopXJ7AgLLEoSz/Uhbuldrdk/MnRoI=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-09T11:59:45.059Z",
+        "email": "120221048@std.up.edu.ps",
+        "first_name": "khaled restaurant",
+        "last_name": "",
+        "role": "owner",
+        "is_approved": true,
+        "phone": "0592431798",
+        "city": "",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.customuser",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$vXK8ugmgqL3V12ZU5qgnOq$ATcTXhaJEuSudh/FnIAb+01KEcofP4wSii34q55ehPs=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-07-10T13:12:22.055Z",
+        "email": "fesisapalu@mailinator.com",
+        "first_name": "Dexter Hurst",
+        "last_name": "",
+        "role": "owner",
+        "is_approved": false,
+        "phone": "+1 (536) 813-6513",
+        "city": "hebron",
+        "address": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.contactmessage",
+    "pk": 1,
+    "fields": {
+        "name": "Madeline Taylor",
+        "email": "pyjodyh@mailinator.com",
+        "subject": "Media & Press",
+        "message": "Neque est rerum ist",
+        "is_read": true,
+        "created_at": "2026-07-07T07:33:17.568Z"
+    }
+},
+{
+    "model": "accounts.contactmessage",
+    "pk": 5,
+    "fields": {
+        "name": "new",
+        "email": "vogobyzup@mailinator.com",
+        "subject": "Media & Press",
+        "message": "Doloribus qui ea et",
+        "is_read": false,
+        "created_at": "2026-07-07T14:19:42.042Z"
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 1,
+    "fields": {
+        "name_ar": "«·‘«„",
+        "name_en": "Alsham",
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 2,
+    "fields": {
+        "name_ar": "„√ﬂÊ·«  ›·”ÿÌ‰Ì…  ﬁ·ÌœÌ…",
+        "name_en": "Traditional Palestinian",
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 3,
+    "fields": {
+        "name_ar": "„‘«ÊÌ Ê‘Ê«¡",
+        "name_en": "Grills & BBQ",
+        "order": 2
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 4,
+    "fields": {
+        "name_ar": "„ﬁÂÏ Ê›ÿÊ—",
+        "name_en": "Cafe & Breakfast",
+        "order": 5
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 5,
+    "fields": {
+        "name_ar": "Õ·ÊÌ« ",
+        "name_en": "Sweets",
+        "order": 3
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 6,
+    "fields": {
+        "name_ar": "√ﬂ· ‘—ﬁÌ",
+        "name_en": "Oriental",
+        "order": 4
+    }
+},
+{
+    "model": "restaurants.restaurantcategory",
+    "pk": 7,
+    "fields": {
+        "name_ar": "„ Ê”ÿÌ",
+        "name_en": "Mediterranean",
+        "order": 6
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 1,
+    "fields": {
+        "name_ar": "«·‘«„",
+        "name_en": "Alsham"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 2,
+    "fields": {
+        "name_ar": "„‰”›",
+        "name_en": "Mansaf"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 3,
+    "fields": {
+        "name_ar": "⁄«∆·Ì",
+        "name_en": "Family"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 4,
+    "fields": {
+        "name_ar": "„”Œ¯‰",
+        "name_en": "Musakhan"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 5,
+    "fields": {
+        "name_ar": "„‘«ÊÌ",
+        "name_en": "Grills"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 6,
+    "fields": {
+        "name_ar": "‘Ê«¡",
+        "name_en": "BBQ"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 7,
+    "fields": {
+        "name_ar": "„√ﬂÊ·«  »Õ—Ì…",
+        "name_en": "Seafood"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 8,
+    "fields": {
+        "name_ar": "„ﬁÂÏ",
+        "name_en": "Cafe"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 9,
+    "fields": {
+        "name_ar": "›ÿÊ—",
+        "name_en": "Breakfast"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 10,
+    "fields": {
+        "name_ar": "⁄÷ÊÌ",
+        "name_en": "Organic"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 11,
+    "fields": {
+        "name_ar": "Õ·ÊÌ« ",
+        "name_en": "Sweets"
+    }
+},
+{
+    "model": "restaurants.tag",
+    "pk": 12,
+    "fields": {
+        "name_ar": "ﬂ‰«›…",
+        "name_en": "Knafeh"
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 1,
+    "fields": {
+        "owner": [
+            "k@gmail.com"
+        ],
+        "category": null,
+        "name_ar": "«·‘«„",
+        "name_en": "Alsham",
+        "description_ar": "√›÷· „ÿ⁄„ ›Ì €“…",
+        "description_en": "The best restaurnat in Gaza",
+        "address_ar": "€“…",
+        "address_en": "Gaza",
+        "city": "hebron",
+        "latitude": "20.000000",
+        "longitude": "19.999989",
+        "working_hours_ar": "",
+        "working_hours_en": "",
+        "is_open": true,
+        "status": "active",
+        "price_range": null,
+        "created_at": "2026-06-28T16:22:34.797Z",
+        "updated_at": "2026-07-04T14:54:30.399Z",
+        "tags": []
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 2,
+    "fields": {
+        "owner": [
+            "sanabel2@gmail.com"
+        ],
+        "category": 1,
+        "name_ar": "„ÿ⁄„ ›·”ÿÌ‰",
+        "name_en": "Rachel Hale",
+        "description_ar": "Aliquam autem et nes",
+        "description_en": "Sed saepe necessitat",
+        "address_ar": "Magnam natus reiciendis dolor modi fugiat ut pariatur Est doloribus sed perspiciatis harum consequatur",
+        "address_en": "Qui recusandae Saepe fugiat quis fuga Excepturi debitis",
+        "city": "ramallah",
+        "latitude": "31.903264",
+        "longitude": "35.198414",
+        "working_hours_ar": "05:46 - 04:01",
+        "working_hours_en": "05:46 - 04:01",
+        "is_open": false,
+        "status": "active",
+        "price_range": null,
+        "created_at": "2026-06-30T21:14:13.674Z",
+        "updated_at": "2026-07-07T14:18:41.428Z",
+        "tags": []
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 3,
+    "fields": {
+        "owner": null,
+        "category": 2,
+        "name_ar": "«·ﬂ‰⁄«‰",
+        "name_en": "Al-Kanaan",
+        "description_ar": "„‰– 1987° Ìﬁœ¯„ «·ﬂ‰⁄«‰ √ÿ»«ﬁ« ›·”ÿÌ‰Ì… √’Ì·… ›Ì √ÃÊ«¡ ⁄«∆·Ì… œ«›∆….",
+        "description_en": "Since 1987, Al-Kanaan has been serving authentic Palestinian dishes in a warm family atmosphere.",
+        "address_ar": "«·„«’ÌÊ‰° —«„ «··Â",
+        "address_en": "Al-Masyoun, Ramallah",
+        "city": "ramallah",
+        "latitude": "31.903800",
+        "longitude": "35.203400",
+        "working_hours_ar": "12:00 - 23:00",
+        "working_hours_en": "12:00 - 23:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 2,
+        "created_at": "2026-07-03T15:36:32.231Z",
+        "updated_at": "2026-07-03T15:36:32.231Z",
+        "tags": [
+            3,
+            2,
+            4
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 4,
+    "fields": {
+        "owner": null,
+        "category": 3,
+        "name_ar": "»Ì  „‘«ÊÌ €“…",
+        "name_en": "Gaza Grill House",
+        "description_ar": "„‘«ÊÌ ›«Œ—… ⁄·Ï «·›Õ„ Ê„√ﬂÊ·«  »Õ—Ì… ÿ«“Ã….",
+        "description_en": "Premium charcoal grills and fresh seafood by the sea.",
+        "address_ar": "‘«—⁄ ⁄„— «·„Œ «—° €“…",
+        "address_en": "Omar Mukhtar St, Gaza",
+        "city": "gaza",
+        "latitude": "31.501700",
+        "longitude": "34.466700",
+        "working_hours_ar": "11:00 - 00:00",
+        "working_hours_en": "11:00 - 00:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 2,
+        "created_at": "2026-07-03T15:36:32.319Z",
+        "updated_at": "2026-07-03T15:36:32.319Z",
+        "tags": [
+            6,
+            5,
+            7
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 5,
+    "fields": {
+        "owner": null,
+        "category": 4,
+        "name_ar": "„ﬁÂÏ ÕœÌﬁ… «·ﬁœ”",
+        "name_en": "Jerusalem Garden Cafe",
+        "description_ar": "›ÿÊ— ⁄÷ÊÌ ÊﬁÂÊ… „Œ ’… ›Ì ÕœÌﬁ… Â«œ∆….",
+        "description_en": "Organic breakfast and specialty coffee in a peaceful garden setting.",
+        "address_ar": "‘«—⁄ ’·«Õ «·œÌ‰° «·ﬁœ”",
+        "address_en": "Salah Ed-Din St, Jerusalem",
+        "city": "jerusalem",
+        "latitude": "31.768300",
+        "longitude": "35.213700",
+        "working_hours_ar": "07:00 - 16:00",
+        "working_hours_en": "07:00 - 16:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 1,
+        "created_at": "2026-07-03T15:36:32.384Z",
+        "updated_at": "2026-07-03T15:36:32.384Z",
+        "tags": [
+            9,
+            8,
+            10
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 6,
+    "fields": {
+        "owner": null,
+        "category": 5,
+        "name_ar": "»Ì  Õ·ÊÌ«  ‰«»·”",
+        "name_en": "Nablus Sweets House",
+        "description_ar": "ﬂ‰«›… „‘ÂÊ—… ÊÕ·ÊÌ«  ›·”ÿÌ‰Ì…  ﬁ·ÌœÌ… „‰– 1960.",
+        "description_en": "Famous knafeh and traditional Palestinian desserts since 1960.",
+        "address_ar": "«·»·œ… «·ﬁœÌ„…° ‰«»·”",
+        "address_en": "Old City, Nablus",
+        "city": "nablus",
+        "latitude": "32.221100",
+        "longitude": "35.254400",
+        "working_hours_ar": "09:00 - 22:00",
+        "working_hours_en": "09:00 - 22:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 1,
+        "created_at": "2026-07-03T15:36:32.444Z",
+        "updated_at": "2026-07-03T15:36:32.444Z",
+        "tags": [
+            3,
+            12,
+            11
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 7,
+    "fields": {
+        "owner": null,
+        "category": 2,
+        "name_ar": "›—‰ “⁄ — »Ì  ·Õ„",
+        "name_en": "Bethlehem Zaatar Oven",
+        "description_ar": "Œ»“ ÿ«»Ê‰ ⁄·Ï «·Õÿ» Ê›ÿÊ— ›·”ÿÌ‰Ì  ﬁ·ÌœÌ.",
+        "description_en": "Wood-fired taboon bread and classic Palestinian breakfast.",
+        "address_ar": "„‰ÿﬁ… ”«Õ… «·„Âœ° »Ì  ·Õ„",
+        "address_en": "Manger Square area, Bethlehem",
+        "city": "bethlehem",
+        "latitude": "31.705400",
+        "longitude": "35.202400",
+        "working_hours_ar": "06:00 - 14:00",
+        "working_hours_en": "06:00 - 14:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 1,
+        "created_at": "2026-07-03T15:36:32.487Z",
+        "updated_at": "2026-07-03T15:36:32.487Z",
+        "tags": [
+            9,
+            3,
+            10
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 8,
+    "fields": {
+        "owner": null,
+        "category": 3,
+        "name_ar": " „Ê— Ê„‘«ÊÌ √—ÌÕ«",
+        "name_en": "Jericho Dates & Grill",
+        "description_ar": " „Ê— „Õ·Ì… Ê„‘«ÊÌ Ê√ÿ»«ﬁ „‰Œ›÷… «·»Õ—.",
+        "description_en": "Local dates, grills, and Jordan Valley specialties.",
+        "address_ar": "Ê”ÿ „œÌ‰… √—ÌÕ«",
+        "address_en": "Jericho city centre",
+        "city": "jericho",
+        "latitude": "31.866700",
+        "longitude": "35.450000",
+        "working_hours_ar": "10:00 - 22:00",
+        "working_hours_en": "10:00 - 22:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 2,
+        "created_at": "2026-07-03T15:36:32.523Z",
+        "updated_at": "2026-07-03T15:36:32.523Z",
+        "tags": [
+            6,
+            3,
+            5
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 9,
+    "fields": {
+        "owner": null,
+        "category": 6,
+        "name_ar": "„ÿ»Œ «·‘«„",
+        "name_en": "Al-Sham Kitchen",
+        "description_ar": "„ﬁ»·«  ‘«„Ì…° Õ„’° ›·«›·° Ê »Ê·… ÿ«“Ã….",
+        "description_en": "Classic Levantine mezze, hummus, falafel, and fresh tabbouleh.",
+        "address_ar": "Ê”ÿ —«„ «··Â",
+        "address_en": "Downtown Ramallah",
+        "city": "ramallah",
+        "latitude": "31.900500",
+        "longitude": "35.198200",
+        "working_hours_ar": "10:00 - 23:00",
+        "working_hours_en": "10:00 - 23:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 2,
+        "created_at": "2026-07-03T15:36:32.568Z",
+        "updated_at": "2026-07-03T15:36:32.568Z",
+        "tags": [
+            3,
+            10
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 10,
+    "fields": {
+        "owner": null,
+        "category": 2,
+        "name_ar": "„ÿ»Œ  —«À «·Œ·Ì·",
+        "name_en": "Hebron Heritage Kitchen",
+        "description_ar": "„‰”› ⁄·Ï ÿ—Ìﬁ… «·Œ·Ì·° „› Ê·° ÊÊ’›«  ⁄«∆·Ì… „ÿÂÌ… »»ÿ¡.",
+        "description_en": "Hebron-style mansaf, maftoul, and slow-cooked family recipes.",
+        "address_ar": "«·»·œ… «·ﬁœÌ„…° «·Œ·Ì·",
+        "address_en": "Old City, Hebron",
+        "city": "hebron",
+        "latitude": "31.532600",
+        "longitude": "35.099800",
+        "working_hours_ar": "12:00 - 22:00",
+        "working_hours_en": "12:00 - 22:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 2,
+        "created_at": "2026-07-03T15:36:32.606Z",
+        "updated_at": "2026-07-03T15:36:32.606Z",
+        "tags": [
+            3,
+            2
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 11,
+    "fields": {
+        "owner": null,
+        "category": 7,
+        "name_ar": "√“—ﬁ «·„ Ê”ÿ ó €“…",
+        "name_en": "Gaza Mediterranean Blue",
+        "description_ar": "„√ﬂÊ·«  »Õ—Ì… „ Ê”ÿÌ… ÿ«“Ã…° √”„«ﬂ „‘ÊÌ…° Ê”·ÿ«  ”«Õ·Ì….",
+        "description_en": "Fresh Mediterranean seafood, grilled fish, and coastal salads.",
+        "address_ar": "«·Ê«ÃÂ… «·»Õ—Ì…° €“…",
+        "address_en": "Gaza seafront",
+        "city": "gaza",
+        "latitude": "31.513500",
+        "longitude": "34.458500",
+        "working_hours_ar": "11:00 - 23:30",
+        "working_hours_en": "11:00 - 23:30",
+        "is_open": true,
+        "status": "active",
+        "price_range": 3,
+        "created_at": "2026-07-03T15:36:32.653Z",
+        "updated_at": "2026-07-03T15:36:32.653Z",
+        "tags": [
+            3,
+            7
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 12,
+    "fields": {
+        "owner": null,
+        "category": 5,
+        "name_ar": "ﬁ’— «·Õ·ÊÌ«  ó —«„ «··Â",
+        "name_en": "Ramallah Sweet Palace",
+        "description_ar": "ﬂ‰«›…° »ﬁ·«Ê…° „⁄„Ê·° Ê¬Ì” ﬂ—Ì„ ⁄—»Ì.",
+        "description_en": "Knafeh, baklava, maamoul, and Arabic ice cream.",
+        "address_ar": "ÕÌ «·ÿÌ—…° —«„ «··Â",
+        "address_en": "Al-Tireh, Ramallah",
+        "city": "ramallah",
+        "latitude": "31.907200",
+        "longitude": "35.210100",
+        "working_hours_ar": "09:00 - 23:00",
+        "working_hours_en": "09:00 - 23:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 1,
+        "created_at": "2026-07-03T15:36:32.687Z",
+        "updated_at": "2026-07-03T15:36:32.687Z",
+        "tags": [
+            3,
+            12,
+            11
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 13,
+    "fields": {
+        "owner": null,
+        "category": 6,
+        "name_ar": "‘«Ê—„« «·ﬁœ” «·”—Ì⁄…",
+        "name_en": "Jerusalem Shawarma Express",
+        "description_ar": "”«‰œÊÌç ‘«Ê—„« ”—Ì⁄…° ›·«›·° Ê⁄’«∆— ÿ«“Ã….",
+        "description_en": "Quick shawarma wraps, falafel sandwiches, and fresh juices.",
+        "address_ar": "„‰ÿﬁ… »«» «·⁄«„Êœ° «·ﬁœ”",
+        "address_en": "Damascus Gate area, Jerusalem",
+        "city": "jerusalem",
+        "latitude": "31.781000",
+        "longitude": "35.229500",
+        "working_hours_ar": "08:00 - 02:00",
+        "working_hours_en": "08:00 - 02:00",
+        "is_open": true,
+        "status": "active",
+        "price_range": 1,
+        "created_at": "2026-07-03T15:36:32.726Z",
+        "updated_at": "2026-07-03T15:36:32.726Z",
+        "tags": [
+            3,
+            5
+        ]
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 14,
+    "fields": {
+        "owner": [
+            "dimogazuwu@mailinator.com"
+        ],
+        "category": null,
+        "name_ar": "Uriah Franks",
+        "name_en": "Akeem Erickson",
+        "description_ar": "",
+        "description_en": "",
+        "address_ar": "»«‰ Ÿ«— «· Õﬁﬁ",
+        "address_en": "Pending verification",
+        "city": "ramallah",
+        "latitude": null,
+        "longitude": null,
+        "working_hours_ar": "",
+        "working_hours_en": "",
+        "is_open": false,
+        "status": "pending",
+        "price_range": null,
+        "created_at": "2026-07-07T14:17:07.156Z",
+        "updated_at": "2026-07-07T14:17:07.156Z",
+        "tags": []
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 18,
+    "fields": {
+        "owner": [
+            "120221048@std.up.edu.ps"
+        ],
+        "category": null,
+        "name_ar": "„ÿ⁄„ Œ«·œ",
+        "name_en": "khaled restaurant",
+        "description_ar": "",
+        "description_en": "",
+        "address_ar": "»«‰ Ÿ«— «· Õﬁﬁ",
+        "address_en": "Pending verification",
+        "city": "gaza",
+        "latitude": null,
+        "longitude": null,
+        "working_hours_ar": "",
+        "working_hours_en": "",
+        "is_open": false,
+        "status": "active",
+        "price_range": null,
+        "created_at": "2026-07-09T11:59:47.182Z",
+        "updated_at": "2026-07-10T13:06:27.002Z",
+        "tags": []
+    }
+},
+{
+    "model": "restaurants.restaurant",
+    "pk": 19,
+    "fields": {
+        "owner": [
+            "fesisapalu@mailinator.com"
+        ],
+        "category": null,
+        "name_ar": "Wynne Mcpherson",
+        "name_en": "Dexter Hurst",
+        "description_ar": "",
+        "description_en": "",
+        "address_ar": "»«‰ Ÿ«— «· Õﬁﬁ",
+        "address_en": "Pending verification",
+        "city": "hebron",
+        "latitude": null,
+        "longitude": null,
+        "working_hours_ar": "",
+        "working_hours_en": "",
+        "is_open": false,
+        "status": "pending",
+        "price_range": null,
+        "created_at": "2026-07-10T13:12:23.652Z",
+        "updated_at": "2026-07-10T13:12:23.652Z",
+        "tags": []
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 1,
+    "fields": {
+        "restaurant": 2,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 2,
+    "fields": {
+        "restaurant": 3,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 3,
+    "fields": {
+        "restaurant": 4,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 4,
+    "fields": {
+        "restaurant": 5,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 5,
+    "fields": {
+        "restaurant": 6,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 6,
+    "fields": {
+        "restaurant": 7,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 7,
+    "fields": {
+        "restaurant": 8,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 8,
+    "fields": {
+        "restaurant": 9,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 9,
+    "fields": {
+        "restaurant": 10,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 10,
+    "fields": {
+        "restaurant": 11,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 11,
+    "fields": {
+        "restaurant": 12,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menucategory",
+    "pk": 12,
+    "fields": {
+        "restaurant": 13,
+        "name_ar": "«·√ÿ»«ﬁ «·—∆Ì”Ì…",
+        "name_en": "Main Dishes",
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 3,
+    "fields": {
+        "restaurant": 3,
+        "category": 2,
+        "name_ar": "„”Œ‰",
+        "name_en": "Musakhan",
+        "description_ar": "œÃ«Ã „‘ÊÌ ⁄·Ï Œ»“ «·ÿ«»Ê‰ „⁄ »’· «·”„«ﬁ.",
+        "description_en": "Roasted chicken on taboon bread with sumac onions.",
+        "price": "45.00",
+        "image": "menu/items/musakhan.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 4,
+    "fields": {
+        "restaurant": 3,
+        "category": 2,
+        "name_ar": "„‰”›",
+        "name_en": "Mansaf",
+        "description_ar": "·Õ„ ÷√‰ »’·’… Ã„Ìœ ⁄·Ï √—“ »«·“⁄›—«‰.",
+        "description_en": "Lamb in jameed sauce on saffron rice.",
+        "price": "65.00",
+        "image": "menu/items/mansaf.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 5,
+    "fields": {
+        "restaurant": 3,
+        "category": 2,
+        "name_ar": "„ﬁ·Ê»…",
+        "name_en": "Maqluba",
+        "description_ar": "√—“ „ﬁ·Ê» „⁄ œÃ«Ã ÊŒ÷«—.",
+        "description_en": "Upside-down rice with chicken and vegetables.",
+        "price": "55.00",
+        "image": "menu/items/maqluba.jpg",
+        "is_available": true,
+        "order": 2
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 6,
+    "fields": {
+        "restaurant": 4,
+        "category": 3,
+        "name_ar": "ÿ»ﬁ „‘«ÊÌ „‘ﬂ·",
+        "name_en": "Mixed Grill Platter",
+        "description_ar": "·Õ„ ÊœÃ«Ã Êﬂ› … „‘ÊÌ… ⁄·Ï «·›Õ„.",
+        "description_en": "Lamb, chicken, and kofta on charcoal.",
+        "price": "85.00",
+        "image": "menu/items/shawarma.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 7,
+    "fields": {
+        "restaurant": 4,
+        "category": 3,
+        "name_ar": "”„ﬂ œ‰Ì” „‘ÊÌ",
+        "name_en": "Grilled Sea Bream",
+        "description_ar": "”„ﬂ œ‰Ì” ﬂ«„· „‘ÊÌ „⁄ ·Ì„Ê‰ Ê√⁄‘«».",
+        "description_en": "Whole fish with lemon and herbs.",
+        "price": "70.00",
+        "image": "menu/items/shawarma_xeGydvi.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 8,
+    "fields": {
+        "restaurant": 5,
+        "category": 4,
+        "name_ar": "›ÿÊ— «·ÕœÌﬁ…",
+        "name_en": "Garden Breakfast",
+        "description_ar": "»Ì÷° ·»‰…° “Ì Ê‰° ÊŒ»“ ÿ«“Ã.",
+        "description_en": "Eggs, labneh, olives, and fresh bread.",
+        "price": "38.00",
+        "image": "menu/items/musakhan_zb3Mh6R.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 9,
+    "fields": {
+        "restaurant": 5,
+        "category": 4,
+        "name_ar": "‘ﬂ‘Êﬂ…",
+        "name_en": "Shakshuka",
+        "description_ar": "»Ì÷ „”·Êﬁ ›Ì ’·’… ÿ„«ÿ„ „ »·….",
+        "description_en": "Poached eggs in spiced tomato sauce.",
+        "price": "32.00",
+        "image": "menu/items/musakhan_gPhLHSP.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 10,
+    "fields": {
+        "restaurant": 6,
+        "category": 5,
+        "name_ar": "ﬂ‰«›… ‰«»·”Ì…",
+        "name_en": "Knafeh Nabulsiyeh",
+        "description_ar": "ﬂ‰«›… Ã»‰… œ«›∆… „⁄ «·ﬁÿ—.",
+        "description_en": "Warm cheese knafeh with syrup.",
+        "price": "18.00",
+        "image": "menu/items/knafeh.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 11,
+    "fields": {
+        "restaurant": 6,
+        "category": 5,
+        "name_ar": "⁄·»… „⁄„Ê·",
+        "name_en": "Ma'amoul Box",
+        "description_ar": "„⁄„Ê· „‘ﬂ· »«· „— Ê«·„ﬂ”—« .",
+        "description_en": "Assorted date and nut pastries.",
+        "price": "25.00",
+        "image": "menu/items/knafeh_CxSq7kB.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 12,
+    "fields": {
+        "restaurant": 7,
+        "category": 6,
+        "name_ar": "„‰«ﬁÌ‘ “⁄ —",
+        "name_en": "Zaatar Manakish",
+        "description_ar": "Œ»“ ÿ«»Ê‰ ÿ«“Ã »“Ì  «·“Ì Ê‰ Ê«·“⁄ —.",
+        "description_en": "Fresh taboon bread with olive oil and zaatar.",
+        "price": "12.00",
+        "image": "menu/items/musakhan_1pcTZzQ.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 13,
+    "fields": {
+        "restaurant": 7,
+        "category": 6,
+        "name_ar": "ÿ»ﬁ ·»‰…",
+        "name_en": "Labneh Plate",
+        "description_ar": "·»‰… ﬂ—Ì„Ì… „⁄ “Ì  «·“Ì Ê‰.",
+        "description_en": "Creamy labneh with olive oil.",
+        "price": "15.00",
+        "image": "menu/items/musakhan_4BqBs1k.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 14,
+    "fields": {
+        "restaurant": 8,
+        "category": 7,
+        "name_ar": "ÿ«Ã‰ ·Õ„ »«· „—",
+        "name_en": "Date Lamb Tagine",
+        "description_ar": "·Õ„ „ÿÂÊ »»ÿ¡ „⁄  „— √—ÌÕ«.",
+        "description_en": "Slow-cooked lamb with Jericho dates.",
+        "price": "58.00",
+        "image": "menu/items/mansaf_u9PkF65.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 15,
+    "fields": {
+        "restaurant": 8,
+        "category": 7,
+        "name_ar": "„ﬁ»·«  „‘ﬂ·…",
+        "name_en": "Mixed Mezze",
+        "description_ar": "Õ„’° »«»« €‰ÊÃ° Ê”·ÿ« .",
+        "description_en": "Hummus, baba ghanoush, and salads.",
+        "price": "35.00",
+        "image": "menu/items/musakhan_uVmJScS.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 16,
+    "fields": {
+        "restaurant": 9,
+        "category": 8,
+        "name_ar": "ÿ»ﬁ „ﬁ»·«  „‘ﬂ·",
+        "name_en": "Mixed Mezze Platter",
+        "description_ar": "Õ„’° „ »·°  »Ê·…° Ê„Œ··« .",
+        "description_en": "Hummus, mutabal, tabbouleh, and pickles.",
+        "price": "42.00",
+        "image": "menu/items/musakhan_xhBkzs7.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 17,
+    "fields": {
+        "restaurant": 9,
+        "category": 8,
+        "name_ar": "ÿ»ﬁ ‘«Ê—„«",
+        "name_en": "Shawarma Plate",
+        "description_ar": "‘«Ê—„« œÃ«Ã „⁄ ÀÊ„ Ê»ÿ«ÿ«.",
+        "description_en": "Chicken shawarma with garlic sauce and fries.",
+        "price": "38.00",
+        "image": "menu/items/shawarma_CC2qXCZ.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 18,
+    "fields": {
+        "restaurant": 10,
+        "category": 9,
+        "name_ar": "„‰”› «·Œ·Ì·",
+        "name_en": "Hebron Mansaf",
+        "description_ar": "„‰”› ·Õ„ »Ã„Ìœ ÊŒ»“ ‘—«ﬂ.",
+        "description_en": "Lamb mansaf with jameed and shrak bread.",
+        "price": "68.00",
+        "image": "menu/items/mansaf_iOddPAj.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 19,
+    "fields": {
+        "restaurant": 10,
+        "category": 9,
+        "name_ar": "„› Ê· »«·œÃ«Ã",
+        "name_en": "Maftoul with Chicken",
+        "description_ar": "„› Ê· ÌœÊÌ „⁄ œÃ«Ã ÊÕ„’.",
+        "description_en": "Hand-rolled couscous with chicken and chickpeas.",
+        "price": "52.00",
+        "image": "menu/items/maqluba_VnExdEj.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 20,
+    "fields": {
+        "restaurant": 11,
+        "category": 10,
+        "name_ar": "ﬁ«—Ê” „‘ÊÌ",
+        "name_en": "Grilled Sea Bass",
+        "description_ar": "ﬁ«—Ê” ﬂ«„· „‘ÊÌ „⁄ ·Ì„Ê‰ Ê√⁄‘«».",
+        "description_en": "Whole sea bass with lemon and herbs.",
+        "price": "75.00",
+        "image": "menu/items/shawarma_wopW8HT.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 21,
+    "fields": {
+        "restaurant": 11,
+        "category": 10,
+        "name_ar": "√—“ »Õ—Ì",
+        "name_en": "Seafood Paella",
+        "description_ar": "√—“ „⁄ —Ê»Ì«‰ ÊÕ»«— Ê“⁄›—«‰.",
+        "description_en": "Rice with shrimp, calamari, and saffron.",
+        "price": "90.00",
+        "image": "menu/items/shawarma_KZoE36y.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 22,
+    "fields": {
+        "restaurant": 12,
+        "category": 11,
+        "name_ar": "ﬂ‰«›… »«·ﬁ‘ÿ…",
+        "name_en": "Knafeh with Cream",
+        "description_ar": "ﬂ‰«›… œ«›∆… „⁄ ﬁ‘ÿ….",
+        "description_en": "Warm knafeh topped with clotted cream.",
+        "price": "22.00",
+        "image": "menu/items/knafeh_1BWIzb4.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 23,
+    "fields": {
+        "restaurant": 12,
+        "category": 11,
+        "name_ar": " ‘ﬂÌ·… »ﬁ·«Ê…",
+        "name_en": "Baklava Assortment",
+        "description_ar": " ‘ﬂÌ·… »ﬁ·«Ê… »«·›” ﬁ Ê«·ÃÊ“.",
+        "description_en": "Pistachio and walnut baklava selection.",
+        "price": "28.00",
+        "image": "menu/items/knafeh_LydtW4T.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 24,
+    "fields": {
+        "restaurant": 13,
+        "category": 12,
+        "name_ar": "”«‰œÊÌç ‘«Ê—„« œÃ«Ã",
+        "name_en": "Chicken Shawarma Wrap",
+        "description_ar": "œÃ«Ã „ »· „⁄ ÿÕÌ‰… Ê„Œ··« .",
+        "description_en": "Marinated chicken with tahini and pickles.",
+        "price": "25.00",
+        "image": "menu/items/shawarma_hhmYhSg.jpg",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 25,
+    "fields": {
+        "restaurant": 13,
+        "category": 12,
+        "name_ar": "”«‰œÊÌç ›·«›·",
+        "name_en": "Falafel Sandwich",
+        "description_ar": "›·«›· „ﬁ—„‘ „⁄ Õ„’ Ê”·ÿ….",
+        "description_en": "Crispy falafel with hummus and salad.",
+        "price": "18.00",
+        "image": "menu/items/musakhan_m4T3WKb.jpg",
+        "is_available": true,
+        "order": 1
+    }
+},
+{
+    "model": "restaurants.menuitem",
+    "pk": 33,
+    "fields": {
+        "restaurant": 2,
+        "category": 1,
+        "name_ar": "Lacy Cook",
+        "name_en": "Wyoming Graves",
+        "description_ar": "Magni iure aperiam o",
+        "description_en": "Nisi ut pariatur Om",
+        "price": "627.00",
+        "image": "menu/items/exam.png",
+        "is_available": true,
+        "order": 0
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "k@gmail.com"
+        ],
+        "restaurant": 1,
+        "rating": 3,
+        "comment": "New",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-06-28T16:27:10.129Z",
+        "updated_at": "2026-06-28T16:27:10.129Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 3,
+        "rating": 5,
+        "comment": "Best musakhan in Ramallah!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.305Z",
+        "updated_at": "2026-07-03T15:36:32.305Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 4,
+        "rating": 5,
+        "comment": "Real fire-grilled flavour!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.370Z",
+        "updated_at": "2026-07-03T15:36:32.370Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 5,
+        "rating": 5,
+        "comment": "Beautiful quiet atmosphere.",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.433Z",
+        "updated_at": "2026-07-03T15:36:32.433Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 6,
+        "rating": 5,
+        "comment": "The knafeh melts in your mouth!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.479Z",
+        "updated_at": "2026-07-03T15:36:32.479Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 7,
+        "rating": 5,
+        "comment": "Fresh from the oven every morning.",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.515Z",
+        "updated_at": "2026-07-03T15:36:32.515Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 8,
+        "rating": 4,
+        "comment": "Unique date dishes!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.552Z",
+        "updated_at": "2026-07-03T15:36:32.552Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 8,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 9,
+        "rating": 5,
+        "comment": "Authentic Levantine flavours.",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.600Z",
+        "updated_at": "2026-07-03T15:36:32.600Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 9,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 10,
+        "rating": 5,
+        "comment": "The mansaf is incredible.",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.639Z",
+        "updated_at": "2026-07-03T15:36:32.639Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 10,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 11,
+        "rating": 5,
+        "comment": "Fresh catch every day!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.681Z",
+        "updated_at": "2026-07-03T15:36:32.681Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 11,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 12,
+        "rating": 5,
+        "comment": "Best sweets in Ramallah!",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.719Z",
+        "updated_at": "2026-07-03T15:36:32.719Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "demo.reviewer@yumm.ps"
+        ],
+        "restaurant": 13,
+        "rating": 4,
+        "comment": "Fast and tasty.",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T15:36:32.754Z",
+        "updated_at": "2026-07-03T15:36:32.754Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "kh.es.abadla@gmail.com"
+        ],
+        "restaurant": 4,
+        "rating": 4,
+        "comment": "„ﬂ«‰ Â«œ∆ Ê«·ÿ⁄„ Õﬂ«Ì…",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-03T16:19:17.074Z",
+        "updated_at": "2026-07-03T16:19:17.074Z"
+    }
+},
+{
+    "model": "reviews.review",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "kh.es.abadla@gmail.com"
+        ],
+        "restaurant": 3,
+        "rating": 4,
+        "comment": "Great restaurant",
+        "is_reported": false,
+        "is_visible": true,
+        "created_at": "2026-07-07T07:14:47.710Z",
+        "updated_at": "2026-07-07T07:14:47.710Z"
+    }
+},
+{
+    "model": "reviews.wishlist",
+    "pk": 27,
+    "fields": {
+        "user": [
+            "kh.es.abadla@gmail.com"
+        ],
+        "restaurant": 10,
+        "created_at": "2026-07-06T09:55:10.953Z"
+    }
+},
+{
+    "model": "reviews.wishlist",
+    "pk": 29,
+    "fields": {
+        "user": [
+            "kh.es.abadla@gmail.com"
+        ],
+        "restaurant": 11,
+        "created_at": "2026-07-06T10:02:48.885Z"
+    }
+},
+{
+    "model": "reviews.wishlist",
+    "pk": 32,
+    "fields": {
+        "user": [
+            "k@gmail.com"
+        ],
+        "restaurant": 1,
+        "created_at": "2026-07-07T14:15:02.369Z"
+    }
+},
+{
+    "model": "reviews.notification",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "k@gmail.com"
+        ],
+        "notification_type": "new_review",
+        "text_ar": "New",
+        "text_en": "New",
+        "is_read": false,
+        "created_at": "2026-06-28T16:26:13.959Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-06-26T13:00:11.365Z",
+        "user": [
+            "khaled@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "customuser"
+        ],
+        "object_id": "2",
+        "object_repr": "moh@gmail.com",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-06-26T13:01:30.465Z",
+        "user": [
+            "khaled@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "customuser"
+        ],
+        "object_id": "2",
+        "object_repr": "moh@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-06-26T14:24:12.450Z",
+        "user": [
+            "khaled@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "customuser"
+        ],
+        "object_id": "1",
+        "object_repr": "khaled@gmail.com",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-06-26T15:37:14.039Z",
+        "user": [
+            "khaled@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "customuser"
+        ],
+        "object_id": "1",
+        "object_repr": "khaled@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-06-28T16:22:34.818Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "restaurants",
+            "restaurant"
+        ],
+        "object_id": "1",
+        "object_repr": "Alsham",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-06-28T16:25:44.253Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "restaurants",
+            "restaurantcategory"
+        ],
+        "object_id": "1",
+        "object_repr": "Alsham",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-06-28T16:25:55.132Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "restaurants",
+            "tag"
+        ],
+        "object_id": "1",
+        "object_repr": "Alsham",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-06-28T16:26:13.962Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "reviews",
+            "notification"
+        ],
+        "object_id": "1",
+        "object_repr": "[New Review] k@gmail.com ó unread",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-06-28T16:26:33.153Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "customuser"
+        ],
+        "object_id": "3",
+        "object_repr": "k@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-06-28T16:27:10.132Z",
+        "user": [
+            "k@gmail.com"
+        ],
+        "content_type": [
+            "reviews",
+            "review"
+        ],
+        "object_id": "1",
+        "object_repr": 

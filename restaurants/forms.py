@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from reviews.models import CommentReply
 
 from .geo import get_all_city_choices, is_valid_palestine_coords
-from .models import MenuCategory, MenuItem, Restaurant, RestaurantCategory
+from .models import MenuCategory, MenuItem, Restaurant, RestaurantCategory, RestaurantImage
 from .utils import (
     format_working_hours,
     parse_time_value,
@@ -44,6 +44,12 @@ class RestaurantInfoForm(forms.ModelForm):
             attrs={"type": "time", "class": f"{_RD_INPUT} rd-time-input"},
         ),
         input_formats=["%H:%M", "%H:%M:%S"],
+    )
+    cover_image = forms.ImageField(
+        label=_("Cover Photo"),
+        required=False,
+        widget=forms.ClearableFileInput(attrs={"class": "rd-file", "accept": "image/*"}),
+        help_text=_("Shown on your restaurant card and detail page."),
     )
 
     class Meta:
@@ -161,6 +167,23 @@ class RestaurantInfoForm(forms.ModelForm):
         restaurant.working_hours_ar = hours
         if commit:
             restaurant.save()
+        cover = self.cleaned_data.get("cover_image")
+        if cover:
+            primary = RestaurantImage.objects.filter(
+                restaurant=restaurant,
+                is_primary=True,
+            ).first()
+            if primary:
+                primary.image = cover
+                primary.image_type = RestaurantImage.ImageType.COVER
+                primary.save()
+            else:
+                RestaurantImage.objects.create(
+                    restaurant=restaurant,
+                    image=cover,
+                    image_type=RestaurantImage.ImageType.COVER,
+                    is_primary=True,
+                )
         return restaurant
 
 

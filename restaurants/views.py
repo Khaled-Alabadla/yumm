@@ -47,7 +47,11 @@ class DashboardInfoView(RestaurantOwnerMixin, TemplateView):
 
     def get_form(self):
         if self.request.method == "POST":
-            return RestaurantInfoForm(self.request.POST, instance=self.restaurant)
+            return RestaurantInfoForm(
+                self.request.POST,
+                self.request.FILES,
+                instance=self.restaurant,
+            )
         return RestaurantInfoForm(instance=self.restaurant)
 
     def get(self, request, *args, **kwargs):

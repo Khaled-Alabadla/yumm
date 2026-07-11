@@ -1,5 +1,5 @@
 {% extends "restaurants/dashboard/base.html" %}
-{% load static i18n l10n %}
+{% load static i18n l10n restaurant_tags %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -10,7 +10,7 @@
 <section class="rd-card">
   <h2 class="rd-card-title">{% trans "Restaurant Information" %}</h2>
 
-  <form method="POST" class="rd-form">
+  <form method="POST" enctype="multipart/form-data" class="rd-form">
     {% csrf_token %}
 
     {% if form.non_field_errors %}
@@ -39,6 +39,18 @@
 
       {% trans "Description" as description_heading %}
       {% include "restaurants/dashboard/_bilingual_pair.html" with heading=description_heading en_field=form.description_en ar_field=form.description_ar en_errors=form.description_en.errors.0 ar_errors=form.description_ar.errors.0 %}
+
+      <div class="rd-field">
+        <label for="{{ form.cover_image.id_for_label }}">{{ form.cover_image.label }}</label>
+        {% if restaurant.primary_image %}
+        <div class="rd-cover-preview">
+          <img src="{{ restaurant|restaurant_cover }}" alt="{% trans 'Current cover photo' %}" loading="lazy"/>
+        </div>
+        {% endif %}
+        {{ form.cover_image }}
+        {% if form.cover_image.help_text %}<p class="rd-field-hint">{{ form.cover_image.help_text }}</p>{% endif %}
+        {% if form.cover_image.errors %}<span class="rd-field-error">{{ form.cover_image.errors.0 }}</span>{% endif %}
+      </div>
 
       <div class="rd-hours-section">
         <h3 class="rd-hours-heading">{% trans "Location on Map" %}</h3>
