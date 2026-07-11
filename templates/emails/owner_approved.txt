@@ -6,7 +6,6 @@
 {{ login_url }}
 
 أهلاً بكم في مجتمع الطعام الفلسطيني على Yumm.
-{{ site_url }}
 {% else %}Congratulations{% if restaurant_name %}, {{ restaurant_name }}{% endif %}
 
 We are pleased to inform you that your restaurant registration on Yumm has been approved.
@@ -15,5 +14,4 @@ You may now sign in here:
 {{ login_url }}
 
 Welcome to Palestine's food community on Yumm.
-{{ site_url }}
 {% endif %}
