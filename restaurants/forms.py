@@ -271,6 +271,9 @@ class ReviewReplyForm(forms.ModelForm):
     class Meta:
         model = CommentReply
         fields = ("reply_text",)
+        labels = {
+            "reply_text": "",
+        }
         widgets = {
             "reply_text": forms.TextInput(
                 attrs={
